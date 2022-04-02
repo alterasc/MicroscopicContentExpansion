@@ -4,11 +4,11 @@
   "DisplayName": "Microscopic Content Expansion",
   "EntryMethod": "MicroscopicContentExpansion.Base.Main.Load",
   "GameVersion": "1.2.0",
-  "HomePage": "",
+  "HomePage": "https://github.com/alterasc/MicroscopicContentExpansion/releases",
   "Id": "MicroscopicContentExpansion",
   "ManagerVersion": "0.23.0",
-  "Repository": "",
+  "Repository": "https://raw.githubusercontent.com/alterasc/MicroscopicContentExpansion/master/Repository.json",
   "Requirements": [ "TabletopTweaks-Core" ],
   "LoadAfter": [ "TabletopTweaks-Core" ],
-  "Version": "1.0.0"
+  "Version": "1.0.1"
 }
