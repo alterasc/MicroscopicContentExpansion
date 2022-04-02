@@ -27,6 +27,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Classes {
 
             }
             static void AddOldMaster() {
+                if (MCEContext.AddedContent.AlternativeCapstones.IsDisabled("MonkOldMaster")) { return; }
+
                 var YAFoBAttack = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "MonkOldMasterFoB", bp => {
                     bp.AddComponent<BuffExtraAttack>(c => {
                         c.Number = 1;
