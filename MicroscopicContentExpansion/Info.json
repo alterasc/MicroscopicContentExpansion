@@ -1,0 +1,14 @@
+﻿{
+  "AssemblyName": "MicroscopicContentExpansion.dll",
+  "Author": "AlterAsc",
+  "DisplayName": "Microscopic Content Expansion",
+  "EntryMethod": "MicroscopicContentExpansion.Base.Main.Load",
+  "GameVersion": "1.2.0",
+  "HomePage": "",
+  "Id": "MicroscopicContentExpansion",
+  "ManagerVersion": "0.23.0",
+  "Repository": "",
+  "Requirements": [ "TabletopTweaks-Core" ],
+  "LoadAfter": [ "TabletopTweaks-Core" ],
+  "Version": "1.0.0"
+}

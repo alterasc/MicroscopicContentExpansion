@@ -1,0 +1,14 @@
+﻿{
+  "NewSettingsOffByDefault": false,
+  "AlternativeCapstones": {
+    "DisableAll": false,
+    "Settings": {
+      "MonkOldMaster": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Old Master alternative capstone to Monk"
+      }
+    },
+    "IsExpanded": true
+  }
+}
