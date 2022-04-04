@@ -13,7 +13,16 @@
     "MonkSoheiCapstoneSelection": "dae67374-9ca8-4518-91fa-f0ca235d8f52",
     "MonkSoheiOldMasterFeature": "58538537-b85d-4684-b85d-5c1f8e2d5284",
     "MonkZenArcherCapstoneSelection": "1e8d098a-ebe7-4206-bc03-82c2821ce111",
-    "MonkZenArcherOldMasterFeature": "076be9d2-e765-4108-81a4-12dadea34fb4"
+    "MonkZenArcherOldMasterFeature": "076be9d2-e765-4108-81a4-12dadea34fb4",
+    "AntipaladinClass": "8939eff2-5a0a-4b77-ad1a-b6be4c760a6c",
+    "AntipaladinProficiencies": "ea81e287-00dd-4d87-a5f3-3430fbb88f61",
+    "AntipaladinProgression": "42fa044f-a29b-4cda-a806-91bd4435c6bd",
+    "AntipaladinSmiteGoodAbility": "09a8551d-f5e0-41b4-a872-bd33f67d70a3",
+    "AntipaladinSmiteGoodAdditionalUse": "716b843d-c7b0-4f3c-bb48-5f212444b401",
+    "AntipaladinSmiteGoodBuff": "7ff9e143-dd21-4641-a7f5-3ee10d7e98b5",
+    "AntipaladinSmiteGoodFeature": "0585118f-63e7-4d23-aa3c-99668933decb",
+    "AntipaladinSmiteGoodResource": "4b9e8e71-7bb0-45d5-beb4-dae7fc246bcd",
+    "AntipaladinUnholyResilience": "c3fa4cfa-c88e-4780-ac61-8e67917cc9c4"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

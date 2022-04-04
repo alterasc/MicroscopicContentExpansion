@@ -76,6 +76,7 @@
     </Reference>
     <Reference Include="Owlcat.Runtime.Visual">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Visual.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="TabletopTweaks-Core">
       <HintPath>$(WrathPath)\Mods\TabletopTweaks-Core\TabletopTweaks-Core.dll</HintPath>
@@ -161,11 +162,13 @@
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\SmiteGood.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\UnholyResilience.cs" />
+    <Compile Include="NewContent\Classes\AntipaladinAdder.cs" />
     <Compile Include="NewContent\Classes\Monk.cs" />
     <Compile Include="UMMSettingsUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".editorconfig" />
     <EmbeddedResource Include="Config\Blueprints.json" />
     <EmbeddedResource Include="Config\AddedContent.json" />
     <None Include="Info.json">
