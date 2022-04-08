@@ -85,7 +85,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
 
 
             });
-            var AntipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
 
             var SmiteGoodResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinSmiteGoodResource", bp => {
                 bp.m_Min = 1;
@@ -184,7 +184,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 bp.AddComponent(Helpers.CreateContextRankConfig(c => {
                     c.m_Type = AbilityRankType.DamageBonus;
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-                    c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClass.ToReference<BlueprintCharacterClassReference>() };
+                    c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
                     c.m_Progression = ContextRankProgression.AsIs;
                     c.m_Max = 20;
                 }));

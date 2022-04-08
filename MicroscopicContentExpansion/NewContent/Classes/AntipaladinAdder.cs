@@ -26,8 +26,16 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
 
                 SmiteGood.AddSmiteGood();
                 UnholyResilience.AddUnholyResilience();
+                TouchofCorruption.AddTouchofCorruption();
+                AuraofCowardice.AddAuraOfCowardiceFeature();
+                PlagueBringer.AddPlagueBringer();
 
                 UpdateAntipaladinProgression();
+
+                var MainCampaign = BlueprintTools.GetBlueprint<BlueprintCampaign>("fd2e11ebb8a14d6599450fc27f03486a");
+                BlueprintUnitReference[] pregens = MainCampaign.m_Pregens;
+                pregens = pregens.AddToArray<BlueprintUnitReference>(pregens[3]);
+                MainCampaign.m_Pregens = pregens;
 
             }
 
@@ -40,15 +48,24 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 var AntipaladinProficiencies = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinProficiencies");
                 var UnholyResilience = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyResilience");
 
+                var TouchOfCorruptionFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTouchOfCorruptionFeature");
+                var TouchOfCorruptionUse = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTouchOfCorruptionAdditionalUse");
+
+                var AuraOfCowardice = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfCowardiceFeature");
+                
+                var PlagueBringer = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinPlagueBringer");
+                
+
                 AntipaladinProgression.LevelEntries = new LevelEntry[] {
                         Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature),
-                        Helpers.CreateLevelEntry(2, UnholyResilience),
+                        Helpers.CreateLevelEntry(2, UnholyResilience, TouchOfCorruptionFeature),
+                        Helpers.CreateLevelEntry(3, AuraOfCowardice, PlagueBringer),
                         Helpers.CreateLevelEntry(4,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(7,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(10,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(13,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(16,  SmiteGoodAdditionalUse),
-                        Helpers.CreateLevelEntry(19,  SmiteGoodAdditionalUse)
+                        Helpers.CreateLevelEntry(19,  SmiteGoodAdditionalUse),
                 };
 
                 AntipaladinProgression.UIGroups = new UIGroup[] {

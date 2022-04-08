@@ -162,7 +162,11 @@
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\AuraofCowardice.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\PlagueBringer.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\SmiteGood.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\TouchofCorruption.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\Cruelties.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\UnholyResilience.cs" />
     <Compile Include="NewContent\Classes\AntipaladinAdder.cs" />
     <Compile Include="NewContent\Classes\Monk.cs" />
