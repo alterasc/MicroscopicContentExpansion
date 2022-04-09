@@ -29,6 +29,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 TouchofCorruption.AddTouchofCorruption();
                 AuraofCowardice.AddAuraOfCowardiceFeature();
                 PlagueBringer.AddPlagueBringer();
+                Cruelties.AddCruelties();
 
                 UpdateAntipaladinProgression();
 
@@ -54,22 +55,30 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 var AuraOfCowardice = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfCowardiceFeature");
                 
                 var PlagueBringer = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinPlagueBringer");
+                var CrueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
+                
                 
 
                 AntipaladinProgression.LevelEntries = new LevelEntry[] {
                         Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature),
                         Helpers.CreateLevelEntry(2, UnholyResilience, TouchOfCorruptionFeature),
-                        Helpers.CreateLevelEntry(3, AuraOfCowardice, PlagueBringer),
+                        Helpers.CreateLevelEntry(3, AuraOfCowardice, PlagueBringer, CrueltySelection),
                         Helpers.CreateLevelEntry(4,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(6,  CrueltySelection),
                         Helpers.CreateLevelEntry(7,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(9,  CrueltySelection),
                         Helpers.CreateLevelEntry(10,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(12,  CrueltySelection),
                         Helpers.CreateLevelEntry(13,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(15,  CrueltySelection),
                         Helpers.CreateLevelEntry(16,  SmiteGoodAdditionalUse),
-                        Helpers.CreateLevelEntry(19,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(18,  CrueltySelection),
+                        Helpers.CreateLevelEntry(19,  SmiteGoodAdditionalUse)
                 };
 
                 AntipaladinProgression.UIGroups = new UIGroup[] {
-                        Helpers.CreateUIGroup(SmiteGoodFeature, SmiteGoodAdditionalUse)
+                        Helpers.CreateUIGroup(SmiteGoodFeature, SmiteGoodAdditionalUse),
+                        Helpers.CreateUIGroup(CrueltySelection)
                 };
 
                 var AntipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
