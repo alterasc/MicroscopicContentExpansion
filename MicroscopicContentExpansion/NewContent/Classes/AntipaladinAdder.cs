@@ -9,6 +9,7 @@ using Kingmaker.UnitLogic.FactLogic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Base.Main;
 using MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures;
+using MicroscopicContentExpansion.Base.NewContent.Archetypes;
 
 namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
     class AntipaladinAdder {
@@ -34,6 +35,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 AuraofDespair.AddAuraOfDespairFeature();
 
                 UpdateAntipaladinProgression();
+
+                IronTyrant.AddIronTyrant();
             }
 
             static void UpdateAntipaladinProgression() {

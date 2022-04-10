@@ -170,6 +170,7 @@
     <Compile Include="NewContent\AntipaladinFeatures\TouchofCorruption.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\Cruelties.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\UnholyResilience.cs" />
+    <Compile Include="NewContent\Archetypes\IronTyrant.cs" />
     <Compile Include="NewContent\Classes\AntipaladinAdder.cs" />
     <Compile Include="NewContent\Classes\Monk.cs" />
     <Compile Include="UMMSettingsUI.cs" />
