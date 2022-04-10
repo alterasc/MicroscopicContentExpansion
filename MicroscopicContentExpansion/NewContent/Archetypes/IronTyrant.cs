@@ -51,8 +51,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Archetypes {
                     Helpers.CreateLevelEntry(9, ArmorShieldCombatFeatSelection),
                     Helpers.CreateLevelEntry(12, ArmorShieldCombatFeatSelection),
                     Helpers.CreateLevelEntry(15, ArmorShieldCombatFeatSelection),
-                    Helpers.CreateLevelEntry(18, ArmorShieldCombatFeatSelection)                    
-                };                
+                    Helpers.CreateLevelEntry(18, ArmorShieldCombatFeatSelection)
+                };
             });
 
             var Archetypes = AntipaladinClass.m_Archetypes.AppendToArray(IronTyrant.ToReference<BlueprintArchetypeReference>());
@@ -73,7 +73,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Archetypes {
                     c.FeatureTags = FeatureTag.Defense;
                 });
             });
-            
+
             var PossibleFeats = new BlueprintFeatureReference[] {
                 BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("6105f450bb2acbd458d277e71e19d835"), //TowerShieldProficiency
                 BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("453f5181a5ed3a445abfa3bcd3f4ac0c"), //ArcaneArmorMaster
@@ -89,13 +89,13 @@ namespace MicroscopicContentExpansion.Base.NewContent.Archetypes {
             };
             BonusFeatSelection.AddFeatures(PossibleFeats);
             //Adding feats from TTT-Base if they exists
-            var ShieldMasterySelection = BlueprintTools.GetBlueprint<BlueprintFeature>("ef38e0fe-68f1-4c88-a9de-acc421455d14");
-            if (ShieldMasterySelection != null) {
-                BonusFeatSelection.AddFeatures(ShieldMasterySelection.ToReference<BlueprintFeatureReference>());
+            var ShieldMasterySelection = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("ef38e0fe-68f1-4c88-a9de-acc421455d14");
+            if (!ShieldMasterySelection.IsEmpty()) {
+                BonusFeatSelection.AddFeatures(ShieldMasterySelection);
             }
-            var ArmorMasterySelection = BlueprintTools.GetBlueprint<BlueprintFeature>("4432c1ac-66c7-4a86-9ffb-6fa21d69232f");
-            if (ArmorMasterySelection != null) {
-                BonusFeatSelection.AddFeatures(ArmorMasterySelection.ToReference<BlueprintFeatureReference>());
+            var ArmorMasterySelection = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("4432c1ac-66c7-4a86-9ffb-6fa21d69232f");
+            if (!ArmorMasterySelection.IsEmpty()) {
+                BonusFeatSelection.AddFeatures(ArmorMasterySelection);
             }
             return BonusFeatSelection;
         }

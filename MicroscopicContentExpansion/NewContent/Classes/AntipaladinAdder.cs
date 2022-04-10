@@ -17,6 +17,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
         static class BlueprintsCache_Init_Patch {
             static bool Initialized;
 
+            [HarmonyAfter(new string[] { "TabletopTweaks-Base" })]
             static void Postfix() {
                 if (Initialized) return;
                 Initialized = true;
