@@ -3,6 +3,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
+using Kingmaker.Enums;
 using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
@@ -10,6 +11,7 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using TabletopTweaks.Core.Utilities;
@@ -17,29 +19,46 @@ using static MicroscopicContentExpansion.Base.Main;
 
 namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
     internal class AuraofCowardice {
-        public static void AddAuraOfCowardiceFeature() {
-
-            var AOCIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("d2aeac47450c76347aebbc02e4f463e0").Icon;
-            var AuraOfCowardiceEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfCowardiceEffectBuff", bp => {
-
-                bp.SetName(MCEContext, "Aura of Cowardice Debuff");
-                bp.SetDescription(MCEContext, "At 3rd level, an antipaladin radiates a palpably daunting aura that causes all enemies" +
+        private const string NAME = "Aura of Cowardice";
+        private const string DESCRIPTION = "At 3rd level, an antipaladin radiates a palpably daunting aura that causes all enemies" +
                     " within 10 feet to take a –4 penalty on saving throws against fear effects. Creatures that are normally immune to" +
                     " fear lose that immunity while within 10 feet of an antipaladin with this ability. This ability functions only" +
-                    " while the antipaladin remains conscious, not if he is unconscious or dead.");
+                    " while the antipaladin remains conscious, not if he is unconscious or dead.";
 
+        public static void AddAuraOfCowardiceFeature() {
+            var AOCIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("d2aeac47450c76347aebbc02e4f463e0").Icon;
+            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+
+            var AuraOfCowardiceEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfCowardiceEffectBuff", bp => {
+                bp.SetName(MCEContext, NAME);
+                bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = AOCIcon;
-                bp.AddComponent<SavingThrowBonusAgainstDescriptor>(c => {
+
+                bp.AddComponent<SavingThrowContextBonusAgainstDescriptor>(c => {
                     c.SpellDescriptor = SpellDescriptor.Fear;
-                    c.ModifierDescriptor = Kingmaker.Enums.ModifierDescriptor.UntypedStackable;
-                    c.Value = -4;
-                    c.Bonus = new ContextValue {
-                        ValueType = ContextValueType.Simple,
-                        Value = 0,
-                        ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                        Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                    c.ModifierDescriptor = ModifierDescriptor.Penalty;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.DamageDice,
                     };
                 });
+                bp.AddComponent<ContextRankConfig>(c => {
+                    c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                    c.m_Progression = ContextRankProgression.Custom;
+                    c.m_Type = AbilityRankType.DamageDice;
+                    c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                    c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
+                        new ContextRankConfig.CustomProgressionItem() {
+                            BaseValue = 7,
+                            ProgressionValue = -4
+                        },
+                        new ContextRankConfig.CustomProgressionItem() {
+                            BaseValue = 100,
+                            ProgressionValue = -2
+                        }
+                    };
+                });
+
                 bp.AddComponent<AbilityAreaEffectRunAction>(c => {
                     c.Round = Helpers.CreateActionList(
                         new ContextActionRemoveBuffsByDescriptor() {
@@ -69,11 +88,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
             });
 
             var AuraOfCowardiceBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfCowardiceBuff", bp => {
-                bp.SetName(MCEContext, "Aura of Cowardice");
-                bp.SetDescription(MCEContext, "At 3rd level, an antipaladin radiates a palpably daunting aura that causes all enemies" +
-                    " within 10 feet to take a –4 penalty on saving throws against fear effects. Creatures that are normally immune to" +
-                    " fear lose that immunity while within 10 feet of an antipaladin with this ability. This ability functions only" +
-                    " while the antipaladin remains conscious, not if he is unconscious or dead.");
+                bp.SetName(MCEContext, NAME);
+                bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = AOCIcon;
 
                 bp.IsClassFeature = true;
@@ -83,11 +99,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
             });
 
             var AuraOfCowardiceFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfCowardiceFeature", bp => {
-                bp.SetName(MCEContext, "Aura of Cowardice");
-                bp.SetDescription(MCEContext, "At 3rd level, an antipaladin radiates a palpably daunting aura that causes all enemies" +
-                    " within 10 feet to take a –4 penalty on saving throws against fear effects. Creatures that are normally immune to" +
-                    " fear lose that immunity while within 10 feet of an antipaladin with this ability. This ability functions only" +
-                    " while the antipaladin remains conscious, not if he is unconscious or dead.");
+                bp.SetName(MCEContext, NAME);
+                bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = AOCIcon;
                 bp.Ranks = 1;
                 bp.IsClassFeature = true;

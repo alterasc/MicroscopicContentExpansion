@@ -26,10 +26,11 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
 
                 SmiteGood.AddSmiteGood();
                 UnholyResilience.AddUnholyResilience();
-                TouchofCorruption.AddTouchofCorruption();
-                AuraofCowardice.AddAuraOfCowardiceFeature();
+                TouchofCorruption.AddTouchofCorruption();                
                 PlagueBringer.AddPlagueBringer();
                 Cruelties.AddCruelties();
+                AuraofDespair.AddAuraOfDespairFeature();
+                AuraofCowardice.AddAuraOfCowardiceFeature();
 
                 UpdateAntipaladinProgression();
 
@@ -50,14 +51,13 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 var UnholyResilience = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyResilience");
 
                 var TouchOfCorruptionFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTouchOfCorruptionFeature");
-                var TouchOfCorruptionUse = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTouchOfCorruptionAdditionalUse");
 
                 var AuraOfCowardice = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfCowardiceFeature");
-                
+                                
                 var PlagueBringer = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinPlagueBringer");
                 var CrueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
-                
-                
+
+                var AuraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");
 
                 AntipaladinProgression.LevelEntries = new LevelEntry[] {
                         Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature),
@@ -66,6 +66,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                         Helpers.CreateLevelEntry(4,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(6,  CrueltySelection),
                         Helpers.CreateLevelEntry(7,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(8,  AuraOfDespair),
                         Helpers.CreateLevelEntry(9,  CrueltySelection),
                         Helpers.CreateLevelEntry(10,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(12,  CrueltySelection),

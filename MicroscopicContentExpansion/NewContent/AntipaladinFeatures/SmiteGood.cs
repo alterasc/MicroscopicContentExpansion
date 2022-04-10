@@ -181,18 +181,18 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                     };
                     c.Modifier = 1;
                 });
-                bp.AddComponent(Helpers.CreateContextRankConfig(c => {
+                bp.AddComponent<ContextRankConfig>(c => {
                     c.m_Type = AbilityRankType.DamageBonus;
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
                     c.m_Progression = ContextRankProgression.AsIs;
                     c.m_Max = 20;
-                }));
-                bp.AddComponent(Helpers.CreateContextRankConfig(c => {
+                });
+                bp.AddComponent<ContextRankConfig>(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.StatBonus;
                     c.m_Stat = StatType.Charisma;
                     c.m_Max = 20;
-                }));
+                });
 
                 bp.AddComponent<AbilitySpawnFx>(c => {
                     c.PrefabLink = FiendishSmiteGoodAbility.GetComponent<AbilitySpawnFx>().PrefabLink;

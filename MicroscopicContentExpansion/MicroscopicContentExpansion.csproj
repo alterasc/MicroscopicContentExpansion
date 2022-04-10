@@ -162,6 +162,7 @@
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\AuraofDespair.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AuraofCowardice.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\PlagueBringer.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\SmiteGood.cs" />
