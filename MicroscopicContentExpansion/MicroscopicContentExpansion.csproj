@@ -163,6 +163,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinSpellbook.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\AuraofSin.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AuraofDespair.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AuraofCowardice.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\ChannelNegativeEnergy.cs" />

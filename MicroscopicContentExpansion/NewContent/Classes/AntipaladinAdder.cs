@@ -36,6 +36,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 AntipaladinSpellbook.AddAntipaladinSpellbook();
                 AuraofDespair.AddAuraOfDespairFeature();
                 AuraofVengeance.AddAuraofVengeance();
+                AuraofSin.AddAuraOfSinFeature();
 
                 UpdateAntipaladinProgression();
 
@@ -65,7 +66,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 var AuraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");
 
                 var MarkOfVengeance = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfVengeanceFeature");
-
+                
+                var AuraOfSin = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfSinFeature");
 
                 AntipaladinProgression.LevelEntries = new LevelEntry[] {
                         Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature),
@@ -80,6 +82,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                         Helpers.CreateLevelEntry(11,  MarkOfVengeance),
                         Helpers.CreateLevelEntry(12,  CrueltySelection),
                         Helpers.CreateLevelEntry(13,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(14,  AuraOfSin),
                         Helpers.CreateLevelEntry(15,  CrueltySelection),
                         Helpers.CreateLevelEntry(16,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(18,  CrueltySelection),
