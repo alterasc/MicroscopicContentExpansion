@@ -6,10 +6,10 @@ using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic.FactLogic;
-using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
 using MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures;
 using MicroscopicContentExpansion.Base.NewContent.Archetypes;
+using TabletopTweaks.Core.Utilities;
+using static MicroscopicContentExpansion.Base.Main;
 
 namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
     class AntipaladinAdder {
@@ -33,7 +33,9 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 Cruelties.AddCruelties();
                 AuraofCowardice.AddAuraOfCowardiceFeature();
                 ChannelNegativeEnergy.AddChannelNegativeEnergy();
+                AntipaladinSpellbook.AddAntipaladinSpellbook();
                 AuraofDespair.AddAuraOfDespairFeature();
+                AuraofVengeance.AddAuraofVengeance();
 
                 UpdateAntipaladinProgression();
 
@@ -57,9 +59,12 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 var CrueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
                 
                 var ChannelNegativeEnergy = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinChannelNegativeEnergyFeature");
+                
+                var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
 
                 var AuraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");
 
+                var MarkOfVengeance = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfVengeanceFeature");
 
 
                 AntipaladinProgression.LevelEntries = new LevelEntry[] {
@@ -72,6 +77,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                         Helpers.CreateLevelEntry(8,  AuraOfDespair),
                         Helpers.CreateLevelEntry(9,  CrueltySelection),
                         Helpers.CreateLevelEntry(10,  SmiteGoodAdditionalUse),
+                        Helpers.CreateLevelEntry(11,  MarkOfVengeance),
                         Helpers.CreateLevelEntry(12,  CrueltySelection),
                         Helpers.CreateLevelEntry(13,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(15,  CrueltySelection),
@@ -90,6 +96,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 {
                     SmiteGoodFeature.ToReference<BlueprintFeatureReference>()
                 };
+                AntipaladinClass.m_Spellbook = SpellbookRef;
             }
 
             static void CreateAntipaladin() {
@@ -115,6 +122,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 });
 
                 var AntipaladinProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression", bp => {
+                    bp.m_DisplayName = Helpers.CreateString(MCEContext, $"AntipaladinClass.Name", "Antipaladin");
                     bp.LevelEntries = new LevelEntry[] {
                         Helpers.CreateLevelEntry(1, AntipaladinProficiencies),
                     };
