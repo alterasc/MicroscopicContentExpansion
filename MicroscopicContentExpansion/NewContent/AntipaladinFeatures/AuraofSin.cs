@@ -4,7 +4,6 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
-using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
@@ -23,7 +22,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
             " not if he is unconscious or dead.";
 
         public static void AddAuraOfSinFeature() {
-            var AOSIcon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a68cd0fbf5d21ef4f8b9375ec0ac53b9").Icon;
+            var AOSIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("8bc64d869456b004b9db255cdd1ea734").Icon;
 
             var AuraOfSinEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfSinEffectBuff", bp => {
                 bp.SetName(MCEContext, NAME);
