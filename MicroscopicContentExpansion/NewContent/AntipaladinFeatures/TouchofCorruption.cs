@@ -1,5 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
@@ -117,7 +118,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
         }
 
         internal static BlueprintAbility CreateTouchOfCorruption(string BPName, string AbilityName, string Description, Sprite Icon,
-            GameAction Action = null, BlueprintUnitFactReference RequiredFeatureRef = null) {
+            GameAction Action = null, ContextRankConfig RankConfig = null, SpellDescriptorComponent Descriptor = null, BlueprintUnitFactReference RequiredFeatureRef = null) {
 
             var TouchOfCorruptionResource = BlueprintTools.GetModBlueprintReference<BlueprintAbilityResourceReference>(MCEContext, "AntipaladinTouchOfCorruptionResource");
             var AbsoluteDeathAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
@@ -213,7 +214,9 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
 
                 bp.AddComponent<AbilityEffectMiss>();
 
-
+                if (RankConfig != null) {
+                    bp.AddComponent(RankConfig);
+                }
                 bp.AddComponent((System.Action<AbilitySpawnFx>)(c => {
                     c.PrefabLink = AbsoluteDeathAbility.GetComponent<AbilitySpawnFx>().PrefabLink;
                     c.Anchor = AbsoluteDeathAbility.GetComponent<AbilitySpawnFx>().Anchor;
@@ -221,6 +224,10 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                     c.OrientationAnchor = AbsoluteDeathAbility.GetComponent<AbilitySpawnFx>().OrientationAnchor;
                 }));
 
+                if (Descriptor != null) {
+                    bp.AddComponent(Descriptor);
+                }
+                
                 bp.AddComponent((System.Action<AbilityCasterAlignment>)(c => {
                     c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
                 }));

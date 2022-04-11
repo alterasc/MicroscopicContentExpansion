@@ -1,6 +1,7 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
+using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
@@ -20,6 +21,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Base.Main;
@@ -61,9 +63,9 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                     c.CheckCaster = true;
                     c.ApplyToSpellDamage = true;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Shared,                        
+                        ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.DamageBonus
-                    };                    
+                    };
                 });
                 bp.AddComponent<ACBonusAgainstTarget>(c => {
                     c.CheckCaster = true;
@@ -95,9 +97,11 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                     IncreasedByLevel = false,
                 };
                 bp.m_Max = 10;
-
             });
 
+            AntipaladinFeatures.TipoftheSpear.AddTipoftheSpear();
+
+            var TipoftheSpear = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(MCEContext, "AntipaladinTipoftheSpear");
 
             var FiendishSmiteGoodAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("478cf0e6c5f3a4142835faeae3bd3e04");
             var SmiteGoodAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinSmiteGoodAbility", bp => {
@@ -114,7 +118,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                     " until the target of the smite is dead or the next time the antipaladin rests and regains his uses of this ability. " +
                     "At 4th level, and at every three levels thereafter, the antipaladin may smite good one additional time per day, " +
                     "as indicated on Table: Antipaladin, to a maximum of seven times per day at 19th level.");
-                bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "Until the target of Smite Good is dead");                
+                bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "Until the target of Smite Good is dead");
                 bp.LocalizedSavingThrow = Helpers.CreateString(MCEContext, $"{bp.name}.SavingThrow", "None");
                 bp.m_Icon = SmiteGoodIcon;
                 bp.Type = AbilityType.Supernatural;
@@ -130,10 +134,20 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                     c.Actions = Helpers.CreateActionList(
                         new Conditional {
                             ConditionsChecker = new ConditionsChecker {
-                                Conditions = new Condition[] {                                    
-                                    new ContextConditionAlignment(){
-                                        CheckCaster = false,
-                                        Alignment = AlignmentComponent.Good
+                                Conditions = new Condition[] {
+                                    new OrAndLogic() {
+                                        ConditionsChecker = new ConditionsChecker {
+                                            Operation = Operation.Or,
+                                            Conditions = new Condition[] {
+                                                new ContextConditionAlignment(){
+                                                    CheckCaster = false,
+                                                    Alignment = AlignmentComponent.Good
+                                                },
+                                                new ContextConditionCasterHasFact() {
+                                                    m_Fact = TipoftheSpear
+                                                },
+                                            }
+                                        }
                                     },
                                     new ContextConditionHasBuffFromCaster() {
                                         m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>(),
@@ -141,7 +155,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                                     }
                                 }
                             },
-                            IfTrue = Helpers.CreateActionList(
+                                IfTrue = Helpers.CreateActionList(
                                 new ContextActionApplyBuff() {
                                     m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>(),
                                     Permanent = true,
@@ -152,8 +166,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                                     }
                                 }
                             ),
-                            IfFalse = Helpers.CreateActionList(),
-                        });
+                                IfFalse = Helpers.CreateActionList(),
+                            });
 
                 });
                 bp.AddComponent<ContextCalculateSharedValue>(c => {

@@ -28,7 +28,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
 
                 SmiteGood.AddSmiteGood();
                 UnholyResilience.AddUnholyResilience();
-                TouchofCorruption.AddTouchofCorruption();                
+                TouchofCorruption.AddTouchofCorruption();
                 PlagueBringer.AddPlagueBringer();
                 Cruelties.AddCruelties();
                 AuraofCowardice.AddAuraOfCowardiceFeature();
@@ -50,30 +50,30 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 var AntipaladinProgression = BlueprintTools.GetModBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression");
 
                 var SmiteGoodFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinSmiteGoodFeature");
-                var SmiteGoodAdditionalUse = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinSmiteGoodAdditionalUse");                
+                var SmiteGoodAdditionalUse = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinSmiteGoodAdditionalUse");
                 var AntipaladinProficiencies = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinProficiencies");
                 var UnholyResilience = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyResilience");
 
                 var TouchOfCorruptionFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTouchOfCorruptionFeature");
 
                 var AuraOfCowardice = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfCowardiceFeature");
-                                
+
                 var PlagueBringer = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinPlagueBringer");
                 var CrueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
-                
+
                 var ChannelNegativeEnergy = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinChannelNegativeEnergyFeature");
-                
+
                 var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
 
                 var AuraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");
 
                 var MarkOfVengeance = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfVengeanceFeature");
-                
+
                 var AuraOfSin = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfSinFeature");
-                
+
                 var AuraOfDepravity = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDepravityFeature");
-                
-                var UnholyChampion = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyChampion");
+
+                var Capstone = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCapstone");
 
                 AntipaladinProgression.LevelEntries = new LevelEntry[] {
                         Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature),
@@ -94,7 +94,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                         Helpers.CreateLevelEntry(17,  AuraOfDepravity),
                         Helpers.CreateLevelEntry(18,  CrueltySelection),
                         Helpers.CreateLevelEntry(19,  SmiteGoodAdditionalUse),
-                        Helpers.CreateLevelEntry(20,  UnholyChampion)
+                        Helpers.CreateLevelEntry(20,  Capstone)
                 };
 
                 AntipaladinProgression.UIGroups = new UIGroup[] {

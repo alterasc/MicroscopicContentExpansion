@@ -1,19 +1,9 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.ElementsSystem;
-using Kingmaker.Enums;
-using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
-using Kingmaker.UnitLogic.ActivatableAbilities;
-using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
-using Kingmaker.Utility;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Base.Main;
@@ -32,7 +22,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
             var ChannelNegativeEnergyAbility = BlueprintTools.GetModBlueprint<BlueprintAbility>(MCEContext, "AntipaladinChannelNegativeEnergyAbility");
             var TouchOfCorruptionAbility = BlueprintTools.GetModBlueprint<BlueprintAbility>(MCEContext, "AntipaladinTouchOfCorruptionAbility");
 
-            var ProfaneChampion = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyChampion", bp => {
+            var UnholyChampion = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyChampion", bp => {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.Ranks = 1;
@@ -53,6 +43,20 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                         TouchOfCorruptionAbility.ToReference<BlueprintAbilityReference>()
                     };
                 });
+            });
+
+            var TipoftheSpear = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinTipoftheSpear");
+
+            Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinCapstone", bp => {
+                bp.SetName(MCEContext, "Antipaladin Capstone");
+                bp.SetDescription(MCEContext, "At 20th level, antipaladin gains a powerful class feature");
+                bp.m_AllFeatures = new BlueprintFeatureReference[] {
+                    UnholyChampion.ToReference<BlueprintFeatureReference>(),
+                    TipoftheSpear
+                };
+                bp.Mode = SelectionMode.Default;
+                bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+                bp.IsClassFeature = true;
             });
         }
     }
