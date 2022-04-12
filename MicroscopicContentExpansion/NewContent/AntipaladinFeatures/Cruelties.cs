@@ -8,7 +8,6 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
-using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
@@ -27,16 +26,47 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
             " the target takes the damage as normal, but not the effects of the cruelty. The DC of this save is equal to" +
             " 10 + 1/2 the antipaladin’s level + the antipaladin’s Charisma modifier";
 
-        private static void AddFatiquedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var FatiguedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e6f2fc5d73d88064583cb828801212f4");
-            CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyFatiquedFeature", bp => {
-                bp.SetName(MCEContext, "Cruelty - Fatiqued");
-                bp.SetDescription(MCEContext, DESCRIPTION + "\nThe target is fatigued.");
+        private static void BuildCruelty(
+            BlueprintCharacterClassReference antipaladinClassRef,
+            out BlueprintFeature crueltyFeature,
+            out BlueprintAbility crueltyAbility,
+            string name,
+            string description,
+            UnityEngine.Sprite icon,
+            int prerequsiteLevel,
+            BlueprintFeatureReference[] prerequisiteFeatures,
+            GameAction[] actions,
+            ContextRankConfig config,
+            SpellDescriptor spellDescriptor
+            ) {
+
+            crueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCruelty" + name + "Feature", bp => {
+                bp.SetName(MCEContext, "Cruelty - " + name);
+                bp.SetDescription(MCEContext, DESCRIPTION + "\n" + description);
                 bp.m_DescriptionShort = bp.m_Description;
-                bp.m_Icon = FatiguedBuff.Icon;
+                bp.m_Icon = icon;
                 bp.Ranks = 1;
                 bp.IsClassFeature = true;
+                if (prerequsiteLevel > 0) {
+                    bp.AddPrerequisite<PrerequisiteClassLevel>(c => {
+                        c.m_CharacterClass = antipaladinClassRef;
+                        c.Level = prerequsiteLevel;
+                    });
+                }
+                if (prerequisiteFeatures != null && prerequisiteFeatures.Length > 0) {
+                    foreach (var feature in prerequisiteFeatures) {
+                        bp.AddPrerequisite<PrerequisiteFeature>(c => {
+                            c.m_Feature = feature;
+                        });
+                    }
+                }
             });
+            SpellDescriptorComponent Descriptor = null;
+            if (spellDescriptor != SpellDescriptor.None) {
+                Descriptor = Helpers.Create<SpellDescriptorComponent>(c => {
+                    c.Descriptor = spellDescriptor;
+                });
+            }
 
             var Action = new ContextActionSavingThrow() {
                 m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
@@ -45,74 +75,74 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                 CustomDC = new ContextValue(),
                 Actions = Helpers.CreateActionList(new ContextActionConditionalSaved() {
                     Succeed = new ActionList(),
-                    Failed = Helpers.CreateActionList(
-                            new ContextActionApplyBuff() {
-                                m_Buff = FatiguedBuff.ToReference<BlueprintBuffReference>(),
-                                Permanent = true,
-                                DurationValue = new ContextDurationValue() {
-                                    m_IsExtendable = true,
-                                    DiceCountValue = new ContextValue(),
-                                    BonusValue = new ContextValue()
-                                },
-                                IsFromSpell = true,
-                            }),
+                    Failed = Helpers.CreateActionList(actions),
                 })
             };
-            var Descriptor = Helpers.Create<SpellDescriptorComponent>(c => {
-                c.Descriptor = SpellDescriptor.Fatigue;
-            });
 
-            CrueltyAbility = TouchofCorruption.CreateTouchOfCorruption(
-                "AntipaladinTouchOfCorruptionFatiqued",
-                "Touch of Corruption - Fatiqued",
-                "Applies Touch of Corruption with Fatiqued cruelty.\nOn failed saving throw the target is fatigued.",
-                FatiguedBuff.Icon,
+            crueltyAbility = TouchofCorruption.CreateTouchOfCorruption(
+                "AntipaladinTouchOfCorruption" + name,
+                "Touch of Corruption - " + name,
+                "Applies Touch of Corruption with " + name + " cruelty.\n" + description,
+                icon,
                 Action,
-                null,
+                config,
                 Descriptor,
-                CrueltyFeature.ToReference<BlueprintUnitFactReference>()
+                crueltyFeature.ToReference<BlueprintUnitFactReference>()
             );
+        }
+
+        private static void AddFatiquedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
+            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var FatiguedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e6f2fc5d73d88064583cb828801212f4");
+
+            var actions = new ContextActionApplyBuff() {
+                m_Buff = FatiguedBuff.ToReference<BlueprintBuffReference>(),
+                Permanent = true,
+                DurationValue = new ContextDurationValue() {
+                    m_IsExtendable = true,
+                    DiceCountValue = new ContextValue(),
+                    BonusValue = new ContextValue()
+                },
+                IsFromSpell = true,
+            };
+
+            BuildCruelty(
+                AntipaladinClassRef,
+                out var InnerCrueltyFeature,
+                out var InnerCrueltyAbility,
+                "Fatiqued",
+                "The target is fatigued.",
+                FatiguedBuff.Icon,
+                0,
+                new BlueprintFeatureReference[0],
+                new GameAction[] { actions },
+                null,
+                SpellDescriptor.Fatigue
+            );
+
+            CrueltyAbility = InnerCrueltyAbility;
+            CrueltyFeature = InnerCrueltyFeature;
+
         }
 
         private static void AddShakenCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
             var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
-
             var ShakenBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("25ec6cb6ab1845c48a95f9c20b034220");
 
-            CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyShakenFeature", bp => {
-                bp.SetName(MCEContext, "Cruelty - Shaken");
-                bp.SetDescription(MCEContext, DESCRIPTION + "\nThe target is shaken for 1 round per level of the antipaladin.");
-                bp.m_DescriptionShort = bp.m_Description;
-                bp.m_Icon = ShakenBuff.Icon;
-                bp.Ranks = 1;
-
-                bp.IsClassFeature = true;
-            });
-
-            var Action = new ContextActionSavingThrow() {
-                m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
-                Type = SavingThrowType.Fortitude,
-                HasCustomDC = false,
-                CustomDC = new ContextValue(),
-                Actions = Helpers.CreateActionList(new ContextActionConditionalSaved() {
-                    Succeed = new ActionList(),
-                    Failed = Helpers.CreateActionList(
-                            new ContextActionApplyBuff() {
-                                m_Buff = ShakenBuff.ToReference<BlueprintBuffReference>(),
-                                DurationValue = new ContextDurationValue() {
-                                    m_IsExtendable = true,
-                                    DiceCountValue = 0,
-                                    BonusValue = new ContextValue() {
-                                        ValueType = ContextValueType.Rank,
-                                        ValueRank = AbilityRankType.DamageDice,
-                                    }
-                                },
-                                IsFromSpell = true,
-                            }),
-                })
+            var actions = new ContextActionApplyBuff() {
+                m_Buff = ShakenBuff.ToReference<BlueprintBuffReference>(),
+                DurationValue = new ContextDurationValue() {
+                    m_IsExtendable = true,
+                    DiceCountValue = 0,
+                    BonusValue = new ContextValue() {
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.DamageDice,
+                    }
+                },
+                IsFromSpell = true,
             };
 
-            var ContextVarConfig = Helpers.Create<ContextRankConfig>(c => {
+            var contextVarConfig = Helpers.Create<ContextRankConfig>(c => {
                 c.m_Type = AbilityRankType.DamageDice;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
@@ -120,17 +150,22 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                 c.m_Max = 20;
             });
 
-            CrueltyAbility = TouchofCorruption.CreateTouchOfCorruption(
-                "AntipaladinTouchOfCorruptionShaken",
-                "Touch of Corruption - Shaken",
-                "Applies Touch of Corruption with Shaken cruelty.\nOn failed saving throw the " +
-                "target is shaken for 1 round per level of the antipaladin.",
+            BuildCruelty(
+                AntipaladinClassRef,
+                out var InnerCrueltyFeature,
+                out var InnerCrueltyAbility,
+                "Shaken",
+                "The target is shaken for 1 round per level of the antipaladin.",
                 ShakenBuff.Icon,
-                Action,
-                ContextVarConfig,
-                null,
-                CrueltyFeature.ToReference<BlueprintUnitFactReference>()
+                0,
+                new BlueprintFeatureReference[0],
+                new GameAction[] { actions },
+                contextVarConfig,
+                SpellDescriptor.None
             );
+
+            CrueltyAbility = InnerCrueltyAbility;
+            CrueltyFeature = InnerCrueltyFeature;
         }
 
         private static void AddSickenedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
@@ -138,39 +173,20 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
 
             var SickenedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("4e42460798665fd4cb9173ffa7ada323");
 
-            CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySickenedFeature", bp => {
-                bp.SetName(MCEContext, "Cruelty - Sickened");
-                bp.SetDescription(MCEContext, DESCRIPTION + "\nThe target is sickened for 1 round per level of the antipaladin.");
-                bp.m_DescriptionShort = bp.m_Description;
-                bp.m_Icon = SickenedBuff.Icon;
-                bp.Ranks = 1;
-                bp.IsClassFeature = true;
-            });
-
-            var Action = new ContextActionSavingThrow() {
-                m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
-                Type = SavingThrowType.Fortitude,
-                HasCustomDC = false,
-                CustomDC = new ContextValue(),
-                Actions = Helpers.CreateActionList(new ContextActionConditionalSaved() {
-                    Succeed = new ActionList(),
-                    Failed = Helpers.CreateActionList(
-                            new ContextActionApplyBuff() {
-                                m_Buff = SickenedBuff.ToReference<BlueprintBuffReference>(),
-                                DurationValue = new ContextDurationValue() {
-                                    m_IsExtendable = true,
-                                    DiceCountValue = 0,
-                                    BonusValue = new ContextValue() {
-                                        ValueType = ContextValueType.Rank,
-                                        ValueRank = AbilityRankType.DamageDice,
-                                    }
-                                },
-                                IsFromSpell = true,
-                            }),
-                })
+            var actions = new ContextActionApplyBuff() {
+                m_Buff = SickenedBuff.ToReference<BlueprintBuffReference>(),
+                DurationValue = new ContextDurationValue() {
+                    m_IsExtendable = true,
+                    DiceCountValue = 0,
+                    BonusValue = new ContextValue() {
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.DamageDice,
+                    }
+                },
+                IsFromSpell = true,
             };
 
-            var ContextVarConfig = Helpers.Create<ContextRankConfig>(c => {
+            var contextVarConfig = Helpers.Create<ContextRankConfig>(c => {
                 c.m_Type = AbilityRankType.DamageDice;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
@@ -178,17 +194,22 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                 c.m_Max = 20;
             });
 
-            CrueltyAbility = TouchofCorruption.CreateTouchOfCorruption(
-                "AntipaladinTouchOfCorruptionSickened",
-                "Touch of Corruption - Sickened",
-                "Applies Touch of Corruption with Sickened cruelty.\nOn failed saving throw the " +
-                "target is sickened for 1 round per level of the antipaladin.",
+            BuildCruelty(
+                AntipaladinClassRef,
+                out var InnerCrueltyFeature,
+                out var InnerCrueltyAbility,
+                "Sickened",
+                "The target is sickened for 1 round per level of the antipaladin",
                 SickenedBuff.Icon,
-                Action,
-                ContextVarConfig,
-                null,
-                CrueltyFeature.ToReference<BlueprintUnitFactReference>()
+                0,
+                new BlueprintFeatureReference[0],
+                new GameAction[] { actions },
+                contextVarConfig,
+                SpellDescriptor.None
             );
+
+            CrueltyAbility = InnerCrueltyAbility;
+            CrueltyFeature = InnerCrueltyFeature;
         }
 
         private static void AddDazedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
@@ -204,7 +225,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                 bp.Ranks = 1;
                 bp.IsClassFeature = true;
                 bp.AddPrerequisite<PrerequisiteClassLevel>(c => {
-                    c.m_CharacterClass = AntipaladinClassRef;                    
+                    c.m_CharacterClass = AntipaladinClassRef;
                     c.Level = 6;
                 });
             });
@@ -610,6 +631,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
             );
         }
 
+
         private static void AddBlindedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
             var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
 
@@ -841,6 +863,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
         }
 
         public static void AddCruelties() {
+            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
 
             AddFatiquedCruelty(out var FatiquedCrueltyFeature, out var FatiquedCrueltyAbility);
             AddShakenCruelty(out var ShakenCrueltyFeature, out var ShakenCrueltyAbility);
