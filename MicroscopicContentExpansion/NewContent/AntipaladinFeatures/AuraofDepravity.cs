@@ -70,7 +70,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = AOCIcon;
-
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddAreaEffect>(c => {
                     c.m_AreaEffect = AuraOfDepravityArea.ToReference<BlueprintAbilityAreaEffectReference>();
