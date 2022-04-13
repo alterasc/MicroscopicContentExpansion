@@ -34,6 +34,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 AuraofCowardice.AddAuraOfCowardiceFeature();
                 ChannelNegativeEnergy.AddChannelNegativeEnergy();
                 AntipaladinSpellbook.AddAntipaladinSpellbook();
+                FiendishBoon.AddFiendinshBoon();
                 AuraofDespair.AddAuraOfDespairFeature();
                 AuraofVengeance.AddAuraofVengeance();
                 AuraofSin.AddAuraOfSinFeature();
@@ -62,6 +63,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 var CrueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
 
                 var ChannelNegativeEnergy = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinChannelNegativeEnergyFeature");
+                
+                var FiendishBoon = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBoonSelection");
 
                 var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
 
@@ -80,6 +83,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                         Helpers.CreateLevelEntry(2, UnholyResilience, TouchOfCorruptionFeature),
                         Helpers.CreateLevelEntry(3, AuraOfCowardice, PlagueBringer, CrueltySelection),
                         Helpers.CreateLevelEntry(4,  SmiteGoodAdditionalUse, ChannelNegativeEnergy),
+                        Helpers.CreateLevelEntry(5,  FiendishBoon),
                         Helpers.CreateLevelEntry(6,  CrueltySelection),
                         Helpers.CreateLevelEntry(7,  SmiteGoodAdditionalUse),
                         Helpers.CreateLevelEntry(8,  AuraOfDespair),

@@ -1,6 +1,7 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
+using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
@@ -23,6 +24,7 @@ using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Base.Main;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalModifierDescriptors;
 
 namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
     internal class AuraofVengeance {
@@ -35,6 +37,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
 
         public static void AddAuraofVengeance() {
             var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+
+            var TipoftheSpear = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(MCEContext, "AntipaladinTipoftheSpear");
 
             var FingerOfDeathIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("6f1dcf6cfa92d1948a740195707c0dbe").Icon;
 
@@ -50,7 +54,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 bp.FxOnStart = FiendishSmiteGoodBuff.FxOnStart;
                 bp.FxOnRemove = FiendishSmiteGoodBuff.FxOnRemove;
                 bp.AddComponent<AttackBonusAgainstTarget>(c => {
-                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Descriptor = (ModifierDescriptor)Untyped.Charisma;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.StatBonus
@@ -109,9 +113,19 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                         new Conditional {
                             ConditionsChecker = new ConditionsChecker {
                                 Conditions = new Condition[] {
-                                    new ContextConditionAlignment(){
-                                        CheckCaster = false,
-                                        Alignment = AlignmentComponent.Good
+                                    new OrAndLogic() {
+                                        ConditionsChecker = new ConditionsChecker {
+                                            Operation = Operation.Or,
+                                            Conditions = new Condition[] {
+                                                new ContextConditionAlignment(){
+                                                    CheckCaster = false,
+                                                    Alignment = AlignmentComponent.Good
+                                                },
+                                                new ContextConditionCasterHasFact() {
+                                                    m_Fact = TipoftheSpear
+                                                },
+                                            }
+                                        }
                                     },
                                     new ContextConditionHasBuff() {
                                         m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>(),

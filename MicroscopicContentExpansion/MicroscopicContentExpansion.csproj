@@ -163,6 +163,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinSpellbook.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\FiendishBoon.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\TipoftheSpear.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\UnholyChampion.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AuraofDepravity.cs" />

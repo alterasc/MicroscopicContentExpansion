@@ -25,6 +25,7 @@ using MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Base.Main;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalModifierDescriptors;
 
 namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
     internal class SmiteGood {
@@ -52,7 +53,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                 bp.FxOnStart = FiendishSmiteGoodBuff.FxOnStart;
                 bp.FxOnRemove = FiendishSmiteGoodBuff.FxOnRemove;
                 bp.AddComponent<AttackBonusAgainstTarget>(c => {
-                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Descriptor = (ModifierDescriptor)Untyped.Charisma;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.StatBonus
@@ -155,7 +156,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                                     }
                                 }
                             },
-                                IfTrue = Helpers.CreateActionList(
+                            IfTrue = Helpers.CreateActionList(
                                 new ContextActionApplyBuff() {
                                     m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>(),
                                     Permanent = true,
@@ -166,8 +167,8 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                                     }
                                 }
                             ),
-                                IfFalse = Helpers.CreateActionList(),
-                            });
+                            IfFalse = Helpers.CreateActionList(),
+                        });
 
                 });
                 bp.AddComponent<ContextCalculateSharedValue>(c => {
