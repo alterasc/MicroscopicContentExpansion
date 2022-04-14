@@ -4,7 +4,6 @@ using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities;
@@ -24,7 +23,7 @@ using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
-using static TabletopTweaks.Core.MechanicsChanges.AdditionalModifierDescriptors;
+using static MicroscopicContentExpansion.MCEHelpers.MCETools;
 
 namespace MicroscopicContentExpansion.NewContent.Antipaladin {
     internal class SmiteGood {
@@ -52,7 +51,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 bp.FxOnStart = FiendishSmiteGoodBuff.FxOnStart;
                 bp.FxOnRemove = FiendishSmiteGoodBuff.FxOnRemove;
                 bp.AddComponent<AttackBonusAgainstTarget>(c => {
-                    c.Descriptor = (ModifierDescriptor)Untyped.Charisma;
+                    c.Descriptor = (ModifierDescriptor)TabletopTweaks.Core.MechanicsChanges.AdditionalModifierDescriptors.Untyped.Charisma;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.StatBonus
@@ -131,44 +130,35 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 bp.ActionType = UnitCommand.CommandType.Swift;
                 bp.AvailableMetamagic = Metamagic.Heighten | Metamagic.Reach;
                 bp.AddComponent<AbilityEffectRunAction>(c => {
-                    c.Actions = Helpers.CreateActionList(
-                        new Conditional {
-                            ConditionsChecker = new ConditionsChecker {
-                                Conditions = new Condition[] {
-                                    new OrAndLogic() {
-                                        ConditionsChecker = new ConditionsChecker {
-                                            Operation = Operation.Or,
-                                            Conditions = new Condition[] {
-                                                new ContextConditionAlignment(){
-                                                    CheckCaster = false,
-                                                    Alignment = AlignmentComponent.Good
-                                                },
-                                                new ContextConditionCasterHasFact() {
-                                                    m_Fact = TipoftheSpear
-                                                },
-                                            }
-                                        }
+                    c.Actions = DoSingle<Conditional>(cond => {
+                        cond.ConditionsChecker = IfAll(
+                            new OrAndLogic() {
+                                ConditionsChecker = IfAny(
+                                    new ContextConditionAlignment() {
+                                        CheckCaster = false,
+                                        Alignment = AlignmentComponent.Good
                                     },
-                                    new ContextConditionHasBuffFromCaster() {
-                                        m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>(),
-                                        Not = true
+                                    new ContextConditionCasterHasFact() {
+                                        m_Fact = TipoftheSpear
                                     }
-                                }
+                                )
                             },
-                            IfTrue = Helpers.CreateActionList(
-                                new ContextActionApplyBuff() {
-                                    m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>(),
-                                    Permanent = true,
-                                    DurationValue = new ContextDurationValue() {
-                                        m_IsExtendable = true,
-                                        DiceCountValue = new ContextValue(),
-                                        BonusValue = new ContextValue()
-                                    }
-                                }
-                            ),
-                            IfFalse = Helpers.CreateActionList(),
+                            new ContextConditionHasBuffFromCaster() {
+                                m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>(),
+                                Not = true
+                            }
+                        );
+                        cond.IfTrue = DoSingle<ContextActionApplyBuff>(apb => {
+                            apb.m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>();
+                            apb.Permanent = true;
+                            apb.DurationValue = new ContextDurationValue() {
+                                m_IsExtendable = true,
+                                DiceCountValue = new ContextValue(),
+                                BonusValue = new ContextValue()
+                            };
                         });
-
+                        cond.IfFalse = DoNothing();
+                    });
                 });
                 bp.AddComponent<ContextCalculateSharedValue>(c => {
                     c.ValueType = AbilitySharedValue.StatBonus;
@@ -253,7 +243,6 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 bp.AddComponent<AddFacts>(c => {
                     c.m_Facts = new BlueprintUnitFactReference[] {
                         SmiteGoodAbility.ToReference<BlueprintUnitFactReference>(),
-
                     };
                 });
             });

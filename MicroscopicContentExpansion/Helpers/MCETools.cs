@@ -20,10 +20,17 @@ namespace MicroscopicContentExpansion.MCEHelpers {
             };
         }
 
-        public static ConditionsChecker IfMany(params Condition[] conditions) {
+        public static ConditionsChecker IfAll(params Condition[] conditions) {
             return new ConditionsChecker() {
                 Conditions = conditions,
                 Operation = Operation.And
+            };
+        }
+
+        public static ConditionsChecker IfAny(params Condition[] conditions) {
+            return new ConditionsChecker() {
+                Conditions = conditions,
+                Operation = Operation.Or
             };
         }
 

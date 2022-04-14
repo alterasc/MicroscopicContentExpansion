@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using UnityEngine;
 using static MicroscopicContentExpansion.Main;
+using static MicroscopicContentExpansion.MCEHelpers.MCETools;
 
 namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class TouchofCorruption {
@@ -143,24 +144,23 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 } else {
                     bp.LocalizedSavingThrow = Helpers.CreateString(MCEContext, $"{bp.name}.SavingThrow", "None");
                 }
-                bp.AddComponent((System.Action<AbilityResourceLogic>)(c => {
+                bp.AddComponent<AbilityResourceLogic>(c => {
                     c.m_RequiredResource = TouchOfCorruptionResource;
                     c.m_IsSpendResource = true;
                     c.Amount = 1;
                     c.ResourceCostIncreasingFacts = new List<BlueprintUnitFactReference>();
                     c.ResourceCostDecreasingFacts = new List<BlueprintUnitFactReference>();
-                }));
+                });
                 bp.AddContextRankConfig(c => {
                     c.m_Type = Kingmaker.Enums.AbilityRankType.Default;
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
                     c.m_Progression = ContextRankProgression.Div2;
                 });
-                bp.AddComponent((System.Action<AbilityDeliverTouch>)(c => {
+                bp.AddComponent<AbilityDeliverTouch>(c => {
                     c.m_TouchWeapon = TouchItem.ToReference<BlueprintItemWeaponReference>();
-
-                }));
-                bp.AddComponent((System.Action<AbilityEffectRunAction>)(c => {
+                });
+                bp.AddComponent<AbilityEffectRunAction>(c => {
                     var actions = new GameAction[] {
                         new ContextActionDealDamage() {
                             DamageType = new DamageTypeDescription() {
@@ -187,50 +187,44 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                         actions = actions.AppendToArray(Action);
                     }
                     ActionList actionList = Helpers.CreateActionList(actions);
-                    c.Actions = Helpers.CreateActionList(
-                          new Conditional() {
-                              ConditionsChecker = new ConditionsChecker() {
-                                  Conditions = new Condition[] {
-                                  new ContextConditionHasFact() {
-                                      m_Fact = NegativeEnergyAffinity.ToReference<BlueprintUnitFactReference>()
-                                  }
-                                  }
-                              },
-                              IfTrue = Helpers.CreateActionList(
-                                  new ContextActionHealTarget() {
-                                      Value = new ContextDiceValue() {
-                                          DiceType = Kingmaker.RuleSystem.DiceType.D6,
-                                          DiceCountValue = new ContextValue() {
-                                              Value = 0,
-                                              ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                              ValueType = ContextValueType.Rank
-                                          },
-                                          BonusValue = new ContextValue()
-                                      }
-                                  }),
-                              IfFalse = actionList,
-                          });
-                }));
+                    c.Actions = DoSingle<Conditional>(ac => {
+                        ac.ConditionsChecker = IfSingle<ContextConditionHasFact>(cond => {
+                            cond.m_Fact = NegativeEnergyAffinity.ToReference<BlueprintUnitFactReference>();
+                        });
+                        ac.IfTrue = DoSingle<ContextActionHealTarget>(iac => {
+                            iac.Value = new ContextDiceValue() {
+                                DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                                DiceCountValue = new ContextValue() {
+                                    Value = 0,
+                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
+                                    ValueType = ContextValueType.Rank
+                                },
+                                BonusValue = new ContextValue()
+                            };
+                        });
+                        ac.IfFalse = actionList;
+                    });
+                });
 
                 bp.AddComponent<AbilityEffectMiss>();
 
                 if (RankConfig != null) {
                     bp.AddComponent(RankConfig);
                 }
-                bp.AddComponent((System.Action<AbilitySpawnFx>)(c => {
+                bp.AddComponent<AbilitySpawnFx>(c => {
                     c.PrefabLink = AbsoluteDeathAbility.GetComponent<AbilitySpawnFx>().PrefabLink;
                     c.Anchor = AbsoluteDeathAbility.GetComponent<AbilitySpawnFx>().Anchor;
                     c.PositionAnchor = AbsoluteDeathAbility.GetComponent<AbilitySpawnFx>().PositionAnchor;
                     c.OrientationAnchor = AbsoluteDeathAbility.GetComponent<AbilitySpawnFx>().OrientationAnchor;
-                }));
+                });
 
                 if (Descriptor != null) {
                     bp.AddComponent(Descriptor);
                 }
 
-                bp.AddComponent((System.Action<AbilityCasterAlignment>)(c => {
+                bp.AddComponent<AbilityCasterAlignment>(c => {
                     c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                }));
+                });
                 if (RequiredFeatureRef != null) {
                     bp.AddComponent<AbilityCasterHasFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { RequiredFeatureRef };

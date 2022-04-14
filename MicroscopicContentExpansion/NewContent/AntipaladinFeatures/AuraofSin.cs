@@ -1,7 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
@@ -10,6 +9,7 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
+using MicroscopicContentExpansion.MCEHelpers;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -46,11 +46,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.Size = new Feet() { m_Value = 13 };
                 bp.AddComponent<AbilityAreaEffectBuff>(c => {
                     c.m_Buff = AuraOfSinEffectBuff.ToReference<BlueprintBuffReference>();
-                    c.Condition = new ConditionsChecker() {
-                        Conditions = new Condition[] {
-                            new ContextConditionIsEnemy()
-                        }
-                    };
+                    c.Condition = MCETools.IfSingle<ContextConditionIsEnemy>();
                 });
             });
 

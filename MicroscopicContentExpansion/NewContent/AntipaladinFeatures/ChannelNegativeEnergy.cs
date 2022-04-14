@@ -22,9 +22,9 @@ using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
-using MicroscopicContentExpansion.MCEHelpers;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
+using static MicroscopicContentExpansion.MCEHelpers.MCETools;
 
 namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class ChannelNegativeEnergy {
@@ -72,14 +72,14 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.AddComponent<AbilityTargetsAround>(c => {
                     c.m_Radius = 30.Feet();
                     c.m_TargetType = TargetType.Any;
-                    c.m_Condition = MCETools.EmptyCondition();
+                    c.m_Condition = EmptyCondition();
                 });
                 bp.AddComponent<AbilityEffectRunAction>(c => {
-                    ActionList dealDamage = MCETools.DoSingle<ContextActionSavingThrow>(s => {
+                    ActionList dealDamage = DoSingle<ContextActionSavingThrow>(s => {
                         s.m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0];
                         s.Type = SavingThrowType.Will;
                         s.CustomDC = new ContextValue();
-                        s.Actions = MCETools.DoSingle<ContextActionDealDamage>(ac => {
+                        s.Actions = DoSingle<ContextActionDealDamage>(ac => {
                             ac.DamageType = new DamageTypeDescription() {
                                 Type = DamageType.Energy,
                                 Common = new DamageTypeDescription.CommomData(),
@@ -107,28 +107,28 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                         });
                     });
 
-                    c.Actions = MCETools.DoSingle<Conditional>(ac => {
-                        ac.ConditionsChecker = MCETools.IfSingle<ContextConditionCasterHasFact>(cond => {
+                    c.Actions = DoSingle<Conditional>(ac => {
+                        ac.ConditionsChecker = IfSingle<ContextConditionCasterHasFact>(cond => {
                             cond.m_Fact = SelectiveChannel.ToReference<BlueprintUnitFactReference>();
                         });
-                        ac.IfTrue = MCETools.DoSingle<Conditional>(cc => {
-                            cc.ConditionsChecker = MCETools.IfMany(
-                                        new ContextConditionIsEnemy() { },
-                                        new ContextConditionHasFact() {
-                                            Not = true,
-                                            m_Fact = NegativeEnergyAffinity.ToReference<BlueprintUnitFactReference>()
-                                        }
+                        ac.IfTrue = DoSingle<Conditional>(cc => {
+                            cc.ConditionsChecker = IfAll(
+                                new ContextConditionIsEnemy() { },
+                                new ContextConditionHasFact() {
+                                    Not = true,
+                                    m_Fact = NegativeEnergyAffinity.ToReference<BlueprintUnitFactReference>()
+                                }
                             );
                             cc.IfTrue = dealDamage;
-                            cc.IfFalse = MCETools.DoNothing();
+                            cc.IfFalse = DoNothing();
                         });
-                        ac.IfFalse = MCETools.DoSingle<Conditional>(cnd => {
-                            cnd.ConditionsChecker = MCETools.IfSingle<ContextConditionHasFact>(iff => {
+                        ac.IfFalse = DoSingle<Conditional>(cnd => {
+                            cnd.ConditionsChecker = IfSingle<ContextConditionHasFact>(iff => {
                                 iff.Not = true;
                                 iff.m_Fact = NegativeEnergyAffinity.ToReference<BlueprintUnitFactReference>();
                             });
                             cnd.IfTrue = dealDamage;
-                            cnd.IfFalse = MCETools.DoNothing();
+                            cnd.IfFalse = DoNothing();
                         });
                     });
                 });
@@ -188,10 +188,10 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.AddComponent<AbilityTargetsAround>(c => {
                     c.m_Radius = 30.Feet();
                     c.m_TargetType = TargetType.Any;
-                    c.m_Condition = MCETools.EmptyCondition();
+                    c.m_Condition = EmptyCondition();
                 });
                 bp.AddComponent<AbilityEffectRunAction>(c => {
-                    var healNormal = MCETools.DoSingle<ContextActionHealTarget>(ac => {
+                    var healNormal = DoSingle<ContextActionHealTarget>(ac => {
                         ac.Value = new ContextDiceValue() {
                             DiceType = Kingmaker.RuleSystem.DiceType.Zero,
                             DiceCountValue = new ContextValue() {
@@ -211,7 +211,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                         };
                     });
 
-                    var healLifeDominantSoul = MCETools.DoSingle<ContextActionHealTarget>(ac => {
+                    var healLifeDominantSoul = DoSingle<ContextActionHealTarget>(ac => {
                         ac.Value = new ContextDiceValue() {
                             DiceType = Kingmaker.RuleSystem.DiceType.Zero,
                             DiceCountValue = new ContextValue() {
@@ -231,7 +231,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                         };
                     });
 
-                    var ifAllyWithoutLifeDominantSoul = MCETools.IfMany(
+                    var ifAllyWithoutLifeDominantSoul = IfAll(
                                         new ContextConditionIsAlly() { },
                                         new ContextConditionHasFact() {
                                             m_Fact = LifeDominantSoul.ToReference<BlueprintUnitFactReference>(),
@@ -239,54 +239,52 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                                         }
                             );
 
-                    var ifAllyWithLifeDominantSoul = MCETools.IfMany(
+                    var ifAllyWithLifeDominantSoul = IfAll(
                                         new ContextConditionIsAlly() { },
                                         new ContextConditionHasFact() {
                                             m_Fact = LifeDominantSoul.ToReference<BlueprintUnitFactReference>()
                                         }
                             );
-                    var hasSelectiveChannel = MCETools.IfSingle<ContextConditionCasterHasFact>(cond => {
+                    var hasSelectiveChannel = IfSingle<ContextConditionCasterHasFact>(cond => {
                         cond.m_Fact = SelectiveChannel.ToReference<BlueprintUnitFactReference>();
                     });
 
-                    var hasLifeDominantSoul = MCETools.IfSingle<ContextConditionHasFact>(iff => {
+                    var hasLifeDominantSoul = IfSingle<ContextConditionHasFact>(iff => {
                         iff.m_Fact = LifeDominantSoul.ToReference<BlueprintUnitFactReference>();
                     });
 
-                    var whenHasNegativeEnergyAffinityUpper = MCETools.DoSingle<Conditional>(ac => {
+                    var whenHasNegativeEnergyAffinityUpper = DoSingle<Conditional>(ac => {
                         ac.ConditionsChecker = hasSelectiveChannel;
-                        ac.IfTrue = MCETools.DoSingle<Conditional>(cc => {
+                        ac.IfTrue = DoSingle<Conditional>(cc => {
                             cc.ConditionsChecker = ifAllyWithoutLifeDominantSoul;
                             cc.IfTrue = healNormal;
-                            cc.IfFalse = MCETools.DoSingle<Conditional>(icc => {
+                            cc.IfFalse = DoSingle<Conditional>(icc => {
                                 icc.ConditionsChecker = ifAllyWithLifeDominantSoul;
                                 icc.IfTrue = healLifeDominantSoul;
-                                icc.IfFalse = MCETools.DoNothing();
+                                icc.IfFalse = DoNothing();
                             });
                         });
-                        ac.IfFalse = MCETools.DoSingle<Conditional>(cnd => {
+                        ac.IfFalse = DoSingle<Conditional>(cnd => {
                             cnd.ConditionsChecker = hasLifeDominantSoul;
                             cnd.IfTrue = healLifeDominantSoul;
                             cnd.IfFalse = healNormal;
                         });
                     });
 
-                    var ifHasNegativeEnergyOrDeathDomain = new ConditionsChecker() {
-                        Conditions = new Condition[] {
-                                        new ContextConditionHasFact() {
-                                            m_Fact = NegativeEnergyAffinity.ToReference<BlueprintUnitFactReference>()
-                                        },
-                                        new ContextConditionHasFact() {
-                                            m_Fact = DeathDomainGreaterLiving.ToReference<BlueprintUnitFactReference>()
-                                        }
-                            },
-                        Operation = Operation.Or
-                    };
+                    var ifHasNegativeEnergyOrDeathDomain = IfAny(
+                        new ContextConditionHasFact() {
+                            m_Fact = NegativeEnergyAffinity.ToReference<BlueprintUnitFactReference>()
+                        },
+                        new ContextConditionHasFact() {
+                            m_Fact = DeathDomainGreaterLiving.ToReference<BlueprintUnitFactReference>()
+                        }
+                    );
 
-                    c.Actions = MCETools.DoSingle<Conditional>(cond => {
+
+                    c.Actions = DoSingle<Conditional>(cond => {
                         cond.ConditionsChecker = ifHasNegativeEnergyOrDeathDomain;
                         cond.IfTrue = whenHasNegativeEnergyAffinityUpper;
-                        cond.IfFalse = MCETools.DoNothing();
+                        cond.IfFalse = DoNothing();
                     });
                 });
 

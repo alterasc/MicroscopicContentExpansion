@@ -3,7 +3,6 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.Designers.Mechanics.Buffs;
-using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities;
@@ -19,6 +18,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using MicroscopicContentExpansion.MCEHelpers;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
@@ -107,47 +107,39 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                     c.ResourceCostDecreasingFacts = new List<BlueprintUnitFactReference>();
                 });
                 bp.AddComponent<AbilityEffectRunAction>(c => {
-                    c.Actions = Helpers.CreateActionList(
-                        new Conditional {
-                            ConditionsChecker = new ConditionsChecker {
-                                Conditions = new Condition[] {
-                                    new OrAndLogic() {
-                                        ConditionsChecker = new ConditionsChecker {
-                                            Operation = Operation.Or,
-                                            Conditions = new Condition[] {
-                                                new ContextConditionAlignment(){
-                                                    CheckCaster = false,
-                                                    Alignment = AlignmentComponent.Good
-                                                },
-                                                new ContextConditionCasterHasFact() {
-                                                    m_Fact = TipoftheSpear
-                                                },
-                                            }
+                    c.Actions = MCETools.DoSingle<Conditional>(cond => {
+                        cond.ConditionsChecker = MCETools.IfAll(
+                                        new OrAndLogic() {
+                                            ConditionsChecker = MCETools.IfAny(
+                                                    new ContextConditionAlignment() {
+                                                        CheckCaster = false,
+                                                        Alignment = AlignmentComponent.Good
+                                                    },
+                                                    new ContextConditionCasterHasFact() {
+                                                        m_Fact = TipoftheSpear
+                                                    }
+                                                )
+                                        },
+                                        new ContextConditionHasBuff() {
+                                            m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>(),
+                                            Not = true
                                         }
-                                    },
-                                    new ContextConditionHasBuff() {
-                                        m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>(),
-                                        Not = true
-                                    }
+                                    );
+                        cond.IfTrue = MCETools.DoSingle<ContextActionApplyBuff>(bf => {
+                            bf.m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>();
+                            bf.DurationValue = new ContextDurationValue() {
+                                Rate = DurationRate.Minutes,
+                                DiceType = Kingmaker.RuleSystem.DiceType.Zero,
+                                m_IsExtendable = true,
+                                DiceCountValue = new ContextValue(),
+                                BonusValue = new ContextValue() {
+                                    ValueType = ContextValueType.Simple,
+                                    Value = 1
                                 }
-                            },
-                            IfTrue = Helpers.CreateActionList(
-                                new ContextActionApplyBuff() {
-                                    m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>(),
-                                    DurationValue = new ContextDurationValue() {
-                                        Rate = DurationRate.Minutes,
-                                        DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                                        m_IsExtendable = true,
-                                        DiceCountValue = new ContextValue(),
-                                        BonusValue = new ContextValue() {
-                                            ValueType = ContextValueType.Simple,
-                                            Value = 1
-                                        }
-                                    }
-                                }
-                            ),
-                            IfFalse = Helpers.CreateActionList(),
+                            };
                         });
+                        cond.IfFalse = MCETools.DoNothing();
+                    });
 
                 });
                 bp.AddComponent<ContextCalculateSharedValue>(c => {
