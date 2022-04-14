@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using UnityEngine;
 using static MicroscopicContentExpansion.Main;
-using static MicroscopicContentExpansion.MCEHelpers.MCETools;
+using static MicroscopicContentExpansion.Utils.ActionFlow;
 
 namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class TouchofCorruption {

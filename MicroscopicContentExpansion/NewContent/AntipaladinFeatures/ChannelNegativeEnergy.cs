@@ -24,7 +24,7 @@ using Kingmaker.Utility;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
-using static MicroscopicContentExpansion.MCEHelpers.MCETools;
+using static MicroscopicContentExpansion.Utils.ActionFlow;
 
 namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class ChannelNegativeEnergy {

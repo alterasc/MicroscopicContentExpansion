@@ -18,7 +18,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
-using MicroscopicContentExpansion.MCEHelpers;
+using MicroscopicContentExpansion.Utils;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
@@ -107,10 +107,10 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                     c.ResourceCostDecreasingFacts = new List<BlueprintUnitFactReference>();
                 });
                 bp.AddComponent<AbilityEffectRunAction>(c => {
-                    c.Actions = MCETools.DoSingle<Conditional>(cond => {
-                        cond.ConditionsChecker = MCETools.IfAll(
+                    c.Actions = ActionFlow.DoSingle<Conditional>(cond => {
+                        cond.ConditionsChecker = ActionFlow.IfAll(
                                         new OrAndLogic() {
-                                            ConditionsChecker = MCETools.IfAny(
+                                            ConditionsChecker = ActionFlow.IfAny(
                                                     new ContextConditionAlignment() {
                                                         CheckCaster = false,
                                                         Alignment = AlignmentComponent.Good
@@ -125,7 +125,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                                             Not = true
                                         }
                                     );
-                        cond.IfTrue = MCETools.DoSingle<ContextActionApplyBuff>(bf => {
+                        cond.IfTrue = ActionFlow.DoSingle<ContextActionApplyBuff>(bf => {
                             bf.m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>();
                             bf.DurationValue = new ContextDurationValue() {
                                 Rate = DurationRate.Minutes,
@@ -138,7 +138,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                                 }
                             };
                         });
-                        cond.IfFalse = MCETools.DoNothing();
+                        cond.IfFalse = ActionFlow.DoNothing();
                     });
 
                 });

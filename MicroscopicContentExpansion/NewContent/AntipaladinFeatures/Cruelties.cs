@@ -12,7 +12,7 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using MicroscopicContentExpansion.MCEHelpers;
+using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -74,8 +74,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 Type = SavingThrowType.Fortitude,
                 HasCustomDC = false,
                 CustomDC = new ContextValue(),
-                Actions = MCETools.DoSingle<ContextActionConditionalSaved>(act => {
-                    act.Succeed = MCETools.DoNothing();
+                Actions = ActionFlow.DoSingle<ContextActionConditionalSaved>(act => {
+                    act.Succeed = ActionFlow.DoNothing();
                     act.Failed = Helpers.CreateActionList(actions);
                 })
             };

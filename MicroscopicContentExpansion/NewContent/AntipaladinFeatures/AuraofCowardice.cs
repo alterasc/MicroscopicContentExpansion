@@ -13,7 +13,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
-using MicroscopicContentExpansion.MCEHelpers;
+using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -79,7 +79,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.Fx = new PrefabLink();
                 bp.AddComponent<AbilityAreaEffectBuff>(c => {
                     c.m_Buff = AuraOfCowardiceEffectBuff.ToReference<BlueprintBuffReference>();
-                    c.Condition = MCETools.IfSingle<ContextConditionIsEnemy>();
+                    c.Condition = ActionFlow.IfSingle<ContextConditionIsEnemy>();
                 });
             });
 

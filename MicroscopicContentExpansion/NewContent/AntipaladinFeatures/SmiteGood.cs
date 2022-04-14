@@ -23,7 +23,7 @@ using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
-using static MicroscopicContentExpansion.MCEHelpers.MCETools;
+using static MicroscopicContentExpansion.Utils.ActionFlow;
 
 namespace MicroscopicContentExpansion.NewContent.Antipaladin {
     internal class SmiteGood {

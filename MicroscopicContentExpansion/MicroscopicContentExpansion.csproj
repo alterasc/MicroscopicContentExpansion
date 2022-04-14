@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\AddedContent.cs" />
-    <Compile Include="Helpers\MCETools.cs" />
+    <Compile Include="Utils\ActionFlow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinSpellbook.cs" />

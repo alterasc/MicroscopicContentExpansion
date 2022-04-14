@@ -1,8 +1,8 @@
 ﻿using Kingmaker.ElementsSystem;
 using TabletopTweaks.Core.Utilities;
 
-namespace MicroscopicContentExpansion.MCEHelpers {
-    public static class MCETools {
+namespace MicroscopicContentExpansion.Utils {
+    public static class ActionFlow {
 
         public static ActionList DoNothing() => Helpers.CreateActionList();
 
