@@ -24,6 +24,9 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                     c.BaseStat = StatType.Charisma;
                     c.DerivativeStat = StatType.SaveReflex;
                 });
+                bp.AddComponent<RecalculateOnStatChange>(c => {
+                    c.Stat = StatType.Charisma;
+                });
             });
         }
     }
