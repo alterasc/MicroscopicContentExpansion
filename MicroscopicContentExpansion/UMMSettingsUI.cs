@@ -1,7 +1,7 @@
 ﻿using TabletopTweaks.Core.UMMTools;
 using UnityModManagerNet;
 
-namespace MicroscopicContentExpansion.Base {
+namespace MicroscopicContentExpansion {
     internal static class UMMSettingsUI {
         private static int selectedTab;
         public static void OnGUI(UnityModManager.ModEntry modEntry) {

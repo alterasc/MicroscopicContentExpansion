@@ -1,8 +1,8 @@
-﻿using MicroscopicContentExpansion.Base.Config;
+﻿using MicroscopicContentExpansion.Config;
 using TabletopTweaks.Core.ModLogic;
 using static UnityModManagerNet.UnityModManager;
 
-namespace MicroscopicContentExpansion.Base.ModLogic {
+namespace MicroscopicContentExpansion.ModLogic {
     internal class ModContextMCEBase : ModContextBase {
         public AddedContent AddedContent;
 
@@ -13,9 +13,9 @@ namespace MicroscopicContentExpansion.Base.ModLogic {
 #endif
         }
         public override void LoadAllSettings() {
-            LoadSettings("AddedContent.json", "MicroscopicContentExpansion.Base.Config", ref AddedContent);
-            LoadBlueprints("MicroscopicContentExpansion.Base.Config", Main.MCEContext);
-            LoadLocalization("MicroscopicContentExpansion.Base.Localization");
+            LoadSettings("AddedContent.json", "MicroscopicContentExpansion.Config", ref AddedContent);
+            LoadBlueprints("MicroscopicContentExpansion.Config", Main.MCEContext);
+            LoadLocalization("MicroscopicContentExpansion.Localization");
         }
 
         public override void AfterBlueprintCachePatches() {

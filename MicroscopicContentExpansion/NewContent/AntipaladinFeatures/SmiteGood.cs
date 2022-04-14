@@ -23,10 +23,10 @@ using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalModifierDescriptors;
 
-namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
+namespace MicroscopicContentExpansion.NewContent.Antipaladin {
     internal class SmiteGood {
 
         public static void AddSmiteGood() {

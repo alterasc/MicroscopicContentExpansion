@@ -18,9 +18,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using static Kingmaker.Blueprints.BlueprintAbilityResource;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class FiendishBoon {
         const string NAME = "Fiendish Boon";
 

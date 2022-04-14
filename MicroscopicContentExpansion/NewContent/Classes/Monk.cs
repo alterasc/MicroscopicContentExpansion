@@ -10,9 +10,9 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.Classes {
+namespace MicroscopicContentExpansion.NewContent.Classes {
     class Monk {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {

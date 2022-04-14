@@ -6,12 +6,12 @@ using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic.FactLogic;
-using MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures;
-using MicroscopicContentExpansion.Base.NewContent.Archetypes;
+using MicroscopicContentExpansion.NewContent.AntipaladinFeatures;
+using MicroscopicContentExpansion.NewContent.Archetypes;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
+namespace MicroscopicContentExpansion.NewContent.Antipaladin {
     class AntipaladinAdder {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {

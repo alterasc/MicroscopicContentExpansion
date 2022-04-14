@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
-using MicroscopicContentExpansion.Base.ModLogic;
+using MicroscopicContentExpansion.ModLogic;
 using TabletopTweaks.Core.Utilities;
 using UnityModManagerNet;
 
-namespace MicroscopicContentExpansion.Base {
+namespace MicroscopicContentExpansion {
     static class Main {
         public static bool Enabled;
         public static ModContextMCEBase MCEContext;

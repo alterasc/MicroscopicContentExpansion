@@ -1,7 +1,7 @@
 ﻿using Kingmaker.ElementsSystem;
 using TabletopTweaks.Core.Utilities;
 
-namespace MicroscopicContentExpansion.Base.MCEHelpers {
+namespace MicroscopicContentExpansion.MCEHelpers {
     public static class MCETools {
 
         public static ActionList DoNothing() => Helpers.CreateActionList();

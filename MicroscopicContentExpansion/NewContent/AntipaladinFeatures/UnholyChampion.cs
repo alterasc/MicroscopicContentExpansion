@@ -6,9 +6,9 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class UnholyChampion {
         private const string NAME = "Unholy Champion";
         private const string DESCRIPTION = "At 20th level, an antipaladin becomes a conduit for the might of the dark " +

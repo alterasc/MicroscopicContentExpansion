@@ -2,9 +2,9 @@
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.FactLogic;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class PlagueBringer {
         public static void AddPlagueBringer() {
             var PlagueBringer = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinPlagueBringer", bp => {

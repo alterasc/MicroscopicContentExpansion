@@ -2,9 +2,9 @@
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class UnholyResilience {
         public static void AddUnholyResilience() {
             var UnholyResilience = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyResilience", bp => {

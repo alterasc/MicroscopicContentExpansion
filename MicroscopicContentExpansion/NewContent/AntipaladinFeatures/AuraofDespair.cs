@@ -12,9 +12,9 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class AuraofDespair {
         private const string NAME = "Aura of Despair";
         private const string DESCRIPTION = "At 8th level, enemies within 10 feet of an antipaladin take a –2 penalty on all saving throws." +

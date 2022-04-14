@@ -20,9 +20,9 @@ using Kingmaker.UnitLogic.Mechanics.Conditions;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using UnityEngine;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class TouchofCorruption {
         private const string NAME = "Touch of Corruption";
         private const string DESCRIPTION = "Beginning at 2nd level, an antipaladin surrounds his hand with a fiendish flame," +
@@ -161,7 +161,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
 
                 }));
                 bp.AddComponent((System.Action<AbilityEffectRunAction>)(c => {
-                    GameAction[] actions = new GameAction[] {
+                    var actions = new GameAction[] {
                         new ContextActionDealDamage() {
                             DamageType = new DamageTypeDescription() {
                                 Type = DamageType.Energy,

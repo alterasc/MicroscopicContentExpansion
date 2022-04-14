@@ -15,9 +15,9 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class AuraofCowardice {
         private const string NAME = "Aura of Cowardice";
         private const string DESCRIPTION = "At 3rd level, an antipaladin radiates a palpably daunting aura that causes all enemies" +

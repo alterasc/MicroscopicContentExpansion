@@ -2,9 +2,9 @@
 using Kingmaker.Blueprints.Classes.Spells;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class AntipaladinSpellbook {
 
         public static void AddAntipaladinSpellbook() {

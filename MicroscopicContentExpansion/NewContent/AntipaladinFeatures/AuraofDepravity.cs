@@ -14,9 +14,9 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class AuraofDepravity {
         private const string NAME = "Aura of Depravity";
         private const string DESCRIPTION = "At 17th level, an antipaladin gains DR 5/good. Each enemy within 10 feet takes a –4 penalty" +

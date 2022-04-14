@@ -2,7 +2,7 @@
   "AssemblyName": "MicroscopicContentExpansion.dll",
   "Author": "AlterAsc",
   "DisplayName": "Microscopic Content Expansion",
-  "EntryMethod": "MicroscopicContentExpansion.Base.Main.Load",
+  "EntryMethod": "MicroscopicContentExpansion.Main.Load",
   "GameVersion": "1.2.0",
   "HomePage": "https://github.com/alterasc/MicroscopicContentExpansion/releases",
   "Id": "MicroscopicContentExpansion",

@@ -1,6 +1,6 @@
 ﻿using TabletopTweaks.Core.Config;
 
-namespace MicroscopicContentExpansion.Base.Config {
+namespace MicroscopicContentExpansion.Config {
     public class AddedContent : IUpdatableSettings {
         public bool NewSettingsOffByDefault = false;
         public SettingGroup AlternativeCapstones = new SettingGroup();

@@ -22,11 +22,11 @@ using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
-using MicroscopicContentExpansion.Base.MCEHelpers;
+using MicroscopicContentExpansion.MCEHelpers;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Base.Main;
+using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
+namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class ChannelNegativeEnergy {
         private const string NAME = "Channel Negative Energy";
         private const string DESCRIPTION = "When an antipaladin reaches 4th level, he gains the supernatural ability to" +
