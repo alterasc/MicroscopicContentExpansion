@@ -7,7 +7,7 @@ namespace MicroscopicContentExpansion.Base {
         public static void OnGUI(UnityModManager.ModEntry modEntry) {
             UI.AutoWidth();
             UI.TabBar(ref selectedTab,
-                    () => UI.Label("SETTINGS WILL NOT BE UPDATED UNTIL YOU RESTART YOUR GAME.".yellow().bold()),                    
+                    () => UI.Label("SETTINGS WILL NOT BE UPDATED UNTIL YOU RESTART YOUR GAME.".yellow().bold()),
                     new NamedAction("Added Content", () => SettingsTabs.AddedContent())
             );
         }
@@ -23,7 +23,7 @@ namespace MicroscopicContentExpansion.Base {
                 UI.Toggle("New Settings Off By Default".bold(), ref AddedContent.NewSettingsOffByDefault);
                 UI.Space(25);
 
-                SetttingUI.SettingGroup("AlternativeCapstones", TabLevel, AddedContent.AlternativeCapstones);                
+                SetttingUI.SettingGroup("AlternativeCapstones", TabLevel, AddedContent.AlternativeCapstones);
             }
         }
     }

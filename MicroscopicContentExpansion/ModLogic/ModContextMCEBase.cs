@@ -3,7 +3,7 @@ using TabletopTweaks.Core.ModLogic;
 using static UnityModManagerNet.UnityModManager;
 
 namespace MicroscopicContentExpansion.Base.ModLogic {
-    internal class ModContextMCEBase : ModContextBase {        
+    internal class ModContextMCEBase : ModContextBase {
         public AddedContent AddedContent;
 
         public ModContextMCEBase(ModEntry ModEntry) : base(ModEntry) {
@@ -12,7 +12,7 @@ namespace MicroscopicContentExpansion.Base.ModLogic {
             Debug = true;
 #endif
         }
-        public override void LoadAllSettings() {            
+        public override void LoadAllSettings() {
             LoadSettings("AddedContent.json", "MicroscopicContentExpansion.Base.Config", ref AddedContent);
             LoadBlueprints("MicroscopicContentExpansion.Base.Config", Main.MCEContext);
             LoadLocalization("MicroscopicContentExpansion.Base.Localization");
@@ -23,7 +23,7 @@ namespace MicroscopicContentExpansion.Base.ModLogic {
         }
 
         public override void SaveAllSettings() {
-            base.SaveAllSettings();            
+            base.SaveAllSettings();
             SaveSettings("AddedContent.json", AddedContent);
         }
     }

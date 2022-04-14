@@ -28,7 +28,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = CrushingDespairIcon;
-                bp.AddComponent<AddStatBonus>(c => {                    
+                bp.AddComponent<AddStatBonus>(c => {
                     c.Descriptor = Kingmaker.Enums.ModifierDescriptor.Penalty;
                     c.Value = -2;
                     c.Stat = Kingmaker.EntitySystem.Stats.StatType.SaveFortitude;

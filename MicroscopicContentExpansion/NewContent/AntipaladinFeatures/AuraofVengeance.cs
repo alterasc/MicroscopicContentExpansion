@@ -3,7 +3,6 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.Designers.Mechanics.Buffs;
-using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -13,7 +12,6 @@ using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
 using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
@@ -135,7 +133,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.Antipaladin {
                             },
                             IfTrue = Helpers.CreateActionList(
                                 new ContextActionApplyBuff() {
-                                    m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>(),                                    
+                                    m_Buff = AuraOfVengeanceBuff.ToReference<BlueprintBuffReference>(),
                                     DurationValue = new ContextDurationValue() {
                                         Rate = DurationRate.Minutes,
                                         DiceType = Kingmaker.RuleSystem.DiceType.Zero,

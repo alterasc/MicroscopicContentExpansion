@@ -122,7 +122,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
 
             var TouchOfCorruptionResource = BlueprintTools.GetModBlueprintReference<BlueprintAbilityResourceReference>(MCEContext, "AntipaladinTouchOfCorruptionResource");
             var AbsoluteDeathAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");            
+            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
 
             var NegativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
             var TouchItem = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
@@ -227,7 +227,7 @@ namespace MicroscopicContentExpansion.Base.NewContent.AntipaladinFeatures {
                 if (Descriptor != null) {
                     bp.AddComponent(Descriptor);
                 }
-                
+
                 bp.AddComponent((System.Action<AbilityCasterAlignment>)(c => {
                     c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
                 }));
