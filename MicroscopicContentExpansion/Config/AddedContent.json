@@ -10,5 +10,16 @@
       }
     },
     "IsExpanded": true
+  },
+  "NewClasses": {
+    "DisableAll": false,
+    "Settings": {
+      "AntipaladinClass": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Antipaladin class"
+      }
+    },
+    "IsExpanded": true
   }
 }

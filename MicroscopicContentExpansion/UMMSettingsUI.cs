@@ -24,6 +24,7 @@ namespace MicroscopicContentExpansion {
                 UI.Space(25);
 
                 SetttingUI.SettingGroup("AlternativeCapstones", TabLevel, AddedContent.AlternativeCapstones);
+                SetttingUI.SettingGroup("NewClasses", TabLevel, AddedContent.NewClasses);
             }
         }
     }

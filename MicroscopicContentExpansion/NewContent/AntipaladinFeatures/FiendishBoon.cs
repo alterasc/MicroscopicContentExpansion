@@ -375,7 +375,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                     c.m_Feature = FiendishServantSpellResistance.ToReference<BlueprintFeatureReference>();
                 });
                 bp.AddComponent<RecalculateOnLevelUp>();
-                bp.IsClassFeature = true;                
+                bp.IsClassFeature = true;
             });
 
             BlueprintFeature AnimalCompanionRank = BlueprintTools.GetBlueprint<BlueprintFeature>("1670990255e4fe948a863bafd5dbda5d");

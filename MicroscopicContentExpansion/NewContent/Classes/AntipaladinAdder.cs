@@ -43,10 +43,11 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
 
                 UpdateAntipaladinProgression();
 
-                IronTyrant.AddIronTyrant();
+                //IronTyrant.AddIronTyrant();
             }
 
             static void UpdateAntipaladinProgression() {
+                if (MCEContext.AddedContent.NewClasses.IsDisabled("AntipaladinClass")) { return; }
 
                 var AntipaladinProgression = BlueprintTools.GetModBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression");
 
