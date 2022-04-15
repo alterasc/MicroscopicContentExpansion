@@ -10,6 +10,7 @@ Add microscopic amount of new features. May or may not grow further in scope. Th
 
 ## Thanks to  
 -   bubbles and Vek17 specifically   
+-   kadyn for his Expanded Content
 -   Pathfinder Wrath of The Righteous Discord channel members
 -   PS: Wolfie's [Modding Wiki](https://github.com/WittleWolfie/OwlcatModdingWiki/wiki) is an excellent place to start if you want to start modding on your own.
 -   Join our [Discord](https://discord.com/invite/wotr)

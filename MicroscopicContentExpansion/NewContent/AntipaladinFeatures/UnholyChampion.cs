@@ -19,8 +19,9 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
 
             var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
 
-            var ChannelNegativeEnergyAbility = BlueprintTools.GetModBlueprint<BlueprintAbility>(MCEContext, "AntipaladinChannelNegativeEnergyAbility");
-            var TouchOfCorruptionAbility = BlueprintTools.GetModBlueprint<BlueprintAbility>(MCEContext, "AntipaladinTouchOfCorruptionAbility");
+            var AntipaladinChannelEnergyHarm = BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinChannelEnergyHarm");
+            var AntipaladinChannelEnergyHeal = BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinChannelEnergyHeal");
+            var TouchOfCorruptionAbility = BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionAbility");
 
             var UnholyChampion = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyChampion", bp => {
                 bp.SetName(MCEContext, NAME);
@@ -39,8 +40,9 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.m_AllowedAbilities = AutoMetamagic.AllowedType.Any;
                     c.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Maximize;
                     c.Abilities = new List<BlueprintAbilityReference> {
-                        ChannelNegativeEnergyAbility.ToReference<BlueprintAbilityReference>(),
-                        TouchOfCorruptionAbility.ToReference<BlueprintAbilityReference>()
+                        AntipaladinChannelEnergyHarm,
+                        AntipaladinChannelEnergyHeal,
+                        TouchOfCorruptionAbility
                     };
                 });
             });

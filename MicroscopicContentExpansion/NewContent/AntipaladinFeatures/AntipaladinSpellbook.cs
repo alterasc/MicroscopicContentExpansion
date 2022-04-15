@@ -27,8 +27,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("e5cb4c4459e437e49a4cd73fde6b9063"), //Inflict Light Wounds
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("d7fdd79f0f6b6a2418298e936bb68e40"), //Magic Weapon
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("433b1faf4d02cc34abb0ade5ceda47c4"), //Protection from TODO
-                            BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("8fd74eddd9b6c224693d9ab241f25e84"), //Summon Monster I
-                            BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("8bc64d869456b004b9db255cdd1ea734")  //Bane
+                            BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("8fd74eddd9b6c224693d9ab241f25e84")  //Summon Monster I
                         }
                     },
                     new SpellLevelList(2) {

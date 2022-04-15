@@ -314,30 +314,95 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
         private static BlueprintFeatureSelection AddFiendinshBoonCompanion() {
             var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
 
+            var FiendishServantSpellResistance = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishServantSpellResistance", bp => {
+                bp.SetName(MCEContext, "Fiendish Servant - Spell resistance");
+                bp.SetDescription(MCEContext, "At 15th level, an antipaladin’s servant gains spell resistance equal to the antipaladin’s level + 11.");                
+                bp.IsClassFeature = true;
+                bp.Ranks = 6;
+                bp.AddComponent<AddSpellResistance>(c => {
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Shared,
+                        Value = 0,
+                        ValueRank = Kingmaker.Enums.AbilityRankType.Default,
+                        ValueShared = AbilitySharedValue.Damage,
+                        Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                    };
+                });
+
+                bp.AddComponent<ContextCalculateSharedValue>(c => {
+                    c.ValueType = AbilitySharedValue.Damage;
+                    c.Value = new ContextDiceValue() {
+                        DiceType = Kingmaker.RuleSystem.DiceType.One,
+                        DiceCountValue = new ContextValue() {
+                            ValueType = ContextValueType.Rank,
+                            Value = 0,
+                            ValueRank = Kingmaker.Enums.AbilityRankType.Default,
+                            ValueShared = AbilitySharedValue.Damage,
+                            Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                        },
+                        BonusValue = new ContextValue() {
+                            ValueType = ContextValueType.Simple,
+                            Value = 26,
+                            ValueRank = Kingmaker.Enums.AbilityRankType.Default,
+                            ValueShared = AbilitySharedValue.Damage,
+                            Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                        },
+                    };
+                    c.Modifier = 1.0;
+                });
+
+                bp.AddContextRankConfig(c => {
+                    c.m_Type = Kingmaker.Enums.AbilityRankType.Default;
+                    c.m_BaseValueType = ContextRankBaseValueType.FeatureRank;
+                    c.m_SpecificModifier = Kingmaker.Enums.ModifierDescriptor.None;
+                    c.m_Progression = ContextRankProgression.AsIs;
+                    c.m_Max = 6;
+                });
+            });
+
+            var FiendishServantLvl15Feature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishServant15Feature", bp => {
+                bp.SetName(MCEContext, "Fiendish Servant - Spell resistance");
+                bp.SetDescription(MCEContext, "At 15th level, an antipaladin’s servant gains spell resistance equal to the antipaladin’s level + 11.");
+                bp.AddComponent<AddFeatureToPet>(c => {
+                    c.m_PetType = Kingmaker.Enums.PetType.AnimalCompanion;
+                    c.m_Feature = FiendishServantSpellResistance.ToReference<BlueprintFeatureReference>();                    
+                });
+                bp.IsClassFeature = true;
+                bp.Ranks = 6;
+            });
+
             BlueprintFeature AnimalCompanionRank = BlueprintTools.GetBlueprint<BlueprintFeature>("1670990255e4fe948a863bafd5dbda5d");
             var AntipaladinAnimalCompanionProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "AntipaladinAnimalCompanionProgression", bp => {
-                bp.SetName(MCEContext, "Antipaladin Animal Companion Progression");
-                bp.SetName(MCEContext, "");
+                bp.SetName(MCEContext, "Antipaladin Fiendish Servant Progression");
                 bp.Ranks = 1;
                 bp.IsClassFeature = true;
                 bp.m_FeaturesRankIncrease = new List<BlueprintFeatureReference>();
-                bp.LevelEntries = Enumerable.Range(6, 20)
-                    .Select(i => new LevelEntry {
-                        Level = i,
-                        m_Features = new List<BlueprintFeatureBaseReference> {
-                            AnimalCompanionRank.ToReference<BlueprintFeatureBaseReference>()
-                        },
-                    })
-                    .ToArray();
+                var animalCompanionRankRef = AnimalCompanionRank.ToReference<BlueprintFeatureBaseReference>();
+                bp.LevelEntries = new LevelEntry[] {
+                    Helpers.CreateLevelEntry(6, animalCompanionRankRef, FiendishServantLvl15Feature.ToReference<BlueprintFeatureBaseReference>()),
+                    Helpers.CreateLevelEntry(7, animalCompanionRankRef, FiendishServantLvl15Feature.ToReference<BlueprintFeatureBaseReference>()),
+                    Helpers.CreateLevelEntry(8, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(9, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(10, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(11, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(12, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(13, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(14, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(15, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(16, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(17, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(18, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(19, animalCompanionRankRef),
+                    Helpers.CreateLevelEntry(20, animalCompanionRankRef),
+                };
                 bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
                     new BlueprintProgression.ClassWithLevel{
                         m_Class = AntipaladinClassRef
                     }
                 };
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 4; i++) {
                     bp.AddComponent<AddFeatureOnApply>(bp => {
                         bp.m_Feature = AnimalCompanionRank.ToReference<BlueprintFeatureReference>();
-
                     });
                 }
                 bp.UIGroups = new UIGroup[0];
@@ -347,12 +412,12 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             var MountTargetFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("cb06f0e72ffb5c640a156bd9f8000c1d");
             var AnimalCompanionArchetypeSelection = BlueprintTools.GetBlueprint<BlueprintFeature>("65af7290b4efd5f418132141aaa36c1b");
 
-            var AntipaladinCompanionSelection = Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinCompanionSelection", bp => {
-                bp.SetName(MCEContext, "Fiendish Boon");
-                bp.SetDescription(MCEContext, "");
+            var AntipaladinCompanionSelection = Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinServantSelection", bp => {
+                bp.SetName(MCEContext, "Fiendish Servant");
+                bp.SetDescription(MCEContext, "The second type of bond allows an antipaladin to gain the service of a fiendish animal. " +
+                    "This functions as druid's animal companion. Servant immediately gains fiendish template. At 15th level, an antipaladin’s" +
+                    " servant gains spell resistance equal to the antipaladin’s level + 11.");
                 bp.IsClassFeature = true;
-                bp.ReapplyOnLevelUp = true;
-                bp.Groups = new FeatureGroup[] { FeatureGroup.Feat };
                 bp.Mode = SelectionMode.Default;
                 bp.Group = FeatureGroup.AnimalCompanion;
                 bp.m_Icon = PaladinDivineMountSelection.Icon;
@@ -376,7 +441,6 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("bfeb9be0a3c9420b8b2beecc8171029c"), //horse preorder
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("44f4d77689434e07a5a44dcb65b25f71"), //smilodon preorder
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("52c854f77105445a9457572ab5826c00")  //triceratops preorder
-
                 );
                 bp.AddComponent<AddFeatureOnApply>(c => {
                     c.m_Feature = AnimalCompanionRank.ToReference<BlueprintFeatureReference>();
