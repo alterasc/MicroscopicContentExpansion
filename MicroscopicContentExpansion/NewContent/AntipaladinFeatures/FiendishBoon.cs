@@ -133,7 +133,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                                     Value = 0,
                                     ValueRank = Kingmaker.Enums.AbilityRankType.Default,
                                     ValueShared = AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                                    Property = UnitProperty.None
                                 },
                                 m_IsExtendable = true
                             }
@@ -148,14 +148,14 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                                     Value = 0,
                                     ValueRank = Kingmaker.Enums.AbilityRankType.Default,
                                     ValueShared = AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                                    Property = UnitProperty.None
                                 },
                                 BonusValue = new ContextValue() {
                                     ValueType = ContextValueType.Rank,
                                     Value = 1,
                                     ValueRank = Kingmaker.Enums.AbilityRankType.Default,
                                     ValueShared = AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                                    Property = UnitProperty.None
                                 },
                                 m_IsExtendable = true
                             }
@@ -180,17 +180,17 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 });
             });
 
-            var weaponBondFlaming = createWeaponBondChoice("Flaming",
+            var weaponBondFlaming = CreateWeaponBondChoice("Flaming",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("7902941ef70a0dc44bcfc174d6193386").Icon,
                 BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("b3d7a8ddf339989478aacd7dd8d97841"), 1);
-            var weaponBondKeen = createWeaponBondChoice("Keen",
+            var weaponBondKeen = CreateWeaponBondChoice("Keen",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon,
                 BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("1cc068cf355b8464da5fb8e476f74019"), 1);
 
-            var weaponBondViciousBuff = createWeaponBondBuff("Vicious",
+            var weaponBondViciousBuff = CreateWeaponBondBuff("Vicious",
                 BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("a1455a289da208144981e4b1ef92cc56"));
 
-            var weaponBondVicious = createWeaponBondChoice("Vicious",
+            var weaponBondVicious = CreateWeaponBondChoice("Vicious",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon,
                 weaponBondViciousBuff.ToReference<BlueprintBuffReference>(), 1);
 
@@ -212,44 +212,44 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 });
             });
 
-            var weaponBondAnarchicBuff = createWeaponBondBuff("Anarchic"
+            var weaponBondAnarchicBuff = CreateWeaponBondBuff("Anarchic"
                 , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("57315bc1e1f62a741be0efde688087e9"));
 
-            var weaponBondAnarchic = createWeaponBondChoice("Anarchic",
+            var weaponBondAnarchic = CreateWeaponBondChoice("Anarchic",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("8ed07b0cc56223c46953348f849f3309").Icon,
                 weaponBondAnarchicBuff.ToReference<BlueprintBuffReference>(), 2);
 
-            var weaponBondFlamingBurst = createWeaponBondChoice("FlamingBurst",
+            var weaponBondFlamingBurst = CreateWeaponBondChoice("FlamingBurst",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("3af19bdbd6215434f8421a860cc98363").Icon,
                 BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("78552038c4a76a04ba78e18cf4fcfd5c"), 2);
 
-            var weaponBondUnholyBuff = createWeaponBondBuff("Unholy"
+            var weaponBondUnholyBuff = CreateWeaponBondBuff("Unholy"
                  , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d05753b8df780fc4bb55b318f06af453"));
-            var weaponBondUnholy = createWeaponBondChoice("Unholy",
+            var weaponBondUnholy = CreateWeaponBondChoice("Unholy",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("561803a819460f34ea1fe079edabecce").Icon,
                 weaponBondUnholyBuff.ToReference<BlueprintBuffReference>(), 2);
 
-            var weaponBond2 = createWeaponBondFeaturePlusX(2, icon,
+            var weaponBond2 = CreateWeaponBondFeaturePlusX(2, icon,
                 weaponBondAnarchic.ToReference<BlueprintUnitFactReference>(),
                 weaponBondFlamingBurst.ToReference<BlueprintUnitFactReference>(),
                 weaponBondUnholy.ToReference<BlueprintUnitFactReference>()
                 );
 
-            var weaponBondSpeed = createWeaponBondChoice("Speed",
+            var weaponBondSpeed = CreateWeaponBondChoice("Speed",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("ed1ef581af9d9014fa1386216b31cdae").Icon,
                 BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("f260f8100cd9f6749bf071c930eb287d"), 3);
 
-            var weaponBond3 = createWeaponBondFeaturePlusX(3, icon, weaponBondSpeed.ToReference<BlueprintUnitFactReference>());
-            var weaponBond4 = createWeaponBondFeaturePlusX(4, icon);
+            var weaponBond3 = CreateWeaponBondFeaturePlusX(3, icon, weaponBondSpeed.ToReference<BlueprintUnitFactReference>());
+            var weaponBond4 = CreateWeaponBondFeaturePlusX(4, icon);
 
-            var weaponBondVorpalBuff = createWeaponBondBuff("Vorpal"
+            var weaponBondVorpalBuff = CreateWeaponBondBuff("Vorpal"
                  , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("2f60bfcba52e48a479e4a69868e24ebc"));
-            var weaponBondVorpal = createWeaponBondChoice("Vorpal",
+            var weaponBondVorpal = CreateWeaponBondChoice("Vorpal",
                 BlueprintTools.GetBlueprint<BlueprintProgression>("e08a817f475c8794aa56fdd904f43a57").Icon,
                 weaponBondVorpalBuff.ToReference<BlueprintBuffReference>(), 5);
 
-            var weaponBond5 = createWeaponBondFeaturePlusX(5, icon, weaponBondVorpal.ToReference<BlueprintUnitFactReference>());
-            var weaponBond6 = createWeaponBondFeaturePlusX(6, icon);
+            var weaponBond5 = CreateWeaponBondFeaturePlusX(5, icon, weaponBondVorpal.ToReference<BlueprintUnitFactReference>());
+            var weaponBond6 = CreateWeaponBondFeaturePlusX(6, icon);
 
             return Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "AntipaladinWeaponBondProgression", bp => {
                 bp.SetName(MCEContext, "Fiendish Bond");
@@ -270,7 +270,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             });
         }
 
-        private static BlueprintActivatableAbility createWeaponBondChoice(string name, UnityEngine.Sprite icon,
+        private static BlueprintActivatableAbility CreateWeaponBondChoice(string name, UnityEngine.Sprite icon,
             BlueprintBuffReference bondBuff, int weight = 1) {
             return Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, $"AntipaladinWeaponBond{name}Choice", bp => {
                 bp.SetName(MCEContext, $"Fiendish Weapon Bond - {name}");
@@ -286,7 +286,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             });
         }
 
-        private static BlueprintBuff createWeaponBondBuff(string name, BlueprintItemEnchantmentReference enchant) {
+        private static BlueprintBuff CreateWeaponBondBuff(string name, BlueprintItemEnchantmentReference enchant) {
             return Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, $"AntipaladinWeaponBond{name}Buff", bp => {
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.StayOnDeath;
                 bp.Stacking = StackingType.Stack;
@@ -298,7 +298,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             });
         }
 
-        private static BlueprintFeature createWeaponBondFeaturePlusX(int bonus, UnityEngine.Sprite icon, params BlueprintUnitFactReference[] facts) {
+        private static BlueprintFeature CreateWeaponBondFeaturePlusX(int bonus, UnityEngine.Sprite icon, params BlueprintUnitFactReference[] facts) {
             return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, $"AntipaladinWeaponBondPlus{bonus}", bp => {
                 bp.SetName(MCEContext, $"Fiendish Weapon Bond (+{bonus})");
                 bp.SetDescription(MCEContext, WEAPON_BOND_DESCRIPTION);
