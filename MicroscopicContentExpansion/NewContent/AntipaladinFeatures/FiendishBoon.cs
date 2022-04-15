@@ -318,7 +318,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             var AntipaladinClassRef = AntipaladinClass.ToReference<BlueprintCharacterClassReference>();
 
             var antipaladinClassLevelProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(MCEContext, "AntipaladinClassLevelProperty", bp => {
-                bp.AddComponent<OwnerClassGetter>(c => c.CharacterClass = AntipaladinClass);
+                bp.AddComponent<MasterClassLevelGetter>(c => c.CharacterClass = AntipaladinClass);
             });
 
             var FiendishServantSpellResistance = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishServantSpellResistance", bp => {

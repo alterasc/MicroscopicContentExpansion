@@ -3,7 +3,7 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 
 namespace MicroscopicContentExpansion.NewComponents {
-    public class OwnerClassGetter : PropertyValueGetter {
+    public class MasterClassLevelGetter : PropertyValueGetter {
 
         public BlueprintCharacterClass CharacterClass;
 
