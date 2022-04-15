@@ -62,7 +62,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var NegativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
             var TouchItem = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
 
-            var TouchOfCorruptionAbility = CreateTouchOfCorruption("AntipaladinTouchOfCorruptionBase", NAME, DESCRIPTION, BestowCurseSpell.Icon);
+            var TouchOfCorruptionAbility = CreateTouchOfCorruption("AntipaladinTouchOfCorruptionUnmodified", NAME, DESCRIPTION, BestowCurseSpell.Icon);
 
 
             var TouchOfCorruptionBase = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinTouchOfCorruptionBase", bp => {
