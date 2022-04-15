@@ -2,7 +2,6 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
@@ -16,12 +15,6 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             "corruption to damage a creature, he deals the maximum possible amount.";
 
         public static void AddUnholyChampion() {
-
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
-
-            var AntipaladinChannelEnergyHarm = BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinChannelEnergyHarm");
-            var AntipaladinChannelEnergyHeal = BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinChannelEnergyHeal");
-            var TouchOfCorruptionAbility = BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionAbility");
 
             var UnholyChampion = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinUnholyChampion", bp => {
                 bp.SetName(MCEContext, NAME);
@@ -40,9 +33,23 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.m_AllowedAbilities = AutoMetamagic.AllowedType.Any;
                     c.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Maximize;
                     c.Abilities = new List<BlueprintAbilityReference> {
-                        AntipaladinChannelEnergyHarm,
-                        AntipaladinChannelEnergyHeal,
-                        TouchOfCorruptionAbility
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinChannelEnergyHarm"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinChannelEnergyHeal"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionBase"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionBlinded"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionCursed"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionDazed"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionDiseased"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionExhausted"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionFatiqued"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionFrightened"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionNauseated"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionParalyzed"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionPoisoned"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionShaken"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionSickened"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionStaggered"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionStunned")
                     };
                 });
             });

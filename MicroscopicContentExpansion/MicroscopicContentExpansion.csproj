@@ -160,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\AddedContent.cs" />
+    <Compile Include="NewComponents\OwnerClassGetter.cs" />
     <Compile Include="Utils\ActionFlow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />
