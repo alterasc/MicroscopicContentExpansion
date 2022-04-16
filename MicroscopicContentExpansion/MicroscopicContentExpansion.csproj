@@ -164,6 +164,15 @@
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\DreadVanguardBeaconOfEvil.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcher.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\UndyingChampion.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\SoulOftheCrypt.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\CryptLord.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\WeaponsofSin.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\CloakoftheCrypt.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\WilloftheCrypt.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\TouchoftheCrypt.cs" />
+    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\FortitudeoftheCrypt.cs" />
     <Compile Include="NewContent\Archetypes\Tyrant.cs" />
     <Compile Include="NewContent\Archetypes\IronTyrantFeatures\IronTyrantArmorBond.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />

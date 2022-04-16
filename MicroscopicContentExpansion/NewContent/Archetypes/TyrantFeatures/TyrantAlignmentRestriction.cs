@@ -23,7 +23,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                     c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.LawfulEvil;
                 });
                 bp.IsClassFeature = true;
-            }).ToReference<BlueprintFeatureReference>();            
+            }).ToReference<BlueprintFeatureReference>();
         }
     }
 }

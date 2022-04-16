@@ -1,7 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
-using Kingmaker.UnitLogic.FactLogic;
 using MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
@@ -29,7 +28,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
                 bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"TyrantArchetype.Description", DESCRIPTION);
                 bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.LawfulEvil; });
                 bp.RemoveFeatures = new LevelEntry[] {
-                    Helpers.CreateLevelEntry(1, antipaladinAlignmentRestriction)                    
+                    Helpers.CreateLevelEntry(1, antipaladinAlignmentRestriction)
                 };
                 bp.AddFeatures = new LevelEntry[] {
                     Helpers.CreateLevelEntry(1, tyrantAlignmentRestriction)

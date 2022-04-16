@@ -1,9 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Prerequisites;
-using Kingmaker.UnitLogic.FactLogic;
 using MicroscopicContentExpansion.NewContent.Archetypes.DreadVanguardFeatures;
-using MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -27,7 +24,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
                 bp.LocalizedName = Helpers.CreateString(MCEContext, $"DreadVanguardArchetype.Name", NAME);
                 bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"DreadVanguardArchetype.Description", DESCRIPTION);
                 bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"DreadVanguardArchetype.Description", DESCRIPTION);
-                bp.RemoveFeatures = new LevelEntry[] {};
+                bp.RemoveFeatures = new LevelEntry[] { };
                 bp.RemoveSpellbook = true;
                 bp.AddFeatures = new LevelEntry[] {
                     Helpers.CreateLevelEntry(4, touchOfCorruptionUse, beaconOfEvil),
