@@ -1,8 +1,10 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
+using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic.FactLogic;
+using MicroscopicContentExpansion.NewContent.Archetypes.IronTyrantFeatures;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -13,36 +15,42 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
 
         public static void AddIronTyrant() {
             var AntipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
-            var TouchOfCorruptionFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTouchOfCorruptionFeature");
-            var CrueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
-            var ChannelNegativeEnergy = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinChannelNegativeEnergyFeature");
+            var touchOfCorruptionFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTouchOfCorruptionFeature");
+            var crueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
+            var channelNegativeEnergy = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinChannelNegativeEnergyFeature");
+            var fiendishBoon = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBoonSelection");
 
-            var ArmorShieldCombatFeatSelection = AddArmorShieldCombatFeatSelection();
-            var IronFist = AddIronFist();
+            var armorShieldCombatFeatSelection = AddArmorShieldCombatFeatSelection();
+            var ironFist = AddIronFist();
+            var ironTyrantFiendishBond = IronTyrantArmorBond.AddFiendishBond();
+            var unstoppable = AddUnstoppable();
 
             var IronTyrant = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "IronTyrantArchetype", bp => {
                 bp.LocalizedName = Helpers.CreateString(MCEContext, $"IronTyrantArchetype.Name", NAME);
                 bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"IronTyrantArchetype.Description", DESCRIPTION);
                 bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"IronTyrantArchetype.Description", DESCRIPTION);
                 bp.RemoveFeatures = new LevelEntry[] {
-                    Helpers.CreateLevelEntry(2, TouchOfCorruptionFeature),
-                    Helpers.CreateLevelEntry(3, CrueltySelection),
-                    Helpers.CreateLevelEntry(4, ChannelNegativeEnergy),
-                    Helpers.CreateLevelEntry(6, CrueltySelection),
-                    Helpers.CreateLevelEntry(9, CrueltySelection),
-                    Helpers.CreateLevelEntry(12, CrueltySelection),
-                    Helpers.CreateLevelEntry(15, CrueltySelection),
-                    Helpers.CreateLevelEntry(18, CrueltySelection)
+                    Helpers.CreateLevelEntry(2, touchOfCorruptionFeature),
+                    Helpers.CreateLevelEntry(3, crueltySelection),
+                    Helpers.CreateLevelEntry(4, channelNegativeEnergy),
+                    Helpers.CreateLevelEntry(5, fiendishBoon),
+                    Helpers.CreateLevelEntry(6, crueltySelection),
+                    Helpers.CreateLevelEntry(9, crueltySelection),
+                    Helpers.CreateLevelEntry(12, crueltySelection),
+                    Helpers.CreateLevelEntry(15, crueltySelection),
+                    Helpers.CreateLevelEntry(18, crueltySelection)
 
                 };
                 bp.AddFeatures = new LevelEntry[] {
-                    Helpers.CreateLevelEntry(2, IronFist),
-                    Helpers.CreateLevelEntry(3, ArmorShieldCombatFeatSelection),
-                    Helpers.CreateLevelEntry(6, ArmorShieldCombatFeatSelection),
-                    Helpers.CreateLevelEntry(9, ArmorShieldCombatFeatSelection),
-                    Helpers.CreateLevelEntry(12, ArmorShieldCombatFeatSelection),
-                    Helpers.CreateLevelEntry(15, ArmorShieldCombatFeatSelection),
-                    Helpers.CreateLevelEntry(18, ArmorShieldCombatFeatSelection)
+                    Helpers.CreateLevelEntry(2, ironFist),
+                    Helpers.CreateLevelEntry(3, armorShieldCombatFeatSelection),
+                    Helpers.CreateLevelEntry(4, unstoppable),
+                    Helpers.CreateLevelEntry(5, ironTyrantFiendishBond),
+                    Helpers.CreateLevelEntry(6, armorShieldCombatFeatSelection),
+                    Helpers.CreateLevelEntry(9, armorShieldCombatFeatSelection),
+                    Helpers.CreateLevelEntry(12, armorShieldCombatFeatSelection),
+                    Helpers.CreateLevelEntry(15, armorShieldCombatFeatSelection),
+                    Helpers.CreateLevelEntry(18, armorShieldCombatFeatSelection)
                 };
             });
 
@@ -50,6 +58,26 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
             AntipaladinClass.m_Archetypes = Archetypes;
         }
 
+        private static BlueprintFeature AddUnstoppable() {
+            var difficultTerrainImmunity = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DifficultTerrainImmunityFeature", bp => {
+                bp.SetName(MCEContext, "Difficult terrain immunity");
+                bp.HideInUI = true;
+                bp.HideInCharacterSheetAndLevelUp = true;
+                bp.IsClassFeature = true;
+                bp.AddComponent<AddConditionImmunity>(c => {
+                    c.Condition = Kingmaker.UnitLogic.UnitCondition.DifficultTerrain;
+                });
+            });
+
+            return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "IronTyrantUnstoppable", bp => {
+                bp.SetName(MCEContext, "Unstoppable");
+                bp.SetDescription(MCEContext, "At 4th level, when wearing armor, an iron tyrant is not slowed by difficult terrain");
+                bp.IsClassFeature = true;
+                bp.AddComponent<HasArmorFeatureUnlock>(c => {
+                    c.m_NewFact = difficultTerrainImmunity.ToReference<BlueprintUnitFactReference>();
+                });
+            });
+        }
         private static BlueprintFeatureSelection AddArmorShieldCombatFeatSelection() {
             var BonusFeatSelection = Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "IronTyrantBonusFeatSelection", bp => {
                 bp.SetName(MCEContext, "Bonus Feat");

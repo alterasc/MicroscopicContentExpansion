@@ -49,6 +49,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                             " to any properties the weapon already has, but duplicate abilities do not stack.\nAn antipaladin can use this" +
                             " ability once per day at 5th level, and one additional time per day for every four levels beyond 5th, to" +
                             " a total of four times per day at 17th level.";
+        private const string WEAPON_BOND_NAME = "Fiendish Bond";
 
         public static void AddFiendinshBoon() {
             var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
@@ -81,8 +82,19 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 };
             });
 
+            var weaponBondAdditionalUse = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBondAdditionalUse", bp => {
+                bp.SetName(MCEContext, $"{WEAPON_BOND_NAME} - Additional Use");
+                bp.SetDescription(MCEContext, WEAPON_BOND_DESCRIPTION);
+                bp.Ranks = 3;
+                bp.m_Icon = icon;
+                bp.IsClassFeature = true;
+                bp.AddComponent<IncreaseResourceAmount>(c => {
+                    c.m_Resource = weaponBondResource.ToReference<BlueprintAbilityResourceReference>();
+                });
+            });
+
             var weaponBondDurationBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinWeaponBondDurationBuff", bp => {
-                bp.SetName(MCEContext, "Fiendish Weapon Bond");
+                bp.SetName(MCEContext, WEAPON_BOND_NAME);
                 bp.SetDescription(MCEContext, WEAPON_BOND_DESCRIPTION);
                 bp.m_Icon = icon;
                 bp.m_Flags = BlueprintBuff.Flags.StayOnDeath;
@@ -93,7 +105,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             var paladinWeaponBondSwitchAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7ff088ab58c69854b82ea95c2b0e35b4");
 
             var weaponBondSwitchAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinWeaponBondSwitchAbility", bp => {
-                bp.SetName(MCEContext, "Fiendish Weapon Bond");
+                bp.SetName(MCEContext, WEAPON_BOND_NAME);
                 bp.SetDescription(MCEContext, WEAPON_BOND_DESCRIPTION);
                 bp.NeedEquipWeapons = true;
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.EnchantWeapon;
@@ -180,12 +192,17 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 });
             });
 
+            var weaponBondFlamingBuff = CreateWeaponBondBuff("Flaming",
+                BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("30f90becaaac51f41bf56641966c4121"));
             var weaponBondFlaming = CreateWeaponBondChoice("Flaming",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("7902941ef70a0dc44bcfc174d6193386").Icon,
-                BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("b3d7a8ddf339989478aacd7dd8d97841"), 1);
+                weaponBondFlamingBuff.ToReference<BlueprintBuffReference>(), 1);
+
+            var weaponBondKeenBuff = CreateWeaponBondBuff("Keen",
+                BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("102a9c8c9b7a75e4fb5844e79deaf4c0"));
             var weaponBondKeen = CreateWeaponBondChoice("Keen",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon,
-                BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("1cc068cf355b8464da5fb8e476f74019"), 1);
+                weaponBondKeenBuff.ToReference<BlueprintBuffReference>(), 1);
 
             var weaponBondViciousBuff = CreateWeaponBondBuff("Vicious",
                 BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("a1455a289da208144981e4b1ef92cc56"));
@@ -262,9 +279,11 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 bp.LevelEntries = new LevelEntry[] {
                     Helpers.CreateLevelEntry(5, weaponBond),
                     Helpers.CreateLevelEntry(8, weaponBond2),
+                    Helpers.CreateLevelEntry(9, weaponBondAdditionalUse),
                     Helpers.CreateLevelEntry(11, weaponBond3),
+                    Helpers.CreateLevelEntry(13, weaponBondAdditionalUse),
                     Helpers.CreateLevelEntry(14, weaponBond4),
-                    Helpers.CreateLevelEntry(17, weaponBond5),
+                    Helpers.CreateLevelEntry(17, weaponBond5, weaponBondAdditionalUse),
                     Helpers.CreateLevelEntry(20, weaponBond6),
                 };
             });

@@ -161,6 +161,7 @@
   <ItemGroup>
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
+    <Compile Include="NewContent\Archetypes\IronTyrantFeatures\IronTyrantArmorBond.cs" />
     <Compile Include="Utils\ActionFlow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />

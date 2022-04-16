@@ -43,7 +43,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
 
                 UpdateAntipaladinProgression();
 
-                //IronTyrant.AddIronTyrant();
+                IronTyrant.AddIronTyrant();
             }
 
             static void UpdateAntipaladinProgression() {
