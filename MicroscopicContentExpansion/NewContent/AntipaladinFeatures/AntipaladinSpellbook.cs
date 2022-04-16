@@ -1,5 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Spells;
+using MicroscopicContentExpansion.NewContent.Spells;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
@@ -14,6 +15,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var PaladinSpellLevelsRef = BlueprintTools.GetBlueprintReference<BlueprintSpellsTableReference>("9aed4803e424ae8429c392d8fbfb88ff");
             var PaladinSpellListRef = BlueprintTools.GetBlueprintReference<BlueprintSpellListReference>("9f5be2f7ea64fe04eb40878347b147bc");
 
+            var protectionFromLawGood = ProtectionFromLawGood.AddProtectionFromLawGood();
+            var protectionFromLawGoodCommunal = ProtectionFromLawGood.AddProtectionFromLawGoodCommunal();
 
             var AntipaladinSpellList = Helpers.CreateBlueprint<BlueprintSpellList>(MCEContext, "AntipaladinSpelllist", bp => {
                 bp.SpellsByLevel = new SpellLevelList[] {
@@ -26,7 +29,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("feb70aab86cc17f4bb64432c83737ac2"), //Command
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("e5cb4c4459e437e49a4cd73fde6b9063"), //Inflict Light Wounds
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("d7fdd79f0f6b6a2418298e936bb68e40"), //Magic Weapon
-                            BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("433b1faf4d02cc34abb0ade5ceda47c4"), //Protection from TODO
+                            protectionFromLawGood,
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("8fd74eddd9b6c224693d9ab241f25e84")  //Summon Monster I
                         }
                     },
@@ -39,7 +42,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("c9198d9dfd2515d4ba98335b57bb66c7"), //Litany of Eloquence
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("16f7754287811724abe1e0ead88f74ca"), //Litany of Entanglement
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("dee3074b2fbfb064b80b973f9b56319e"), //Pernicious Poison
-                            BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("2cadf6c6350e4684baa109d067277a45"), //Protection from TODO
+                            protectionFromLawGoodCommunal,
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("08cb5f4c3b2695e44971bf5c45205df0"), //Scare
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("1724061e89c667045a6891179ee2e8e7")  //Summon Monster II                            
                         }

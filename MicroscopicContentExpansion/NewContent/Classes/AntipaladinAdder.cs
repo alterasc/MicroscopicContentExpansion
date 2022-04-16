@@ -34,6 +34,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 AuraofCowardice.AddAuraOfCowardiceFeature();
                 ChannelNegativeEnergy.AddChannelNegativeEnergy();
                 AntipaladinSpellbook.AddAntipaladinSpellbook();
+                AntipaladinAlignmentRestriction.AddAntipaladinAlignmentRestriction();
                 FiendishBoon.AddFiendinshBoon();
                 AuraofDespair.AddAuraOfDespairFeature();
                 AuraofVengeance.AddAuraofVengeance();
@@ -44,6 +45,8 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 UpdateAntipaladinProgression();
 
                 IronTyrant.AddIronTyrant();
+                //Tyrant.AddTyrant();
+                DreadVanguard.AddDreadVanguard();
             }
 
             static void UpdateAntipaladinProgression() {
@@ -68,6 +71,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 var FiendishBoon = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBoonSelection");
 
                 var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
+                var antipaladinAlignmentRestriction = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAlignmentRestriction");
 
                 var AuraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");
 
@@ -80,7 +84,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 var Capstone = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCapstone");
 
                 AntipaladinProgression.LevelEntries = new LevelEntry[] {
-                        Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature),
+                        Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature, antipaladinAlignmentRestriction),
                         Helpers.CreateLevelEntry(2, UnholyResilience, TouchOfCorruptionFeature),
                         Helpers.CreateLevelEntry(3, AuraOfCowardice, PlagueBringer, CrueltySelection),
                         Helpers.CreateLevelEntry(4,  SmiteGoodAdditionalUse, ChannelNegativeEnergy),
@@ -108,9 +112,11 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 };
 
                 var AntipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
-                AntipaladinClass.m_SignatureAbilities = new BlueprintFeatureReference[1]
+                AntipaladinClass.m_SignatureAbilities = new BlueprintFeatureReference[]
                 {
-                    SmiteGoodFeature.ToReference<BlueprintFeatureReference>()
+                    SmiteGoodFeature.ToReference<BlueprintFeatureReference>(),
+                    TouchOfCorruptionFeature.ToReference<BlueprintFeatureReference>(),
+                    FiendishBoon.ToReference<BlueprintFeatureReference>()
                 };
                 AntipaladinClass.m_Spellbook = SpellbookRef;
             }
@@ -201,7 +207,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                         c.Not = true;
                         c.HideInUI = true;
                     });
-                    bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.ChaoticEvil; });
+                    bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil; });
                 });
 
 

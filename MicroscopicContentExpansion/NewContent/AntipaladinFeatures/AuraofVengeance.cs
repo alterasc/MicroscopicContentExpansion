@@ -87,7 +87,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
             var AuraofVengeanceAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinAuraofVengeanceAbility", bp => {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
-                bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "Until the target of Sinful Absolution is dead");
+                bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute");
                 bp.LocalizedSavingThrow = Helpers.CreateString(MCEContext, $"{bp.name}.SavingThrow", "None");
                 bp.m_Icon = FingerOfDeathIcon;
                 bp.Type = AbilityType.Supernatural;

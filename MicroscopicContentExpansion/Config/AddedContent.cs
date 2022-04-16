@@ -3,8 +3,8 @@
 namespace MicroscopicContentExpansion.Config {
     public class AddedContent : IUpdatableSettings {
         public bool NewSettingsOffByDefault = false;
-        public SettingGroup AlternativeCapstones = new SettingGroup();
-        public SettingGroup NewClasses = new SettingGroup();
+        public SettingGroup AlternativeCapstones = new();
+        public SettingGroup NewClasses = new();
 
         public void Init() {
         }

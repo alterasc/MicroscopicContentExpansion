@@ -1,12 +1,10 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
-using Kingmaker.UnitLogic.Abilities.Components.Base;
 using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
@@ -15,9 +13,6 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
-using MicroscopicContentExpansion.NewComponents;
-using System.Collections.Generic;
-using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
 using static Kingmaker.Blueprints.BlueprintAbilityResource;
 using static MicroscopicContentExpansion.Main;
@@ -115,7 +110,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                             }
                         },
                         new ContextActionApplyBuff() {
-                            m_Buff = bondDurationBuff.ToReference<BlueprintBuffReference>(),                            
+                            m_Buff = bondDurationBuff.ToReference<BlueprintBuffReference>(),
                             DurationValue = new ContextDurationValue() {
                                 Rate = DurationRate.Minutes,
                                 DiceType = Kingmaker.RuleSystem.DiceType.Zero,
@@ -149,7 +144,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                 bp.AddComponent<AbilityResourceLogic>(c => {
                     c.m_RequiredResource = fiendishBondResource.ToReference<BlueprintAbilityResourceReference>();
                     c.m_IsSpendResource = true;
-                });                
+                });
                 bp.AddComponent<AbilityCasterAlignment>(c => {
                     c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
                 });
@@ -161,7 +156,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
             var armorBondFortification25 = CreateArmorBondChoice("LightFortification",
                 BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("54915668d929ad14c8b68e867211789d").Icon,
                 lightFortificationBuff.ToReference<BlueprintBuffReference>(), 1);
-            
+
 
             var armorBond = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "IronTyrantArmorBondFeature", bp => {
                 bp.SetName(MCEContext, "Fiendish Bond (+1)");
@@ -298,6 +293,6 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                 });
             });
         }
-        
+
     }
 }

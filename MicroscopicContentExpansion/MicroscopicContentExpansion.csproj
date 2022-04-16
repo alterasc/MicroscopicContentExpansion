@@ -161,7 +161,13 @@
   <ItemGroup>
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
+    <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
+    <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
+    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\DreadVanguardBeaconOfEvil.cs" />
+    <Compile Include="NewContent\Archetypes\Tyrant.cs" />
     <Compile Include="NewContent\Archetypes\IronTyrantFeatures\IronTyrantArmorBond.cs" />
+    <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
+    <Compile Include="NewContent\Spells\ProtectionFromLawGood.cs" />
     <Compile Include="Utils\ActionFlow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextMCEBase.cs" />

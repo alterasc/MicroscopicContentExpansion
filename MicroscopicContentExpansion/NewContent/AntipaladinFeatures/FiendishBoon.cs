@@ -60,6 +60,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinFiendishBoonSelection", bp => {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
+                bp.m_DescriptionShort = bp.m_Description;
                 bp.m_AllFeatures = new BlueprintFeatureReference[] {
                     AntipaladinServantSelection.ToReference<BlueprintFeatureReference>(),
                     AntipaladinFiendishBoonWeapon.ToReference<BlueprintFeatureReference>()
