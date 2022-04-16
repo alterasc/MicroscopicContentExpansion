@@ -82,6 +82,13 @@ At 20th level, the beacon of evil’s radius increases to 60 feet, and the moral
                     };
                 });
 
+                bp.AddComponent<AddEffectContextFastHealing>(c => {
+                    c.Bonus = new ContextValue() {
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.DamageBonus,
+                    };
+                });
+
                 bp.AddComponent<ContextRankConfig>(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Progression = ContextRankProgression.Custom;
@@ -99,6 +106,27 @@ At 20th level, the beacon of evil’s radius increases to 60 feet, and the moral
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 100,
                             ProgressionValue = 4
+                        }
+                    };
+                });
+
+                bp.AddComponent<ContextRankConfig>(c => {
+                    c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                    c.m_Progression = ContextRankProgression.Custom;
+                    c.m_Type = AbilityRankType.DamageBonus;
+                    c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClass };
+                    c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
+                        new ContextRankConfig.CustomProgressionItem() {
+                            BaseValue = 7,
+                            ProgressionValue = 0
+                        },
+                        new ContextRankConfig.CustomProgressionItem() {
+                            BaseValue = 15,
+                            ProgressionValue = 3
+                        },
+                        new ContextRankConfig.CustomProgressionItem() {
+                            BaseValue = 100,
+                            ProgressionValue = 5
                         }
                     };
                 });
