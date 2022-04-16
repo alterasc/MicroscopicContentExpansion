@@ -54,13 +54,13 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
                     Helpers.CreateLevelEntry(15, cryptLord),
                     Helpers.CreateLevelEntry(17, souloftheCrypt),
                     Helpers.CreateLevelEntry(20, undyingChampion)
-                };                
+                };
             });
 
             var archetypes = antipaladinClass.m_Archetypes.AppendToArray(knightoftheSepulcher.ToReference<BlueprintArchetypeReference>());
             antipaladinClass.m_Archetypes = archetypes;
 
-            var KotSUIGroup = Helpers.CreateUIGroup(touchoftheCrypt, fortitudeoftheCrypt, cloakoftheCrypt, 
+            var KotSUIGroup = Helpers.CreateUIGroup(touchoftheCrypt, fortitudeoftheCrypt, cloakoftheCrypt,
                 willoftheCrypt, weaponsofSin, cryptLord, souloftheCrypt, undyingChampion);
             var antipaladinProgression = BlueprintTools.GetModBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression");
             antipaladinProgression.UIGroups = antipaladinProgression.UIGroups.AppendToArray(KotSUIGroup);

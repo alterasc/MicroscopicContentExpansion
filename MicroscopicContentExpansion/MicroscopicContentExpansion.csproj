@@ -159,7 +159,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Fixes.cs" />
     <Compile Include="Config\AddedContent.cs" />
+    <Compile Include="Fixes\RadianceFix.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
@@ -203,6 +205,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Config\Blueprints.json" />
     <EmbeddedResource Include="Config\AddedContent.json" />
+    <EmbeddedResource Include="Config\Fixes.json" />
     <None Include="Info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

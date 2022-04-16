@@ -13,7 +13,7 @@ namespace MicroscopicContentExpansion.Config {
             var loadedSettings = userSettings as AddedContent;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             AlternativeCapstones.LoadSettingGroup(loadedSettings.AlternativeCapstones, NewSettingsOffByDefault);
-            AlternativeCapstones.LoadSettingGroup(loadedSettings.NewClasses, NewSettingsOffByDefault);
+            NewClasses.LoadSettingGroup(loadedSettings.NewClasses, NewSettingsOffByDefault);
         }
     }
 }

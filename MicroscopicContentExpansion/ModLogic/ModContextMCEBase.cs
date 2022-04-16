@@ -5,6 +5,7 @@ using static UnityModManagerNet.UnityModManager;
 namespace MicroscopicContentExpansion.ModLogic {
     internal class ModContextMCEBase : ModContextBase {
         public AddedContent AddedContent;
+        public Fixes Fixes;
 
         public ModContextMCEBase(ModEntry ModEntry) : base(ModEntry) {
             LoadAllSettings();
@@ -14,6 +15,7 @@ namespace MicroscopicContentExpansion.ModLogic {
         }
         public override void LoadAllSettings() {
             LoadSettings("AddedContent.json", "MicroscopicContentExpansion.Config", ref AddedContent);
+            LoadSettings("Fixes.json", "MicroscopicContentExpansion.Config", ref Fixes);
             LoadBlueprints("MicroscopicContentExpansion.Config", Main.MCEContext);
             LoadLocalization("MicroscopicContentExpansion.Localization");
         }
@@ -25,6 +27,7 @@ namespace MicroscopicContentExpansion.ModLogic {
         public override void SaveAllSettings() {
             base.SaveAllSettings();
             SaveSettings("AddedContent.json", AddedContent);
+            SaveSettings("Fixes.json", Fixes);
         }
     }
 }

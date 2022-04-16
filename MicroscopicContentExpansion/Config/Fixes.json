@@ -1,0 +1,14 @@
+﻿{
+  "NewSettingsOffByDefault": false,
+  "Miscellaneous": {
+    "DisableAll": false,
+    "Settings": {
+      "Radiance_6_Fix": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Fixes special enchantment of Radiance to correctly apply after last rank-up"
+      }
+    },
+    "IsExpanded": true
+  }
+}
