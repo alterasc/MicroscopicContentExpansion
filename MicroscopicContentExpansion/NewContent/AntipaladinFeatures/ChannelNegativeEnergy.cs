@@ -88,8 +88,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             };
                             ac.Duration = new ContextDurationValue() {
                                 m_IsExtendable = true,
-                                DiceCountValue = new ContextValue(),
-                                BonusValue = new ContextValue()
+                                DiceCountValue = 0,
+                                BonusValue = 0
                             };
                             ac.Value = new ContextDiceValue() {
                                 DiceType = Kingmaker.RuleSystem.DiceType.D6,
@@ -196,17 +196,13 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             DiceType = Kingmaker.RuleSystem.DiceType.Zero,
                             DiceCountValue = new ContextValue() {
                                 ValueType = ContextValueType.Simple,
-                                Value = 0,
                                 ValueRank = AbilityRankType.Default,
-                                ValueShared = AbilitySharedValue.Damage,
-                                Property = UnitProperty.None
+                                ValueShared = AbilitySharedValue.Damage
                             },
                             BonusValue = new ContextValue() {
                                 ValueType = ContextValueType.Shared,
-                                Value = 0,
                                 ValueRank = AbilityRankType.Default,
-                                ValueShared = AbilitySharedValue.Heal,
-                                Property = UnitProperty.None
+                                ValueShared = AbilitySharedValue.Heal
                             }
                         };
                     });
@@ -216,17 +212,13 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             DiceType = Kingmaker.RuleSystem.DiceType.Zero,
                             DiceCountValue = new ContextValue() {
                                 ValueType = ContextValueType.Simple,
-                                Value = 0,
                                 ValueRank = AbilityRankType.Default,
-                                ValueShared = AbilitySharedValue.Damage,
-                                Property = UnitProperty.None
+                                ValueShared = AbilitySharedValue.Damage
                             },
                             BonusValue = new ContextValue() {
                                 ValueType = ContextValueType.Shared,
-                                Value = 0,
                                 ValueRank = AbilityRankType.Default,
-                                ValueShared = AbilitySharedValue.StatBonus,
-                                Property = UnitProperty.None
+                                ValueShared = AbilitySharedValue.StatBonus
                             }
                         };
                     });
@@ -300,17 +292,13 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                         DiceType = Kingmaker.RuleSystem.DiceType.D6,
                         DiceCountValue = new ContextValue() {
                             ValueType = ContextValueType.Rank,
-                            Value = 0,
                             ValueRank = AbilityRankType.Default,
-                            ValueShared = AbilitySharedValue.Damage,
-                            Property = UnitProperty.None
+                            ValueShared = AbilitySharedValue.Damage
                         },
                         BonusValue = new ContextValue() {
                             ValueType = ContextValueType.Rank,
-                            Value = 0,
                             ValueRank = AbilityRankType.DamageBonus,
-                            ValueShared = AbilitySharedValue.Damage,
-                            Property = UnitProperty.None
+                            ValueShared = AbilitySharedValue.Damage
                         }
                     };
                     c.Modifier = 1.0;
@@ -347,17 +335,14 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                         DiceType = Kingmaker.RuleSystem.DiceType.D6,
                         DiceCountValue = new ContextValue() {
                             ValueType = ContextValueType.Simple,
-                            Value = 0,
                             ValueRank = AbilityRankType.Default,
                             ValueShared = AbilitySharedValue.Damage,
                             Property = UnitProperty.None
                         },
                         BonusValue = new ContextValue() {
                             ValueType = ContextValueType.Shared,
-                            Value = 0,
                             ValueRank = AbilityRankType.StatBonus,
-                            ValueShared = AbilitySharedValue.Heal,
-                            Property = UnitProperty.None
+                            ValueShared = AbilitySharedValue.Heal
                         }
                     };
                     c.Modifier = 0.5;

@@ -126,12 +126,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                             Common = new DamageTypeDescription.CommomData(),
                             Physical = new DamageTypeDescription.PhysicalData()
                         };
-                        a.Duration = new ContextDurationValue() {
-                            BonusValue = 0,
-                            Rate = DurationRate.Rounds,
-                            DiceCountValue = 0,
-                            DiceType = DiceType.Zero
-                        };
+                        a.Duration = new ContextDurationValue();
                     });
                 });
 

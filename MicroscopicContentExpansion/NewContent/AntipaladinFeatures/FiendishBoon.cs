@@ -134,19 +134,9 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                             DurationValue = new ContextDurationValue() {
                                 Rate = DurationRate.Minutes,
                                 DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                                DiceCountValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 0,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                                },
+                                DiceCountValue = 0,
                                 BonusValue = new ContextValue() {
-                                    ValueType = ContextValueType.Rank,
-                                    Value = 0,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = UnitProperty.None
+                                    ValueType = ContextValueType.Rank
                                 },
                                 m_IsExtendable = true
                             }
@@ -156,19 +146,9 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                             DurationValue = new ContextDurationValue() {
                                 Rate = DurationRate.Minutes,
                                 DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                                DiceCountValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 0,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = UnitProperty.None
-                                },
+                                DiceCountValue = 0,
                                 BonusValue = new ContextValue() {
-                                    ValueType = ContextValueType.Rank,
-                                    Value = 1,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = UnitProperty.None
+                                    ValueType = ContextValueType.Rank
                                 },
                                 m_IsExtendable = true
                             }
@@ -176,7 +156,6 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                     ); ;
                 });
                 bp.AddComponent<ContextRankConfig>(c => {
-                    c.m_Type = Kingmaker.Enums.AbilityRankType.Default;
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Stat = StatType.Unknown;
                     c.m_Progression = ContextRankProgression.AsIs;
@@ -348,10 +327,8 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 bp.AddComponent<AddSpellResistance>(c => {
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
-                        Value = 0,
                         ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                        ValueShared = AbilitySharedValue.Damage,
-                        Property = UnitProperty.None
+                        ValueShared = AbilitySharedValue.Damage
                     };
                 });
 
@@ -360,25 +337,14 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                     c.Value = new ContextDiceValue() {
                         DiceType = Kingmaker.RuleSystem.DiceType.One,
                         DiceCountValue = new ContextValue() {
-                            ValueType = ContextValueType.Rank,
-                            Value = 0,
-                            ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                            ValueShared = AbilitySharedValue.Damage,
-                            Property = UnitProperty.None
+                            ValueType = ContextValueType.Rank
                         },
-                        BonusValue = new ContextValue() {
-                            ValueType = ContextValueType.Simple,
-                            Value = 11,
-                            ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                            ValueShared = AbilitySharedValue.Damage,
-                            Property = UnitProperty.None
-                        },
+                        BonusValue = 11,
                     };
                     c.Modifier = 1.0;
                 });
 
                 bp.AddContextRankConfig(c => {
-                    c.m_Type = Kingmaker.Enums.AbilityRankType.Default;
                     c.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
                     c.m_CustomProperty = antipaladinClassLevelProperty.ToReference<BlueprintUnitPropertyReference>();
                     c.m_SpecificModifier = Kingmaker.Enums.ModifierDescriptor.None;

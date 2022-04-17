@@ -12,24 +12,7 @@ namespace MicroscopicContentExpansion.Utils {
                 UnitEnter = ActionFlow.DoSingle<ContextActionApplyBuff>(b => {
                     b.m_Buff = buff;
                     b.Permanent = true;
-                    b.DurationValue = new ContextDurationValue() {
-                        Rate = DurationRate.Rounds,
-                        DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                        DiceCountValue = new ContextValue() {
-                            ValueType = ContextValueType.Simple,
-                            Value = 0,
-                            ValueRank = AbilityRankType.Default,
-                            ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage,
-                            Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                        },
-                        BonusValue = new ContextValue() {
-                            ValueType = ContextValueType.Simple,
-                            Value = 1,
-                            ValueRank = AbilityRankType.Default,
-                            ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage,
-                            Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                        }
-                    };
+                    b.DurationValue = new ContextDurationValue();
                 }),
                 UnitExit = ActionFlow.DoSingle<ContextActionRemoveBuff>(b => {
                     b.m_Buff = buff;

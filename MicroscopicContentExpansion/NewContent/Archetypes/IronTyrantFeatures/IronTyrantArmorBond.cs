@@ -92,19 +92,9 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                             DurationValue = new ContextDurationValue() {
                                 Rate = DurationRate.Minutes,
                                 DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                                DiceCountValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 0,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = UnitProperty.None
-                                },
+                                DiceCountValue = 0,
                                 BonusValue = new ContextValue() {
-                                    ValueType = ContextValueType.Rank,
-                                    Value = 0,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = UnitProperty.None
+                                    ValueType = ContextValueType.Rank
                                 },
                                 m_IsExtendable = true
                             }
@@ -114,19 +104,9 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                             DurationValue = new ContextDurationValue() {
                                 Rate = DurationRate.Minutes,
                                 DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                                DiceCountValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 0,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = UnitProperty.None
-                                },
+                                DiceCountValue = 0,
                                 BonusValue = new ContextValue() {
-                                    ValueType = ContextValueType.Rank,
-                                    Value = 1,
-                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
-                                    ValueShared = AbilitySharedValue.Damage,
-                                    Property = UnitProperty.None
+                                    ValueType = ContextValueType.Rank
                                 },
                                 m_IsExtendable = true
                             }
@@ -134,7 +114,6 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                     ); ;
                 });
                 bp.AddComponent<ContextRankConfig>(c => {
-                    c.m_Type = Kingmaker.Enums.AbilityRankType.Default;
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Stat = StatType.Unknown;
                     c.m_Progression = ContextRankProgression.AsIs;

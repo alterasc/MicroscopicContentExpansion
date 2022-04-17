@@ -99,11 +99,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var actions = new ContextActionApplyBuff() {
                 m_Buff = FatiguedBuff.ToReference<BlueprintBuffReference>(),
                 Permanent = true,
-                DurationValue = new ContextDurationValue() {
-                    m_IsExtendable = true,
-                    DiceCountValue = new ContextValue(),
-                    BonusValue = new ContextValue()
-                },
+                DurationValue = new ContextDurationValue(),
                 IsFromSpell = true,
             };
 
@@ -243,11 +239,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                                 m_Buff = DazedBuff.ToReference<BlueprintBuffReference>(),
                                 UseDurationSeconds = true,
                                 DurationSeconds = 6,
-                                DurationValue = new ContextDurationValue() {
-                                    m_IsExtendable = true,
-                                    DiceCountValue = new ContextValue(),
-                                    BonusValue = new ContextValue()
-                                },
+                                DurationValue = new ContextDurationValue(),
                                 IsFromSpell = true,
                             }),
                 })
@@ -413,8 +405,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                                 Permanent = true,
                                 DurationValue = new ContextDurationValue() {
                                     m_IsExtendable = true,
-                                    DiceCountValue = new ContextValue(),
-                                    BonusValue = new ContextValue()
+                                    DiceCountValue = 0,
+                                    BonusValue = 0
                                 },
                                 IsFromSpell = true,
                             }),
@@ -788,11 +780,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                                 m_Buff = Paralyzed.ToReference<BlueprintBuffReference>(),
                                 UseDurationSeconds = true,
                                 DurationSeconds = 6,
-                                DurationValue = new ContextDurationValue() {
-                                    m_IsExtendable = true,
-                                    DiceCountValue = new ContextValue(),
-                                    BonusValue = new ContextValue()
-                                },
+                                DurationValue = new ContextDurationValue(),
                                 IsFromSpell = true,
                             }),
                 })

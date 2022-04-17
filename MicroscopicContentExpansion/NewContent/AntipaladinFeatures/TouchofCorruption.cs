@@ -170,17 +170,14 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                                 Physical = new DamageTypeDescription.PhysicalData(),
                                 Energy = Kingmaker.Enums.Damage.DamageEnergyType.NegativeEnergy,
                             },
-                            Duration = new ContextDurationValue() {
-                                m_IsExtendable = true,
-                                DiceCountValue = new ContextValue(),
-                                BonusValue = new ContextValue(),
-                            },
+                            Duration = new ContextDurationValue(),
                             Value = new ContextDiceValue() {
                                 DiceType = Kingmaker.RuleSystem.DiceType.D6,
                                 DiceCountValue = new ContextValue() {
                                     ValueType = ContextValueType.Rank,
+                                    ValueRank = Kingmaker.Enums.AbilityRankType.Default
                                 },
-                                BonusValue = new ContextValue(),
+                                BonusValue = 0,
                             }
                         }
                     };
@@ -196,7 +193,6 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             iac.Value = new ContextDiceValue() {
                                 DiceType = Kingmaker.RuleSystem.DiceType.D6,
                                 DiceCountValue = new ContextValue() {
-                                    Value = 0,
                                     ValueRank = Kingmaker.Enums.AbilityRankType.Default,
                                     ValueType = ContextValueType.Rank
                                 },

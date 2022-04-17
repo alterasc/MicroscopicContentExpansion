@@ -37,14 +37,12 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.SpellDescriptor = SpellDescriptor.Fear;
                     c.ModifierDescriptor = ModifierDescriptor.Penalty;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank,
-                        ValueRank = AbilityRankType.DamageDice,
+                        ValueType = ContextValueType.Rank
                     };
                 });
                 bp.AddComponent<ContextRankConfig>(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Progression = ContextRankProgression.Custom;
-                    c.m_Type = AbilityRankType.DamageDice;
                     c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
                     c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
                         new ContextRankConfig.CustomProgressionItem() {

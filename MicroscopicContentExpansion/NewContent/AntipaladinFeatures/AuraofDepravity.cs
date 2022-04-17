@@ -34,12 +34,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.SpellDescriptor = SpellDescriptor.Compulsion;
                     c.ModifierDescriptor = ModifierDescriptor.Penalty;
                     c.Value = -4;
-                    c.Bonus = new ContextValue {
-                        ValueType = ContextValueType.Simple,
-                        Value = 0,
-                        ValueRank = AbilityRankType.Default,
-                        Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                    };
+                    c.Bonus = 0;
                 });
                 bp.Frequency = DurationRate.Rounds;
                 bp.IsClassFeature = true;

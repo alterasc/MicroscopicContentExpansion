@@ -151,11 +151,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                         cond.IfTrue = DoSingle<ContextActionApplyBuff>(apb => {
                             apb.m_Buff = SmiteGoodBuff.ToReference<BlueprintBuffReference>();
                             apb.Permanent = true;
-                            apb.DurationValue = new ContextDurationValue() {
-                                m_IsExtendable = true,
-                                DiceCountValue = new ContextValue(),
-                                BonusValue = new ContextValue()
-                            };
+                            apb.DurationValue = new ContextDurationValue();
                         });
                         cond.IfFalse = DoNothing();
                     });
@@ -178,8 +174,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                         DiceCountValue = new ContextValue(),
                         BonusValue = new ContextValue() {
                             ValueType = ContextValueType.Rank,
-                            ValueRank = AbilityRankType.DamageBonus,
-                            ValueShared = AbilitySharedValue.DamageBonus,
+                            ValueRank = AbilityRankType.DamageBonus
                         },
 
                     };

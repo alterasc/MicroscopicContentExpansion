@@ -37,30 +37,26 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.KnightoftheSepulcher
                     c.SpellDescriptor = SpellDescriptor.MindAffecting;
                     c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank,
-                        ValueRank = AbilityRankType.DamageDice,
+                        ValueType = ContextValueType.Rank
                     };
                 });
                 bp.AddComponent<SavingThrowContextBonusAgainstDescriptor>(c => {
                     c.SpellDescriptor = SpellDescriptor.Death;
                     c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank,
-                        ValueRank = AbilityRankType.DamageDice,
+                        ValueType = ContextValueType.Rank
                     };
                 });
                 bp.AddComponent<SavingThrowContextBonusAgainstDescriptor>(c => {
                     c.SpellDescriptor = SpellDescriptor.Poison;
                     c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank,
-                        ValueRank = AbilityRankType.DamageDice,
+                        ValueType = ContextValueType.Rank
                     };
                 });
                 bp.AddComponent<ContextRankConfig>(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Progression = ContextRankProgression.Custom;
-                    c.m_Type = AbilityRankType.DamageDice;
                     c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
                     c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
                         new ContextRankConfig.CustomProgressionItem() {

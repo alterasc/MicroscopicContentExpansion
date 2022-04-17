@@ -131,11 +131,8 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                                 Rate = DurationRate.Minutes,
                                 DiceType = Kingmaker.RuleSystem.DiceType.Zero,
                                 m_IsExtendable = true,
-                                DiceCountValue = new ContextValue(),
-                                BonusValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 1
-                                }
+                                DiceCountValue = 0,
+                                BonusValue = 1
                             };
                         });
                         cond.IfFalse = ActionFlow.DoNothing();
@@ -145,7 +142,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 bp.AddComponent<ContextCalculateSharedValue>(c => {
                     c.ValueType = AbilitySharedValue.StatBonus;
                     c.Value = new ContextDiceValue() {
-                        DiceCountValue = new ContextValue(),
+                        DiceCountValue = 0,
                         BonusValue = new ContextValue() {
                             ValueType = ContextValueType.Rank,
                             ValueShared = AbilitySharedValue.StatBonus
@@ -156,11 +153,10 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 bp.AddComponent<ContextCalculateSharedValue>(c => {
                     c.ValueType = AbilitySharedValue.DamageBonus;
                     c.Value = new ContextDiceValue() {
-                        DiceCountValue = new ContextValue(),
+                        DiceCountValue = 0,
                         BonusValue = new ContextValue() {
                             ValueType = ContextValueType.Rank,
-                            ValueRank = AbilityRankType.DamageBonus,
-                            ValueShared = AbilitySharedValue.DamageBonus,
+                            ValueRank = AbilityRankType.DamageBonus
                         },
                     };
                     c.Modifier = 1;
