@@ -5,12 +5,10 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
 using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
@@ -45,6 +43,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 });
                 bp.Frequency = DurationRate.Rounds;
                 bp.IsClassFeature = true;
+                bp.FxOnRemove = new PrefabLink();
+                bp.FxOnStart = new PrefabLink();
             });
 
 
@@ -55,10 +55,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.Shape = AreaEffectShape.Cylinder;
                 bp.Size = 13.Feet();
                 bp.Fx = new PrefabLink();
-                bp.AddComponent<AbilityAreaEffectBuff>(c => {
-                    c.m_Buff = AuraOfDepravityEffectBuff.ToReference<BlueprintBuffReference>();
-                    c.Condition = ActionFlow.IfSingle<ContextConditionIsEnemy>();
-                });
+                bp.AddComponent(AuraUtils.CreateUnconditionalAuraEffect(AuraOfDepravityEffectBuff.ToReference<BlueprintBuffReference>()));
             });
 
             var AuraOfDepravityBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfDepravityBuff", bp => {

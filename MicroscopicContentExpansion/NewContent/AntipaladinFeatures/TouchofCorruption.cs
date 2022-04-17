@@ -139,6 +139,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch;
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "Instant");
+                bp.AvailableMetamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach;
                 if (Action != null) {
                     bp.LocalizedSavingThrow = Helpers.CreateString(MCEContext, $"{bp.name}.SavingThrow", "Fortitude");
                 } else {

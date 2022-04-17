@@ -11,7 +11,6 @@ using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
@@ -67,6 +66,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 });
                 bp.Frequency = DurationRate.Rounds;
                 bp.IsClassFeature = true;
+                bp.FxOnRemove = new PrefabLink();
+                bp.FxOnStart = new PrefabLink();
             });
 
 
@@ -77,10 +78,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.Shape = AreaEffectShape.Cylinder;
                 bp.Size = 13.Feet();
                 bp.Fx = new PrefabLink();
-                bp.AddComponent<AbilityAreaEffectBuff>(c => {
-                    c.m_Buff = AuraOfCowardiceEffectBuff.ToReference<BlueprintBuffReference>();
-                    c.Condition = ActionFlow.IfSingle<ContextConditionIsEnemy>();
-                });
+                bp.AddComponent(AuraUtils.CreateUnconditionalAuraEffect(AuraOfCowardiceEffectBuff.ToReference<BlueprintBuffReference>()));
             });
 
             var AuraOfCowardiceBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfCowardiceBuff", bp => {

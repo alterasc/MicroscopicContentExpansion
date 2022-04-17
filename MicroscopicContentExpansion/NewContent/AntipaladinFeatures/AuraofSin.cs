@@ -1,13 +1,12 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
@@ -38,16 +37,16 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.Alignment = Kingmaker.Enums.Damage.DamageAlignment.Evil;
                     c.Reality = Kingmaker.Enums.Damage.DamageRealityType.Ghost;
                 });
+                bp.FxOnRemove = new PrefabLink();
+                bp.FxOnStart = new PrefabLink();
             });
 
             var AuraOfSinArea = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "AntipaladinAuraOfSinArea", bp => {
                 bp.AggroEnemies = true;
                 bp.Shape = AreaEffectShape.Cylinder;
                 bp.Size = 13.Feet();
-                bp.AddComponent<AbilityAreaEffectBuff>(c => {
-                    c.m_Buff = AuraOfSinEffectBuff.ToReference<BlueprintBuffReference>();
-                    c.Condition = ActionFlow.IfSingle<ContextConditionIsEnemy>();
-                });
+                bp.m_TargetType = BlueprintAbilityAreaEffect.TargetType.Enemy;
+                bp.AddComponent(AuraUtils.CreateUnconditionalAuraEffect(AuraOfSinEffectBuff.ToReference<BlueprintBuffReference>()));
             });
 
             var AuraOfSinBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfSinBuff", bp => {

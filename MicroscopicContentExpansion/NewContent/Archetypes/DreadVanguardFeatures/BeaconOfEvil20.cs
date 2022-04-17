@@ -9,7 +9,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.DreadVanguardFeature
     internal class BeaconOfEvil20 {
         const string NAME = "Beacon of Evil";
 
-        const string DESCRIPTION = "At 20th level, the beacon of evil’s radius increases to 60 feet, " +
+        const string DESCRIPTION = "At 20th level, the beacon of evil’s radius increases to 50 feet, " +
             "and the morale bonus granted to AC and on attack rolls, damage rolls, and saving throws " +
             "against fear increases to +4. Lastly, attacks made by the dread vanguard and his allies " +
             "within the aura’s radius are infused with pure unholy power, and deal an additional 1d6 " +

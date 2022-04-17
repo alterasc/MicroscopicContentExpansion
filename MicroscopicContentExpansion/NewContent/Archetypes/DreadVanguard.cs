@@ -16,11 +16,12 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
             var antipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
             var touchOfCorruptionUse = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinTouchOfCorruptionAdditionalUse");
 
+            var beacon5 = BeaconOfEvil20.AddBeaconOfEvil();
             var beacon1 = BeaconOfEvil.AddBeaconOfEvil();
             var beacon2 = BeaconOfEvil8.AddBeaconOfEvil();
             var beacon3 = BeaconOfEvil12.AddBeaconOfEvil();
             var beacon4 = BeaconOfEvil16.AddBeaconOfEvil();
-            var beacon5 = BeaconOfEvil20.AddBeaconOfEvil();
+
 
 
             var DreadVanguard = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "DreadVanguardArchetype", bp => {
