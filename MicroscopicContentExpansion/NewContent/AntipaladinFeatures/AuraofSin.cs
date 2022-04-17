@@ -43,7 +43,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var AuraOfSinArea = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "AntipaladinAuraOfSinArea", bp => {
                 bp.AggroEnemies = true;
                 bp.Shape = AreaEffectShape.Cylinder;
-                bp.Size = new Feet() { m_Value = 13 };
+                bp.Size = 13.Feet();
                 bp.AddComponent<AbilityAreaEffectBuff>(c => {
                     c.m_Buff = AuraOfSinEffectBuff.ToReference<BlueprintBuffReference>();
                     c.Condition = ActionFlow.IfSingle<ContextConditionIsEnemy>();

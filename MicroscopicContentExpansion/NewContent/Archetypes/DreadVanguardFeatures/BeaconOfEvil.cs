@@ -1,27 +1,31 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
 using Kingmaker.ResourceLinks;
 using Kingmaker.UI.UnitSettings.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
+using static MicroscopicContentExpansion.Utils.ActionFlow;
 
 
 namespace MicroscopicContentExpansion.NewContent.Archetypes.DreadVanguardFeatures {
-    internal class DreadVanguardBeaconOfEvil {
+    internal class BeaconOfEvil {
         const string NAME = "Beacon of Evil";
 
         const string DESCRIPTION = @"A dread vanguard unleashes the powers of his vile masters to strengthen both himself and his allies.
@@ -31,11 +35,11 @@ At 12th level, when he activates this ability, a dread vanguard can choose to in
 At 16th level, the fast healing granted by this ability increases to 5. Additionally, the antipaladin’s weapons and those of his allies within the aura’s radius are considered evil for the purpose of overcoming damage reduction.
 At 20th level, the beacon of evil’s radius increases to 60 feet, and the morale bonus granted to AC and on attack rolls, damage rolls, and saving throws against fear increases to +4. Lastly, attacks made by the dread vanguard and his allies within the aura’s radius are infused with pure unholy power, and deal an additional 1d6 points of damage.";
 
-        public static void AddBeaconOfEvil() {
+        public static BlueprintFeatureReference AddBeaconOfEvil() {
             var AntipaladinClass = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
             var TouchOfCorruptionResource = BlueprintTools.GetModBlueprintReference<BlueprintAbilityResourceReference>(MCEContext, "AntipaladinTouchOfCorruptionResource");
 
-            var icon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("1bf09d2956d0f7a4eb4f6a2bcfb8970f").Icon;
+            var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
 
             var beaconOfEvilAreaEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "DreadVanguardBeaconOfEvilAreaEffectBuff", bp => {
                 bp.SetName(MCEContext, NAME);
@@ -137,7 +141,7 @@ At 20th level, the beacon of evil’s radius increases to 60 feet, and the moral
             var beaconOfEvilAreaEffect = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "DreadVanguardBeaconOfEvilAreaEffect", bp => {
                 bp.m_TargetType = BlueprintAbilityAreaEffect.TargetType.Ally;
                 bp.Shape = AreaEffectShape.Cylinder;
-                bp.Size = 33.Feet();
+                bp.Size = 30.Feet();
                 bp.Fx = new PrefabLink();
                 bp.AddComponent<AbilityAreaEffectBuff>(c => {
                     c.Condition = ActionFlow.IfSingle<ContextConditionIsAlly>();
@@ -154,37 +158,72 @@ At 20th level, the beacon of evil’s radius increases to 60 feet, and the moral
                 });
             });
 
+            var beaconOfEvilAreaEffect20 = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "DreadVanguardBeaconOfEvilAreaEffect", bp => {
+                bp.m_TargetType = BlueprintAbilityAreaEffect.TargetType.Ally;
+                bp.Shape = AreaEffectShape.Cylinder;
+                bp.Size = 60.Feet();
+                bp.Fx = new PrefabLink();
+                bp.AddComponent<AbilityAreaEffectBuff>(c => {
+                    c.Condition = ActionFlow.IfSingle<ContextConditionIsAlly>();
+                    c.m_Buff = beaconOfEvilAreaEffectBuff.ToReference<BlueprintBuffReference>();
+                });
+            });
 
-            var beaconOfEvilToggleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "DreadVanguardBeaconOfEvilToggleAbility", bp => {
+            var beaconOfEvilBuff20 = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "DreadVanguardBeaconOfEvilBuff", bp => {
+                bp.IsClassFeature = true;
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.StayOnDeath;
+                bp.Frequency = DurationRate.Rounds;
+                bp.AddComponent<AddAreaEffect>(c => {
+                    c.m_AreaEffect = beaconOfEvilAreaEffect20.ToReference<BlueprintAbilityAreaEffectReference>();
+                });
+            });
+
+            var beacon20 = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "DreadVanguardBeaconOfEvilFeature20");
+
+            var beaconOfEvilAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DreadVanguardBeaconOfEvilAbility", bp => {
                 bp.SetName(MCEContext, $"{NAME}");
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = icon;
-                bp.DeactivateIfCombatEnded = false;
-                bp.DeactivateIfOwnerDisabled = true;
-                bp.ActivationType = AbilityActivationType.WithUnitCommand;
-                bp.m_ActivateWithUnitCommand = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
-                bp.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
-                bp.m_Buff = beaconOfEvilBuff.ToReference<BlueprintBuffReference>();
-                bp.AddComponent<ActivatableAbilityResourceLogic>(c => {
+                bp.AddComponent<AbilityResourceLogic>(c => {
                     c.m_RequiredResource = TouchOfCorruptionResource;
-                    c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.OncePerMinute;
+                    c.m_IsSpendResource = true;
                 });
-                bp.AddComponent<ActionPanelLogic>(c => {
-                    c.Priority = 3;
-                    c.AutoFillConditions = new Kingmaker.ElementsSystem.ConditionsChecker { Operation = Kingmaker.ElementsSystem.Operation.And };
-                    c.AutoCastConditions = new Kingmaker.ElementsSystem.ConditionsChecker { Operation = Kingmaker.ElementsSystem.Operation.And };
+                bp.AddComponent<AbilityEffectRunAction>(c => {
+                    c.Actions = DoSingle<Conditional>(ac => {
+                        ac.ConditionsChecker = IfSingle<ContextConditionCasterHasFact>(cond => {
+                            cond.m_Fact = beacon20.ToReference<BlueprintUnitFactReference>();
+                        });
+                        ac.IfTrue = DoSingle<ContextActionApplyBuff>(cc => {
+                            cc.m_Buff = beaconOfEvilBuff20.ToReference<BlueprintBuffReference>();
+                            cc.DurationValue = new ContextDurationValue() {
+                                Rate = DurationRate.Minutes,
+                                BonusValue = new ContextValue() {
+                                    Value = 1
+                                }
+                            };
+                        });
+                        ac.IfFalse = DoSingle<ContextActionApplyBuff>(cc => {
+                            cc.m_Buff = beaconOfEvilBuff.ToReference<BlueprintBuffReference>();
+                            cc.DurationValue = new ContextDurationValue() {
+                                Rate = DurationRate.Minutes,
+                                BonusValue = new ContextValue() {
+                                    Value = 1
+                                }
+                            };
+                        });
+                    });
                 });
             });
 
-
-            var beaconOfEvilFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DreadVanguardBeaconOfEvilFeature", bp => {
+            return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DreadVanguardBeaconOfEvilFeature", bp => {
                 bp.SetName(MCEContext, $"{NAME}");
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.IsClassFeature = true;
+                bp.m_Icon = icon;
                 bp.AddComponent<AddFacts>(c => {
-                    c.m_Facts = new BlueprintUnitFactReference[] { beaconOfEvilToggleAbility.ToReference<BlueprintUnitFactReference>() };
+                    c.m_Facts = new BlueprintUnitFactReference[] { beaconOfEvilAbility.ToReference<BlueprintUnitFactReference>() };
                 });
-            });
+            }).ToReference<BlueprintFeatureReference>();
         }
     }
 }

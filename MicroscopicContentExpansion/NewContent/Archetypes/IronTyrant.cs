@@ -71,7 +71,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
 
             return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "IronTyrantUnstoppable", bp => {
                 bp.SetName(MCEContext, "Unstoppable");
-                bp.SetDescription(MCEContext, "At 4th level, when wearing armor, an iron tyrant is not slowed by difficult terrain");
+                bp.SetDescription(MCEContext, "At 4th level, when wearing armor, an iron tyrant is immune to effects of difficult terrain.");
                 bp.IsClassFeature = true;
                 bp.AddComponent<HasArmorFeatureUnlock>(c => {
                     c.m_NewFact = difficultTerrainImmunity.ToReference<BlueprintUnitFactReference>();

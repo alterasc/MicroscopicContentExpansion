@@ -13,11 +13,14 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
             " and death—but their presence also heralds the coming of a greater evil.";
 
         public static void AddDreadVanguard() {
-            var AntipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
+            var antipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
             var touchOfCorruptionUse = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinTouchOfCorruptionAdditionalUse");
 
-            DreadVanguardBeaconOfEvil.AddBeaconOfEvil();
-            var beaconOfEvil = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "DreadVanguardBeaconOfEvilFeature");
+            var beacon1 = BeaconOfEvil.AddBeaconOfEvil();
+            var beacon2 = BeaconOfEvil8.AddBeaconOfEvil();
+            var beacon3 = BeaconOfEvil12.AddBeaconOfEvil();
+            var beacon4 = BeaconOfEvil16.AddBeaconOfEvil();
+            var beacon5 = BeaconOfEvil20.AddBeaconOfEvil();
 
 
             var DreadVanguard = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "DreadVanguardArchetype", bp => {
@@ -27,16 +30,20 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
                 bp.RemoveFeatures = new LevelEntry[] { };
                 bp.RemoveSpellbook = true;
                 bp.AddFeatures = new LevelEntry[] {
-                    Helpers.CreateLevelEntry(4, touchOfCorruptionUse, beaconOfEvil),
-                    Helpers.CreateLevelEntry(8, touchOfCorruptionUse),
-                    Helpers.CreateLevelEntry(12, touchOfCorruptionUse),
-                    Helpers.CreateLevelEntry(16, touchOfCorruptionUse),
-                    Helpers.CreateLevelEntry(20, touchOfCorruptionUse)
+                    Helpers.CreateLevelEntry(4, touchOfCorruptionUse, beacon1),
+                    Helpers.CreateLevelEntry(8, touchOfCorruptionUse, beacon2),
+                    Helpers.CreateLevelEntry(12, touchOfCorruptionUse, beacon3),
+                    Helpers.CreateLevelEntry(16, touchOfCorruptionUse, beacon4),
+                    Helpers.CreateLevelEntry(20, touchOfCorruptionUse, beacon5)
                 };
             });
 
-            var Archetypes = AntipaladinClass.m_Archetypes.AppendToArray(DreadVanguard.ToReference<BlueprintArchetypeReference>());
-            AntipaladinClass.m_Archetypes = Archetypes;
+            var Archetypes = antipaladinClass.m_Archetypes.AppendToArray(DreadVanguard.ToReference<BlueprintArchetypeReference>());
+            antipaladinClass.m_Archetypes = Archetypes;
+
+            var DVBeaconUIGroup = Helpers.CreateUIGroup(beacon1, beacon2, beacon3, beacon4, beacon5);
+            var antipaladinProgression = BlueprintTools.GetModBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression");
+            antipaladinProgression.UIGroups = antipaladinProgression.UIGroups.AppendToArray(DVBeaconUIGroup);
         }
 
     }

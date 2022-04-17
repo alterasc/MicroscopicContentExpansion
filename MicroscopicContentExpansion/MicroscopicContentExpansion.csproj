@@ -165,7 +165,11 @@
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
-    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\DreadVanguardBeaconOfEvil.cs" />
+    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil20.cs" />
+    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil16.cs" />
+    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil12.cs" />
+    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil8.cs" />
+    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil.cs" />
     <Compile Include="NewContent\Archetypes\KnightoftheSepulcher.cs" />
     <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\UndyingChampion.cs" />
     <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\SoulOftheCrypt.cs" />

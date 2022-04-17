@@ -30,7 +30,7 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
                     c.m_EnchantmentBlueprint = baneLivingEnch.ToReference<BlueprintItemEnchantmentReference>();
                     c.m_WeaponBlueprint = radiance6Bad;
                 });
-                
+
                 var radiance6Good = BlueprintTools.GetBlueprintReference<BlueprintItemWeaponReference>("cf5c1a507825f184dacbc3abe14b9db1");
                 var radianceGoodBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("f10cba2c41612614ea28b5fc2743bc4c");
                 var holyEnch = BlueprintTools.GetBlueprint<BlueprintWeaponEnchantment>("28a9964d81fedae44bae3ca45710c140");

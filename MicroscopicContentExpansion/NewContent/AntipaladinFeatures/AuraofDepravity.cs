@@ -53,7 +53,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.AffectEnemies = true;
                 bp.m_TargetType = BlueprintAbilityAreaEffect.TargetType.Enemy;
                 bp.Shape = AreaEffectShape.Cylinder;
-                bp.Size = new Feet() { m_Value = 13 };
+                bp.Size = 13.Feet();
                 bp.Fx = new PrefabLink();
                 bp.AddComponent<AbilityAreaEffectBuff>(c => {
                     c.m_Buff = AuraOfDepravityEffectBuff.ToReference<BlueprintBuffReference>();
