@@ -4,7 +4,10 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
+using Kingmaker.Enums.Damage;
 using Kingmaker.ResourceLinks;
+using Kingmaker.RuleSystem;
+using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
@@ -37,6 +40,23 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
         public static BlueprintFeatureReference AddBeaconOfEvil() {
             var AntipaladinClass = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
             var TouchOfCorruptionResource = BlueprintTools.GetModBlueprintReference<BlueprintAbilityResourceReference>(MCEContext, "AntipaladinTouchOfCorruptionResource");
+            var allTouchesOfCorruption = new List<BlueprintAbilityReference> {
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionUnmodified"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionBlinded"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionCursed"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionDazed"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionDiseased"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionExhausted"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionFatiqued"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionFrightened"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionNauseated"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionParalyzed"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionPoisoned"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionShaken"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionSickened"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionStaggered"),
+                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionStunned")
+                    };
 
             var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
 
@@ -66,7 +86,6 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                     };
                 });
 
-
                 bp.AddComponent<AddContextStatBonus>(c => {
                     c.Descriptor = ModifierDescriptor.Morale;
                     c.Stat = Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus;
@@ -90,6 +109,30 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                         ValueType = ContextValueType.Rank,
                         ValueRank = AbilityRankType.DamageBonus,
                     };
+                });
+
+                bp.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c => {
+                    c.OnlyHit = true;
+                    c.CriticalHit = false;
+                    c.Action = DoSingle<ContextActionDealDamage>(a => {
+                        a.Value = new ContextDiceValue() {
+                            DiceType = DiceType.D6,
+                            DiceCountValue = 1,
+                            BonusValue = 0
+                        };
+                        a.DamageType = new DamageTypeDescription() {
+                            Type = DamageType.Energy,
+                            Energy = DamageEnergyType.Unholy,
+                            Common = new DamageTypeDescription.CommomData(),
+                            Physical = new DamageTypeDescription.PhysicalData()
+                        };
+                        a.Duration = new ContextDurationValue() {
+                            BonusValue = 0,
+                            Rate = DurationRate.Rounds,
+                            DiceCountValue = 0,
+                            DiceType = DiceType.Zero
+                        };
+                    });
                 });
 
                 bp.AddComponent<ContextRankConfig>(c => {
@@ -159,24 +202,6 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                 bp.AddComponent(AuraUtils.CreateUnconditionalAuraEffect(beaconOfEvilAreaEffectBuff.ToReference<BlueprintBuffReference>()));
             });
 
-            var allTouchesOfCorruption = new List<BlueprintAbilityReference> {
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionUnmodified"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionBlinded"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionCursed"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionDazed"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionDiseased"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionExhausted"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionFatiqued"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionFrightened"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionNauseated"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionParalyzed"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionPoisoned"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionShaken"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionSickened"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionStaggered"),
-                        BlueprintTools.GetModBlueprintReference<BlueprintAbilityReference>(MCEContext, "AntipaladinTouchOfCorruptionStunned")
-                    };
-
             var beaconOfEvilBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "DreadVanguardBeaconOfEvilBuff", bp => {
                 bp.SetName(MCEContext, $"{NAME}");
                 bp.SetDescription(MCEContext, DESCRIPTION);
@@ -241,46 +266,12 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                         ac.IfTrue = DoSingle<ContextActionApplyBuff>(cc => {
                             cc.m_Buff = beaconOfEvilBuff20.ToReference<BlueprintBuffReference>();
                             cc.ToCaster = true;
-                            cc.DurationValue = new ContextDurationValue() {
-                                Rate = DurationRate.Minutes,
-                                DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                                DiceCountValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 0,
-                                    ValueRank = AbilityRankType.Default,
-                                    ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                                },
-                                BonusValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 1,
-                                    ValueRank = AbilityRankType.Default,
-                                    ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                                }
-                            };
+                            cc.DurationValue = Create1MinDuration();
                         });
                         ac.IfFalse = DoSingle<ContextActionApplyBuff>(cc => {
                             cc.m_Buff = beaconOfEvilBuff.ToReference<BlueprintBuffReference>();
                             cc.ToCaster = true;
-                            cc.DurationValue = new ContextDurationValue() {
-                                Rate = DurationRate.Minutes,
-                                DiceType = Kingmaker.RuleSystem.DiceType.Zero,
-                                DiceCountValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 0,
-                                    ValueRank = AbilityRankType.Default,
-                                    ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                                },
-                                BonusValue = new ContextValue() {
-                                    ValueType = ContextValueType.Simple,
-                                    Value = 1,
-                                    ValueRank = AbilityRankType.Default,
-                                    ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage,
-                                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
-                                }
-                            };
+                            cc.DurationValue = Create1MinDuration();
                         });
                     });
                 });
@@ -295,6 +286,15 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                     c.m_Facts = new BlueprintUnitFactReference[] { beaconOfEvilAbility.ToReference<BlueprintUnitFactReference>() };
                 });
             }).ToReference<BlueprintFeatureReference>();
+        }
+
+        private static ContextDurationValue Create1MinDuration() {
+            return new ContextDurationValue() {
+                Rate = DurationRate.Minutes,
+                DiceType = DiceType.Zero,
+                DiceCountValue = 0,
+                BonusValue = 1
+            };
         }
     }
 }
