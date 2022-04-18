@@ -1,5 +1,4 @@
 ﻿using Kingmaker.Blueprints;
-using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;

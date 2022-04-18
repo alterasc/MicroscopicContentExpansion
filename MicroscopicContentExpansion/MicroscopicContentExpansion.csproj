@@ -206,7 +206,6 @@
     <Compile Include="NewContent\Classes\Monk.cs" />
     <Compile Include="UMMSettingsUI.cs" />
     <Compile Include="Utils\AuraUtils.cs" />
-    <Compile Include="Utils\Misc.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Config\Blueprints.json" />

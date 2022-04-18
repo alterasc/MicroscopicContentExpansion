@@ -12,7 +12,6 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using Kingmaker.UnitLogic.Mechanics.Properties;
 using TabletopTweaks.Core.Utilities;
 using static Kingmaker.Blueprints.BlueprintAbilityResource;
 using static MicroscopicContentExpansion.Main;
