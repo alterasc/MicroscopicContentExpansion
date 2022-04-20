@@ -35,21 +35,24 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
                         c.Haste = false;
                     });
                     bp.HideInUI = true;
+                    bp.IsClassFeature = true;
                     bp.HideInCharacterSheetAndLevelUp = true;
                 });
 
                 var AddDodgeBonusBuff = Helpers.CreateBuff(MCEContext, "MonkOldMasterACBuff", bp => {
                     bp.m_Flags = BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.StayOnDeath;
                     bp.SetName(MCEContext, "Old Master");
-                    bp.AddComponent(Helpers.Create<AddStatBonus>(c => {
+                    bp.IsClassFeature = true;
+                    bp.AddComponent<AddStatBonus>(c => {
                         c.Stat = StatType.AC;
                         c.Descriptor = ModifierDescriptor.Dodge;
                         c.Value = 2;
-                    }));
+                    });
                 });
 
                 var OldMaster_ACBonus = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "MonkOldMasterACFeature", bp => {
                     bp.HideInUI = true;
+                    bp.IsClassFeature = true;
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { AddDodgeBonusBuff.ToReference<BlueprintUnitFactReference>() };
                     });
@@ -61,6 +64,7 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
                         bp.SetDescription(MCEContext, "At 20th level, the monk has reached the highest levels of his martial arts school. " +
                                 "The monk gains one additional attack at his highest base attack bonus when using flurry of blows, " +
                                 "and his dodge bonus to AC increases by 2.");
+                        bp.IsClassFeature = true;
                         if (!IsSensei) {
                             bp.AddComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>(c => {
                                 c.m_NewFact = YAFoBAttack.ToReference<BlueprintUnitFactReference>();
