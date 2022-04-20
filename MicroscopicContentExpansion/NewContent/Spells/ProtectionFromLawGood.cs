@@ -28,6 +28,7 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.AvailableMetamagic = Metamagic.Quicken | Metamagic.Extend | Metamagic.Heighten | Metamagic.Reach | Metamagic.CompletelyNormal;
                 bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute/level");
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent<SpellComponent>(c => {
                     c.School = SpellSchool.Abjuration;
                 });
@@ -58,6 +59,7 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.AvailableMetamagic = Metamagic.Quicken | Metamagic.Extend | Metamagic.Heighten | Metamagic.Reach | Metamagic.CompletelyNormal;
                 bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute");
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent<SpellComponent>(c => {
                     c.School = SpellSchool.Abjuration;
                 });

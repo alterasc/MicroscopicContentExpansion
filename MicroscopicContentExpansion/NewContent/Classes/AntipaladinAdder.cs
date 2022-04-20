@@ -8,6 +8,7 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic.FactLogic;
 using MicroscopicContentExpansion.NewContent.AntipaladinFeatures;
 using MicroscopicContentExpansion.NewContent.Archetypes;
+using MicroscopicContentExpansion.NewContent.Feats;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -48,6 +49,8 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 //Tyrant.AddTyrant();
                 DreadVanguard.AddDreadVanguard();
                 KnightoftheSepulcher.AddKnightoftheSepulcher();
+
+                UnsanctionedKnowledge.AddUnsanctionedKnowledge();
             }
 
             static void UpdateAntipaladinProgression() {
@@ -126,8 +129,8 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 var PaladinClassProficiencies = BlueprintTools.GetBlueprint<BlueprintFeature>("b10ff88c03308b649b50c31611c2fefb");
 
                 var AntipaladinProficiencies = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinProficiencies", bp => {
-                    bp.SetName(Helpers.CreateString(MCEContext, $"AntipaladinProficiences.Name", "Antipaladin Proficiences"));
-                    bp.SetDescription(Helpers.CreateString(MCEContext, $"AntipaladinProficiences.Description", "Antipaladins are " +
+                    bp.SetName(Helpers.CreateString(MCEContext, $"{bp.name}.Name", "Antipaladin Proficiences"));
+                    bp.SetDescription(Helpers.CreateString(MCEContext, $"{bp.name}.Description", "Antipaladins are " +
                         "proficient with all simple and {g|Encyclopedia:Weapon_Proficiency}martial weapons{/g}, with all types of " +
                         "armor (heavy, medium, and light), and with shields (except tower shields)."));
                     bp.AddComponent<AddFacts>(c => {
@@ -145,7 +148,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 });
 
                 var AntipaladinProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression", bp => {
-                    bp.m_DisplayName = Helpers.CreateString(MCEContext, $"AntipaladinClass.Name", "Antipaladin");
+                    bp.m_DisplayName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", "Antipaladin");
                     bp.LevelEntries = new LevelEntry[] {
                         Helpers.CreateLevelEntry(1, AntipaladinProficiencies),
                     };
@@ -155,8 +158,8 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 var AnimalClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("4cd1757a0eea7694ba5c933729a53920");
 
                 var AntipaladinClass = Helpers.CreateBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass", bp => {
-                    bp.LocalizedName = Helpers.CreateString(MCEContext, $"AntipaladinClass.Name", "Antipaladin");
-                    bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"AntipaladinClass.Description", "Although it is a rare" +
+                    bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", "Antipaladin");
+                    bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", "Although it is a rare" +
                         " occurrence, paladins do sometimes stray from the path of righteousness. Most of these wayward holy warriors seek" +
                         " out redemption and forgiveness for their misdeeds, regaining their powers through piety, charity, and powerful" +
                         " magic. Yet there are others, the dark and disturbed few, who turn actively to evil, courting the dark powers" +

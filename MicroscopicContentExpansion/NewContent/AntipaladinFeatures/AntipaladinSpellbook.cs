@@ -76,7 +76,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             });
 
             var AntipaladinSpellbook = Helpers.CreateBlueprint<BlueprintSpellbook>(MCEContext, "AntipaladinSpellbook", bp => {
-                bp.Name = Helpers.CreateString(MCEContext, "Antipaladin.Name", "Antipaladin");
+                bp.Name = Helpers.CreateString(MCEContext, $"{bp.name}.Name", "Antipaladin");
                 bp.CastingAttribute = Kingmaker.EntitySystem.Stats.StatType.Charisma;
                 bp.AllSpellsKnown = true;
                 bp.CantripsType = CantripsType.Cantrips;

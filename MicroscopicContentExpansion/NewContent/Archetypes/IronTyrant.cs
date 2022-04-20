@@ -26,9 +26,9 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
             var unstoppable = AddUnstoppable();
 
             var IronTyrant = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "IronTyrantArchetype", bp => {
-                bp.LocalizedName = Helpers.CreateString(MCEContext, $"IronTyrantArchetype.Name", NAME);
-                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"IronTyrantArchetype.Description", DESCRIPTION);
-                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"IronTyrantArchetype.Description", DESCRIPTION);
+                bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
+                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
+                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
                 bp.RemoveFeatures = new LevelEntry[] {
                     Helpers.CreateLevelEntry(2, touchOfCorruptionFeature),
                     Helpers.CreateLevelEntry(3, crueltySelection),

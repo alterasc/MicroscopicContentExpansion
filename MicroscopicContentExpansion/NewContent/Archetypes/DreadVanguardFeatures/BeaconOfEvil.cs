@@ -109,7 +109,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                         ValueRank = AbilityRankType.DamageBonus,
                     };
                 });
-
+                /*
                 bp.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c => {
                     c.OnlyHit = true;
                     c.CriticalHit = false;
@@ -127,7 +127,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                         };
                         a.Duration = new ContextDurationValue();
                     });
-                });
+                });*/
 
                 bp.AddComponent<ContextRankConfig>(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
@@ -247,7 +247,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Self;
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute");
-                bp.LocalizedSavingThrow = Helpers.CreateString(MCEContext, $"{bp.name}.SavingThrow", "None");
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent<AbilityResourceLogic>(c => {
                     c.m_RequiredResource = TouchOfCorruptionResource;
                     c.m_IsSpendResource = true;

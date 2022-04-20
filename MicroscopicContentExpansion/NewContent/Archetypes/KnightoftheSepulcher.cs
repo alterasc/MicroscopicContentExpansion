@@ -32,9 +32,9 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
             var undyingChampion = UndyingChampion.AddUndyingChampion();
 
             var knightoftheSepulcher = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "KnightoftheSepulcherArchetype", bp => {
-                bp.LocalizedName = Helpers.CreateString(MCEContext, $"KnightoftheSepulcherArchetype.Name", NAME);
-                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"KnightoftheSepulcherArchetype.Description", DESCRIPTION);
-                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"KnightoftheSepulcherArchetype.Description", DESCRIPTION);
+                bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
+                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
+                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
                 bp.RemoveFeatures = new LevelEntry[] {
                     Helpers.CreateLevelEntry(5, fiendishBoon),
                     Helpers.CreateLevelEntry(8, auraOfDespair),

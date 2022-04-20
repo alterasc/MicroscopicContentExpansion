@@ -25,9 +25,9 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
 
 
             var DreadVanguard = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "DreadVanguardArchetype", bp => {
-                bp.LocalizedName = Helpers.CreateString(MCEContext, $"DreadVanguardArchetype.Name", NAME);
-                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"DreadVanguardArchetype.Description", DESCRIPTION);
-                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"DreadVanguardArchetype.Description", DESCRIPTION);
+                bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
+                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
+                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
                 bp.RemoveFeatures = new LevelEntry[] { };
                 bp.RemoveSpellbook = true;
                 bp.AddFeatures = new LevelEntry[] {

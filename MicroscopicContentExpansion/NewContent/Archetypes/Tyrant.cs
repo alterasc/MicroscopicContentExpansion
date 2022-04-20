@@ -23,9 +23,9 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
             var tyrantAlignmentRestriction = TyrantAlignmentRestriction.AddAntipaladinAlignmentRestriction();
 
             var Tyrant = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "TyrantArchetype", bp => {
-                bp.LocalizedName = Helpers.CreateString(MCEContext, $"TyrantArchetype.Name", NAME);
-                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"TyrantArchetype.Description", DESCRIPTION);
-                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"TyrantArchetype.Description", DESCRIPTION);
+                bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
+                bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
+                bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
                 bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.LawfulEvil; });
                 bp.RemoveFeatures = new LevelEntry[] {
                     Helpers.CreateLevelEntry(1, antipaladinAlignmentRestriction)

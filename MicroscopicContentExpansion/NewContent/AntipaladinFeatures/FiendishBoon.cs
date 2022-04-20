@@ -117,8 +117,8 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 bp.Type = AbilityType.Supernatural;
                 bp.Range = AbilityRange.Personal;
                 bp.m_Icon = icon;
-                bp.LocalizedDuration = Helpers.CreateString(MCEContext, "AntipaladinWeaponBondSwitchAbility.Duration", "1 minute per antipaladin level");
-                bp.LocalizedSavingThrow = Helpers.CreateString(MCEContext, "AntipaladinWeaponBondSwitchAbility.SavingThrow", "None");
+                bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute per antipaladin level");
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent<AbilityEffectRunAction>(c => {
                     c.Actions = Helpers.CreateActionList(
                         new ContextActionWeaponEnchantPool() {
