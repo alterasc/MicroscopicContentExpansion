@@ -46,6 +46,10 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     c.m_CharacterClass = AntipaladinClassRef;
                     c.Level = 4;
                 });
+                bp.AddPrerequisite<PrerequisiteStatValue>(c => {
+                    c.Stat = Kingmaker.EntitySystem.Stats.StatType.Intelligence;
+                    c.Value = 13;
+                });
                 bp.AddPrerequisite<PrerequisiteCasterTypeSpellLevel>(c => {
                     c.IsArcane = false;
                     c.RequiredSpellLevel = 1;
