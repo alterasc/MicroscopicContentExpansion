@@ -75,7 +75,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                 bp.Range = AbilityRange.Personal;
                 bp.m_Icon = icon;
                 bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute per antipaladin level");
-                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();                
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent<AbilityEffectRunAction>(c => {
                     c.Actions = Helpers.CreateActionList(
                         new ContextActionArmorEnchantPool() {
