@@ -54,8 +54,6 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
             }
 
             static void UpdateAntipaladinProgression() {
-                if (MCEContext.AddedContent.NewClasses.IsDisabled("AntipaladinClass")) { return; }
-
                 var AntipaladinProgression = BlueprintTools.GetModBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression");
 
                 var SmiteGoodFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinSmiteGoodFeature");
@@ -214,13 +212,13 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                     bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil; });
                 });
 
+                AntipaladinProgression.AddClass(AntipaladinClass);
+
+                if (MCEContext.AddedContent.NewClasses.IsDisabled("AntipaladinClass")) { return; }
 
                 BlueprintRoot.Instance.Progression.m_CharacterClasses = BlueprintRoot.Instance.Progression.m_CharacterClasses
                     .AddToArray(AntipaladinClass.ToReference<BlueprintCharacterClassReference>());
-
-                AntipaladinProgression.AddClass(AntipaladinClass);
             }
-
         }
     }
 }

@@ -56,6 +56,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 });
             });
 
+            if (MCEContext.AddedContent.NewClasses.IsDisabled("AntipaladinClass")) { return; }
             FeatTools.AddAsFeat(UnsanctionedKnowledge);
         }
 
