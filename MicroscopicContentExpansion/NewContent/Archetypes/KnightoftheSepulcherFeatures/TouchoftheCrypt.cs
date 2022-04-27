@@ -34,21 +34,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.KnightoftheSepulcher
                     c.Bonus = 25;
                 });
                 bp.AddComponent<SavingThrowContextBonusAgainstDescriptor>(c => {
-                    c.SpellDescriptor = SpellDescriptor.MindAffecting;
-                    c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
-                    c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank
-                    };
-                });
-                bp.AddComponent<SavingThrowContextBonusAgainstDescriptor>(c => {
-                    c.SpellDescriptor = SpellDescriptor.Death;
-                    c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
-                    c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank
-                    };
-                });
-                bp.AddComponent<SavingThrowContextBonusAgainstDescriptor>(c => {
-                    c.SpellDescriptor = SpellDescriptor.Poison;
+                    c.SpellDescriptor = SpellDescriptor.MindAffecting | SpellDescriptor.Death | SpellDescriptor.Poison;
                     c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Rank
