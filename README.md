@@ -13,13 +13,14 @@ Add microscopic amount of new features. May or may not grow further in scope. Th
 
 ### New classes: 
 
-[Antipaladin](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin)
+[Antipaladin](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin)   
 Archetypes available:  
 - [Iron Tyrant](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin/archetypes/paizo-antipaladin-archetypes/iron-tyrant-antipaladin-archetype/)
 - [Knight of the Sepulcher](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin/archetypes/paizo-antipaladin-archetypes/knight-of-the-sepulcher)
 
 IMPORTANT: For best experience also install TabletopTweaks-Base. Fiendish template for antipaladin animal companion and Armor Mastery/Shield Mastery feats that can be picked as Iron Tyrant bonus feats are used from TTT. If you don't have TTT-Base, mod will still work, just you will be missing additional possible selections. (No, I won't copypaste those in my mod, don't ask)
 
+WARNING: Alignment restrictions do not have mythic bypass clause. You stop being evil and you lose spellbook and active abilities. This is intended.
 ### New feats
 
 [Unsanctioned Knowledge (antipaladin version only)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
