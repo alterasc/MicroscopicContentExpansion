@@ -4,9 +4,29 @@
 Add microscopic amount of new features. May or may not grow further in scope. The latter is more likely.   
 
 ## Featuring
+
+### Alternate capstone
+
 - Monk alternative capstone [Old Master](https://www.d20pfsrd.com/classes/core-classes/monk/#Old_Master_Ex). You get an option of choosing standard capstone or alternative one.
 
     At 20th level, the monk has reached the highest levels of his martial arts school. The monk gains one additional attack at his highest base attack bonus when using flurry of blows, and his dodge bonus to AC increases by 2.           
+
+### New classes: 
+
+[Antipaladin](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin)
+Archetypes available:  
+- [Iron Tyrant](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin/archetypes/paizo-antipaladin-archetypes/iron-tyrant-antipaladin-archetype/)
+- [Knight of the Sepulcher](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin/archetypes/paizo-antipaladin-archetypes/knight-of-the-sepulcher)
+
+IMPORTANT: For best experience also install TabletopTweaks-Base. Fiendish template for antipaladin animal companion and Armor Mastery/Shield Mastery feats that can be picked as Iron Tyrant bonus feats are used from TTT. If you don't have TTT-Base, mod will still work, just you will be missing additional possible selections. (No, I won't copypaste those in my mod, don't ask)
+
+### New feats
+
+[Unsanctioned Knowledge (antipaladin version only)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
+
+### Fixes
+
+Radiance +6 special enchantment fix. (Without this fix you won't get Holy/Bane Living alignment conditional buff after you upgrade Radiance from +4 to +6)
 
 ## Thanks to  
 -   bubbles and Vek17 specifically   
