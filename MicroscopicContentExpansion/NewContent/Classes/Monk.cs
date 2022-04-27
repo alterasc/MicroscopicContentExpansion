@@ -27,8 +27,6 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
 
             }
             static void AddOldMaster() {
-                if (MCEContext.AddedContent.AlternativeCapstones.IsDisabled("MonkOldMaster")) { return; }
-
                 var YAFoBAttack = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "MonkOldMasterFoB", bp => {
                     bp.AddComponent<BuffExtraAttack>(c => {
                         c.Number = 1;
@@ -103,47 +101,43 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
                 var OldMaster = CreateOMForArchetype("MonkOldMasterFeature", MonkFoBUnlockComponent);
                 var MonkProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("8a91753b978e3b34b9425419179aafd6");
                 var Lvl20 = MonkProgression.LevelEntries.Where(l => l.Level == 20).First();
-                Lvl20.m_Features.Remove(MonkPerfectSelf.ToReference<BlueprintFeatureBaseReference>());
                 BlueprintFeatureSelection MonkCapstoneSelection = CreateCapstoneSelection("MonkCapstoneSelection", OldMaster);
+
+                var Sohei = BlueprintTools.GetBlueprint<BlueprintArchetype>("fad7c56737ed12e42aacc330acc86428");
+                var SoheiFoBUnlockComponent = BlueprintTools.GetBlueprint<BlueprintFeature>("cd4381b73b6709146bbcc0a528a6f471")
+                    .GetComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>();
+                var OldMasterSohei = CreateOMForArchetype("MonkSoheiOldMasterFeature", SoheiFoBUnlockComponent);
+                var MonkSoheiCapstoneSelection = CreateCapstoneSelection("MonkSoheiCapstoneSelection", OldMasterSohei);
+
+                var ZenArcher = BlueprintTools.GetBlueprint<BlueprintArchetype>("2b1a58a7917084f49b097e86271df21c");
+                var ZenArcherFoBUnlockComponent = BlueprintTools.GetBlueprint<BlueprintFeature>("3e470edc8a733b641bcbbbb5b9527ff6")
+                    .GetComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>();
+                var OldMasterZenArcher = CreateOMForArchetype("MonkZenArcherOldMasterFeature", ZenArcherFoBUnlockComponent);
+                var MonkZenArcherCapstoneSelection = CreateCapstoneSelection("MonkZenArcherCapstoneSelection", OldMasterZenArcher);
+
+                var Sensei = BlueprintTools.GetBlueprint<BlueprintArchetype>("f8767821ec805bf479706392fcc3394c");
+                var OldMasterSensei = CreateOMForArchetype("MonkSenseiOldMasterFeature", MonkFoBUnlockComponent, IsSensei: true);
+                var MonkSenseiCapstoneSelection = CreateCapstoneSelection("MonkSenseiCapstoneSelection", OldMasterSensei);
+
+                var QuarterstaffMaster = BlueprintTools.GetBlueprint<BlueprintArchetype>("dde7724382ae4f63aa9786cb9b3b64b2");
+                var QMFoBUnlockComponent = BlueprintTools.GetBlueprint<BlueprintFeature>("44b0f313ec56481eb447019fbe714330")
+                    .GetComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>();
+                var OldMasterQM = CreateOMForArchetype("MonkQMOldMasterFeature", QMFoBUnlockComponent);
+                var MonkQMCapstoneSelection = CreateCapstoneSelection("MonkQMCapstoneSelection", OldMasterQM);
+
+                if (MCEContext.AddedContent.AlternativeCapstones.IsDisabled("MonkOldMaster")) { return; }
+
+                Lvl20.m_Features.Remove(MonkPerfectSelf.ToReference<BlueprintFeatureBaseReference>());
                 Lvl20.m_Features.Add(MonkCapstoneSelection.ToReference<BlueprintFeatureBaseReference>());
-                {
-                    var Sohei = BlueprintTools.GetBlueprint<BlueprintArchetype>("fad7c56737ed12e42aacc330acc86428");
-                    RemoveFeatureFromArchetype(Sohei, 20, MonkCapstoneSelection);
 
-                    var SoheiFoBUnlockComponent = BlueprintTools.GetBlueprint<BlueprintFeature>("cd4381b73b6709146bbcc0a528a6f471")
-                        .GetComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>();
-                    var OldMasterSohei = CreateOMForArchetype("MonkSoheiOldMasterFeature", SoheiFoBUnlockComponent);
-                    var MonkSoheiCapstoneSelection = CreateCapstoneSelection("MonkSoheiCapstoneSelection", OldMasterSohei);
-                    AddFeatureToArchetype(Sohei, 20, MonkSoheiCapstoneSelection);
-                }
-                {
-                    var ZenArcher = BlueprintTools.GetBlueprint<BlueprintArchetype>("2b1a58a7917084f49b097e86271df21c");
-                    RemoveFeatureFromArchetype(ZenArcher, 20, MonkCapstoneSelection);
-
-                    var ZenArcherFoBUnlockComponent = BlueprintTools.GetBlueprint<BlueprintFeature>("3e470edc8a733b641bcbbbb5b9527ff6")
-                        .GetComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>();
-                    var OldMasterZenArcher = CreateOMForArchetype("MonkZenArcherOldMasterFeature", ZenArcherFoBUnlockComponent);
-                    var MonkZenArcherCapstoneSelection = CreateCapstoneSelection("MonkZenArcherCapstoneSelection", OldMasterZenArcher);
-                    AddFeatureToArchetype(ZenArcher, 20, MonkZenArcherCapstoneSelection);
-                }
-                {
-                    var Sensei = BlueprintTools.GetBlueprint<BlueprintArchetype>("f8767821ec805bf479706392fcc3394c");
-                    RemoveFeatureFromArchetype(Sensei, 20, MonkCapstoneSelection);
-
-                    var OldMasterSensei = CreateOMForArchetype("MonkSenseiOldMasterFeature", MonkFoBUnlockComponent, IsSensei: true);
-                    var MonkSoheiCapstoneSelection = CreateCapstoneSelection("MonkSenseiCapstoneSelection", OldMasterSensei);
-                    AddFeatureToArchetype(Sensei, 20, MonkSoheiCapstoneSelection);
-                }
-                {
-                    var QuaterstaffMaster = BlueprintTools.GetBlueprint<BlueprintArchetype>("dde7724382ae4f63aa9786cb9b3b64b2");
-                    RemoveFeatureFromArchetype(QuaterstaffMaster, 20, MonkCapstoneSelection);
-
-                    var QMFoBUnlockComponent = BlueprintTools.GetBlueprint<BlueprintFeature>("44b0f313ec56481eb447019fbe714330")
-                        .GetComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>();
-                    var OldMasterQM = CreateOMForArchetype("MonkQMOldMasterFeature", QMFoBUnlockComponent);
-                    var MonkZenArcherCapstoneSelection = CreateCapstoneSelection("MonkQMCapstoneSelection", OldMasterQM);
-                    AddFeatureToArchetype(QuaterstaffMaster, 20, MonkZenArcherCapstoneSelection);
-                }
+                RemoveFeatureFromArchetype(Sohei, 20, MonkCapstoneSelection);
+                AddFeatureToArchetype(Sohei, 20, MonkSoheiCapstoneSelection);
+                RemoveFeatureFromArchetype(ZenArcher, 20, MonkCapstoneSelection);
+                AddFeatureToArchetype(ZenArcher, 20, MonkZenArcherCapstoneSelection);
+                RemoveFeatureFromArchetype(Sensei, 20, MonkCapstoneSelection);
+                AddFeatureToArchetype(Sensei, 20, MonkSenseiCapstoneSelection);
+                RemoveFeatureFromArchetype(QuarterstaffMaster, 20, MonkCapstoneSelection);
+                AddFeatureToArchetype(QuarterstaffMaster, 20, MonkQMCapstoneSelection);
             }
         }
 
