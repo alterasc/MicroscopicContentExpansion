@@ -1,6 +1,7 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
+using Kingmaker.EntitySystem.Stats;
 using MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
@@ -19,8 +20,11 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
 
             var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
             var antipaladinAlignmentRestriction = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAlignmentRestriction");
+            var fiendishBoon = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBoonSelection");
 
             var tyrantAlignmentRestriction = TyrantAlignmentRestriction.AddAntipaladinAlignmentRestriction();
+
+            var diabolicBoon = DiabolicBoon.AddDiabolicBoon();
 
             var Tyrant = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "TyrantArchetype", bp => {
                 bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
@@ -28,10 +32,16 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
                 bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
                 bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.LawfulEvil; });
                 bp.RemoveFeatures = new LevelEntry[] {
-                    Helpers.CreateLevelEntry(1, antipaladinAlignmentRestriction)
+                    Helpers.CreateLevelEntry(1, antipaladinAlignmentRestriction),
+                    Helpers.CreateLevelEntry(5, fiendishBoon)
                 };
+                bp.ReplaceClassSkills = true;
+                bp.ClassSkills = new StatType[4] {
+                        StatType.SkillStealth, StatType.SkillPersuasion, StatType.SkillAthletics, StatType.SkillLoreReligion
+                    };
                 bp.AddFeatures = new LevelEntry[] {
-                    Helpers.CreateLevelEntry(1, tyrantAlignmentRestriction)
+                    Helpers.CreateLevelEntry(1, tyrantAlignmentRestriction),
+                    Helpers.CreateLevelEntry(5, diabolicBoon)
                 };
             });
 

@@ -181,6 +181,7 @@
     <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\FortitudeoftheCrypt.cs" />
     <Compile Include="NewContent\Archetypes\Tyrant.cs" />
     <Compile Include="NewContent\Archetypes\IronTyrantFeatures\IronTyrantArmorBond.cs" />
+    <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
     <Compile Include="NewContent\Spells\ProtectionFromLawGood.cs" />
