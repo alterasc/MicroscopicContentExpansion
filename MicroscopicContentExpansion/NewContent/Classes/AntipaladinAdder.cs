@@ -46,7 +46,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 UpdateAntipaladinProgression();
 
                 IronTyrant.AddIronTyrant();
-                //Tyrant.AddTyrant();
+                Tyrant.AddTyrant();
                 //DreadVanguard.AddDreadVanguard();
                 KnightoftheSepulcher.AddKnightoftheSepulcher();
 

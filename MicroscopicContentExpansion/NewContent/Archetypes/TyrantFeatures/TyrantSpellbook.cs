@@ -5,22 +5,22 @@ using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
-namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
-    internal class AntipaladinSpellbook {
+namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
+    internal class TyrantSpellbook {
 
-        public static void AddAntipaladinSpellbook() {
+        public static BlueprintSpellbook AddTyrantSpellbook() {
 
             var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
 
             var PaladinSpellLevelsRef = BlueprintTools.GetBlueprintReference<BlueprintSpellsTableReference>("9aed4803e424ae8429c392d8fbfb88ff");
             var PaladinSpellListRef = BlueprintTools.GetBlueprintReference<BlueprintSpellListReference>("9f5be2f7ea64fe04eb40878347b147bc");
 
-            var protectionFromLawGood = ProtectionFromLawGood.AddProtectionFromLawGood();
-            var protectionFromLawGoodCommunal = ProtectionFromLawGood.AddProtectionFromLawGoodCommunal();
+            var protectionFromChaosGood = ProtectionFromChaosGood.AddProtectionFromChaosGood();
+            var protectionFromChaosGoodCommunal = ProtectionFromChaosGood.AddProtectionFromChaosGoodCommunal();
 
             var deadlyJuggernaut = DeadlyJuggernaut.AddDeadlyJuggernaut();
 
-            var AntipaladinSpellList = Helpers.CreateBlueprint<BlueprintSpellList>(MCEContext, "AntipaladinSpelllist", bp => {
+            var tyrantSpellList = Helpers.CreateBlueprint<BlueprintSpellList>(MCEContext, "TyrantSpelllist", bp => {
                 bp.SpellsByLevel = new SpellLevelList[] {
                     new SpellLevelList(0){},
                     new SpellLevelList(1) {
@@ -31,7 +31,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("feb70aab86cc17f4bb64432c83737ac2"), //Command
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("e5cb4c4459e437e49a4cd73fde6b9063"), //Inflict Light Wounds
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("d7fdd79f0f6b6a2418298e936bb68e40"), //Magic Weapon
-                            protectionFromLawGood,
+                            protectionFromChaosGood,
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("8fd74eddd9b6c224693d9ab241f25e84")  //Summon Monster I
                         }
                     },
@@ -44,7 +44,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("c9198d9dfd2515d4ba98335b57bb66c7"), //Litany of Eloquence
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("16f7754287811724abe1e0ead88f74ca"), //Litany of Entanglement
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("dee3074b2fbfb064b80b973f9b56319e"), //Pernicious Poison
-                            protectionFromLawGoodCommunal,
+                            protectionFromChaosGoodCommunal,
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("08cb5f4c3b2695e44971bf5c45205df0"), //Scare
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("1724061e89c667045a6891179ee2e8e7")  //Summon Monster II                            
                         }
@@ -78,23 +78,23 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 };
             });
 
-            var AntipaladinSpellbook = Helpers.CreateBlueprint<BlueprintSpellbook>(MCEContext, "AntipaladinSpellbook", bp => {
-                bp.Name = Helpers.CreateString(MCEContext, $"{bp.name}.Name", "Antipaladin");
+            var tyrantSpellbook = Helpers.CreateBlueprint<BlueprintSpellbook>(MCEContext, "TyrantSpellbook", bp => {
+                bp.Name = Helpers.CreateString(MCEContext, $"{bp.name}.Name", "Tyrant");
                 bp.CastingAttribute = Kingmaker.EntitySystem.Stats.StatType.Charisma;
                 bp.AllSpellsKnown = true;
                 bp.CantripsType = CantripsType.Cantrips;
                 bp.HasSpecialSpellList = false;
                 bp.m_SpellsPerDay = PaladinSpellLevelsRef;
                 bp.m_SpellSlots = null;
-                bp.m_SpellList = AntipaladinSpellList.ToReference<BlueprintSpellListReference>();
+                bp.m_SpellList = tyrantSpellList.ToReference<BlueprintSpellListReference>();
                 bp.m_CharacterClass = AntipaladinClassRef;
                 bp.IsArcane = false;
                 bp.Spontaneous = false;
                 bp.CasterLevelModifier = -3;
 
             });
-            SpellTools.Spellbook.AllSpellbooks.Add(AntipaladinSpellbook);
-
+            SpellTools.Spellbook.AllSpellbooks.Add(tyrantSpellbook);
+            return tyrantSpellbook;
         }
     }
 }

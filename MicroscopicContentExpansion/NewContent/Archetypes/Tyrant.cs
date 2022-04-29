@@ -18,12 +18,11 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
             var AntipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
             var crueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
 
-            var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
             var antipaladinAlignmentRestriction = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAlignmentRestriction");
             var fiendishBoon = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBoonSelection");
 
             var tyrantAlignmentRestriction = TyrantAlignmentRestriction.AddAntipaladinAlignmentRestriction();
-
+            var tyrantSpellbook = TyrantSpellbook.AddTyrantSpellbook();
             var diabolicBoon = DiabolicBoon.AddDiabolicBoon();
 
             var Tyrant = Helpers.CreateBlueprint<BlueprintArchetype>(MCEContext, "TyrantArchetype", bp => {
@@ -31,6 +30,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
                 bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
                 bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
                 bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.LawfulEvil; });
+                bp.m_ReplaceSpellbook = tyrantSpellbook.ToReference<BlueprintSpellbookReference>();
                 bp.RemoveFeatures = new LevelEntry[] {
                     Helpers.CreateLevelEntry(1, antipaladinAlignmentRestriction),
                     Helpers.CreateLevelEntry(5, fiendishBoon)
