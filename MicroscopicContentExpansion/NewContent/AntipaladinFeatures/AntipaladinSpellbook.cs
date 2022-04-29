@@ -18,6 +18,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var protectionFromLawGood = ProtectionFromLawGood.AddProtectionFromLawGood();
             var protectionFromLawGoodCommunal = ProtectionFromLawGood.AddProtectionFromLawGoodCommunal();
 
+            var deadlyJuggernaut = DeadlyJuggernaut.AddDeadlyJuggernaut();
+
             var AntipaladinSpellList = Helpers.CreateBlueprint<BlueprintSpellList>(MCEContext, "AntipaladinSpelllist", bp => {
                 bp.SpellsByLevel = new SpellLevelList[] {
                     new SpellLevelList(0){},
@@ -29,7 +31,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("feb70aab86cc17f4bb64432c83737ac2"), //Command
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("e5cb4c4459e437e49a4cd73fde6b9063"), //Inflict Light Wounds
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("d7fdd79f0f6b6a2418298e936bb68e40"), //Magic Weapon
-                            protectionFromLawGood,
+                            protectionFromLawGood,                            
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("8fd74eddd9b6c224693d9ab241f25e84")  //Summon Monster I
                         }
                     },
@@ -49,6 +51,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     },
                     new SpellLevelList(3) {
                         m_Spells = new List<BlueprintAbilityReference>() {
+                            deadlyJuggernaut,
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("4b76d32feb089ad4499c3a1ce8e1ac27"), //Animate Dead
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("989ab5c44240907489aba0a8568d0603"), //Bestow Curse
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("48e2744846ed04b4580be1a3343a5d3d"), //Contagion
