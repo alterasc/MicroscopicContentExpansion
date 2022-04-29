@@ -19,6 +19,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var protectionFromLawGoodCommunal = ProtectionFromLawGood.AddProtectionFromLawGoodCommunal();
 
             var deadlyJuggernaut = DeadlyJuggernaut.AddDeadlyJuggernaut();
+            var bladeofDarkTriumph = BladeofDarkTriumph.AddBladeofDarkTriumph();
 
             var AntipaladinSpellList = Helpers.CreateBlueprint<BlueprintSpellList>(MCEContext, "AntipaladinSpelllist", bp => {
                 bp.SpellsByLevel = new SpellLevelList[] {
@@ -52,6 +53,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     new SpellLevelList(3) {
                         m_Spells = new List<BlueprintAbilityReference>() {
                             deadlyJuggernaut,
+                            bladeofDarkTriumph,
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("4b76d32feb089ad4499c3a1ce8e1ac27"), //Animate Dead
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("989ab5c44240907489aba0a8568d0603"), //Bestow Curse
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("48e2744846ed04b4580be1a3343a5d3d"), //Contagion

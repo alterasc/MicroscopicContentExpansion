@@ -185,6 +185,7 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
+    <Compile Include="NewContent\Spells\BladeofDarkTriumph.cs" />
     <Compile Include="NewContent\Spells\DeadlyJuggernaut.cs" />
     <Compile Include="NewContent\Spells\ProtectionFromChaosGood.cs" />
     <Compile Include="NewContent\Spells\ProtectionFromLawGood.cs" />
