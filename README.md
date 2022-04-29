@@ -17,17 +17,23 @@ Add microscopic amount of new features. May or may not grow further in scope. Th
 Archetypes available:  
 - [Iron Tyrant](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin/archetypes/paizo-antipaladin-archetypes/iron-tyrant-antipaladin-archetype/)
 - [Knight of the Sepulcher](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin/archetypes/paizo-antipaladin-archetypes/knight-of-the-sepulcher)
+- [Tyrant](https://www.d20pfsrd.com/classes/alternate-classes/antipaladin/archetypes/paizo-antipaladin-archetypes/tyrant-antipaladin-archetype/)
 
 IMPORTANT: For best experience also install TabletopTweaks-Base. Fiendish template for antipaladin animal companion and Armor Mastery/Shield Mastery feats that can be picked as Iron Tyrant bonus feats are used from TTT. If you don't have TTT-Base, mod will still work, just you will be missing additional possible selections. (No, I won't copypaste those in my mod, don't ask)
 
 WARNING: Alignment restrictions do not have mythic bypass clause. You stop being evil and you lose spellbook and active abilities. This is intended.
 ### New feats
 
-[Unsanctioned Knowledge (antipaladin version only)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
+- [Unsanctioned Knowledge (antipaladin version only)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
+
+### New spells
+
+- [Deadly Juggernaut (Antipaladin 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
+- [Blade of Dark Triumph (Antipaladin 3)](https://www.d20pfsrd.com/magic/all-spells/b/blade-of-dark-triumph)
 
 ### Fixes
 
-Radiance +6 special enchantment fix. (Without this fix you won't get Holy/Bane Living alignment conditional buff after you upgrade Radiance from +4 to +6)
+- Radiance +6 special enchantment fix. (Without this fix you won't get Holy/Bane Living alignment conditional buff after you upgrade Radiance from +4 to +6)
 
 ## Thanks to  
 -   bubbles and Vek17 specifically   
