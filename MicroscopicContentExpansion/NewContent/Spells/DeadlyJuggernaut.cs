@@ -2,11 +2,13 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
@@ -30,17 +32,17 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                     " Hit Dice equal to or greater than your Hit Dice –4.");
                 bp.m_Icon = icon;
                 bp.IsClassFeature = true;
-                bp.AddComponent<AddContextStatBonus>(c => {
+                bp.AddComponent<AttackTypeAttackBonus>(c => {
                     c.Descriptor = ModifierDescriptor.Luck;
-                    c.Stat = Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus;
+                    c.Type = WeaponRangeType.Melee;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.Damage,
                     };
                 });
-                bp.AddComponent<AddContextStatBonus>(c => {
+                bp.AddComponent<WeaponAttackTypeDamageBonus>(c => {
                     c.Descriptor = ModifierDescriptor.Luck;
-                    c.Stat = Kingmaker.EntitySystem.Stats.StatType.AdditionalDamage;
+                    c.Type = WeaponRangeType.Melee;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.Damage,
