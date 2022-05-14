@@ -163,6 +163,7 @@
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="Fixes\RadianceFix.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
+    <Compile Include="NewComponents\WeaponParametersFuriousFocus.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil20.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantSpellbook.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
+    <Compile Include="NewContent\Feats\FuriousFocus.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
     <Compile Include="NewContent\Spells\BladeofDarkTriumph.cs" />
     <Compile Include="NewContent\Spells\DeadlyJuggernaut.cs" />
