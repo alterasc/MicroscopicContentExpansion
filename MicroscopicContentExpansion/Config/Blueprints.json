@@ -191,7 +191,11 @@
     "TyrantWeaponBondAxiomaticBuff": "442c97ce-60c7-47b8-8bf6-fc72674fc4e4",
     "TyrantWeaponBondAxiomaticChoice": "3dada3a7-10b8-42bc-bf9e-8871e0b41be9",
     "TyrantWeaponBondPlus2": "ed2eb2d9-dc9e-4310-80ab-6c22bd3910a0",
-    "TyrantWeaponBondProgression": "4fe4eedd-8fb6-4f5a-a8d1-67fc746c8b58"
+    "TyrantWeaponBondProgression": "4fe4eedd-8fb6-4f5a-a8d1-67fc746c8b58",
+    "KiDeadlyJuggernautAbility": "ca5e47af-f26b-44a9-b39d-bc2f6c48ae73",
+    "KiDeadlyJuggernautFeature": "1f1e70a9-735a-427c-826b-b92fbd724e27",
+    "ScaledFistKiDeadlyJuggernautAbility": "cdea4d7d-0dd3-4acd-a0c5-82b81a6d9d33",
+    "ScaledFistKiDeadlyJuggernautFeature": "a39df5aa-a603-4732-8d24-f160bef81837"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

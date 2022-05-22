@@ -1,5 +1,7 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Prerequisites;
+using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
@@ -35,6 +37,7 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 bp.AddComponent<AttackTypeAttackBonus>(c => {
                     c.Descriptor = ModifierDescriptor.Luck;
                     c.Type = WeaponRangeType.Melee;
+                    c.AttackBonus = 1;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.Damage,
@@ -43,6 +46,7 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 bp.AddComponent<WeaponAttackTypeDamageBonus>(c => {
                     c.Descriptor = ModifierDescriptor.Luck;
                     c.Type = WeaponRangeType.Melee;
+                    c.AttackBonus = 1;
                     c.Value = new ContextValue() {
                         ValueType = ContextValueType.Shared,
                         ValueShared = AbilitySharedValue.Damage,
@@ -138,6 +142,8 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 bp.FxOnRemove = new Kingmaker.ResourceLinks.PrefabLink();
             });
 
+            AddKiDeadlyJuggernaut(icon, buff);
+
             return Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DeadlyJuggernaut", bp => {
                 bp.SetName(MCEContext, "Deadly Juggernaut");
                 bp.SetDescription(MCEContext, "With every enemy life you take, you become increasingly dangerous and difficult to stop." +
@@ -178,6 +184,126 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
             }).ToReference<BlueprintAbilityReference>();
         }
 
+        private static void AddKiDeadlyJuggernaut(UnityEngine.Sprite icon, BlueprintBuff buff) {
+            var monkClassRef = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
+
+            var ability = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "KiDeadlyJuggernautAbility", bp => {
+                bp.SetName(MCEContext, "Ki Power: Deadly Juggernaut");
+                bp.SetDescription(MCEContext, "A monk with this ki power can spend 2 points from his ki pool as a standard action to grant himself Deadly Juggernaut buff: \nWith every enemy life you take, you become increasingly dangerous and difficult to stop." +
+                    " During the duration of the spell, you gain a cumulative +1 luck bonus on melee attack rolls, melee weapon damage " +
+                    "rolls, Strength checks, and Strength-based skill checks as well as DR 2/— each time you reduce a qualifying opponent" +
+                    " to 0 or few hit points (maximum +5 bonus and DR 10/—) with a melee attack. A qualifying opponent has a number of" +
+                    " Hit Dice equal to or greater than your Hit Dice –4.");
+                bp.m_Icon = icon;
+                bp.AddComponent<AbilityEffectRunAction>(c => {
+                    c.Actions = ActionFlow.DoSingle<ContextActionApplyBuff>(a => {
+                        a.m_Buff = buff.ToReference<BlueprintBuffReference>();
+                        a.Permanent = false;
+                        a.DurationValue = new ContextDurationValue() {
+                            Rate = DurationRate.Minutes,
+                            DiceCountValue = 0,
+                            BonusValue = new ContextValue() {
+                                ValueType = ContextValueType.Rank
+                            }
+                        };
+                        a.AsChild = true;
+                    });
+                });
+                bp.AddComponent<SpellComponent>(c => {
+                    c.School = SpellSchool.Necromancy;
+                });
+                bp.AddComponent<AbilityResourceLogic>(c => {
+                    c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("9d9c90a9a1f52d04799294bf91c80a82");
+                    c.m_IsSpendResource = true;
+                    c.Amount = 2;
+                });
+                bp.AddContextRankConfig(c => {
+                    c.m_Type = AbilityRankType.Default;
+                    c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                    c.m_Progression = ContextRankProgression.AsIs;
+                    c.m_Class = new BlueprintCharacterClassReference[] { monkClassRef };
+                });
+            });
+
+            var feature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "KiDeadlyJuggernautFeature", bp => {
+                bp.SetName(MCEContext, "Ki Power: Deadly Juggernaut");
+                bp.SetDescription(MCEContext, "A monk with this ki power can spend 2 points from his ki pool as a standard action to grant himself Deadly Juggernaut buff: \nWith every enemy life you take, you become increasingly dangerous and difficult to stop." +
+                    " During the duration of the spell, you gain a cumulative +1 luck bonus on melee attack rolls, melee weapon damage " +
+                    "rolls, Strength checks, and Strength-based skill checks as well as DR 2/— each time you reduce a qualifying opponent" +
+                    " to 0 or few hit points (maximum +5 bonus and DR 10/—) with a melee attack. A qualifying opponent has a number of" +
+                    " Hit Dice equal to or greater than your Hit Dice –4.");
+                bp.IsClassFeature = true;
+                bp.AddPrerequisite<PrerequisiteClassLevel>(c => {
+                    c.m_CharacterClass = monkClassRef;
+                    c.Level = 8;
+                });
+                bp.m_Icon = icon;
+                bp.AddComponent<AddFacts>(c => {
+                    c.m_Facts = new BlueprintUnitFactReference[] { ability.ToReference<BlueprintUnitFactReference>() };
+                });
+            });
+
+            var sfAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "ScaledFistKiDeadlyJuggernautAbility", bp => {
+                bp.SetName(MCEContext, "Ki Power: Deadly Juggernaut");
+                bp.SetDescription(MCEContext, "A monk with this ki power can spend 2 points from his ki pool as a standard action to grant himself Deadly Juggernaut buff: \nWith every enemy life you take, you become increasingly dangerous and difficult to stop." +
+                    " During the duration of the spell, you gain a cumulative +1 luck bonus on melee attack rolls, melee weapon damage " +
+                    "rolls, Strength checks, and Strength-based skill checks as well as DR 2/— each time you reduce a qualifying opponent" +
+                    " to 0 or few hit points (maximum +5 bonus and DR 10/—) with a melee attack. A qualifying opponent has a number of" +
+                    " Hit Dice equal to or greater than your Hit Dice –4.");
+                bp.m_Icon = icon;
+                bp.AddComponent<AbilityEffectRunAction>(c => {
+                    c.Actions = ActionFlow.DoSingle<ContextActionApplyBuff>(a => {
+                        a.m_Buff = buff.ToReference<BlueprintBuffReference>();
+                        a.Permanent = false;
+                        a.DurationValue = new ContextDurationValue() {
+                            Rate = DurationRate.Minutes,
+                            DiceCountValue = 0,
+                            BonusValue = new ContextValue() {
+                                ValueType = ContextValueType.Rank
+                            }
+                        };
+                        a.AsChild = true;
+                    });
+                });
+                bp.AddComponent<SpellComponent>(c => {
+                    c.School = SpellSchool.Necromancy;
+                });
+                bp.AddComponent<AbilityResourceLogic>(c => {
+                    c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("7d002c1025fbfe2458f1509bf7a89ce1");
+                    c.m_IsSpendResource = true;
+                    c.Amount = 2;
+                });
+                bp.AddContextRankConfig(c => {
+                    c.m_Type = AbilityRankType.Default;
+                    c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                    c.m_Progression = ContextRankProgression.AsIs;
+                    c.m_Class = new BlueprintCharacterClassReference[] { monkClassRef };
+                });
+            });
+
+            var sfFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "ScaledFistKiDeadlyJuggernautFeature", bp => {
+                bp.SetName(MCEContext, "Ki Power: Deadly Juggernaut");
+                bp.SetDescription(MCEContext, "A monk with this ki power can spend 2 points from his ki pool as a standard action to grant himself Deadly Juggernaut buff: \nWith every enemy life you take, you become increasingly dangerous and difficult to stop." +
+                    " During the duration of the spell, you gain a cumulative +1 luck bonus on melee attack rolls, melee weapon damage " +
+                    "rolls, Strength checks, and Strength-based skill checks as well as DR 2/— each time you reduce a qualifying opponent" +
+                    " to 0 or few hit points (maximum +5 bonus and DR 10/—) with a melee attack. A qualifying opponent has a number of" +
+                    " Hit Dice equal to or greater than your Hit Dice –4.");
+                bp.IsClassFeature = true;
+                bp.AddPrerequisite<PrerequisiteClassLevel>(c => {
+                    c.m_CharacterClass = monkClassRef;
+                    c.Level = 8;
+                });
+                bp.m_Icon = icon;
+                bp.AddComponent<AddFacts>(c => {
+                    c.m_Facts = new BlueprintUnitFactReference[] { sfAbility.ToReference<BlueprintUnitFactReference>() };
+                });
+            });
+
+            var monkKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
+            monkKiPowerSelection.m_AllFeatures = monkKiPowerSelection.m_AllFeatures.AppendToArray(feature.ToReference<BlueprintFeatureReference>());
+            var sfKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
+            sfKiPowerSelection.m_AllFeatures = sfKiPowerSelection.m_AllFeatures.AppendToArray(sfFeature.ToReference<BlueprintFeatureReference>());
+        }
 
     }
 }
