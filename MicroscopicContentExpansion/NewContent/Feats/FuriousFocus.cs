@@ -3,7 +3,6 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using MicroscopicContentExpansion.NewComponents;
@@ -12,7 +11,6 @@ using static MicroscopicContentExpansion.Main;
 
 namespace MicroscopicContentExpansion.NewContent.Feats {
     class FuriousFocus {
-        [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {
             static bool Initialized;
 
