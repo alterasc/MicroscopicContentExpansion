@@ -33,12 +33,12 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
             }
 
             private static void AddSnakeStyle() {
-                var randomIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "Snake.png");                
+                var snakeStyleIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "Snake.png");
 
                 var snakeStyleBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "SnakeStyleBuff", bp => {
                     bp.SetName(MCEContext, "Snake Style");
                     bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
-                    bp.m_Icon = randomIcon;
+                    bp.m_Icon = snakeStyleIcon;
                     bp.AddComponent<AddStatBonus>(c => {
                         c.Stat = StatType.AC;
                         c.Descriptor = ModifierDescriptor.Dodge;
@@ -54,7 +54,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 var snakeStyleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "SnakeStyleToggleAbility", bp => {
                     bp.SetName(MCEContext, "Snake Style");
                     bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
-                    bp.m_Icon = randomIcon;
+                    bp.m_Icon = snakeStyleIcon;
                     bp.ActivationType = AbilityActivationType.Immediately;
                     bp.m_ActivateWithUnitCommand = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift;
                     bp.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
@@ -66,7 +66,8 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 var snakeStyleFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeStyleFeature", bp => {
                     bp.SetName(MCEContext, "Snake Style");
                     bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
-                    bp.m_Icon = randomIcon;
+                    bp.m_Icon = snakeStyleIcon;
+                    bp.IsClassFeature = true;
                     bp.Groups = new FeatureGroup[] {
                         FeatureGroup.CombatFeat,
                         FeatureGroup.Feat
@@ -82,6 +83,8 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.Stat = StatType.SkillPerception;
                         c.Value = 3;
                     });
+                    var improvedUnarmedStrike = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("7812ad3672a4b9a4fb894ea402095167");
+                    bp.AddPrerequisiteFeature(improvedUnarmedStrike);
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { snakeStyleAbility.ToReference<BlueprintUnitFactReference>() };
                     });
@@ -100,7 +103,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 var snakeSidewindFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeSidewindFeature", bp => {
                     bp.SetName(MCEContext, "Snake Sidewind");
                     bp.SetDescription(MCEContext, "You gain a +4 bonus to CMD against trip combat maneuvers and on Athletics checks and saving throws against ground effects. While using the Snake Style feat, you receive +4 bonus on attack roll made to confirm critical hits with unarmed weapons.");
-                    bp.m_Icon = randomIcon;
+                    bp.IsClassFeature = true;
                     bp.Groups = new FeatureGroup[] {
                         FeatureGroup.CombatFeat,
                         FeatureGroup.Feat
@@ -124,6 +127,8 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     });
                     bp.AddComponent<SavingThrowBonusAgainstDescriptor>(c => {
                         c.SpellDescriptor = SpellDescriptor.Ground;
+                        c.Value = 4;
+                        c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
                     });
                     bp.AddComponent<AddStatBonus>(c => {
                         c.Stat = StatType.SkillAthletics;
@@ -137,7 +142,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 var snakeFangFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeFangFeature", bp => {
                     bp.SetName(MCEContext, "Snake Fang");
                     bp.SetDescription(MCEContext, "While using the Snake Style feat, when an opponent’s attack misses you, you can make an unarmed strike against that opponent as an attack of opportunity.");
-                    bp.m_Icon = randomIcon;
+                    bp.IsClassFeature = true;
                     bp.Groups = new FeatureGroup[] {
                         FeatureGroup.CombatFeat,
                         FeatureGroup.Feat
