@@ -44,11 +44,6 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.Descriptor = ModifierDescriptor.Dodge;
                         c.Value = 2;
                     });
-                    bp.AddComponent<AddOutgoingPhysicalDamageProperty>(c => {
-                        c.m_WeaponType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("");
-                        c.AddForm = true;
-                        c.Form = Kingmaker.Enums.Damage.PhysicalDamageForm.Piercing;
-                    });
                 });
 
                 var snakeStyleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "SnakeStyleToggleAbility", bp => {
@@ -85,6 +80,12 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     });
                     var improvedUnarmedStrike = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("7812ad3672a4b9a4fb894ea402095167");
                     bp.AddPrerequisiteFeature(improvedUnarmedStrike);
+                    bp.AddComponent<AddOutgoingPhysicalDamageProperty>(c => {
+                        c.m_WeaponType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("fcca8e6b85d19b14786ba1ab553e23ad");
+                        c.CheckWeaponType = true;
+                        c.AddForm = true;
+                        c.Form = Kingmaker.Enums.Damage.PhysicalDamageForm.Piercing;
+                    });
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { snakeStyleAbility.ToReference<BlueprintUnitFactReference>() };
                     });
