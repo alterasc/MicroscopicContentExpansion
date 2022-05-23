@@ -25,12 +25,17 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 ### New feats
 
 - [Unsanctioned Knowledge (antipaladin version only)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
+- [Snake Style](https://www.d20pfsrd.com/feats/combat-feats/snake-style-combat-style)
+- [Snake Sidewind](https://www.d20pfsrd.com/feats/combat-feats/snake-sidewind-combat)
+- [Snake Fang](https://www.d20pfsrd.com/feats/combat-feats/snake-fang-combat)
 
 ### New spells
 
 - [Deadly Juggernaut (Antipaladin 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
 - [Blade of Dark Triumph (Antipaladin 3)](https://www.d20pfsrd.com/magic/all-spells/b/blade-of-dark-triumph)
 
+### New Ki powers
+- Ki Power: Deadly Juggernaut
 ### Fixes
 
 - Radiance +6 special enchantment fix. (Without this fix you won't get Holy/Bane Living alignment conditional buff after you upgrade Radiance from +4 to +6)
@@ -38,6 +43,7 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 ## Thanks to  
 -   bubbles and Vek17 specifically   
 -   kadyn for his Expanded Content
+-   Fumihiko for making of Snake Style for Kingmaker
 -   Pathfinder Wrath of The Righteous Discord channel members
 -   PS: Wolfie's [Modding Wiki](https://github.com/WittleWolfie/OwlcatModdingWiki/wiki) is an excellent place to start if you want to start modding on your own.
 -   Join our [Discord](https://discord.com/invite/wotr)
