@@ -162,7 +162,9 @@
     <Compile Include="Config\Fixes.cs" />
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="Fixes\RadianceFix.cs" />
+    <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
+    <Compile Include="NewComponents\SnakeFangOnMissHandler.cs" />
     <Compile Include="NewComponents\WeaponParametersFuriousFocus.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantSpellbook.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
+    <Compile Include="NewContent\Feats\SnakeStyleChain.cs" />
     <Compile Include="NewContent\Feats\FuriousFocus.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
     <Compile Include="NewContent\Spells\BladeofDarkTriumph.cs" />
@@ -227,7 +230,11 @@
     </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\Snake.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" AfterTargets="BeforeClean">
     <PropertyGroup>

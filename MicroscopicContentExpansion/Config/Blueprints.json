@@ -195,7 +195,13 @@
     "KiDeadlyJuggernautAbility": "ca5e47af-f26b-44a9-b39d-bc2f6c48ae73",
     "KiDeadlyJuggernautFeature": "1f1e70a9-735a-427c-826b-b92fbd724e27",
     "ScaledFistKiDeadlyJuggernautAbility": "cdea4d7d-0dd3-4acd-a0c5-82b81a6d9d33",
-    "ScaledFistKiDeadlyJuggernautFeature": "a39df5aa-a603-4732-8d24-f160bef81837"
+    "ScaledFistKiDeadlyJuggernautFeature": "a39df5aa-a603-4732-8d24-f160bef81837",
+    "SnakeFangFeature": "49e036a8-2c2b-4c07-b596-a4ae3973573e",
+    "SnakeSidewindBuff": "8694575f-9145-42c2-9c86-01bd8cee2580",
+    "SnakeSidewindFeature": "d068ddac-db9b-4016-bfa3-1260902839e0",
+    "SnakeStyleBuff": "a30c4388-bf88-4dee-9a79-bfbafb44b187",
+    "SnakeStyleFeature": "fa6ebb8e-0d1f-4b73-bc15-5b759f244006",
+    "SnakeStyleToggleAbility": "611bc4c4-7714-4f67-9957-24fe96a6d355"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

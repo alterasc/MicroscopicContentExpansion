@@ -1,0 +1,171 @@
+﻿using HarmonyLib;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Prerequisites;
+using Kingmaker.Blueprints.Classes.Selection;
+using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
+using Kingmaker.RuleSystem.Rules;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using MicroscopicContentExpansion.NewComponents;
+using MicroscopicContentExpansion.Utils;
+using TabletopTweaks.Core.Utilities;
+using static MicroscopicContentExpansion.Main;
+
+namespace MicroscopicContentExpansion.NewContent.Feats {
+    class SnakeStyleChain {
+        [HarmonyPatch(typeof(BlueprintsCache), "Init")]
+        static class BlueprintsCache_Init_Patch {
+            static bool Initialized;
+
+            static void Postfix() {
+                if (Initialized) return;
+                Initialized = true;
+                MCEContext.Logger.LogHeader("Adding Snake Style chain feats");
+
+                AddSnakeStyle();
+            }
+
+            private static void AddSnakeStyle() {
+                var randomIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "Snake.png");                
+
+                var snakeStyleBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "SnakeStyleBuff", bp => {
+                    bp.SetName(MCEContext, "Snake Style");
+                    bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
+                    bp.m_Icon = randomIcon;
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Stat = StatType.AC;
+                        c.Descriptor = ModifierDescriptor.Dodge;
+                        c.Value = 2;
+                    });
+                    bp.AddComponent<AddOutgoingPhysicalDamageProperty>(c => {
+                        c.m_WeaponType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("");
+                        c.AddForm = true;
+                        c.Form = Kingmaker.Enums.Damage.PhysicalDamageForm.Piercing;
+                    });
+                });
+
+                var snakeStyleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "SnakeStyleToggleAbility", bp => {
+                    bp.SetName(MCEContext, "Snake Style");
+                    bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
+                    bp.m_Icon = randomIcon;
+                    bp.ActivationType = AbilityActivationType.Immediately;
+                    bp.m_ActivateWithUnitCommand = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift;
+                    bp.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
+                    bp.IsOnByDefault = true;
+                    bp.Group = ActivatableAbilityGroup.CombatStyle;
+                    bp.m_Buff = snakeStyleBuff.ToReference<BlueprintBuffReference>();
+                });
+
+                var snakeStyleFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeStyleFeature", bp => {
+                    bp.SetName(MCEContext, "Snake Style");
+                    bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
+                    bp.m_Icon = randomIcon;
+                    bp.Groups = new FeatureGroup[] {
+                        FeatureGroup.CombatFeat,
+                        FeatureGroup.Feat
+                    };
+                    bp.AddComponent<FeatureTagsComponent>(c => {
+                        c.FeatureTags = FeatureTag.Attack | FeatureTag.Melee;
+                    });
+                    bp.AddPrerequisite<PrerequisiteStatValue>(c => {
+                        c.Stat = StatType.SkillAthletics;
+                        c.Value = 1;
+                    });
+                    bp.AddPrerequisite<PrerequisiteStatValue>(c => {
+                        c.Stat = StatType.SkillPerception;
+                        c.Value = 3;
+                    });
+                    bp.AddComponent<AddFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] { snakeStyleAbility.ToReference<BlueprintUnitFactReference>() };
+                    });
+                });
+                FeatTools.AddAsFeat(snakeStyleFeature);
+
+                var snakeSidewind = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "SnakeSidewindBuff", bp => {
+                    bp.SetName(MCEContext, "Snake Sidewind");
+                    bp.SetDescription(MCEContext, "");
+                    bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
+                    bp.AddComponent<CriticalConfirmationUnarmed>(c => {
+                        c.Bonus = 4;
+                    });
+                });
+
+                var snakeSidewindFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeSidewindFeature", bp => {
+                    bp.SetName(MCEContext, "Snake Sidewind");
+                    bp.SetDescription(MCEContext, "You gain a +4 bonus to CMD against trip combat maneuvers and on Athletics checks and saving throws against ground effects. While using the Snake Style feat, you receive +4 bonus on attack roll made to confirm critical hits with unarmed weapons.");
+                    bp.m_Icon = randomIcon;
+                    bp.Groups = new FeatureGroup[] {
+                        FeatureGroup.CombatFeat,
+                        FeatureGroup.Feat
+                    };
+                    bp.AddComponent<FeatureTagsComponent>(c => {
+                        c.FeatureTags = FeatureTag.Attack | FeatureTag.Melee;
+                    });
+                    bp.AddPrerequisiteFeature(snakeStyleFeature);
+                    bp.AddPrerequisite<PrerequisiteStatValue>(c => {
+                        c.Stat = StatType.SkillAthletics;
+                        c.Value = 3;
+                    });
+                    bp.AddPrerequisite<PrerequisiteStatValue>(c => {
+                        c.Stat = StatType.SkillPerception;
+                        c.Value = 6;
+                    });
+                    bp.AddComponent<CMDBonusAgainstManeuvers>(c => {
+                        c.Maneuvers = new CombatManeuver[] { CombatManeuver.Trip };
+                        c.Value = 4;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                    bp.AddComponent<SavingThrowBonusAgainstDescriptor>(c => {
+                        c.SpellDescriptor = SpellDescriptor.Ground;
+                    });
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Stat = StatType.SkillAthletics;
+                        c.Value = 4;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                });
+
+                FeatTools.AddAsFeat(snakeSidewindFeature);
+
+                var snakeFangFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeFangFeature", bp => {
+                    bp.SetName(MCEContext, "Snake Fang");
+                    bp.SetDescription(MCEContext, "While using the Snake Style feat, when an opponent’s attack misses you, you can make an unarmed strike against that opponent as an attack of opportunity.");
+                    bp.m_Icon = randomIcon;
+                    bp.Groups = new FeatureGroup[] {
+                        FeatureGroup.CombatFeat,
+                        FeatureGroup.Feat
+                    };
+                    bp.AddComponent<FeatureTagsComponent>(c => {
+                        c.FeatureTags = FeatureTag.Attack | FeatureTag.Melee;
+                    });
+                    bp.AddPrerequisiteFeature(snakeSidewindFeature);
+                    var combatReflexes = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0f8939ae6f220984e8fb568abbdfba95");
+                    bp.AddPrerequisiteFeature(combatReflexes);
+                    bp.AddPrerequisite<PrerequisiteStatValue>(c => {
+                        c.Stat = StatType.SkillAthletics;
+                        c.Value = 6;
+                    });
+                    bp.AddPrerequisite<PrerequisiteStatValue>(c => {
+                        c.Stat = StatType.SkillPerception;
+                        c.Value = 9;
+                    });
+                });
+                FeatTools.AddAsFeat(snakeFangFeature);
+
+                snakeStyleBuff.AddConditionalBuff(snakeSidewindFeature, snakeSidewind);
+
+                snakeStyleBuff.AddComponent<SnakeFangOnMissHandler>(c => {
+                    c.m_Fact = snakeFangFeature.ToReference<BlueprintUnitFactReference>();
+                    c.Action = ActionFlow.DoSingle<ContextActionProvokeAttackOfOpportunity>();
+                });
+            }
+        }
+    }
+}
