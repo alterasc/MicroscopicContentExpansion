@@ -162,6 +162,7 @@
     <Compile Include="Config\Fixes.cs" />
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="Fixes\RadianceFix.cs" />
+    <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
     <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
     <Compile Include="NewComponents\SnakeFangOnMissHandler.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantSpellbook.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
+    <Compile Include="NewContent\Feats\StartossStyleChain.cs" />
     <Compile Include="NewContent\Feats\SnakeStyleChain.cs" />
     <Compile Include="NewContent\Feats\FuriousFocus.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
