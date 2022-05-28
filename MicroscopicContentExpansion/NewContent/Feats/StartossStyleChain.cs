@@ -48,7 +48,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         "damage from those feats to the initial ranged attack(but not the second attack).");
                     bp.m_Icon = startossStyleIcon;
                     bp.AddComponent<AbilityCustomStartossComet>(c => {
-                        c.VitalStrikeMod = 1;
+                        c.VitalStrikeMod = 2;
                         c.m_MythicBlueprint = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("e07bcb271ecefec44be314e1c807c798");
                         c.m_RowdyFeature = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("6ce0dd0cd1ef43eda9e62cdf483e05c3");
                     });

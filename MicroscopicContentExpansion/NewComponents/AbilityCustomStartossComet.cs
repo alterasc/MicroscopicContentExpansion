@@ -35,8 +35,6 @@ namespace MicroscopicContentExpansion.NewComponents {
 
         public BlueprintFeature RowdyFeature => this.m_RowdyFeature?.Get();
 
-        public Feet CleaveRadius = 30.Feet();
-
         private LogChannel logChannel = LogChannelFactory.GetOrCreate("Mods");
 
         public override IEnumerator<AbilityDeliveryTarget> Deliver(AbilityExecutionContext context, TargetWrapper target) {
@@ -45,77 +43,97 @@ namespace MicroscopicContentExpansion.NewComponents {
             var previousTarget = target.Unit;
             if (caster == null) {
                 PFLog.Default.Error(this, "Caster is missing", Array.Empty<object>());
-                logChannel.Error("Startoss comet Caster is missing!");
                 yield break;
-            }
-            bool isGreater = true;
-            bool isMythic = true;
+            }                        
             var threatHand = caster.GetThreatHandRanged();
             if (threatHand == null) {
                 PFLog.Default.Error("Caster can't attack", Array.Empty<object>());
-                logChannel.Error("Startoss comet Threat hand NULL!");
                 yield break;
             }
-            var targetUnit = target.Unit;
-            if (targetUnit == null) {
+            var originalTarget = target.Unit;
+            if (originalTarget == null) {
                 PFLog.Default.Error("Can't be applied to point", Array.Empty<object>());
-                logChannel.Error("Startoss comet Can't be applied to point!");
                 yield break;
             }
-            List<UnitEntityData> targetList = new List<UnitEntityData>
-            {
-                targetUnit
-            };
-            logChannel.Log("Starting to count enemies");
-            foreach (UnitGroupMemory.UnitInfo unitInfo in caster.Memory.Enemies) {
-                UnitEntityData unit = unitInfo.Unit;
-                if (unit != targetUnit && unit.Descriptor.State.IsConscious && caster.IsReach(unit, threatHand)) {
-                    targetList.Add(unit);
-                }
-            }
-            logChannel.Log($"Found: {targetList.Count} enemies");
-            targetList.Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(targetUnit).CompareTo(u2.DistanceTo(targetUnit)));
-            List<UnitEntityData> hitTargets = new List<UnitEntityData>();
-            List<UnitEntityData> validTargets = new List<UnitEntityData>(targetList);
-            while (validTargets.Count > 0) {
-                if (!isMythic) {
-                    validTargets
-                        .Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(previousTarget).CompareTo(u2.DistanceTo(previousTarget)));
-                    validTargets = validTargets
-                        .Where(t => t.DistanceTo(previousTarget) <= (t.View.Corpulence + previousTarget.View.Corpulence + CleaveRadius.Meters))
-                        .ToList();
-                }
-                var currentTarget = validTargets.FirstOrDefault();
-                if (currentTarget == null) { break; }
-                logChannel.Log($"Found valid enemy");
-                var chainSource = previousTarget != currentTarget ? previousTarget : null;
-                var res = context.TriggerRule(new RuleAttackWithWeaponChaining(caster, chainSource, currentTarget, threatHand.Weapon, 0) {
-                    IsFirstAttack = hitTargets.Any()
-                });
+            //first we attack our main target
 
-                if (!res.AttackRoll.IsHit) {
-                    break;
-                }
-                while (res.LaunchedProjectiles.Any(t => !t.IsHit)) {
-                    if (res.LaunchedProjectiles.Any(t => t.Cleared)) {
+            UnitEntityData maybeCaster = context.MaybeCaster;
+            int attackBonusPenalty = 0;
+            AbilityCustomStartossComet.EventHandlers eventHandlers = new AbilityCustomStartossComet.EventHandlers();
+            eventHandlers.Add((object)new AbilityCustomStartossComet.VitalStrike(caster, this.VitalStrikeMod, maybeCaster.HasFact((BlueprintFact)this.MythicBlueprint), maybeCaster.HasFact((BlueprintFact)this.RowdyFeature)));
+            RuleAttackWithWeapon rule = new RuleAttackWithWeapon(maybeCaster, originalTarget, caster.GetFirstWeapon(), attackBonusPenalty);
+            RuleAttackWithWeapon firstAttack;
+            using (eventHandlers.Activate()) {
+                firstAttack = context.TriggerRule(rule);
+            }
+            yield return new AbilityDeliveryTarget(target);
+
+            //then we chain if we hit
+            if (firstAttack.AttackRoll.IsHit) {
+                var bab = caster.Stats.BaseAttackBonus.ModifiedValue;
+
+                while (firstAttack.LaunchedProjectiles.Any(t => !t.IsHit)) {
+                    if (firstAttack.LaunchedProjectiles.Any(t => t.Cleared)) {
                         yield break;
                     }
                     yield return null;
                 }
-
-                var startTime = Game.Instance.TimeController.GameTime;
-                while (Game.Instance.TimeController.GameTime - startTime < ((float)0.2f).Seconds())
+                //wait 0.2 seconds before chaining
+                var initialStartTime = Game.Instance.TimeController.GameTime;
+                while (Game.Instance.TimeController.GameTime - initialStartTime < ((float)0.2f).Seconds())
                     yield return null;
 
-                hitTargets.Add(currentTarget);
-                previousTarget = currentTarget;
-                yield return new AbilityDeliveryTarget(currentTarget);
-                if (!isGreater && hitTargets.Count > 1) {
-                    break;
+                previousTarget = originalTarget;
+                //collect adjacent targets
+                var targetList = new List<UnitEntityData> { };
+                foreach (UnitGroupMemory.UnitInfo unitInfo in caster.Memory.Enemies) {
+                    UnitEntityData unit = unitInfo.Unit;
+                    if (unit != originalTarget && unit.Descriptor.State.IsConscious && originalTarget.IsReach(unit, threatHand)) {
+                        targetList.Add(unit);
+                    }
                 }
-                validTargets = targetList.Where(t => !hitTargets.Contains(t)).ToList();                
+                targetList.Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(originalTarget).CompareTo(u2.DistanceTo(originalTarget)));
+                List<UnitEntityData> hitTargets = new List<UnitEntityData>();
+                List<UnitEntityData> validTargets = new List<UnitEntityData>(targetList);
+                var weaponRange = threatHand.Weapon.AttackRange.Meters;
+
+                while (validTargets.Count > 0) {
+                    validTargets
+                        .Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(previousTarget).CompareTo(u2.DistanceTo(previousTarget)));
+                    validTargets = validTargets
+                        .Where(t => t.DistanceTo(previousTarget) <= (t.View.Corpulence + previousTarget.View.Corpulence + weaponRange))
+                        .ToList();
+                    var currentTarget = validTargets.FirstOrDefault();
+                    if (currentTarget == null) { break; }
+                    var chainSource = previousTarget != currentTarget ? previousTarget : null;
+                    var res = context.TriggerRule(new RuleAttackWithWeaponChaining(caster, chainSource, currentTarget, threatHand.Weapon, 0) {
+                        IsFirstAttack = hitTargets.Any()
+                    });
+
+                    if (!res.AttackRoll.IsHit) {
+                        break;
+                    }
+                    //wait for projectile to hit and then wait additional 0.2s 
+                    while (res.LaunchedProjectiles.Any(t => !t.IsHit)) {
+                        if (res.LaunchedProjectiles.Any(t => t.Cleared)) {
+                            yield break;
+                        }
+                        yield return null;
+                    }
+                    var startTime = Game.Instance.TimeController.GameTime;
+                    while (Game.Instance.TimeController.GameTime - startTime < ((float)0.2f).Seconds())
+                        yield return null;
+
+                    hitTargets.Add(currentTarget);
+                    previousTarget = currentTarget;
+                    yield return new AbilityDeliveryTarget(currentTarget);
+                    if (hitTargets.Count > 5) {
+                        break;
+                    }
+                    validTargets = targetList.Where(t => !hitTargets.Contains(t)).ToList();
+                }
+                yield break;
             }
-            yield break;
         }
 
         public override void Cleanup(AbilityExecutionContext context) {
