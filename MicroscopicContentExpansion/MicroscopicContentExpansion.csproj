@@ -165,6 +165,7 @@
     <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
     <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
+    <Compile Include="NewComponents\RuleAttackWithWeaponChaining.cs" />
     <Compile Include="NewComponents\SnakeFangOnMissHandler.cs" />
     <Compile Include="NewComponents\WeaponParametersFuriousFocus.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />

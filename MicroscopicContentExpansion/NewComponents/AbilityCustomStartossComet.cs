@@ -8,6 +8,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Controllers;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
@@ -26,38 +27,95 @@ namespace MicroscopicContentExpansion.NewComponents {
     internal class AbilityCustomStartossComet : AbilityCustomLogic {
         public int VitalStrikeMod;
         [SerializeField]
-        private BlueprintFeatureReference m_MythicBlueprint;
+        public BlueprintFeatureReference m_MythicBlueprint;
         [SerializeField]
-        private BlueprintFeatureReference m_RowdyFeature;
+        public BlueprintFeatureReference m_RowdyFeature;
 
         public BlueprintFeature MythicBlueprint => this.m_MythicBlueprint?.Get();
 
         public BlueprintFeature RowdyFeature => this.m_RowdyFeature?.Get();
 
+        public Feet CleaveRadius = 30.Feet();
+
+        private LogChannel logChannel = LogChannelFactory.GetOrCreate("Mods");
+
         public override IEnumerator<AbilityDeliveryTarget> Deliver(AbilityExecutionContext context, TargetWrapper target) {
-            AbilityCustomStartossComet ctx = this;
-            UnitEntityData maybeCaster = context.MaybeCaster;
-            if (maybeCaster == (UnitDescriptor)null) {
-                PFLog.Default.Error((ICanBeLogContext)ctx, "Caster is missing");
-            } else {
-                ItemEntityWeapon firstWeapon = maybeCaster.GetFirstWeapon();
-                if (firstWeapon == null) {
-                    PFLog.Default.Error("Caster can't attack");
-                } else {
-                    UnitEntityData unit = target.Unit;
-                    if (unit == (UnitDescriptor)null) {
-                        PFLog.Default.Error("Can't be applied to point");
-                    } else {
-                        int attackBonusPenalty = 0;
-                        AbilityCustomStartossComet.EventHandlers eventHandlers = new AbilityCustomStartossComet.EventHandlers();
-                        eventHandlers.Add((object)new AbilityCustomStartossComet.VitalStrike(maybeCaster, ctx.VitalStrikeMod, maybeCaster.HasFact((BlueprintFact)ctx.MythicBlueprint), maybeCaster.HasFact((BlueprintFact)ctx.RowdyFeature)));
-                        RuleAttackWithWeapon rule = new RuleAttackWithWeapon(maybeCaster, unit, firstWeapon, attackBonusPenalty);
-                        using (eventHandlers.Activate())
-                            context.TriggerRule<RuleAttackWithWeapon>(rule);
-                        yield return new AbilityDeliveryTarget(target);
-                    }
+            logChannel.Error("Startoss comet is a go!");
+            var caster = context.MaybeCaster;
+            var previousTarget = target.Unit;
+            if (caster == null) {
+                PFLog.Default.Error(this, "Caster is missing", Array.Empty<object>());
+                logChannel.Error("Startoss comet Caster is missing!");
+                yield break;
+            }
+            bool isGreater = true;
+            bool isMythic = true;
+            var threatHand = caster.GetThreatHandRanged();
+            if (threatHand == null) {
+                PFLog.Default.Error("Caster can't attack", Array.Empty<object>());
+                logChannel.Error("Startoss comet Threat hand NULL!");
+                yield break;
+            }
+            var targetUnit = target.Unit;
+            if (targetUnit == null) {
+                PFLog.Default.Error("Can't be applied to point", Array.Empty<object>());
+                logChannel.Error("Startoss comet Can't be applied to point!");
+                yield break;
+            }
+            List<UnitEntityData> targetList = new List<UnitEntityData>
+            {
+                targetUnit
+            };
+            logChannel.Log("Starting to count enemies");
+            foreach (UnitGroupMemory.UnitInfo unitInfo in caster.Memory.Enemies) {
+                UnitEntityData unit = unitInfo.Unit;
+                if (unit != targetUnit && unit.Descriptor.State.IsConscious && caster.IsReach(unit, threatHand)) {
+                    targetList.Add(unit);
                 }
             }
+            logChannel.Log($"Found: {targetList.Count} enemies");
+            targetList.Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(targetUnit).CompareTo(u2.DistanceTo(targetUnit)));
+            List<UnitEntityData> hitTargets = new List<UnitEntityData>();
+            List<UnitEntityData> validTargets = new List<UnitEntityData>(targetList);
+            while (validTargets.Count > 0) {
+                if (!isMythic) {
+                    validTargets
+                        .Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(previousTarget).CompareTo(u2.DistanceTo(previousTarget)));
+                    validTargets = validTargets
+                        .Where(t => t.DistanceTo(previousTarget) <= (t.View.Corpulence + previousTarget.View.Corpulence + CleaveRadius.Meters))
+                        .ToList();
+                }
+                var currentTarget = validTargets.FirstOrDefault();
+                if (currentTarget == null) { break; }
+                logChannel.Log($"Found valid enemy");
+                var chainSource = previousTarget != currentTarget ? previousTarget : null;
+                var res = context.TriggerRule(new RuleAttackWithWeaponChaining(caster, chainSource, currentTarget, threatHand.Weapon, 0) {
+                    IsFirstAttack = hitTargets.Any()
+                });
+
+                if (!res.AttackRoll.IsHit) {
+                    break;
+                }
+                while (res.LaunchedProjectiles.Any(t => !t.IsHit)) {
+                    if (res.LaunchedProjectiles.Any(t => t.Cleared)) {
+                        yield break;
+                    }
+                    yield return null;
+                }
+
+                var startTime = Game.Instance.TimeController.GameTime;
+                while (Game.Instance.TimeController.GameTime - startTime < ((float)0.2f).Seconds())
+                    yield return null;
+
+                hitTargets.Add(currentTarget);
+                previousTarget = currentTarget;
+                yield return new AbilityDeliveryTarget(currentTarget);
+                if (!isGreater && hitTargets.Count > 1) {
+                    break;
+                }
+                validTargets = targetList.Where(t => !hitTargets.Contains(t)).ToList();                
+            }
+            yield break;
         }
 
         public override void Cleanup(AbilityExecutionContext context) {
