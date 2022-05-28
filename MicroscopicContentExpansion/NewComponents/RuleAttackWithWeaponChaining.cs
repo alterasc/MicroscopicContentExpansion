@@ -1,32 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
-using Kingmaker.Armies.TacticalCombat;
-using Kingmaker.Blueprints;
-using Kingmaker.EntitySystem.Entities;
-using Kingmaker.Items;
-using Kingmaker.RuleSystem;
-using Kingmaker.RuleSystem.Rules;
-using Kingmaker.RuleSystem.Rules.Damage;
+﻿using JetBrains.Annotations;
+using Kingmaker;
 using Kingmaker.Armies.TacticalCombat;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Controllers.Projectiles;
-using Kingmaker.EntitySystem;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
+using Kingmaker.RuleSystem;
+using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.RuleSystem.Rules.Damage;
-using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using Kingmaker;
+using System.Linq;
 
 namespace MicroscopicContentExpansion.NewComponents {
     class RuleAttackWithWeaponChaining : RuleAttackWithWeapon {
@@ -52,7 +38,7 @@ namespace MicroscopicContentExpansion.NewComponents {
             if (projectiles.Length != 0) {
                 this.LaunchProjectilesChain(projectiles);
             } else {
-                RuleAttackWithWeaponResolve evt = new RuleAttackWithWeaponResolve(this, this.Weapon.Blueprint.HasNoDamage ? (RuleDealDamage)null : this.CreateRuleDealDamage(true));
+                RuleAttackWithWeaponResolve evt = new RuleAttackWithWeaponResolve(this, this.Weapon.Blueprint.HasNoDamage ? null : this.CreateRuleDealDamage(true));
                 this.MeleeDamage = evt.Damage;
                 this.ResolveRules.Add(evt);
                 context.Trigger<RuleAttackWithWeaponResolve>(evt);
@@ -73,22 +59,22 @@ namespace MicroscopicContentExpansion.NewComponents {
             Projectile projectile;
             var ssrc = this.Source != null ? this.Source : this.Initiator;
             if (this.AttackRoll.IsHit) {
-                RuleDealDamage damage = this.Weapon.Blueprint.HasNoDamage ? (RuleDealDamage)null : this.CreateRuleDealDamage(TacticalCombatHelper.IsActive | first);
+                RuleDealDamage damage = this.Weapon.Blueprint.HasNoDamage ? null : this.CreateRuleDealDamage(TacticalCombatHelper.IsActive | first);
                 RuleAttackWithWeaponResolve ruleOnHit = new RuleAttackWithWeaponResolve(this, damage);
                 this.ResolveRules.Add(ruleOnHit);
-                projectile = Game.Instance.ProjectileController.Launch(ssrc, (TargetWrapper)this.Target, blueprint, this.AttackRoll, (RulebookEvent)ruleOnHit);
+                projectile = Game.Instance.ProjectileController.Launch(ssrc, (TargetWrapper)this.Target, blueprint, this.AttackRoll, ruleOnHit);
                 if (damage != null)
                     damage.Projectile = projectile;
             } else {
-                RuleAttackWithWeaponResolve ruleOnHit = new RuleAttackWithWeaponResolve(this, (RuleDealDamage)null);
+                RuleAttackWithWeaponResolve ruleOnHit = new RuleAttackWithWeaponResolve(this, null);
                 this.ResolveRules.Add(ruleOnHit);
-                projectile = Game.Instance.ProjectileController.Launch(ssrc, (TargetWrapper)this.Target, blueprint, this.AttackRoll, (RulebookEvent)ruleOnHit);
+                projectile = Game.Instance.ProjectileController.Launch(ssrc, (TargetWrapper)this.Target, blueprint, this.AttackRoll, ruleOnHit);
                 projectile.CalculateMissTarget();
             }
             projectile.IsFromWeapon = true;
             this.LaunchedProjectiles.Add(projectile);
             UnitPartMagus unitPartMagus = this.Initiator.Get<UnitPartMagus>();
-            if (!(bool)(EntityPart)unitPartMagus || !(unitPartMagus.EldritchArcherSpell != (AbilityData)null))
+            if (!(bool)unitPartMagus || !(unitPartMagus.EldritchArcherSpell != null))
                 return;
             RuleCastSpell ruleCastSpell = Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(unitPartMagus.EldritchArcherSpell, (TargetWrapper)this.Target));
             ruleCastSpell.Context.AttackRoll = this.AttackRoll;

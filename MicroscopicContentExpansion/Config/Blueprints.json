@@ -202,8 +202,12 @@
     "SnakeStyleBuff": "a30c4388-bf88-4dee-9a79-bfbafb44b187",
     "SnakeStyleFeature": "fa6ebb8e-0d1f-4b73-bc15-5b759f244006",
     "SnakeStyleToggleAbility": "611bc4c4-7714-4f67-9957-24fe96a6d355",
+    "StartossStyleBuff": "c80de0e7-9f04-416b-9def-1d57095d9186",
+    "StartossStyleFeature": "10588b5e-9e59-45f2-8efe-a0c1df3b24f4",
+    "StartossStyleToggleAbility": "cddfef0e-83b4-4099-abf9-4db506680e37",
     "StartossCometAbility": "94bf22f0-44f6-4e2b-97e6-c93d1b4c4a57",
-    "StartossCometFeature": "e29e8ee4-6b5c-4206-9d39-235e0f47bacc"
+    "StartossCometFeature": "e29e8ee4-6b5c-4206-9d39-235e0f47bacc",
+    "StartossShowerFeature": "9f8f5dc3-170d-4cf5-b5ef-80e188e349c0"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

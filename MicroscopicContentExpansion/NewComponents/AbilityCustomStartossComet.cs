@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kingmaker;
+﻿using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Facts;
-using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Controllers;
 using Kingmaker.EntitySystem.Entities;
-using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
@@ -19,32 +11,38 @@ using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
 using Kingmaker.Utility;
-using Owlcat.Runtime.Core.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TabletopTweaks.Core.NewRules;
 using UnityEngine;
 
 
 namespace MicroscopicContentExpansion.NewComponents {
-    internal class AbilityCustomStartossComet : AbilityCustomLogic {
-        public int VitalStrikeMod;
+    public class AbilityCustomStartossComet : AbilityCustomLogic {
         [SerializeField]
         public BlueprintFeatureReference m_MythicBlueprint;
         [SerializeField]
         public BlueprintFeatureReference m_RowdyFeature;
-
+        [SerializeField]
+        public BlueprintFeatureReference m_StartossShower;
+        [SerializeField]
+        public BlueprintFeatureReference m_VitalStrike;
+        [SerializeField]
+        public BlueprintFeatureReference m_VitalStrikeImproved;
+        [SerializeField]
+        public BlueprintFeatureReference m_VitalStrikeGreater;
         public BlueprintFeature MythicBlueprint => this.m_MythicBlueprint?.Get();
 
         public BlueprintFeature RowdyFeature => this.m_RowdyFeature?.Get();
 
-        private LogChannel logChannel = LogChannelFactory.GetOrCreate("Mods");
-
         public override IEnumerator<AbilityDeliveryTarget> Deliver(AbilityExecutionContext context, TargetWrapper target) {
-            logChannel.Error("Startoss comet is a go!");
             var caster = context.MaybeCaster;
             var previousTarget = target.Unit;
             if (caster == null) {
                 PFLog.Default.Error(this, "Caster is missing", Array.Empty<object>());
                 yield break;
-            }                        
+            }
             var threatHand = caster.GetThreatHandRanged();
             if (threatHand == null) {
                 PFLog.Default.Error("Caster can't attack", Array.Empty<object>());
@@ -59,48 +57,68 @@ namespace MicroscopicContentExpansion.NewComponents {
 
             UnitEntityData maybeCaster = context.MaybeCaster;
             int attackBonusPenalty = 0;
-            AbilityCustomStartossComet.EventHandlers eventHandlers = new AbilityCustomStartossComet.EventHandlers();
-            eventHandlers.Add((object)new AbilityCustomStartossComet.VitalStrike(caster, this.VitalStrikeMod, maybeCaster.HasFact((BlueprintFact)this.MythicBlueprint), maybeCaster.HasFact((BlueprintFact)this.RowdyFeature)));
+            AbilityCustomStartossComet.EventHandlers eventHandlers = null;
+            if (maybeCaster.HasFact(m_VitalStrike)) {
+                var vitalStrikeMod = 2;
+                if (maybeCaster.HasFact(m_VitalStrikeImproved)) {
+                    vitalStrikeMod++;
+                }
+                if (maybeCaster.HasFact(m_VitalStrikeGreater)) {
+                    vitalStrikeMod++;
+                }
+                eventHandlers = new AbilityCustomStartossComet.EventHandlers();
+                eventHandlers.Add(new AbilityCustomStartossComet.VitalStrike(caster, vitalStrikeMod, maybeCaster.HasFact(MythicBlueprint), maybeCaster.HasFact(RowdyFeature)));
+            }
             RuleAttackWithWeapon rule = new RuleAttackWithWeapon(maybeCaster, originalTarget, caster.GetFirstWeapon(), attackBonusPenalty);
             RuleAttackWithWeapon firstAttack;
-            using (eventHandlers.Activate()) {
+
+            //collect adjacent targets (collect now instead of after, because if target dies too early (i.e. Rogue Master Strike), thing can fail.
+            previousTarget = originalTarget;
+            var targetList = new List<UnitEntityData> { };
+            foreach (UnitGroupMemory.UnitInfo unitInfo in caster.Memory.Enemies) {
+                UnitEntityData unit = unitInfo.Unit;
+                if (unit != originalTarget && unit.Descriptor.State.IsConscious && originalTarget.IsReach(unit, threatHand)) {
+                    targetList.Add(unit);
+                }
+            }
+            targetList.Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(originalTarget).CompareTo(u2.DistanceTo(originalTarget)));
+
+            if (eventHandlers != null) {
+                using (eventHandlers.Activate()) {
+                    firstAttack = context.TriggerRule(rule);
+                }
+            } else {
                 firstAttack = context.TriggerRule(rule);
             }
             yield return new AbilityDeliveryTarget(target);
 
             //then we chain if we hit
             if (firstAttack.AttackRoll.IsHit) {
-                var bab = caster.Stats.BaseAttackBonus.ModifiedValue;
+                var addAttacks = 1;
+                if (maybeCaster.HasFact(this.m_StartossShower)) {
+                    addAttacks = 1 + caster.Stats.BaseAttackBonus.ModifiedValue / 5;
+                }
+                List<UnitEntityData> hitTargets = new List<UnitEntityData>();
+                List<UnitEntityData> validTargets = new List<UnitEntityData>(targetList);
+                var weaponRange = threatHand.Weapon.AttackRange.Meters;
 
+                //wait 0.2 seconds before starting chaining
                 while (firstAttack.LaunchedProjectiles.Any(t => !t.IsHit)) {
                     if (firstAttack.LaunchedProjectiles.Any(t => t.Cleared)) {
                         yield break;
                     }
                     yield return null;
                 }
-                //wait 0.2 seconds before chaining
                 var initialStartTime = Game.Instance.TimeController.GameTime;
                 while (Game.Instance.TimeController.GameTime - initialStartTime < ((float)0.2f).Seconds())
                     yield return null;
 
-                previousTarget = originalTarget;
-                //collect adjacent targets
-                var targetList = new List<UnitEntityData> { };
-                foreach (UnitGroupMemory.UnitInfo unitInfo in caster.Memory.Enemies) {
-                    UnitEntityData unit = unitInfo.Unit;
-                    if (unit != originalTarget && unit.Descriptor.State.IsConscious && originalTarget.IsReach(unit, threatHand)) {
-                        targetList.Add(unit);
-                    }
-                }
-                targetList.Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(originalTarget).CompareTo(u2.DistanceTo(originalTarget)));
-                List<UnitEntityData> hitTargets = new List<UnitEntityData>();
-                List<UnitEntityData> validTargets = new List<UnitEntityData>(targetList);
-                var weaponRange = threatHand.Weapon.AttackRange.Meters;
 
                 while (validTargets.Count > 0) {
                     validTargets
                         .Sort((UnitEntityData u1, UnitEntityData u2) => u1.DistanceTo(previousTarget).CompareTo(u2.DistanceTo(previousTarget)));
                     validTargets = validTargets
+                        .Where(t => t.Descriptor.State.IsConscious)
                         .Where(t => t.DistanceTo(previousTarget) <= (t.View.Corpulence + previousTarget.View.Corpulence + weaponRange))
                         .ToList();
                     var currentTarget = validTargets.FirstOrDefault();
@@ -127,7 +145,7 @@ namespace MicroscopicContentExpansion.NewComponents {
                     hitTargets.Add(currentTarget);
                     previousTarget = currentTarget;
                     yield return new AbilityDeliveryTarget(currentTarget);
-                    if (hitTargets.Count > 5) {
+                    if (hitTargets.Count >= addAttacks) {
                         break;
                     }
                     validTargets = targetList.Where(t => !hitTargets.Contains(t)).ToList();
@@ -157,14 +175,13 @@ namespace MicroscopicContentExpansion.NewComponents {
         }
 
         public class VitalStrike :
-          IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
-          IRulebookHandler<RuleCalculateWeaponStats>,
-          ISubscriber,
-          IInitiatorRulebookSubscriber {
-            private readonly UnitEntityData m_Unit;
-            private int m_DamageMod;
-            private bool m_Mythic;
-            private bool m_Rowdy;
+            IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
+            IRulebookHandler<RuleCalculateWeaponStats>,
+            IInitiatorRulebookHandler<RulePrepareDamage>,
+            IRulebookHandler<RulePrepareDamage>,
+            IInitiatorRulebookHandler<RuleAttackWithWeapon>,
+            IRulebookHandler<RuleAttackWithWeapon>,
+            ISubscriber, IInitiatorRulebookSubscriber {
 
             public VitalStrike(UnitEntityData unit, int damageMod, bool mythic, bool rowdy) {
                 this.m_Unit = unit;
@@ -173,40 +190,90 @@ namespace MicroscopicContentExpansion.NewComponents {
                 this.m_Rowdy = rowdy;
             }
 
-            public UnitEntityData GetSubscribingUnit() => this.m_Unit;
+            public UnitEntityData GetSubscribingUnit() {
+                return this.m_Unit;
+            }
 
             public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt) {
             }
 
             public void OnEventDidTrigger(RuleCalculateWeaponStats evt) {
-                DamageDescription damageDescription1 = evt.DamageDescription.FirstItem<DamageDescription>();
-                if (damageDescription1 == null || damageDescription1.TypeDescription.Type != DamageType.Physical)
-                    return;
-                damageDescription1.Dice = new DiceFormula(damageDescription1.Dice.Rolls * this.m_DamageMod, damageDescription1.Dice.Dice);
-                if (this.m_Mythic)
-                    damageDescription1.Bonus *= this.m_DamageMod;
-                if (!this.m_Rowdy || evt.Initiator.Descriptor.Stats.SneakAttack.ModifiedValue <= 0)
-                    return;
-                DamageDescription damageDescription2 = new DamageDescription();
-                DamageTypeDescription typeDescription = evt.DamageDescription.FirstItem<DamageDescription>().TypeDescription;
-                damageDescription2.TypeDescription = new DamageTypeDescription() {
-                    Common = new DamageTypeDescription.CommomData() {
-                        Alignment = typeDescription.Common.Alignment,
-                        Precision = true,
-                        Reality = typeDescription.Common.Reality
-                    },
-                    Energy = typeDescription.Energy,
-                    Physical = new DamageTypeDescription.PhysicalData() {
-                        Enhancement = typeDescription.Physical.Enhancement,
-                        EnhancementTotal = typeDescription.Physical.EnhancementTotal,
-                        Form = typeDescription.Physical.Form,
-                        Material = typeDescription.Physical.Material
-                    },
-                    Type = typeDescription.Type
-                };
-                damageDescription2.Dice = new DiceFormula(2 * evt.Initiator.Descriptor.Stats.SneakAttack.ModifiedValue, DiceType.D6);
-                evt.DamageDescription.Add(damageDescription2);
+                DamageDescription damageDescription = evt.DamageDescription.FirstItem();
+                if (damageDescription != null && damageDescription.TypeDescription.Type == DamageType.Physical) {
+                    var vitalDamage = new DamageDescription() {
+                        Dice = new DiceFormula(damageDescription.Dice.Rolls * Math.Max(1, this.m_DamageMod - 1), damageDescription.Dice.Dice),
+                        Bonus = this.m_Mythic ? damageDescription.Bonus * Math.Max(1, this.m_DamageMod - 1) : 0,
+                        TypeDescription = damageDescription.TypeDescription,
+                        IgnoreReduction = damageDescription.IgnoreReduction,
+                        IgnoreImmunities = damageDescription.IgnoreImmunities,
+                        SourceFact = damageDescription.SourceFact,
+                        CausedByCheckFail = damageDescription.CausedByCheckFail,
+                        m_BonusWithSource = 0
+                    };
+                    evt.DamageDescription.Insert(1, vitalDamage);
+                }
             }
+            public void OnEventAboutToTrigger(RuleAttackWithWeapon evt) {
+            }
+
+            //For Ranged - Handling of damage calcs does not occur the same due to projectiles
+            public void OnEventDidTrigger(RuleAttackWithWeapon evt) {
+                if (!m_Rowdy) { return; }
+                RuleAttackRoll ruleAttackRoll = evt.AttackRoll;
+                if (ruleAttackRoll == null) { return; }
+                if (evt.Initiator.Stats.SneakAttack < 1) { return; }
+                if (!ruleAttackRoll.TargetUseFortification) {
+                    var FortificationCheck = Rulebook.Trigger<RuleFortificationCheck>(new RuleFortificationCheck(ruleAttackRoll));
+                    if (FortificationCheck.UseFortification) {
+                        ruleAttackRoll.FortificationChance = FortificationCheck.FortificationChance;
+                        ruleAttackRoll.FortificationRoll = FortificationCheck.Roll;
+                    }
+                }
+                if (!ruleAttackRoll.TargetUseFortification || ruleAttackRoll.FortificationOvercomed) {
+                    DamageTypeDescription damageTypeDescription = evt.ResolveRules
+                        .Select(e => e.Damage).First()
+                        .DamageBundle.First<BaseDamage>().CreateTypeDescription();
+                    int rowdyDice = evt.Initiator.Stats.SneakAttack * 2;
+                    DiceFormula dice = new DiceFormula(rowdyDice, DiceType.D6);
+                    BaseDamage baseDamage = damageTypeDescription.GetDamageDescriptor(dice, 0).CreateDamage();
+                    baseDamage.Precision = true;
+                    evt.ResolveRules.Select(e => e.Damage)
+                        .ForEach(e => e.Add(baseDamage));
+                }
+            }
+
+            //For Melee
+            public void OnEventAboutToTrigger(RulePrepareDamage evt) {
+                if (!m_Rowdy) { return; }
+                RuleAttackRoll ruleAttackRoll = evt.ParentRule.AttackRoll;
+                if (ruleAttackRoll == null) { return; }
+                if (evt.Initiator.Stats.SneakAttack < 1) { return; }
+                if (!ruleAttackRoll.TargetUseFortification) {
+                    var FortificationCheck = Rulebook.Trigger<RuleFortificationCheck>(new RuleFortificationCheck(ruleAttackRoll));
+                    if (FortificationCheck.UseFortification) {
+                        ruleAttackRoll.FortificationChance = FortificationCheck.FortificationChance;
+                        ruleAttackRoll.FortificationRoll = FortificationCheck.Roll;
+                    }
+                }
+                if (!ruleAttackRoll.TargetUseFortification || ruleAttackRoll.FortificationOvercomed) {
+                    DamageTypeDescription damageTypeDescription = evt.DamageBundle
+                        .First()
+                        .CreateTypeDescription();
+                    int rowdyDice = evt.Initiator.Stats.SneakAttack * 2;
+                    DiceFormula dice = new DiceFormula(rowdyDice, DiceType.D6);
+                    BaseDamage baseDamage = damageTypeDescription.GetDamageDescriptor(dice, 0).CreateDamage();
+                    baseDamage.Precision = true;
+                    evt.Add(baseDamage);
+                }
+            }
+
+            public void OnEventDidTrigger(RulePrepareDamage evt) {
+            }
+
+            private readonly UnitEntityData m_Unit;
+            private int m_DamageMod;
+            private bool m_Mythic;
+            private bool m_Rowdy;
         }
     }
 }
