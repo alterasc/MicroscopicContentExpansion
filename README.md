@@ -28,6 +28,9 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 - [Snake Style](https://www.d20pfsrd.com/feats/combat-feats/snake-style-combat-style)
 - [Snake Sidewind](https://www.d20pfsrd.com/feats/combat-feats/snake-sidewind-combat)
 - [Snake Fang](https://www.d20pfsrd.com/feats/combat-feats/snake-fang-combat)
+- [Startoss Style](https://www.d20pfsrd.com/feats/combat-feats/startoss-style-combat-style)
+- [Startoss Comet](https://www.d20pfsrd.com/feats/combat-feats/startoss-comet-combat)
+- [Startoss Shower](https://www.d20pfsrd.com/feats/combat-feats/startoss-shower-combat)
 
 ### New spells
 
