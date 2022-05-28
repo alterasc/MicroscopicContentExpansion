@@ -35,12 +35,18 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
             }
 
             private static void AddStartossChain() {
-                var snakeStyleIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "Snake.png");
+                var startossStyleIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "StartossStyle.png");
+                var startossCometIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "StartossComet.png");
 
                 var startossCometAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "StartossCometAbility", bp => {
                     bp.SetName(MCEContext, "Startoss Comet");
-                    bp.SetDescription(MCEContext, "Startoss Comet");
-                    bp.m_Icon = snakeStyleIcon;
+                    bp.SetDescription(MCEContext, "As a standard action, you can make a single ranged thrown weapon attack at your " +
+                        "full attack bonus with the chosen weapon. If you hit, you deal damage normally and can make a second attack " +
+                        "(at your full attack bonus) against a target within one range increment of the first. You determine cover for " +
+                        "this attack from the first target’s space instead of your space.You can make only one additional attack per round " +
+                        "with this feat.If you have Vital Strike, Improved Vital Strike, or Greater Vital Strike, you can add the additional " +
+                        "damage from those feats to the initial ranged attack(but not the second attack).");
+                    bp.m_Icon = startossStyleIcon;
                     bp.AddComponent<AbilityCustomStartossComet>(c => {
                         c.VitalStrikeMod = 1;
                         c.m_MythicBlueprint = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("e07bcb271ecefec44be314e1c807c798");
@@ -57,8 +63,13 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
 
                 var startossCometFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "StartossCometFeature", bp => {
                     bp.SetName(MCEContext, "Startoss Comet");
-                    bp.SetDescription(MCEContext, "Startoss Comet");
-                    bp.m_Icon = snakeStyleIcon;
+                    bp.SetDescription(MCEContext, "As a standard action, you can make a single ranged thrown weapon attack at your " +
+                        "full attack bonus with the chosen weapon. If you hit, you deal damage normally and can make a second attack " +
+                        "(at your full attack bonus) against a target within one range increment of the first. You determine cover for " +
+                        "this attack from the first target’s space instead of your space.You can make only one additional attack per round " +
+                        "with this feat.If you have Vital Strike, Improved Vital Strike, or Greater Vital Strike, you can add the additional " +
+                        "damage from those feats to the initial ranged attack(but not the second attack).");
+                    bp.m_Icon = startossStyleIcon;
                     bp.IsClassFeature = true;
                     bp.Groups = new FeatureGroup[] {
                         FeatureGroup.CombatFeat,
