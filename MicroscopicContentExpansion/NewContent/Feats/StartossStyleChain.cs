@@ -41,6 +41,8 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         "a character with this feat and the weapon training(thrown) class feature can use Startoss Style with any thrown weapons " +
                         "that she wields in one hand.");
                     bp.m_Icon = startossStyleIcon;
+                    bp.FxOnStart = new Kingmaker.ResourceLinks.PrefabLink();
+                    bp.FxOnRemove = new Kingmaker.ResourceLinks.PrefabLink();
                 });
 
                 var startossStyleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "StartossStyleToggleAbility", bp => {

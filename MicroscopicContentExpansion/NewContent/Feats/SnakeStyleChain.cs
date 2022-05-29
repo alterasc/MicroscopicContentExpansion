@@ -44,6 +44,8 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.Descriptor = ModifierDescriptor.Dodge;
                         c.Value = 2;
                     });
+                    bp.FxOnStart = new Kingmaker.ResourceLinks.PrefabLink();
+                    bp.FxOnRemove = new Kingmaker.ResourceLinks.PrefabLink();
                 });
 
                 var snakeStyleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "SnakeStyleToggleAbility", bp => {
