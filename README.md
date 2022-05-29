@@ -5,9 +5,9 @@ Add microscopic amount of new features. May or may not grow further in scope. Th
 
 ## Featuring
 
-### Alternate capstone
+### Alternate capstone (Now disabled by default, as TTT now has it too)
 
-- Monk alternative capstone [Old Master](https://www.d20pfsrd.com/classes/core-classes/monk/#Old_Master_Ex). You get an option of choosing standard capstone or alternative one.
+- Monk alternative capstone [Old Master](https://www.d20pfsrd.com/classes/core-classes/monk/#Old_Master_Ex). You get an option of choosing standard capstone or alternative one. 
 
     At 20th level, the monk has reached the highest levels of his martial arts school. The monk gains one additional attack at his highest base attack bonus when using flurry of blows, and his dodge bonus to AC increases by 2.           
 

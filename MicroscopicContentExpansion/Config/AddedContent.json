@@ -4,9 +4,9 @@
     "DisableAll": false,
     "Settings": {
       "MonkOldMaster": {
-        "Enabled": true,
+        "Enabled": false,
         "Homebrew": false,
-        "Description": "Adds Old Master alternative capstone to Monk"
+        "Description": "Adds Old Master alternative capstone to Monk - disabled by default, as TTT has it now too"
       }
     },
     "IsExpanded": true

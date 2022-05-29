@@ -37,7 +37,7 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
                     bp.HideInCharacterSheetAndLevelUp = true;
                 });
 
-                var AddDodgeBonusBuff = Helpers.CreateBuff(MCEContext, "MonkOldMasterACBuff", bp => {
+                var AddDodgeBonusBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "MonkOldMasterACBuff", bp => {
                     bp.m_Flags = BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.StayOnDeath;
                     bp.SetName(MCEContext, "Old Master");
                     bp.IsClassFeature = true;
