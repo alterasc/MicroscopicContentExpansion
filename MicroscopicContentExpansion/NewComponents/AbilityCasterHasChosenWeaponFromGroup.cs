@@ -25,7 +25,6 @@ namespace MicroscopicContentExpansion.NewComponents {
 
         private bool HasSuitableWeapon(WeaponSlot slot) {
             return slot.MaybeWeapon != null
-                && slot.MaybeWeapon.Blueprint.IsRanged
                 && slot.MaybeWeapon.Blueprint.FighterGroup.Contains(WeaponGroup)
                 && (slot.Owner.GetFeature(ChosenWeaponFeature, (FeatureParam)slot.MaybeWeapon.Blueprint.Category) != null
                     || slot.Owner.HasFact(WeaponGroupReference))

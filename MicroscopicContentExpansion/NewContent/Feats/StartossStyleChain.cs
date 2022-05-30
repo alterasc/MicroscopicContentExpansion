@@ -7,6 +7,7 @@ using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
@@ -85,7 +86,10 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.Value = 13;
                     });
                     bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0da0c194d6e1d43419eb8d990b28e0ab"));
-                    bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e"));
+                    bp.AddComponent<PrerequisiteParametrizedWeaponSubcategory>(c => {
+                        c.m_Feature = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
+                        c.SubCategory = Kingmaker.Enums.WeaponSubCategory.Thrown;
+                    });
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { startossStyleAbility.ToReference<BlueprintUnitFactReference>() };
                     });
@@ -112,6 +116,9 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.WeaponGroup = Kingmaker.Blueprints.Items.Weapons.WeaponFighterGroup.Thrown;
                         c.ChosenWeaponFeature = BlueprintTools.GetBlueprintReference<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
                         c.WeaponGroupReference = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0bbf10151dd1d8d4c8653d245e425453");
+                    });
+                    bp.AddComponent<AbilityCasterHasFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] { startossStyleBuff.ToReference<BlueprintUnitFactReference>() };
                     });
                 });
 

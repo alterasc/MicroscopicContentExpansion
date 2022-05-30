@@ -60,21 +60,17 @@ namespace MicroscopicContentExpansion.NewComponents {
             return weapon.Blueprint.IsRanged
                 && weapon.Blueprint.FighterGroup.Contains(WeaponGroup)
                 && (HasSuitableWeapon(Owner.Body.PrimaryHand) || Owner.HasFact(WeaponGroupReference))
-                && IsOffHandFree();
+                && IsOffHandNotHoldingAnotherWeapon();
         }
 
-        private bool IsOffHandFree() {
+        private bool IsOffHandNotHoldingAnotherWeapon() {
             var secondaryHand = Owner.Body.CurrentHandsEquipmentSet.SecondaryHand;
-            var primaryHand = Owner.Body.CurrentHandsEquipmentSet.PrimaryHand;
             bool hasFreeHand = true;
             if (secondaryHand.HasShield) {
                 var maybeShield = secondaryHand.MaybeShield;
                 hasFreeHand = maybeShield.Blueprint.Type.ProficiencyGroup == ArmorProficiencyGroup.Buckler;
             } else if (secondaryHand.HasWeapon && secondaryHand.MaybeWeapon != Owner.Body.EmptyHandWeapon) {
                 hasFreeHand = false;
-            }
-            if (primaryHand.HasWeapon) {
-                hasFreeHand &= !primaryHand.MaybeWeapon.HoldInTwoHands;
             }
             return hasFreeHand;
         }
