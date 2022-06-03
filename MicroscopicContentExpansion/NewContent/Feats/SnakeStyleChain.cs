@@ -171,7 +171,6 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
 
                 snakeStyleBuff.AddComponent<SnakeFangOnMissHandler>(c => {
                     c.m_Fact = snakeFangFeature.ToReference<BlueprintUnitFactReference>();
-                    c.Action = ActionFlow.DoSingle<ContextActionProvokeAttackOfOpportunity>();
                 });
             }
         }
