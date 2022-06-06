@@ -77,10 +77,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.Value = 13;
                     });
                     bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0da0c194d6e1d43419eb8d990b28e0ab"));
-                    bp.AddComponent<PrerequisiteParametrizedWeaponSubcategory>(c => {
-                        c.m_Feature = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
-                        c.SubCategory = Kingmaker.Enums.WeaponSubCategory.Thrown;
-                    });
+                    bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e"));
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { startossStyleAbility.ToReference<BlueprintUnitFactReference>() };
                     });
