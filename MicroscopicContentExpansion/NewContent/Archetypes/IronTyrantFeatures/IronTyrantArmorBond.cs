@@ -12,6 +12,7 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using MicroscopicContentExpansion.NewComponents;
 using TabletopTweaks.Core.Utilities;
 using static Kingmaker.Blueprints.BlueprintAbilityResource;
 using static MicroscopicContentExpansion.Main;
@@ -78,7 +79,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                 bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent<AbilityEffectRunAction>(c => {
                     c.Actions = Helpers.CreateActionList(
-                        new ContextActionArmorEnchantPool() {
+                        new ContextActionArmorEnchantPoolMCE() {
                             Group = ActivatableAbilityGroup.DivineWeaponProperty,
                             EnchantPool = EnchantPoolType.SacredArmorPool,
                             m_DefaultEnchantments = new BlueprintItemEnchantmentReference[] {

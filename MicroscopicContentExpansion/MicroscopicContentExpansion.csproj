@@ -164,6 +164,7 @@
     <Compile Include="Fixes\RadianceFix.cs" />
     <Compile Include="NewComponents\AbilityCasterHasChosenWeaponFromGroup.cs" />
     <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
+    <Compile Include="NewComponents\ContextActionArmorEnchantPoolMCE.cs" />
     <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
     <Compile Include="NewComponents\RuleAttackWithWeaponChaining.cs" />
