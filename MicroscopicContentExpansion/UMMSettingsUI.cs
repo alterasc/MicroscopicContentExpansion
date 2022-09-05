@@ -24,7 +24,7 @@ namespace MicroscopicContentExpansion {
                 UI.Toggle("New Settings Off By Default".bold(), ref AddedContent.NewSettingsOffByDefault);
                 UI.Space(25);
 
-                SetttingUI.SettingGroup("AlternativeCapstones", TabLevel, AddedContent.AlternativeCapstones);
+                SetttingUI.SettingGroup("Spells", TabLevel, AddedContent.Spells);
                 SetttingUI.SettingGroup("NewClasses", TabLevel, AddedContent.NewClasses);
             }
         }

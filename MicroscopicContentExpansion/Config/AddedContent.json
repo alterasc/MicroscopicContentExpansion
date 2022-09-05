@@ -1,12 +1,12 @@
 ﻿{
   "NewSettingsOffByDefault": false,
-  "AlternativeCapstones": {
+  "Spells": {
     "DisableAll": false,
     "Settings": {
-      "MonkOldMaster": {
-        "Enabled": false,
+      "DeadlyJuggernaut": {
+        "Enabled": true,
         "Homebrew": false,
-        "Description": "Adds Old Master alternative capstone to Monk - disabled by default, as TTT has it now too"
+        "Description": "Adds Deadly Juggernaut spell to Cleric, Inquisitor and Paladin spell lists"
       }
     },
     "IsExpanded": true

@@ -123,21 +123,7 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
                 var QMFoBUnlockComponent = BlueprintTools.GetBlueprint<BlueprintFeature>("44b0f313ec56481eb447019fbe714330")
                     .GetComponent<MonkNoArmorAndMonkWeaponFeatureUnlock>();
                 var OldMasterQM = CreateOMForArchetype("MonkQMOldMasterFeature", QMFoBUnlockComponent);
-                var MonkQMCapstoneSelection = CreateCapstoneSelection("MonkQMCapstoneSelection", OldMasterQM);
-
-                if (MCEContext.AddedContent.AlternativeCapstones.IsDisabled("MonkOldMaster")) { return; }
-
-                Lvl20.m_Features.Remove(MonkPerfectSelf.ToReference<BlueprintFeatureBaseReference>());
-                Lvl20.m_Features.Add(MonkCapstoneSelection.ToReference<BlueprintFeatureBaseReference>());
-
-                RemoveFeatureFromArchetype(Sohei, 20, MonkCapstoneSelection);
-                AddFeatureToArchetype(Sohei, 20, MonkSoheiCapstoneSelection);
-                RemoveFeatureFromArchetype(ZenArcher, 20, MonkCapstoneSelection);
-                AddFeatureToArchetype(ZenArcher, 20, MonkZenArcherCapstoneSelection);
-                RemoveFeatureFromArchetype(Sensei, 20, MonkCapstoneSelection);
-                AddFeatureToArchetype(Sensei, 20, MonkSenseiCapstoneSelection);
-                RemoveFeatureFromArchetype(QuarterstaffMaster, 20, MonkCapstoneSelection);
-                AddFeatureToArchetype(QuarterstaffMaster, 20, MonkQMCapstoneSelection);
+                var MonkQMCapstoneSelection = CreateCapstoneSelection("MonkQMCapstoneSelection", OldMasterQM);                
             }
         }
 

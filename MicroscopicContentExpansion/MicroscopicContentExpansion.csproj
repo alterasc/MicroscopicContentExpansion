@@ -161,7 +161,6 @@
   <ItemGroup>
     <Compile Include="Config\Fixes.cs" />
     <Compile Include="Config\AddedContent.cs" />
-    <Compile Include="Fixes\RadianceFix.cs" />
     <Compile Include="NewComponents\AbilityCasterHasChosenWeaponFromGroup.cs" />
     <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
     <Compile Include="NewComponents\ContextActionArmorEnchantPoolMCE.cs" />
@@ -246,6 +245,9 @@
     <Content Include="Assets\StartossStyle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fixes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" AfterTargets="BeforeClean">
