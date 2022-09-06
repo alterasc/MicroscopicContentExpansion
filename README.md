@@ -19,12 +19,14 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 ### New feats
 
 - [Unsanctioned Knowledge (antipaladin version only)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
-- [Snake Style](https://www.d20pfsrd.com/feats/combat-feats/snake-style-combat-style)
-- [Snake Sidewind](https://www.d20pfsrd.com/feats/combat-feats/snake-sidewind-combat)
-- [Snake Fang](https://www.d20pfsrd.com/feats/combat-feats/snake-fang-combat)
-- [Startoss Style](https://www.d20pfsrd.com/feats/combat-feats/startoss-style-combat-style)
-- [Startoss Comet](https://www.d20pfsrd.com/feats/combat-feats/startoss-comet-combat)
-- [Startoss Shower](https://www.d20pfsrd.com/feats/combat-feats/startoss-shower-combat)
+- Snake style feat chain
+	- [Snake Style](https://www.d20pfsrd.com/feats/combat-feats/snake-style-combat-style)
+	- [Snake Sidewind](https://www.d20pfsrd.com/feats/combat-feats/snake-sidewind-combat)
+	- [Snake Fang](https://www.d20pfsrd.com/feats/combat-feats/snake-fang-combat)
+- Startoss style feat chain
+	- [Startoss Style](https://www.d20pfsrd.com/feats/combat-feats/startoss-style-combat-style)
+	- [Startoss Comet](https://www.d20pfsrd.com/feats/combat-feats/startoss-comet-combat)
+	- [Startoss Shower](https://www.d20pfsrd.com/feats/combat-feats/startoss-shower-combat)
 
 ### New spells
 
@@ -35,7 +37,6 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 - Ki Power: Deadly Juggernaut
 ### Fixes
 
-- Radiance +6 special enchantment fix. (Without this fix you won't get Holy/Bane Living alignment conditional buff after you upgrade Radiance from +4 to +6)
 
 ## Thanks to  
 -   bubbles and Vek17 specifically   
