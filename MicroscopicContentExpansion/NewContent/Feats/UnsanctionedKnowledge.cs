@@ -42,17 +42,13 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         CreateSelection(4)
                     )
                 };
-                bp.AddPrerequisite<PrerequisiteClassLevel>(c => {
+                bp.AddPrerequisite<PrerequisiteClassSpellLevel>(c => {
                     c.m_CharacterClass = AntipaladinClassRef;
-                    c.Level = 4;
+                    c.RequiredSpellLevel = 1;
                 });
                 bp.AddPrerequisite<PrerequisiteStatValue>(c => {
                     c.Stat = Kingmaker.EntitySystem.Stats.StatType.Intelligence;
                     c.Value = 13;
-                });
-                bp.AddPrerequisite<PrerequisiteCasterTypeSpellLevel>(c => {
-                    c.IsArcane = false;
-                    c.RequiredSpellLevel = 1;
                 });
             });
 
