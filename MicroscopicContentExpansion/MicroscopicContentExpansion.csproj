@@ -193,7 +193,6 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
     <Compile Include="NewContent\Feats\StartossStyleChain.cs" />
     <Compile Include="NewContent\Feats\SnakeStyleChain.cs" />
-    <Compile Include="NewContent\Feats\FuriousFocus.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
     <Compile Include="NewContent\Spells\BladeofDarkTriumph.cs" />
     <Compile Include="NewContent\Spells\DeadlyJuggernaut.cs" />
