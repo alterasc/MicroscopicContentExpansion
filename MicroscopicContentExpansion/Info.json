@@ -9,6 +9,6 @@
   "ManagerVersion": "0.23.0",
   "Repository": "https://raw.githubusercontent.com/alterasc/MicroscopicContentExpansion/master/Repository.json",
   "Requirements": [ "TabletopTweaks-Core" ],
-  "LoadAfter": [ "TabletopTweaks-Core" ],
+  "LoadAfter": [ "TabletopTweaks-Core", "MewsiferConsole.Mod" ],
   "Version": "1.4.7"
 }
