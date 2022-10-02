@@ -1,4 +1,4 @@
-﻿# Microscopic Content Expansion mod for Pathfinder: Wrath of the Righteous 
+# Microscopic Content Expansion mod for Pathfinder: Wrath of the Righteous 
 ## Requirements: [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core/releases).
 
 Add microscopic amount of new features. May or may not grow further in scope. The latter is more likely.   
