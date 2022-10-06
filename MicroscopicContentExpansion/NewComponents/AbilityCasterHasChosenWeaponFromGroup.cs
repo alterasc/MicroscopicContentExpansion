@@ -1,6 +1,7 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.Items.Weapons;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items.Slots;
@@ -12,6 +13,7 @@ using System.Linq;
 namespace MicroscopicContentExpansion.NewComponents {
     [AllowedOn(typeof(BlueprintAbility), false)]
     [AllowMultipleComponents]
+    [TypeId("3eee2cfa0d254f78b495be783a635f4e")]
     public class AbilityCasterHasChosenWeaponFromGroup : BlueprintComponent, IAbilityCasterRestriction {
         public BlueprintParametrizedFeatureReference ChosenWeaponFeature;
         public WeaponFighterGroup WeaponGroup;

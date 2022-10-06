@@ -1,6 +1,7 @@
 ﻿using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Controllers;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.PubSubSystem;
@@ -19,6 +20,7 @@ using UnityEngine;
 
 
 namespace MicroscopicContentExpansion.NewComponents {
+    [TypeId("73cfbad567f948ae87712cb76d59d879")]
     public class AbilityCustomStartossComet : AbilityCustomLogic {
         [SerializeField]
         public BlueprintFeatureReference m_MythicBlueprint;

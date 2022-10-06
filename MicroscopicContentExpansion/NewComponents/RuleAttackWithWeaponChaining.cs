@@ -3,6 +3,7 @@ using Kingmaker;
 using Kingmaker.Armies.TacticalCombat;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Weapons;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Controllers.Projectiles;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
@@ -15,6 +16,7 @@ using Kingmaker.Utility;
 using System.Linq;
 
 namespace MicroscopicContentExpansion.NewComponents {
+    [TypeId("a3477f19abb04c9ab98337f9e31d0392")]
     class RuleAttackWithWeaponChaining : RuleAttackWithWeapon {
 
         public UnitEntityData Source { get; set; }

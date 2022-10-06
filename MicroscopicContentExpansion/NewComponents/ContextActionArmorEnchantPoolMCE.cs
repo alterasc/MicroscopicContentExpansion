@@ -1,5 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Ecnchantments;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic.ActivatableAbilities;
@@ -15,7 +16,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace MicroscopicContentExpansion.NewComponents {
-    internal class ContextActionArmorEnchantPoolMCE : ContextAction {
+    [TypeId("b0880fc55e33413db74fe74d0f4ef3aa")]
+    public class ContextActionArmorEnchantPoolMCE : ContextAction {
         public EnchantPoolType EnchantPool;
         public ActivatableAbilityGroup Group;
         [SerializeField]
