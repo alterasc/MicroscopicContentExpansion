@@ -3,7 +3,9 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Controllers;
+using Kingmaker.EntitySystem;
 using Kingmaker.EntitySystem.Entities;
+using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
@@ -16,8 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.NewRules;
+using TabletopTweaks.Core.Utilities;
 using UnityEngine;
-
 
 namespace MicroscopicContentExpansion.NewComponents {
     [TypeId("73cfbad567f948ae87712cb76d59d879")]
@@ -59,17 +61,21 @@ namespace MicroscopicContentExpansion.NewComponents {
 
             UnitEntityData maybeCaster = context.MaybeCaster;
             int attackBonusPenalty = 0;
-            AbilityCustomStartossComet.EventHandlers eventHandlers = null;
+            EventHandlers eventHandlers = null;
+            var vitalStrikeMod = 1;
             if (maybeCaster.HasFact(m_VitalStrike)) {
-                var vitalStrikeMod = 2;
-                if (maybeCaster.HasFact(m_VitalStrikeImproved)) {
-                    vitalStrikeMod++;
-                }
-                if (maybeCaster.HasFact(m_VitalStrikeGreater)) {
-                    vitalStrikeMod++;
-                }
-                eventHandlers = new AbilityCustomStartossComet.EventHandlers();
-                eventHandlers.Add(new AbilityCustomStartossComet.VitalStrike(caster, vitalStrikeMod, maybeCaster.HasFact(MythicBlueprint), maybeCaster.HasFact(RowdyFeature)));
+                vitalStrikeMod = 2;
+            }
+            if (maybeCaster.HasFact(m_VitalStrikeImproved)) {
+                vitalStrikeMod = 3;
+            }
+            if (maybeCaster.HasFact(m_VitalStrikeGreater)) {
+                vitalStrikeMod = 4;
+            }
+            if (vitalStrikeMod > 1) {
+                eventHandlers = new EventHandlers();
+                eventHandlers.Add(new VitalStrikeEventHandler(caster, vitalStrikeMod, maybeCaster.HasFact(MythicBlueprint),
+                    maybeCaster.HasFact(RowdyFeature), context.Ability.Fact));
             }
             RuleAttackWithWeapon rule = new RuleAttackWithWeapon(maybeCaster, originalTarget, caster.GetFirstWeapon(), attackBonusPenalty);
             RuleAttackWithWeapon firstAttack;
@@ -164,7 +170,7 @@ namespace MicroscopicContentExpansion.NewComponents {
 
             public void Add(object handler) => this.m_Handlers.Add(handler);
 
-            public AbilityCustomStartossComet.EventHandlers Activate() {
+            public EventHandlers Activate() {
                 foreach (object handler in this.m_Handlers)
                     EventBus.Subscribe(handler);
                 return this;
@@ -175,21 +181,23 @@ namespace MicroscopicContentExpansion.NewComponents {
                     EventBus.Unsubscribe(handler);
             }
         }
+        /**
+         * Copyright (c) 2021 Sean Petrie (Vek17)
+         */
+        private class VitalStrikeEventHandler : IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
+                IRulebookHandler<RuleCalculateWeaponStats>,
+                IInitiatorRulebookHandler<RulePrepareDamage>,
+                IRulebookHandler<RulePrepareDamage>,
+                IInitiatorRulebookHandler<RuleAttackWithWeapon>,
+                IRulebookHandler<RuleAttackWithWeapon>,
+                ISubscriber, IInitiatorRulebookSubscriber {
 
-        public class VitalStrike :
-            IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
-            IRulebookHandler<RuleCalculateWeaponStats>,
-            IInitiatorRulebookHandler<RulePrepareDamage>,
-            IRulebookHandler<RulePrepareDamage>,
-            IInitiatorRulebookHandler<RuleAttackWithWeapon>,
-            IRulebookHandler<RuleAttackWithWeapon>,
-            ISubscriber, IInitiatorRulebookSubscriber {
-
-            public VitalStrike(UnitEntityData unit, int damageMod, bool mythic, bool rowdy) {
+            public VitalStrikeEventHandler(UnitEntityData unit, int damageMod, bool mythic, bool rowdy, EntityFact fact) {
                 this.m_Unit = unit;
                 this.m_DamageMod = damageMod;
                 this.m_Mythic = mythic;
                 this.m_Rowdy = rowdy;
+                this.m_Fact = fact;
             }
 
             public UnitEntityData GetSubscribingUnit() {
@@ -202,25 +210,57 @@ namespace MicroscopicContentExpansion.NewComponents {
             public void OnEventDidTrigger(RuleCalculateWeaponStats evt) {
                 DamageDescription damageDescription = evt.DamageDescription.FirstItem();
                 if (damageDescription != null && damageDescription.TypeDescription.Type == DamageType.Physical) {
-                    var vitalDamage = new DamageDescription() {
-                        Dice = new DiceFormula(damageDescription.Dice.Rolls * Math.Max(1, this.m_DamageMod - 1), damageDescription.Dice.Dice),
-                        Bonus = this.m_Mythic ? damageDescription.Bonus * Math.Max(1, this.m_DamageMod - 1) : 0,
-                        TypeDescription = damageDescription.TypeDescription,
-                        IgnoreReduction = damageDescription.IgnoreReduction,
-                        IgnoreImmunities = damageDescription.IgnoreImmunities,
-                        SourceFact = damageDescription.SourceFact,
-                        CausedByCheckFail = damageDescription.CausedByCheckFail,
-                        m_BonusWithSource = 0
-                    };
+                    if (!evt.DoNotScaleDamage
+                            && (evt.WeaponDamageDice.HasModifications
+                                || !evt.Weapon.Blueprint.IsDamageDiceOverridden
+                                || (evt.Initiator.IsPlayerFaction && !evt.Initiator.Body.IsPolymorphed)
+                                || evt.IsDefaultUnit)) {
+                        //DiceFormula diceFormula = WeaponDamageScaleTable.Scale(evt.WeaponDamageDice.ModifiedValue, evt.WeaponSize, Size.Medium, evt.Weapon.Blueprint);
+                        //if (diceFormula != evt.WeaponDamageDice.ModifiedValue) {
+                        //    evt.WeaponDamageDice.Modify(diceFormula, ModifierDescriptor.Size);
+                        //}
+                    }
+                    var vitalDamage = CalculateVitalDamage(evt);
+                    //new DamageDescription() {
+                    //Dice = new DiceFormula(damageDescription.Dice.Rolls * Math.Max(1, this.m_DamageMod - 1), damageDescription.Mo.Dice.Dice),
+                    //Bonus = this.m_Mythic ? damageDescription.Bonus * Math.Max(1, this.m_DamageMod - 1) : 0,
+                    //TypeDescription = damageDescription.TypeDescription,
+                    //IgnoreReduction = damageDescription.IgnoreReduction,
+                    //IgnoreImmunities = damageDescription.IgnoreImmunities,
+                    //SourceFact = this.m_Fact,
+                    //CausedByCheckFail = damageDescription.CausedByCheckFail,
+                    //m_BonusWithSource = 0
+                    //};
                     evt.DamageDescription.Insert(1, vitalDamage);
                 }
             }
+
+            private DamageDescription CalculateVitalDamage(RuleCalculateWeaponStats evt) {
+                var WeaponDice = new ModifiableDiceFormula(evt.WeaponDamageDice.ModifiedValue);
+                //var WeaponDice = new ModifiableDiceFormula(evt.WeaponDamageDice.BaseFormula);
+                //WeaponDice.m_Modifications = evt.WeaponDamageDice.Modifications.ToList();
+                WeaponDice.Modify(new DiceFormula(WeaponDice.ModifiedValue.Rolls * Math.Max(1, this.m_DamageMod - 1), WeaponDice.ModifiedValue.Dice), m_Fact);
+
+                DamageDescription damageDescriptor = evt.Weapon.Blueprint.DamageType.GetDamageDescriptor(WeaponDice, evt.Initiator.Stats.AdditionalDamage.BaseValue);
+                damageDescriptor.TemporaryContext(dd => {
+                    dd.TypeDescription.Physical.Enhancement = evt.Enhancement;
+                    dd.TypeDescription.Physical.EnhancementTotal = evt.EnhancementTotal + evt.Weapon.EnchantmentValue;
+                    if (this.m_Mythic) {
+                        dd.AddModifier(new Modifier(evt.DamageDescription.FirstItem().Bonus * Math.Max(1, this.m_DamageMod - 1), evt.Initiator.GetFact(m_Fact.Blueprint.GetComponent<AbilityCustomStartossComet>().MythicBlueprint), ModifierDescriptor.UntypedStackable));
+                    }
+                    dd.TypeDescription.Common.Alignment = evt.Alignment;
+                    dd.SourceFact = m_Fact;
+                });
+                return damageDescriptor;
+            }
+
             public void OnEventAboutToTrigger(RuleAttackWithWeapon evt) {
             }
 
             //For Ranged - Handling of damage calcs does not occur the same due to projectiles
             public void OnEventDidTrigger(RuleAttackWithWeapon evt) {
                 if (!m_Rowdy) { return; }
+                var RowdyFact = evt.Initiator.GetFact(m_Fact.Blueprint.GetComponent<AbilityCustomStartossComet>().RowdyFeature);
                 RuleAttackRoll ruleAttackRoll = evt.AttackRoll;
                 if (ruleAttackRoll == null) { return; }
                 if (evt.Initiator.Stats.SneakAttack < 1) { return; }
@@ -235,9 +275,10 @@ namespace MicroscopicContentExpansion.NewComponents {
                     DamageTypeDescription damageTypeDescription = evt.ResolveRules
                         .Select(e => e.Damage).First()
                         .DamageBundle.First<BaseDamage>().CreateTypeDescription();
-                    int rowdyDice = evt.Initiator.Stats.SneakAttack * 2;
-                    DiceFormula dice = new DiceFormula(rowdyDice, DiceType.D6);
-                    BaseDamage baseDamage = damageTypeDescription.GetDamageDescriptor(dice, 0).CreateDamage();
+                    var rowdyDice = new ModifiableDiceFormula(new DiceFormula(evt.Initiator.Stats.SneakAttack * 2, DiceType.D6));
+                    var RowdyDamage = damageTypeDescription.GetDamageDescriptor(rowdyDice, 0);
+                    RowdyDamage.SourceFact = RowdyFact;
+                    BaseDamage baseDamage = RowdyDamage.CreateDamage();
                     baseDamage.Precision = true;
                     evt.ResolveRules.Select(e => e.Damage)
                         .ForEach(e => e.Add(baseDamage));
@@ -247,6 +288,7 @@ namespace MicroscopicContentExpansion.NewComponents {
             //For Melee
             public void OnEventAboutToTrigger(RulePrepareDamage evt) {
                 if (!m_Rowdy) { return; }
+                var RowdyFact = evt.Initiator.GetFact(m_Fact.Blueprint.GetComponent<AbilityCustomStartossComet>().RowdyFeature);
                 RuleAttackRoll ruleAttackRoll = evt.ParentRule.AttackRoll;
                 if (ruleAttackRoll == null) { return; }
                 if (evt.Initiator.Stats.SneakAttack < 1) { return; }
@@ -261,9 +303,10 @@ namespace MicroscopicContentExpansion.NewComponents {
                     DamageTypeDescription damageTypeDescription = evt.DamageBundle
                         .First()
                         .CreateTypeDescription();
-                    int rowdyDice = evt.Initiator.Stats.SneakAttack * 2;
-                    DiceFormula dice = new DiceFormula(rowdyDice, DiceType.D6);
-                    BaseDamage baseDamage = damageTypeDescription.GetDamageDescriptor(dice, 0).CreateDamage();
+                    var rowdyDice = new ModifiableDiceFormula(new DiceFormula(evt.Initiator.Stats.SneakAttack * 2, DiceType.D6));
+                    var RowdyDamage = damageTypeDescription.GetDamageDescriptor(rowdyDice, 0);
+                    RowdyDamage.SourceFact = RowdyFact;
+                    BaseDamage baseDamage = RowdyDamage.CreateDamage();
                     baseDamage.Precision = true;
                     evt.Add(baseDamage);
                 }
@@ -273,6 +316,7 @@ namespace MicroscopicContentExpansion.NewComponents {
             }
 
             private readonly UnitEntityData m_Unit;
+            private readonly EntityFact m_Fact;
             private int m_DamageMod;
             private bool m_Mythic;
             private bool m_Rowdy;
