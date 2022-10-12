@@ -49,6 +49,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 Tyrant.AddTyrant();
                 //DreadVanguard.AddDreadVanguard();
                 KnightoftheSepulcher.AddKnightoftheSepulcher();
+                AntipaladinSpellbook.AddPrestigeProgression();
 
                 UnsanctionedKnowledge.AddUnsanctionedKnowledge();
             }

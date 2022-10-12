@@ -47,6 +47,8 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
 
             var Archetypes = AntipaladinClass.m_Archetypes.AppendToArray(Tyrant.ToReference<BlueprintArchetypeReference>());
             AntipaladinClass.m_Archetypes = Archetypes;
+
+            TyrantSpellbook.AddPrestigeProgression();
         }
 
     }

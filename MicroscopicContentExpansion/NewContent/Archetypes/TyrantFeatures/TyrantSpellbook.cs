@@ -104,7 +104,12 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
             });
             SpellTools.Spellbook.AllSpellbooks.Add(tyrantSpellbook);
 
+            return tyrantSpellbook;
+        }
 
+        internal static void AddPrestigeProgression() {
+            var tyrantSpellbook = BlueprintTools.GetBlueprintReference<BlueprintSpellbookReference>("be009b27-51ce-41db-b5ee-11427a7fc8cd");
+            var antipaladinClassRef = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("8939eff2-5a0a-4b77-ad1a-b6be4c760a6c");
             var tyrantArchetype = BlueprintTools.GetBlueprintReference<BlueprintArchetypeReference>("6086bfab-e337-4850-ba16-3d23eb15ef15");
             var prestigeProgressionDescription = BlueprintTools.GetBlueprint<BlueprintProgression>("c7dd4b32faf088444b5f83033a1228ea").m_Description;
 
@@ -115,7 +120,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
 
                 var mtAntipaladinLevelUp = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "MysticTheurgeAntipaladinTyrantLevelUp", bp => {
                     bp.AddComponent<AddSpellbookLevel>(c => {
-                        c.m_Spellbook = tyrantSpellbook.ToReference<BlueprintSpellbookReference>();
+                        c.m_Spellbook = tyrantSpellbook;
                     });
                     bp.IsClassFeature = true;
                     bp.Ranks = 10;
@@ -126,15 +131,15 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                 var mysticTheurgeAntipaladinProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "MysticTheurgeAntipaladinTyrantProgression", bp => {
                     bp.m_DisplayName = Helpers.CreateString(MCEContext, $"{bp.name}.DisplayName", "Tyrant");
                     bp.AddPrerequisite<PrerequisiteClassSpellLevel>(c => {
-                        c.m_CharacterClass = AntipaladinClassRef;
+                        c.m_CharacterClass = antipaladinClassRef;
                         c.RequiredSpellLevel = 2;
                     });
                     bp.AddPrerequisite<PrerequisiteArchetypeLevel>(c => {
-                        c.m_CharacterClass = AntipaladinClassRef;
+                        c.m_CharacterClass = antipaladinClassRef;
                         c.m_Archetype = tyrantArchetype;
                     });
                     bp.AddComponent<MysticTheurgeSpellbook>(c => {
-                        c.m_CharacterClass = AntipaladinClassRef;
+                        c.m_CharacterClass = antipaladinClassRef;
                         c.m_MysticTheurge = mtClassRef;
                     });
                     bp.m_Classes = new ClassWithLevel[] {
@@ -165,7 +170,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
 
                 var hksAntipaladinLevelUp = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "HellknightSigniferAntipaladinTyrantLevelUp", bp => {
                     bp.AddComponent<AddSpellbookLevel>(c => {
-                        c.m_Spellbook = tyrantSpellbook.ToReference<BlueprintSpellbookReference>();
+                        c.m_Spellbook = tyrantSpellbook;
                     });
                     bp.IsClassFeature = true;
                     bp.Ranks = 10;
@@ -175,11 +180,11 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                 var hellknightSigniferAntipaladinProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "HellknightSigniferAntipaladinTyrantProgression", bp => {
                     bp.m_DisplayName = Helpers.CreateString(MCEContext, $"{bp.name}.DisplayName", "Tyrant");
                     bp.AddPrerequisite<PrerequisiteClassSpellLevel>(c => {
-                        c.m_CharacterClass = AntipaladinClassRef;
+                        c.m_CharacterClass = antipaladinClassRef;
                         c.RequiredSpellLevel = 3;
                     });
                     bp.AddPrerequisite<PrerequisiteArchetypeLevel>(c => {
-                        c.m_CharacterClass = AntipaladinClassRef;
+                        c.m_CharacterClass = antipaladinClassRef;
                         c.m_Archetype = tyrantArchetype;
                     });
                     bp.m_Classes = new ClassWithLevel[] {
@@ -198,7 +203,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                     bp.m_Description = prestigeProgressionDescription;
                     bp.LevelEntries = Enumerable.Range(1, 10).Select(i => Helpers.CreateLevelEntry(i, hksAntipaladinLevelUp)).ToArray();
                 });
-                hksSpellbookSelection.m_AllFeatures = hksSpellbookSelection.m_AllFeatures.AppendToArray(hksSpellbookSelection.ToReference<BlueprintFeatureReference>());
+                hksSpellbookSelection.m_AllFeatures = hksSpellbookSelection.m_AllFeatures.AppendToArray(hellknightSigniferAntipaladinProgression.ToReference<BlueprintFeatureReference>());
             }
             #endregion
 
@@ -207,23 +212,23 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                 var loremasterClassRef = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("4a7c05adfbaf05446a6bf664d28fb103");
                 var loremasterSpellbookSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("7a28ab4dfc010834eabc770152997e87");
 
-                var hksAntipaladinLevelUp = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "LoremasterAntipaladinTyrantLevelUp", bp => {
+                var loremasterAntipaladinLevelUp = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "LoremasterAntipaladinTyrantLevelUp", bp => {
                     bp.AddComponent<AddSpellbookLevel>(c => {
-                        c.m_Spellbook = tyrantSpellbook.ToReference<BlueprintSpellbookReference>();
+                        c.m_Spellbook = tyrantSpellbook;
                     });
                     bp.IsClassFeature = true;
                     bp.Ranks = 10;
                     bp.ReapplyOnLevelUp = false;
                     bp.HideInUI = true;
                 });
-                var hellknightSigniferAntipaladinProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "LoremasterAntipaladinTyrantProgression", bp => {
+                var loremasterTyrantProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "LoremasterAntipaladinTyrantProgression", bp => {
                     bp.m_DisplayName = Helpers.CreateString(MCEContext, $"{bp.name}.DisplayName", "Tyrant");
                     bp.AddPrerequisite<PrerequisiteClassSpellLevel>(c => {
-                        c.m_CharacterClass = AntipaladinClassRef;
+                        c.m_CharacterClass = antipaladinClassRef;
                         c.RequiredSpellLevel = 3;
                     });
                     bp.AddPrerequisite<PrerequisiteNoArchetype>(c => {
-                        c.m_CharacterClass = AntipaladinClassRef;
+                        c.m_CharacterClass = antipaladinClassRef;
                         c.m_Archetype = tyrantArchetype;
                     });
                     bp.m_Classes = new ClassWithLevel[] {
@@ -240,13 +245,11 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                     bp.IsClassFeature = true;
                     bp.ForAllOtherClasses = false;
                     bp.m_Description = prestigeProgressionDescription;
-                    bp.LevelEntries = Enumerable.Range(1, 10).Select(i => Helpers.CreateLevelEntry(i, hksAntipaladinLevelUp)).ToArray();
+                    bp.LevelEntries = Enumerable.Range(1, 10).Select(i => Helpers.CreateLevelEntry(i, loremasterAntipaladinLevelUp)).ToArray();
                 });
-                loremasterSpellbookSelection.m_AllFeatures = loremasterSpellbookSelection.m_AllFeatures.AppendToArray(loremasterSpellbookSelection.ToReference<BlueprintFeatureReference>());
+                loremasterSpellbookSelection.m_AllFeatures = loremasterSpellbookSelection.m_AllFeatures.AppendToArray(loremasterTyrantProgression.ToReference<BlueprintFeatureReference>());
             }
             #endregion
-
-            return tyrantSpellbook;
         }
     }
 }
