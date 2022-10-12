@@ -7,6 +7,11 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Deadly Juggernaut spell to Cleric, Inquisitor and Paladin spell lists"
+      },
+      "BladeofBrightVictory": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Blade of Bright Victory spell to Paladin spell list"
       }
     },
     "IsExpanded": true
