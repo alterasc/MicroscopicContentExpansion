@@ -18,7 +18,7 @@ IMPORTANT: For best experience also install TabletopTweaks-Base. Fiendish templa
 WARNING: Alignment restrictions do not have mythic bypass clause. You stop being evil and you lose spellbook and active abilities. This is intended.
 ### New feats
 
-- [Unsanctioned Knowledge (antipaladin version only)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
+- [Unsanctioned Knowledge (paladin and antipaladin versions)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)
 - Snake style feat chain
 	- [Snake Style](https://www.d20pfsrd.com/feats/combat-feats/snake-style-combat-style)
 	- [Snake Sidewind](https://www.d20pfsrd.com/feats/combat-feats/snake-sidewind-combat)
@@ -32,9 +32,10 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 
 - [Deadly Juggernaut (Cleric 3, Inquisitor 3, Paladin 3, Antipaladin 3, Warpriest 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
 - [Blade of Dark Triumph (Antipaladin 3)](https://www.d20pfsrd.com/magic/all-spells/b/blade-of-dark-triumph)
+- [Blade of Bright Victory (Paladin 3)](https://www.d20pfsrd.com/magic/all-spells/b/blade-of-bright-victory)
 
 ### New Ki powers
-- Ki Power: Deadly Juggernaut
+- [Ki Power: Deadly Juggernaut](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#8th-Level_Ki_Powers)
 ### Fixes
 
 
