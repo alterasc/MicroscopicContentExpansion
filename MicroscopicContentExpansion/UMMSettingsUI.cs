@@ -26,6 +26,7 @@ namespace MicroscopicContentExpansion {
 
                 SetttingUI.SettingGroup("Spells", TabLevel, AddedContent.Spells);
                 SetttingUI.SettingGroup("NewClasses", TabLevel, AddedContent.NewClasses);
+                SetttingUI.SettingGroup("Feats", TabLevel, AddedContent.Feats);
             }
         }
 

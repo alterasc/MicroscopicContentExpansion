@@ -5,6 +5,7 @@ namespace MicroscopicContentExpansion.Config {
         public bool NewSettingsOffByDefault = false;
         public SettingGroup Spells = new();
         public SettingGroup NewClasses = new();
+        public SettingGroup Feats = new();
 
         public void Init() {
         }
@@ -13,7 +14,7 @@ namespace MicroscopicContentExpansion.Config {
             var loadedSettings = userSettings as AddedContent;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
-            NewClasses.LoadSettingGroup(loadedSettings.NewClasses, NewSettingsOffByDefault);
+            Feats.LoadSettingGroup(loadedSettings.Feats, NewSettingsOffByDefault);
         }
     }
 }

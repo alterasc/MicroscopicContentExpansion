@@ -21,5 +21,16 @@
       }
     },
     "IsExpanded": true
+  },
+  "Feats": {
+    "DisableAll": false,
+    "Settings": {
+      "PaladinUnsanctionedKnowdledge": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Unsanctioned Knowledge feat for Paladins"
+      }
+    },
+    "IsExpanded": true
   }
 }
