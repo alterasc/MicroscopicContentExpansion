@@ -81,8 +81,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { startossStyleAbility.ToReference<BlueprintUnitFactReference>() };
                     });
-                });
-                FeatTools.AddAsFeat(startossStyleFeature);
+                });                
 
                 const string startossCometDescription = "As a standard action, you can make a single ranged thrown weapon attack at your " +
                         "full attack bonus with the chosen weapon. If you hit, you deal damage normally and can make a second attack " +
@@ -127,8 +126,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.m_Facts = new BlueprintUnitFactReference[] { startossCometAbility.ToReference<BlueprintUnitFactReference>() };
                     });
                     bp.AddPrerequisiteFeature(startossStyleFeature);
-                });
-                FeatTools.AddAsFeat(startossCometFeature);
+                });                
 
                 const string startossShowerDescription = "When you hit an opponent while using the Startoss Comet feat, you can continue " +
                         "to make attacks against foes that are within one range increment of all previous opponents. You determine " +
@@ -156,8 +154,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.Value = 4;
                     });
                     bp.AddPrerequisiteFeature(startossCometFeature);
-                });
-                FeatTools.AddAsFeat(startossShowerFeature);
+                });                
 
                 startossStyleBuff.AddComponent<StartossStyleComponent>(c => {
                     c.StartossComet = startossCometFeature.ToReference<BlueprintFeatureReference>();
@@ -175,6 +172,12 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     c.m_VitalStrikeGreater = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("e2d1fa11f6b095e4fb2fd1dcf5e36eb3");
                     c.m_StartossShower = startossShowerFeature.ToReference<BlueprintFeatureReference>();
                 });
+
+                if (MCEContext.AddedContent.Feats.IsDisabled("StartossStyleFeatChain")) { return; }
+
+                FeatTools.AddAsFeat(startossStyleFeature);
+                FeatTools.AddAsFeat(startossCometFeature);
+                FeatTools.AddAsFeat(startossShowerFeature);
             }
         }
     }

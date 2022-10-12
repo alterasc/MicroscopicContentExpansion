@@ -29,6 +29,16 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Unsanctioned Knowledge feat for Paladins"
+      },
+      "SnakeStyleFeatChain": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Snake Style feat chain"
+      },
+      "StartossStyleFeatChain": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Startoss Style feat chain"
       }
     },
     "IsExpanded": true

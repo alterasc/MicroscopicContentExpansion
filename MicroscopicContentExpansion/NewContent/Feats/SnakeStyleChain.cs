@@ -12,9 +12,7 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics.Actions;
 using MicroscopicContentExpansion.NewComponents;
-using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -92,7 +90,6 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.m_Facts = new BlueprintUnitFactReference[] { snakeStyleAbility.ToReference<BlueprintUnitFactReference>() };
                     });
                 });
-                FeatTools.AddAsFeat(snakeStyleFeature);
 
                 var snakeSidewind = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "SnakeSidewindBuff", bp => {
                     bp.SetName(MCEContext, "Snake Sidewind");
@@ -140,8 +137,6 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     });
                 });
 
-                FeatTools.AddAsFeat(snakeSidewindFeature);
-
                 var snakeFangFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeFangFeature", bp => {
                     bp.SetName(MCEContext, "Snake Fang");
                     bp.SetDescription(MCEContext, "While using the Snake Style feat, when an opponent’s attack misses you, you can make an unarmed strike against that opponent as an attack of opportunity.");
@@ -165,13 +160,19 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                         c.Value = 9;
                     });
                 });
-                FeatTools.AddAsFeat(snakeFangFeature);
+
 
                 snakeStyleBuff.AddConditionalBuff(snakeSidewindFeature, snakeSidewind);
 
                 snakeStyleBuff.AddComponent<SnakeFangOnMissHandler>(c => {
                     c.m_Fact = snakeFangFeature.ToReference<BlueprintUnitFactReference>();
                 });
+
+                if (MCEContext.AddedContent.Feats.IsDisabled("SnakeStyleFeatChain")) { return; }
+
+                FeatTools.AddAsFeat(snakeStyleFeature);
+                FeatTools.AddAsFeat(snakeSidewindFeature);
+                FeatTools.AddAsFeat(snakeFangFeature);
             }
         }
     }
