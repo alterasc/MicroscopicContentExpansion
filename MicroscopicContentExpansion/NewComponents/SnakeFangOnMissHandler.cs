@@ -2,6 +2,7 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
@@ -24,11 +25,17 @@ namespace MicroscopicContentExpansion.NewComponents {
         }
 
         public void OnEventDidTrigger(RuleAttackWithWeapon evt) {
-            if (evt.AttackRoll.IsHit || !evt.Target.HasFact(m_Fact) || !evt.Target.GetFirstWeapon().IsMonkUnarmedStrike)
+            if (evt.AttackRoll.IsHit || !evt.Target.HasFact(m_Fact) || IsNotUnarmedWeapon(evt.Target.Body.PrimaryHand))
                 return;
             if (this.Fact is IFactContextOwner) {
                 Game.Instance.CombatEngagementController.ForceAttackOfOpportunity(evt.Target, evt.Initiator);
             }
+        }
+
+        private static bool IsNotUnarmedWeapon(WeaponSlot hand) {
+            if (!hand.HasWeapon)
+                return false;
+            return !hand.Weapon.Blueprint.IsUnarmed;
         }
 
     }
