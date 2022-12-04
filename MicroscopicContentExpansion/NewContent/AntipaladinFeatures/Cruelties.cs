@@ -806,7 +806,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
 
             CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyCursedFeature", bp => {
                 bp.SetName(MCEContext, "Cruelty - Cursed");
-                bp.SetDescription(MCEContext, DESCRIPTION + "\nThe target is cursed for 1 round.");
+                bp.SetDescription(MCEContext, DESCRIPTION + "\nThe target is cursed.");
                 bp.m_DescriptionShort = bp.m_Description;
                 bp.m_Icon = Cursed.Icon;
                 bp.Ranks = 1;
