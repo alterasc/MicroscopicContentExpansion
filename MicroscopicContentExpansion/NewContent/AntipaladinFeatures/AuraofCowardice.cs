@@ -5,14 +5,13 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
 using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using MicroscopicContentExpansion.Utils;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
 
@@ -56,12 +55,14 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     };
                 });
 
-                bp.AddComponent<AbilityAreaEffectRunAction>(c => {
-                    c.Round = Helpers.CreateActionList(
-                        new ContextActionRemoveBuffsByDescriptor() {
-                            SpellDescriptor = SpellDescriptor.FearImmunity
-                        });
+                bp.AddComponent<SpellDescriptorImmunityIgnore>(c => {
+                    c.Descriptor = SpellDescriptor.Fear | SpellDescriptor.Shaken | SpellDescriptor.Frightened;
                 });
+
+                bp.AddComponent<BuffDescriptorImmunityIgnore>(c => {
+                    c.Descriptor = SpellDescriptor.Fear | SpellDescriptor.Shaken | SpellDescriptor.Frightened;
+                });
+
                 bp.Frequency = DurationRate.Rounds;
                 bp.IsClassFeature = true;
                 bp.FxOnRemove = new PrefabLink();

@@ -3,12 +3,12 @@
   "Author": "AlterAsc",
   "DisplayName": "Microscopic Content Expansion",
   "EntryMethod": "MicroscopicContentExpansion.Main.Load",
-  "GameVersion": "2.0.0",
+  "GameVersion": "2.0.5",
   "HomePage": "https://github.com/alterasc/MicroscopicContentExpansion/releases",
   "Id": "MicroscopicContentExpansion",
   "ManagerVersion": "0.23.0",
   "Repository": "https://raw.githubusercontent.com/alterasc/MicroscopicContentExpansion/master/Repository.json",
-  "Requirements": [ "TabletopTweaks-Core" ],
+  "Requirements": [ "TabletopTweaks-Core-0.5.7" ],
   "LoadAfter": [ "TabletopTweaks-Core", "MewsiferConsole.Mod" ],
   "Version": "1.5.1"
 }
