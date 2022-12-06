@@ -44,6 +44,16 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Startoss Style feat chain"
+      },
+      "CrusadersFlurry": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Crusader's Flurry'"
+      },
+      "CrusadersFlurryNoGodCheck": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Disables check for wielding deity's favored weapon (if your deity is modded and normal check fails, or you're RPing deity that's not in the game)."
       }
     },
     "IsExpanded": true
