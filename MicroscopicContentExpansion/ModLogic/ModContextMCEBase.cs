@@ -1,5 +1,7 @@
-﻿using MicroscopicContentExpansion.Config;
+﻿using Kingmaker.Blueprints;
+using MicroscopicContentExpansion.Config;
 using TabletopTweaks.Core.ModLogic;
+using TabletopTweaks.Core.Utilities;
 using static UnityModManagerNet.UnityModManager;
 
 namespace MicroscopicContentExpansion.ModLogic {
@@ -29,5 +31,8 @@ namespace MicroscopicContentExpansion.ModLogic {
             SaveSettings("AddedContent.json", AddedContent);
             SaveSettings("Fixes.json", Fixes);
         }
+
+        public T GetModBlueprintReference<T>(string name) where T : BlueprintReferenceBase
+            => BlueprintTools.GetModBlueprintReference<T>(this, name);
     }
 }

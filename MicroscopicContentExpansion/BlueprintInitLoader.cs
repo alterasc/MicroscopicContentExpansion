@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
+using MicroscopicContentExpansion.NewContent.Antipaladin;
 using MicroscopicContentExpansion.NewContent.Feats;
 
 namespace MicroscopicContentExpansion {
@@ -12,7 +13,10 @@ namespace MicroscopicContentExpansion {
             static void Postfix() {
                 if (Initialized) return;
                 Initialized = true;
+                AntipaladinAdder.AddAntipaladin();
                 CrusadersFlurry.Add();
+                SnakeStyleChain.AddSnakeStyle();
+                StartossStyleChain.AddStartossChain();
             }
         }
     }
