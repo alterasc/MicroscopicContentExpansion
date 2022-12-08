@@ -66,7 +66,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
 
             var fiendishBoon = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBoonSelection");
 
-            var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
+            var SpellbookRef = MCEContext.GetModBlueprintReference<BlueprintSpellbookReference>("AntipaladinSpellbook");
             var antipaladinAlignmentRestriction = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAlignmentRestriction");
 
             var auraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");

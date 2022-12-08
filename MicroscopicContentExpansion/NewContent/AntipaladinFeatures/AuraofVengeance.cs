@@ -34,9 +34,9 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
             " Good creatures gain no benefit from this ability.";
 
         public static void AddAuraofVengeance() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-            var TipoftheSpear = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(MCEContext, "AntipaladinTipoftheSpear");
+            var TipoftheSpear = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("AntipaladinTipoftheSpear");
 
             var FingerOfDeathIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("6f1dcf6cfa92d1948a740195707c0dbe").Icon;
 

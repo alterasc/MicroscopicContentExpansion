@@ -52,7 +52,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
         private const string WEAPON_BOND_NAME = "Fiendish Bond";
 
         public static void AddFiendinshBoon() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var AntipaladinServantSelection = AddFiendinshBoonServant();
             var AntipaladinFiendishBoonWeapon = AddFiendinshBoonWeapon();
@@ -72,7 +72,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
         }
 
         private static BlueprintProgression AddFiendinshBoonWeapon() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var icon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a68cd0fbf5d21ef4f8b9375ec0ac53b9").Icon;
 

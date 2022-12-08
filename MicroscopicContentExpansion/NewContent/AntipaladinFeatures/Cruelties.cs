@@ -93,7 +93,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddFatiquedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
             var FatiguedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e6f2fc5d73d88064583cb828801212f4");
 
             var actions = new ContextActionApplyBuff() {
@@ -123,7 +123,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddShakenCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
             var ShakenBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("25ec6cb6ab1845c48a95f9c20b034220");
 
             var actions = new ContextActionApplyBuff() {
@@ -166,7 +166,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddSickenedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var SickenedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("4e42460798665fd4cb9173ffa7ada323");
 
@@ -210,7 +210,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddDazedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var DazedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("d2e35b870e4ac574d9873b36402487e5");
 
@@ -259,7 +259,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddDiseasedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var DiseasedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("103aac6bc1cfd454492cee1fd680db05");
 
@@ -312,7 +312,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddStaggeredCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var StaggeredBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("df3950af5a783bd4d91ab73eb8fa0fd3");
 
@@ -374,7 +374,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddExhaustedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
             var ExhaustedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("46d1b9cc3d0fd36469a471b047d773a2");
             CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyExhaustedFeature", bp => {
                 bp.SetName(MCEContext, "Cruelty - Exhausted");
@@ -388,7 +388,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.Level = 9;
                 });
                 bp.AddPrerequisite<PrerequisiteFeature>(c => {
-                    c.m_Feature = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinCrueltyFatiquedFeature");
+                    c.m_Feature = MCEContext.GetModBlueprintReference<BlueprintFeatureReference>("AntipaladinCrueltyFatiquedFeature");
                 });
             });
 
@@ -429,7 +429,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddFrightenedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var FrightenedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("f08a7239aa961f34c8301518e71d4cdf");
 
@@ -445,7 +445,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.Level = 9;
                 });
                 bp.AddPrerequisite<PrerequisiteFeature>(c => {
-                    c.m_Feature = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinCrueltyShakenFeature");
+                    c.m_Feature = MCEContext.GetModBlueprintReference<BlueprintFeatureReference>("AntipaladinCrueltyShakenFeature");
                 });
             });
 
@@ -497,7 +497,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddNauseatedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var NauseatedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("956331dba5125ef48afe41875a00ca0e");
 
@@ -513,7 +513,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.Level = 9;
                 });
                 bp.AddPrerequisite<PrerequisiteFeature>(c => {
-                    c.m_Feature = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinCrueltySickenedFeature");
+                    c.m_Feature = MCEContext.GetModBlueprintReference<BlueprintFeatureReference>("AntipaladinCrueltySickenedFeature");
                 });
             });
 
@@ -563,7 +563,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddPoisonedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var PoisonedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("ba1ae42c58e228c4da28328ea6b4ae34");
 
@@ -626,7 +626,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
 
 
         private static void AddBlindedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var BlindedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("187f88d96a0ef464280706b63635f2af");
 
@@ -688,7 +688,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddStunnedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var StunnedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("09d39b38bb7c6014394b6daced9bacd3");
 
@@ -751,7 +751,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddParalyzedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var Paralyzed = BlueprintTools.GetBlueprint<BlueprintBuff>("af1e2d232ebbb334aaf25e2a46a92591");
 
@@ -800,7 +800,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         private static void AddCursedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var Cursed = BlueprintTools.GetBlueprint<BlueprintBuff>("caae9592917719a41b601b678a8e6ddf");
 
@@ -852,7 +852,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         }
 
         public static void AddCruelties() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             AddFatiquedCruelty(out var FatiquedCrueltyFeature, out var FatiquedCrueltyAbility);
             AddShakenCruelty(out var ShakenCrueltyFeature, out var ShakenCrueltyAbility);

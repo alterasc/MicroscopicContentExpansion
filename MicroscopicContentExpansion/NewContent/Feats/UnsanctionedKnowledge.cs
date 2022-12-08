@@ -26,7 +26,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
         }
 
         private void AddUnsanctionedKnowledgeInner(string @class) {
-        var antipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+        var antipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
         var UnsanctionedKnowledge = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, $"{@class}UnsanctionedKnowledge", bp => {
                 bp.SetName(MCEContext, $"{NAME} ({@class})");
                 bp.SetDescription(MCEContext, DESCRIPTION);

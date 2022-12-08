@@ -38,7 +38,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
 
         public static void AddTouchofCorruption() {
             var AbsoluteDeathAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
             var BestowCurseSpell = BlueprintTools.GetBlueprint<BlueprintAbility>("989ab5c44240907489aba0a8568d0603");
 
             var TouchOfCorruptionResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinTouchOfCorruptionResource", bp => {
@@ -121,9 +121,9 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         internal static BlueprintAbility CreateTouchOfCorruption(string BPName, string AbilityName, string Description, Sprite Icon,
             GameAction Action = null, ContextRankConfig RankConfig = null, SpellDescriptorComponent Descriptor = null, BlueprintUnitFactReference RequiredFeatureRef = null) {
 
-            var TouchOfCorruptionResource = BlueprintTools.GetModBlueprintReference<BlueprintAbilityResourceReference>(MCEContext, "AntipaladinTouchOfCorruptionResource");
+            var TouchOfCorruptionResource = MCEContext.GetModBlueprintReference<BlueprintAbilityResourceReference>("AntipaladinTouchOfCorruptionResource");
             var AbsoluteDeathAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var NegativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
             var TouchItem = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");

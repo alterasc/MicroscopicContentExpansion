@@ -63,8 +63,8 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 });
                 bp.AddComponent<AbilityCasterHasFacts>(c => {
                     c.m_Facts = new BlueprintUnitFactReference[] {
-                       BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(MCEContext, "AntipaladinWeaponBondProgression"),
-                       BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(MCEContext, "TyrantWeaponBondProgression")
+                       MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("AntipaladinWeaponBondProgression"),
+                       MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("TyrantWeaponBondProgression")
                     };
                     c.NeedsAll = false;
                 });

@@ -14,7 +14,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.KnightoftheSepulcher
     internal class TouchoftheCrypt {
 
         public static BlueprintFeatureReference AddTouchoftheCrypt() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var negativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
 

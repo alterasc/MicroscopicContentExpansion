@@ -24,7 +24,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         public static void AddAuraOfDepravityFeature() {
             var AOCIcon = BlueprintTools.GetBlueprint<BlueprintFeature>("d673c30720e8e7c4bb0903dc3c9ab649").Icon;
 
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var AuraOfDepravityEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfDepravityEffectBuff", bp => {
                 bp.SetName(MCEContext, NAME);

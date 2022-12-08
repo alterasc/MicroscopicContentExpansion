@@ -9,7 +9,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
     internal class TyrantAlignmentRestriction {
 
         public static BlueprintFeatureReference AddAntipaladinAlignmentRestriction() {
-            var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
+            var SpellbookRef = MCEContext.GetModBlueprintReference<BlueprintSpellbookReference>("AntipaladinSpellbook");
 
             return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "TyrantAlignmentRestriction", bp => {
                 bp.SetName(MCEContext, "Alignment Restriction");

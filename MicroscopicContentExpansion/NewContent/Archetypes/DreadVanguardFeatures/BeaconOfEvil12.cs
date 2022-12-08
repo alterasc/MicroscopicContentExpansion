@@ -14,7 +14,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.DreadVanguardFeature
             " rolls, damage rolls, and saving throws against fear increases to +2.";
 
         public static BlueprintFeatureReference AddBeaconOfEvil() {
-            var AntipaladinClass = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClass = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
 

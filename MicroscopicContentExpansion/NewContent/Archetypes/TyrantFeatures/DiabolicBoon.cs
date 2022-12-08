@@ -46,7 +46,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                             " a total of four times per day at 17th level.";
 
         public static BlueprintFeatureSelection AddDiabolicBoon() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var AntipaladinServantSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinServantSelection");
 
@@ -67,7 +67,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
         }
 
         private static BlueprintProgression AddDiabolicBondWeapon() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
             var icon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a68cd0fbf5d21ef4f8b9375ec0ac53b9").Icon;
             var weaponBondResource = BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinWeaponBondResource");
             var weaponBondAdditionalUse = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBondAdditionalUse");

@@ -13,7 +13,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.DreadVanguardFeature
             " as well as to his allies while they remain within it.";
 
         public static BlueprintFeatureReference AddBeaconOfEvil() {
-            var AntipaladinClass = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClass = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
 

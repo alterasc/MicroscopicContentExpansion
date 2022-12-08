@@ -86,7 +86,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
 
 
             });
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var SmiteGoodResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinSmiteGoodResource", bp => {
                 bp.m_Min = 1;
@@ -100,7 +100,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
 
             AntipaladinFeatures.TipoftheSpear.AddTipoftheSpear();
 
-            var TipoftheSpear = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(MCEContext, "AntipaladinTipoftheSpear");
+            var TipoftheSpear = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("AntipaladinTipoftheSpear");
 
             var FiendishSmiteGoodAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("478cf0e6c5f3a4142835faeae3bd3e04");
             var SmiteGoodAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinSmiteGoodAbility", bp => {

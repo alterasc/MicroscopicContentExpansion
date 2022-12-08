@@ -17,7 +17,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
 
         public static void AddAntipaladinSpellbook() {
 
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var PaladinSpellLevelsRef = BlueprintTools.GetBlueprintReference<BlueprintSpellsTableReference>("9aed4803e424ae8429c392d8fbfb88ff");
             var PaladinSpellListRef = BlueprintTools.GetBlueprintReference<BlueprintSpellListReference>("9f5be2f7ea64fe04eb40878347b147bc");

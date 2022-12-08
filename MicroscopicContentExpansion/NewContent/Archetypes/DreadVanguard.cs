@@ -14,7 +14,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes {
 
         public static void AddDreadVanguard() {
             var antipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
-            var touchOfCorruptionUse = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinTouchOfCorruptionAdditionalUse");
+            var touchOfCorruptionUse = MCEContext.GetModBlueprintReference<BlueprintFeatureReference>("AntipaladinTouchOfCorruptionAdditionalUse");
 
             var beacon5 = BeaconOfEvil20.AddBeaconOfEvil();
             var beacon1 = BeaconOfEvil.AddBeaconOfEvil();

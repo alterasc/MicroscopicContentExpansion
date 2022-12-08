@@ -9,7 +9,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
     internal class AntipaladinAlignmentRestriction {
 
         public static void AddAntipaladinAlignmentRestriction() {
-            var SpellbookRef = BlueprintTools.GetModBlueprintReference<BlueprintSpellbookReference>(MCEContext, "AntipaladinSpellbook");
+            var SpellbookRef = MCEContext.GetModBlueprintReference<BlueprintSpellbookReference>("AntipaladinSpellbook");
 
             Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAlignmentRestriction", bp => {
                 bp.SetName(MCEContext, "Alignment Restriction");

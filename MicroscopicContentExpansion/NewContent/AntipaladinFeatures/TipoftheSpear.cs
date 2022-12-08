@@ -12,8 +12,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             " and can smite foes regardless of their alignment.";
 
         public static void AddTipoftheSpear() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
-            var SmiteGoodResource = BlueprintTools.GetModBlueprintReference<BlueprintAbilityResourceReference>(MCEContext, "AntipaladinSmiteGoodResource");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
+            var SmiteGoodResource = MCEContext.GetModBlueprintReference<BlueprintAbilityResourceReference>("AntipaladinSmiteGoodResource");
 
             var TipoftheSpear = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTipoftheSpear", bp => {
                 bp.SetName(MCEContext, NAME);

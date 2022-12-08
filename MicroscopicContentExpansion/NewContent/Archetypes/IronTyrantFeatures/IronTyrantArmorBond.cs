@@ -30,7 +30,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
 
 
         public static BlueprintProgression AddFiendishBond() {
-            var AntipaladinClassRef = BlueprintTools.GetModBlueprintReference<BlueprintCharacterClassReference>(MCEContext, "AntipaladinClass");
+            var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
             var icon = BlueprintTools.GetBlueprint<BlueprintFeature>("35e2d9525c240ce4c8ae47dd387b6e53").Icon;
 
