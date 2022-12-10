@@ -17,6 +17,7 @@ namespace MicroscopicContentExpansion {
                 CrusadersFlurry.Add();
                 SnakeStyleChain.AddSnakeStyle();
                 StartossStyleChain.AddStartossChain();
+                DimenshionalDervish.AddDimenshionalSavantFeatChain();
             }
         }
     }

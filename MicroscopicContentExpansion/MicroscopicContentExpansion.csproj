@@ -163,6 +163,9 @@
     <Compile Include="Config\Fixes.cs" />
     <Compile Include="Config\AddedContent.cs" />
     <Compile Include="NewComponents\AbilityCasterHasChosenWeaponFromGroup.cs" />
+    <Compile Include="NewComponents\AbilityCasterHasSwiftAction.cs" />
+    <Compile Include="NewComponents\AbilityCustomDimensionalAssault.cs" />
+    <Compile Include="NewComponents\AbilityCustomDimensionalDervish.cs" />
     <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
     <Compile Include="NewComponents\ContextActionArmorEnchantPoolMCE.cs" />
     <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
@@ -193,6 +196,7 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
     <Compile Include="NewContent\Feats\CrusadersFlurry.cs" />
+    <Compile Include="NewContent\Feats\DimenshionalDervish.cs" />
     <Compile Include="NewContent\Feats\StartossStyleChain.cs" />
     <Compile Include="NewContent\Feats\SnakeStyleChain.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
