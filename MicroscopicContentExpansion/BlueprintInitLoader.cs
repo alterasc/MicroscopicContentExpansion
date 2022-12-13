@@ -2,6 +2,7 @@
 using Kingmaker.Blueprints.JsonSystem;
 using MicroscopicContentExpansion.NewContent.Antipaladin;
 using MicroscopicContentExpansion.NewContent.Feats;
+using MicroscopicContentExpansion.NewContent.Spells;
 
 namespace MicroscopicContentExpansion {
     internal class BlueprintInitLoader {
@@ -18,6 +19,7 @@ namespace MicroscopicContentExpansion {
                 SnakeStyleChain.AddSnakeStyle();
                 StartossStyleChain.AddStartossChain();
                 DimenshionalDervish.AddDimenshionalSavantFeatChain();
+                KiLeech.AddKiLeech();
             }
         }
     }

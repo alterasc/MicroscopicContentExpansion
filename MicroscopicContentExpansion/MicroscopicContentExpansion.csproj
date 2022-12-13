@@ -202,6 +202,7 @@
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
     <Compile Include="NewContent\Spells\BladeofDarkTriumph.cs" />
     <Compile Include="NewContent\Spells\DeadlyJuggernaut.cs" />
+    <Compile Include="NewContent\Spells\KiLeech.cs" />
     <Compile Include="NewContent\Spells\ProtectionFromChaosGood.cs" />
     <Compile Include="NewContent\Spells\ProtectionFromLawGood.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
