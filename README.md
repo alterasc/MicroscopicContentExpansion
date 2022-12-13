@@ -27,7 +27,12 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 	- [Startoss Style](https://www.d20pfsrd.com/feats/combat-feats/startoss-style-combat-style)
 	- [Startoss Comet](https://www.d20pfsrd.com/feats/combat-feats/startoss-comet-combat)
 	- [Startoss Shower](https://www.d20pfsrd.com/feats/combat-feats/startoss-shower-combat)
-
+- Dimensional Savant feat chain
+    - [Dimensional Agility](https://www.d20pfsrd.com/feats/general-feats/dimensional-agility)
+	- [Dimensional Assault](https://www.d20pfsrd.com/feats/general-feats/dimensional-assault)
+	- [Dimensional Dervish](https://www.d20pfsrd.com/feats/general-feats/dimensional-dervish)
+- [Flickering Step](https://www.d20pfsrd.com/feats/conduit-feats/flickering-step-conduit)
+- [Crusader's Flurry](https://www.d20pfsrd.com/feats/general-feats/crusader-s-flurry)
 ### New spells
 
 - [Deadly Juggernaut (Cleric 3, Inquisitor 3, Paladin 3, Antipaladin 3, Warpriest 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
