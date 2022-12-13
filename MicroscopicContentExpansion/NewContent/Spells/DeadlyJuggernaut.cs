@@ -201,6 +201,8 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute/level");
                 bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.m_Icon = icon;
+                bp.CanTargetSelf = true;
+                bp.Range = AbilityRange.Personal;
                 bp.AddComponent<AbilityEffectRunAction>(c => {
                     c.Actions = ActionFlow.DoSingle<ContextActionApplyBuff>(a => {
                         a.m_Buff = buff.ToReference<BlueprintBuffReference>();
@@ -251,6 +253,8 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute/level");
                 bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.m_Icon = icon;
+                bp.CanTargetSelf = true;
+                bp.Range = AbilityRange.Personal;
                 bp.AddComponent<AbilityEffectRunAction>(c => {
                     c.Actions = ActionFlow.DoSingle<ContextActionApplyBuff>(a => {
                         a.m_Buff = buff.ToReference<BlueprintBuffReference>();
