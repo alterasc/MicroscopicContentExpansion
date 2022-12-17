@@ -54,6 +54,11 @@
         "Enabled": false,
         "Homebrew": false,
         "Description": "Disables check for wielding deity's favored weapon (if your deity is modded and normal check fails, or you're RPing deity that's not in the game)."
+      },
+      "DimensionalDervishFeatChain": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Adds Flickering Step and Dimensional Dervish feat chain."
       }
     },
     "IsExpanded": true

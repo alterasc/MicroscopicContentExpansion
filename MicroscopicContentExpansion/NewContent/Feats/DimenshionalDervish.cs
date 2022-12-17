@@ -189,8 +189,6 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
             var av = dimensionDoor.GetComponent<AbilityVariants>();
             av.m_Variants = av.m_Variants.AppendToArray(dimensionalDervishAbility.ToReference<BlueprintAbilityReference>());
 
-            FeatTools.AddAsFeat(dimensionalDervishFeature);
-
             //add blocks
             var MidnightFane_DimensionLock_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("4b0cd08a3cea2844dba9889c1d34d667");
             var DLC1_DimensionLock_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("6e339c2bc7ea488c9b655b029984405d");
@@ -213,6 +211,9 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 c.m_Spells = c.m_Spells.AppendToArray(spellsArr);
             }
 
+            if (MCEContext.AddedContent.Feats.IsEnabled("DimensionalDervishFeatChain")) {
+                FeatTools.AddAsFeat(dimensionalDervishFeature);
+            }
         }
 
         private static BlueprintFeature AddDimensionalAgility(BlueprintFeature flickeringStep) {
@@ -243,8 +244,9 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 });
             });
 
-            FeatTools.AddAsFeat(dimensionalAgilityFeature);
-
+            if (MCEContext.AddedContent.Feats.IsEnabled("DimensionalDervishFeatChain")) {
+                FeatTools.AddAsFeat(dimensionalAgilityFeature);
+            }
             return dimensionalAgilityFeature;
         }
 
@@ -393,7 +395,9 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
             var av = dimensionDoor.GetComponent<AbilityVariants>();
             av.m_Variants = av.m_Variants.AppendToArray(dimensionalAssaultAbility.ToReference<BlueprintAbilityReference>());
 
-            FeatTools.AddAsFeat(dimensionalAssaultFeature);
+            if (MCEContext.AddedContent.Feats.IsEnabled("DimensionalDervishFeatChain")) {
+                FeatTools.AddAsFeat(dimensionalAssaultFeature);
+            }
 
             return dimensionalAssaultFeature;
         }
@@ -467,8 +471,9 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 });
             });
 
-            FeatTools.AddAsFeat(flickeringStepFeature);
-
+            if (MCEContext.AddedContent.Feats.IsEnabled("DimensionalDervishFeatChain")) {
+                FeatTools.AddAsFeat(flickeringStepFeature);
+            }
             return flickeringStepFeature;
         }
     }
