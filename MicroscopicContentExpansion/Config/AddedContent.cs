@@ -14,6 +14,7 @@ namespace MicroscopicContentExpansion.Config {
             var loadedSettings = userSettings as AddedContent;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
+            NewClasses.LoadSettingGroup(loadedSettings.NewClasses, NewSettingsOffByDefault);
             Feats.LoadSettingGroup(loadedSettings.Feats, NewSettingsOffByDefault);
         }
     }
