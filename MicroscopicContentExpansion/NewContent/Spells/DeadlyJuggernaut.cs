@@ -78,7 +78,7 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                     c.m_StepLevel = -4;
                 });
                 bp.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c => {
-                    c.WaitForAttackResolve = true;
+                    //c.WaitForAttackResolve = true; This no longer exists? --Teraunce
                     c.OnlyHit = true;
                     c.CheckWeaponRangeType = true;
                     c.RangeType = WeaponRangeType.Melee;

@@ -10,5 +10,5 @@
   "Repository": "https://raw.githubusercontent.com/alterasc/MicroscopicContentExpansion/master/Repository.json",
   "Requirements": [ "TabletopTweaks-Core-0.5.7" ],
   "LoadAfter": [ "TabletopTweaks-Core", "MewsiferConsole.Mod" ],
-  "Version": "1.7.0"
+  "Version": "1.7.1"
 }
