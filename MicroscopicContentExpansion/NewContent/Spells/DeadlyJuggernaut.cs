@@ -78,7 +78,6 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                     c.m_StepLevel = -4;
                 });
                 bp.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c => {
-                    c.WaitForAttackResolve = true;
                     c.OnlyHit = true;
                     c.CheckWeaponRangeType = true;
                     c.RangeType = WeaponRangeType.Melee;
