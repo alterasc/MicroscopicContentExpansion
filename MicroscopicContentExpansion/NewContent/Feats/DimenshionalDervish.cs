@@ -61,7 +61,11 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     c.m_UnitFact = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalDervishFeature");
                 });
                 bp.AddComponent<AbilityCasterHasFacts>(c => {
-                    c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                    c.NeedsAll = true;
+                    c.m_Facts = new BlueprintUnitFactReference[] {
+                        MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalDervishFeature"),
+                        dimensionalAgility.ToReference<BlueprintUnitFactReference>()
+                    };
                 });
             });
 
@@ -278,7 +282,11 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     c.m_UnitFact = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalAssaultFeature");
                 });
                 bp.AddComponent<AbilityCasterHasFacts>(c => {
-                    c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                    c.NeedsAll = true;
+                    c.m_Facts = new BlueprintUnitFactReference[] {
+                        MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalAssaultFeature"),
+                        dimensionalAgility.ToReference<BlueprintUnitFactReference>()
+                    };
                 });
             });
 
