@@ -50,7 +50,9 @@ namespace MicroscopicContentExpansion.NewComponents {
             caster.Descriptor.AddBuff(BlueprintRoot.Instance.SystemMechanics.ChargeBuff, context, new TimeSpan?(1.Rounds().Seconds));
             caster.Descriptor.State.IsCharging = true;
 
-            UnitAttack cmd = new UnitAttack(target.Unit);
+            UnitAttack cmd = new UnitAttack(target.Unit) {
+                IsCharge = true
+            };
             cmd.Init(context.Caster);
             cmd.Start();
             caster.Commands.AddToQueueFirst(cmd);
