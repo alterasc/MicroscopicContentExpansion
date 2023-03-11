@@ -41,6 +41,7 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 
 ### New Ki powers
 - [Ki Power: Deadly Juggernaut](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#8th-Level_Ki_Powers)
+- [Ki Power: Ki Leeech](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#10th-Level_Ki_Powers)
 ### Fixes
 
 
