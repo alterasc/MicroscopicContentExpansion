@@ -34,10 +34,9 @@ namespace MicroscopicContentExpansion.NewComponents {
         public BlueprintUnitFactReference _flurryFact20;
         public BlueprintArchetypeReference _soheiArchetype;
         public BlueprintCharacterClassReference _monkClass;
-        public BlueprintFeatureReference _monkFlurry11;
-        public BlueprintFeatureReference _soheiFlurry11;
+        public BlueprintFeatureReference[] _flurry2ndfacts;
         public BlueprintFeatureReference _oldMaster;
-        public BlueprintFeatureSelectionReference _deitySelection;        
+        public BlueprintFeatureSelectionReference _deitySelection;
         public BlueprintParametrizedFeatureReference _weaponFocus;
 
         public BlueprintUnitFact Flurry1 => _flurryFact1?.Get();
@@ -109,7 +108,7 @@ namespace MicroscopicContentExpansion.NewComponents {
                 Data.Flurry1 = Owner.AddFact(Flurry1);
             }
             if (Data.Flurry11 == null) {
-                if (Owner.HasFact(_monkFlurry11) || Owner.HasFact(_soheiFlurry11)) {
+                if (_flurry2ndfacts.Any(x => Owner.HasFact(x))) {
                     Data.Flurry11 = Owner.AddFact(Flurry11);
                 }
             }
