@@ -32,7 +32,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     c._soheiArchetype = BlueprintTools.GetBlueprintReference<BlueprintArchetypeReference>("fad7c56737ed12e42aacc330acc86428");
                     c._flurryFact1 = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("332362f3bd39ebe46a740a36960fdcb4");
                     c._flurryFact11 = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("de25523acc24b1448aa90f74d6512a08");
-                    c._flurryFact20 = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("98319382db05-42ef91e0523392d49757");
+                    c._flurryFact20 = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("98319382db0542ef91e0523392d49757");
                     c._weaponFocus = BlueprintTools.GetBlueprintReference<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
                     c._flurry2ndfacts = flurry2ndFacts.ToArray();
                     c._oldMaster = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0e6eea0e813f44489835b8940264b7af");
