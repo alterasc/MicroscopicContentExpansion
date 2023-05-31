@@ -1,7 +1,6 @@
 ﻿using Kingmaker;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.Root;
-using Kingmaker.EntitySystem.Entities;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
@@ -14,6 +13,8 @@ using UnityEngine;
 namespace MicroscopicContentExpansion.NewComponents {
     [TypeId("29cfc39737054920bdef50529a521699")]
     internal class AbilityCustomDimensionalAssault : AbilityCustomLogic {
+
+        public override bool IsEngageUnit => true;
         public override IEnumerator<AbilityDeliveryTarget> Deliver(AbilityExecutionContext context, TargetWrapper target) {
             var caster = context.MaybeCaster;
 
@@ -31,9 +32,7 @@ namespace MicroscopicContentExpansion.NewComponents {
                 PFLog.Default.Error("Can't be applied to point", Array.Empty<object>());
                 yield break;
             }
-            //first we attack our main target
-            UnitEntityData maybeCaster = context.MaybeCaster;
-            if (!maybeCaster.IsReach(originalTarget, threatHand)) {
+            if (!caster.IsReach(originalTarget, threatHand)) {
                 Vector3 target1 = originalTarget.Position;
                 var casterPos = caster.Position;
 
@@ -50,15 +49,17 @@ namespace MicroscopicContentExpansion.NewComponents {
             caster.Descriptor.AddBuff(BlueprintRoot.Instance.SystemMechanics.ChargeBuff, context, new TimeSpan?(1.Rounds().Seconds));
             caster.Descriptor.State.IsCharging = true;
 
-            UnitAttack cmd = new UnitAttack(target.Unit) {
+            UnitAttack attack = new UnitAttack(target.Unit) {
                 IsCharge = true
             };
-            cmd.Init(context.Caster);
-            cmd.Start();
-            caster.Commands.AddToQueueFirst(cmd);
+            attack.IgnoreCooldown();
+            attack.Init(caster);
+            attack.Start();
+            caster.Commands.AddToQueueFirst(attack);
         }
 
         public override void Cleanup(AbilityExecutionContext context) {
+            context.Caster.Descriptor.State.IsCharging = false;
         }
     }
 }
