@@ -54,7 +54,6 @@ namespace MicroscopicContentExpansion.NewComponents {
             };
             attack.IgnoreCooldown();
             attack.Init(caster);
-            attack.Start();
             caster.Commands.AddToQueueFirst(attack);
         }
 
