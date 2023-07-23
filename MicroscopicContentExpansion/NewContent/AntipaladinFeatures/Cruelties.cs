@@ -25,7 +25,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             " the additional effect from one of the cruelties possessed by the antipaladin. This choice is made when" +
             " the touch is used. The target receives a Fortitude save to avoid this cruelty. If the save is successful," +
             " the target takes the damage as normal, but not the effects of the cruelty. The DC of this save is equal to" +
-            " 10 + 1/2 the antipaladin’s level + the antipaladin’s Charisma modifier";
+            " 10 + 1/2 the antipaladin’s level + the antipaladin’s Charisma modifier.";
 
         private static void BuildCruelty(
             BlueprintCharacterClassReference antipaladinClassRef,
@@ -678,7 +678,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 "AntipaladinTouchOfCorruptionBlinded",
                 "Touch of Corruption - Blinded",
                 "Applies Touch of Corruption with Blinded cruelty.\nOn failed saving throw the " +
-                "target is blinded for 1 round per three levels of the antipaladin.",
+                "target is blinded for 1 round per level of the antipaladin.",
                 BlindedBuff.Icon,
                 Action,
                 ContextVarConfig,

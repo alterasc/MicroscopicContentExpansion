@@ -24,7 +24,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
         private const string KiAbundantStep = "008466f45b3e2e64793b30f3d16e41c0";
         private const string SFAbundantStep = "b56f18c437dc324438f0d956fb34a8cd";
         internal static void AddDimenshionalSavantFeatChain() {
-            MCEContext.Logger.LogHeader("Adding Dimenshional Savant chain feats");
+            MCEContext.Logger.LogHeader("Adding Dimensional Savant chain feats");
             AddDimensionalDervish();
         }
 
@@ -34,7 +34,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
             var dimensionalAssault = AddDimensionalAssault(dimensionalAgility, flickeringStep);
             var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("4c349361d720e844e846ad8c19959b1e").m_Icon;
 
-            const string dervishName = "Dimenshional Dervish";
+            const string dervishName = "Dimensional Dervish";
             const string dervishDescription = "You can take a full-attack action, activating abundant step or casting dimension door as a swift action. If you do, you can teleport up to twice your speed (up to the maximum distance allowed by the spell or ability), dividing this teleportation into increments you use before your first attack, between each attack, and after your last attack. You must teleport at least 5 feet each time you teleport.";
             const string kiDervishName = "Ki Power: " + dervishName;
             const string fsDervishName = "Flickering Step (" + dervishName + ")";

@@ -42,7 +42,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                     " level on all damage rolls made against the target of his smite. If the target of smite good is an outsider with the good" +
                     " subtype, a good-aligned dragon, or a good creature with levels of cleric or paladin, the bonus to damage on the first" +
                     " successful attack increases to 2 points of damage per level the antipaladin possesses. Regardless of the target, smite good" +
-                    " attacks automatically bypass any DR the creature might possess.In addition, while smite good is in effect, the antipaladin" +
+                    " attacks automatically bypass any DR the creature might possess. In addition, while smite good is in effect, the antipaladin" +
                     " gains a deflection bonus equal to his Charisma modifier(if any) to his AC against attacks made by the target of the smite." +
                     " If the antipaladin targets a creature that is not good, the smite is wasted with no effect.");
                 bp.m_Icon = SmiteGoodIcon;
@@ -111,7 +111,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                     " level on all damage rolls made against the target of his smite. If the target of smite good is an outsider with the good" +
                     " subtype, a good-aligned dragon, or a good creature with levels of cleric or paladin, the bonus to damage on the first" +
                     " successful attack increases to 2 points of damage per level the antipaladin possesses. Regardless of the target, smite good" +
-                    " attacks automatically bypass any DR the creature might possess.In addition, while smite good is in effect, the antipaladin" +
+                    " attacks automatically bypass any DR the creature might possess. In addition, while smite good is in effect, the antipaladin" +
                     " gains a deflection bonus equal to his Charisma modifier(if any) to his AC against attacks made by the target of the smite." +
                     " If the antipaladin targets a creature that is not good, the smite is wasted with no effect. The smite good effect remains" +
                     " until the target of the smite is dead or the next time the antipaladin rests and regains his uses of this ability. " +
@@ -221,7 +221,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                     " level on all damage rolls made against the target of his smite. If the target of smite good is an outsider with the good" +
                     " subtype, a good-aligned dragon, or a good creature with levels of cleric or paladin, the bonus to damage on the first" +
                     " successful attack increases to 2 points of damage per level the antipaladin possesses. Regardless of the target, smite good" +
-                    " attacks automatically bypass any DR the creature might possess.In addition, while smite good is in effect, the antipaladin" +
+                    " attacks automatically bypass any DR the creature might possess. In addition, while smite good is in effect, the antipaladin" +
                     " gains a deflection bonus equal to his Charisma modifier(if any) to his AC against attacks made by the target of the smite." +
                     " If the antipaladin targets a creature that is not good, the smite is wasted with no effect. The smite good effect remains" +
                     " until the target of the smite is dead or the next time the antipaladin rests and regains his uses of this ability. " +

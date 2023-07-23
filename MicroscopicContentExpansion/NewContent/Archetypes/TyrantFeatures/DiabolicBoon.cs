@@ -21,7 +21,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
             "enhancement bonus, to a maximum of +6 at 20th level.\r\nAdding these properties consumes an amount of bonus equal" +
             " to the property’s cost (sorted and listed below).\r\nThese bonuses can be added to the weapon, stacking with " +
             "existing weapon bonuses to a maximum of +5, or they can be used to add any of the following weapon properties:\r\n+1: " +
-            "flaming, keen, vicious\r\n+2: axiomatic, flaming burst, unholy, wounding\r\n+3: speed\r\n+5: vorpal\r\nThese bonuses " +
+            "flaming, keen, vicious\r\n+2: axiomatic, flaming burst, unholy\r\n+3: speed\r\n+5: vorpal\r\nThese bonuses " +
             "are added to any properties the weapon already has, but duplicate abilities do not stack. If the weapon is not magical," +
             " at least a +1 enhancement bonus must be added before any other properties can be added. The bonus and properties " +
             "granted by the spirit are determined when the spirit is called and cannot be changed until the spirit is called again." +
@@ -39,7 +39,7 @@ namespace MicroscopicContentExpansion.NewContent.Archetypes.TyrantFeatures {
                             "enhancement bonus, to a maximum of +6 at 20th level. These bonuses can be added to the weapon, stacking " +
                             "with existing weapon bonuses to a maximum of +5.\nAlternatively, they can be used to add any of the " +
                             "following weapon properties: " +
-                            "flaming, keen, vicious, axiomatic, flaming burst, unholy, wounding, speed, and vorpal." +
+                            "flaming, keen, vicious, axiomatic, flaming burst, unholy, speed, and vorpal." +
                             " Adding these properties consumes an amount of bonus equal to the property's cost. These bonuses are added" +
                             " to any properties the weapon already has, but duplicate abilities do not stack.\nA tyrant can use this" +
                             " ability once per day at 5th level, and one additional time per day for every four levels beyond 5th, to" +

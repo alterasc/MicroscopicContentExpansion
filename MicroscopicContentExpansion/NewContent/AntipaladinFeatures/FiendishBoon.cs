@@ -31,7 +31,7 @@ The first type of bond allows the antipaladin to enhance his weapon as a standar
 Adding these properties consumes an amount of bonus equal to the property’s cost (sorted and listed below).
 These bonuses can be added to the weapon, stacking with existing weapon bonuses to a maximum of +5, or they can be used to add any of the following weapon properties:
 +1: flaming, keen, vicious
-+2: anarchic, flaming burst, unholy, wounding
++2: anarchic, flaming burst, unholy
 +3: speed
 +5: vorpal
 These bonuses are added to any properties the weapon already has, but duplicate abilities do not stack. If the weapon is not magical, at least a +1 enhancement bonus must be added before any other properties can be added. The bonus and properties granted by the spirit are determined when the spirit is called and cannot be changed until the spirit is called again. The fiendish spirit imparts no bonuses if the weapon is held by anyone other than the antipaladin but resumes giving bonuses if returned to the antipaladin. These bonuses apply to only one end of a double weapon. An antipaladin can use this ability once per day at 5th level, and one additional time per day for every four levels beyond 5th, to a total of four times per day at 17th level.
@@ -44,7 +44,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                             "enhancement bonus, to a maximum of +6 at 20th level. These bonuses can be added to the weapon, stacking " +
                             "with existing weapon bonuses to a maximum of +5.\nAlternatively, they can be used to add any of the " +
                             "following weapon properties: " +
-                            "flaming, keen, vicious, anarchic, flaming burst, unholy, wounding, speed, and vorpal." +
+                            "flaming, keen, vicious, anarchic, flaming burst, unholy, speed, and vorpal." +
                             " Adding these properties consumes an amount of bonus equal to the property's cost. These bonuses are added" +
                             " to any properties the weapon already has, but duplicate abilities do not stack.\nAn antipaladin can use this" +
                             " ability once per day at 5th level, and one additional time per day for every four levels beyond 5th, to" +
