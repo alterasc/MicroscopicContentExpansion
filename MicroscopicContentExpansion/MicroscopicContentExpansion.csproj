@@ -195,6 +195,7 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantSpellbook.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
+    <Compile Include="NewContent\Classes\DruidicHerbalism.cs" />
     <Compile Include="NewContent\Feats\CrusadersFlurry.cs" />
     <Compile Include="NewContent\Feats\DimenshionalDervish.cs" />
     <Compile Include="NewContent\Feats\StartossStyleChain.cs" />

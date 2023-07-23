@@ -42,6 +42,13 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 ### New Ki powers
 - [Ki Power: Deadly Juggernaut](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#8th-Level_Ki_Powers)
 - [Ki Power: Ki Leeech](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#10th-Level_Ki_Powers)
+
+### New class features
+- [Druidic Herbalism](https://www.d20pfsrd.com/classes/Core-classes/druid/#Nature_Bond_Ex)
+For simplicity of implementation and usage nerfed compared to tabletop description:   
+  Instead of free WIS mod concoctions every day, druid gets to brew any potion for free.
+
+
 ### Fixes
 
 

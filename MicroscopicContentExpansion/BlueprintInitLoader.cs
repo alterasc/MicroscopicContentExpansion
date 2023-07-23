@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using MicroscopicContentExpansion.NewContent.Antipaladin;
+using MicroscopicContentExpansion.NewContent.Classes;
 using MicroscopicContentExpansion.NewContent.Feats;
 using MicroscopicContentExpansion.NewContent.Spells;
 
@@ -20,6 +21,7 @@ namespace MicroscopicContentExpansion {
                 StartossStyleChain.AddStartossChain();
                 DimenshionalDervish.AddDimenshionalSavantFeatChain();
                 KiLeech.AddKiLeech();
+                DruidicHerbalism.Add();
             }
         }
     }

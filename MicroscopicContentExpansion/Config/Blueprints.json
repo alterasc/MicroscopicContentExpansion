@@ -246,7 +246,10 @@
     "KiLeechFeature": "b13c9e4f-9993-4964-aaef-c700c91ac018",
     "ScaledFistLeechAbility": "39fc1b25-5345-4a67-9421-d60ed6afab1b",
     "ScaledFistLeechBuff": "187363ef-059a-428d-a021-462eada0f20d",
-    "ScaledFistLeechFeature": "248252cf-789d-491c-9b5c-50f30e1a9111"
+    "ScaledFistLeechFeature": "248252cf-789d-491c-9b5c-50f30e1a9111",
+    "DruidicConcoctions": "1758c2df-11f7-449f-a4fc-2762f9b68ae5",
+    "DruidicHerbalism": "59cacb96-8494-4b99-a77f-588122ba596c",
+    "DruidicHerbalismInfusion": "5ddf6390-09f3-44ea-8cac-63b3f44d6e10"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},
