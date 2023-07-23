@@ -1,7 +1,7 @@
 # Microscopic Content Expansion mod for Pathfinder: Wrath of the Righteous 
 ## Requirements: [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core/releases).
 
-Add microscopic amount of new features. May or may not grow further in scope. The latter is more likely.   
+Add Antipaladin class, some feats, spells and ki powers.
 
 ## Featuring
 
@@ -49,6 +49,7 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 -   bubbles and Vek17 specifically   
 -   kadyn for his Expanded Content
 -   Fumihiko for making of Snake Style for Kingmaker
+-   Jarly for Russian localization
 -   Pathfinder Wrath of The Righteous Discord channel members
 -   PS: Wolfie's [Modding Wiki](https://github.com/WittleWolfie/OwlcatModdingWiki/wiki) is an excellent place to start if you want to start modding on your own.
 -   Join our [Discord](https://discord.com/invite/wotr)
