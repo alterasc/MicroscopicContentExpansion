@@ -52,6 +52,9 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
                     Helpers.CreateLevelEntry(7, infusion),
                 };
             });
+
+            if (MCEContext.AddedContent.NewClasses.IsDisabled("DruidicHerbalism")) return;
+
             druidBondSelection.m_AllFeatures = druidBondSelection.m_AllFeatures.AddToArray(druidicHerbalismProgression.ToReference<BlueprintFeatureReference>()).ToArray();
         }
     }
@@ -60,27 +63,33 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
     internal class CraftRoot_CreateCraftInfo_Patch {
         [HarmonyPostfix]
         internal static void Postfix(CraftRoot __instance, ref CraftAvailInfo __result, UnitEntityData crafter, BlueprintItemEquipmentUsable item, Spellbook spellbook, BlueprintAbility abillity, CraftRequirements[] list, CraftInfoComponent craftComp, MetamagicData metamagic, int metamagicBorder, int metamagicBorderColor) {
-            if (item.Type == UsableItemType.Potion
+            if (MCEContext.AddedContent.NewClasses.IsDisabled("DruidicHerbalism")) return;
+
+            try {
+                if (item.Type == UsableItemType.Potion
                 && crafter.HasFact(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1758c2df-11f7-449f-a4fc-2762f9b68ae5"))) {
-                CraftItemInfo craftItemInfo = new CraftItemInfo {
-                    Item = __result.Info.Item,
-                    CastingModifierBonus = __result.Info.CastingModifierBonus,
-                    SpellLevel = __result.Info.SpellLevel,
-                    IsArcane = __result.Info.IsArcane,
-                    CasterLevel = __result.Info.CasterLevel,
-                    CraftCost = new List<BlueprintIngredient.Reference>(),
-                    Metamagic = __result.Info.Metamagic,
-                    MetamagicBorder = __result.Info.MetamagicBorder,
-                    MetamagicBorderColor = __result.Info.MetamagicBorderColor
-                };
-                __result = new CraftAvailInfo {
-                    Info = craftItemInfo,
-                    Requirements = new CraftRequirements() { RequiredFeature = __result.Requirements.RequiredFeature },
-                    IsHaveFeature = __result.IsHaveFeature,
-                    IsHaveItem = __result.IsHaveItem,
-                    IsHaveResources = true,
-                    MaxCasterLevel = spellbook.EffectiveCasterLevel
-                };
+                    CraftItemInfo craftItemInfo = new CraftItemInfo {
+                        Item = __result.Info.Item,
+                        CastingModifierBonus = __result.Info.CastingModifierBonus,
+                        SpellLevel = __result.Info.SpellLevel,
+                        IsArcane = __result.Info.IsArcane,
+                        CasterLevel = __result.Info.CasterLevel,
+                        CraftCost = new List<BlueprintIngredient.Reference>(),
+                        Metamagic = __result.Info.Metamagic,
+                        MetamagicBorder = __result.Info.MetamagicBorder,
+                        MetamagicBorderColor = __result.Info.MetamagicBorderColor
+                    };
+                    __result = new CraftAvailInfo {
+                        Info = craftItemInfo,
+                        Requirements = new CraftRequirements() { RequiredFeature = __result.Requirements.RequiredFeature },
+                        IsHaveFeature = __result.IsHaveFeature,
+                        IsHaveItem = __result.IsHaveItem,
+                        IsHaveResources = true,
+                        MaxCasterLevel = spellbook.EffectiveCasterLevel
+                    };
+                }
+            } catch (Exception e) {
+                MCEContext.Logger.LogError(e, "DruidicHerbalism patch CraftRoot.CreateCraftInfo error");
             }
         }
     }
@@ -89,10 +98,16 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
     internal class AbilityData_AlchemistInfusion_Patch {
         [HarmonyPostfix]
         internal static void Postfix(AbilityData __instance, ref bool __result) {
-            if (__instance.Caster != null && __instance.Spellbook != null
-                && __instance.Spellbook.Blueprint.m_CharacterClass.Guid.m_Guid == Guid.Parse("610d836f3a3a9ed42a4349b62f002e96")
-                && __instance.Caster.HasFact(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10"))) {
-                __result = true;
+            if (MCEContext.AddedContent.NewClasses.IsDisabled("DruidicHerbalism")) return;
+
+            try {
+                if (__instance.Caster != null && __instance?.Spellbook?.Blueprint?.m_CharacterClass != null
+                    && __instance.Spellbook.Blueprint.m_CharacterClass.Guid.m_Guid == Guid.Parse("610d836f3a3a9ed42a4349b62f002e96")
+                    && __instance.Caster.HasFact(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10"))) {
+                    __result = true;
+                }
+            } catch (Exception e) {
+                MCEContext.Logger.LogError(e, "DruidicHerbalism patch AbilityData.AlchemistInfusion error");
             }
         }
     }
@@ -101,12 +116,19 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
     internal class AbilityData_TargetAnchor_Patch {
         [HarmonyPostfix]
         internal static void Postfix(AbilityData __instance, ref AbilityTargetAnchor __result) {
-            if (__instance.Range == AbilityRange.Personal && __result == AbilityTargetAnchor.Owner
-                && __instance.Caster != null && __instance.Spellbook != null
-                && __instance.Spellbook.Blueprint.m_CharacterClass.Guid.m_Guid == Guid.Parse("610d836f3a3a9ed42a4349b62f002e96")
-                && __instance.Caster.HasFact(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10"))) {
-                __result = AbilityTargetAnchor.Unit;
+            if (MCEContext.AddedContent.NewClasses.IsDisabled("DruidicHerbalism")) return;
+
+            try {
+                if (__instance.Range == AbilityRange.Personal && __result == AbilityTargetAnchor.Owner
+                    && __instance.Caster != null && __instance?.Spellbook?.Blueprint?.m_CharacterClass != null
+                    && __instance.Spellbook.Blueprint.m_CharacterClass.Guid.m_Guid == Guid.Parse("610d836f3a3a9ed42a4349b62f002e96")
+                    && __instance.Caster.HasFact(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10"))) {
+                    __result = AbilityTargetAnchor.Unit;
+                }
+            } catch (Exception e) {
+                MCEContext.Logger.LogError(e, "DruidicHerbalism patch AbilityData.TargetAnchor error");
             }
+
         }
     }
 }

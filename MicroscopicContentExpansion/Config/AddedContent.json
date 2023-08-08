@@ -23,6 +23,11 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Antipaladin class"
+      },
+      "DruidicHerbalism": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Druidic Herbalism"
       }
     },
     "IsExpanded": true
