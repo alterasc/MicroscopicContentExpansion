@@ -195,6 +195,7 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
                 bp.MaleEquipmentEntities = PaladinClass.MaleEquipmentEntities;
                 bp.FemaleEquipmentEntities = PaladinClass.FemaleEquipmentEntities;
                 bp.RecommendedAttributes = PaladinClass.RecommendedAttributes;
+                bp.NotRecommendedAttributes = PaladinClass.NotRecommendedAttributes;
                 bp.AddComponent<PrerequisiteNoClassLevel>(c => {
                     c.m_CharacterClass = PaladinClass.ToReference<BlueprintCharacterClassReference>();
                     c.m_CharacterClass = AnimalClass.ToReference<BlueprintCharacterClassReference>();
@@ -207,6 +208,11 @@ namespace MicroscopicContentExpansion.NewContent.Antipaladin {
             });
 
             AntipaladinProgression.AddClass(AntipaladinClass);
+
+            var antipaladinClassRef = AntipaladinClass.ToReference<BlueprintCharacterClassReference>();
+
+            var divine = BlueprintTools.GetBlueprint<BlueprintCharacterClassGroup>("a7e42232e2df2d8429343b4aa4972fac");
+            divine.m_CharacterClasses = divine.m_CharacterClasses.AppendToArray(antipaladinClassRef);
 
             if (MCEContext.AddedContent.NewClasses.IsDisabled("AntipaladinClass")) { return; }
 
