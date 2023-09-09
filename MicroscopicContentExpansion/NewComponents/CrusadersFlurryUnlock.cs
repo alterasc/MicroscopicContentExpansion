@@ -64,7 +64,9 @@ namespace MicroscopicContentExpansion.NewComponents {
             Owner.Progression.Selections.TryGetValue(_deitySelection?.Get(), out var selection);
             if (selection == null)
                 return false;
-            var selectedDeity = selection.m_SelectionsByLevel[1].First();
+            if (!selection.m_SelectionsByLevel.TryGetValue(1, out var selectedAtLvl1)) return false;
+            if (selectedAtLvl1.Count == 0) return false;
+            var selectedDeity = selectedAtLvl1.First();
             var comp = selectedDeity.GetComponent<AddStartingEquipment>();
             if (comp == null || comp.m_BasicItems == null || comp.m_BasicItems.Count() == 0)
                 return false;
@@ -79,24 +81,31 @@ namespace MicroscopicContentExpansion.NewComponents {
         private void CheckEligibility() {
             var isSoheiArchetype = Owner.Progression.IsArchetype(_soheiArchetype.Get());
 
+            var hasShield = Owner.Body.SecondaryHand.HasShield;
             if (!isSoheiArchetype) {
-                if (!Owner.Body.SecondaryHand.HasShield && (!Owner.Body.Armor.HasArmor || !Owner.Body.Armor.Armor.Blueprint.IsArmor)
-                    && !Owner.Body.PrimaryHand.Weapon.Blueprint.IsMonk && IsDeityMeleeFavoredWeaponWithWeaponFocus()) {
+                //not Sohei
+                var noArmor = !Owner.Body.Armor.HasArmor || !Owner.Body.Armor.Armor.Blueprint.IsArmor;
+                var isMonkWeapon = Owner.Body.PrimaryHand.Weapon.Blueprint.IsMonk;
+                if (!hasShield && noArmor && !isMonkWeapon && IsDeityMeleeFavoredWeaponWithWeaponFocus()) {
                     AddFact();
                 } else
                     RemoveFact();
             } else {
-                if (!isSoheiArchetype)
-                    return;
-                bool flag1 = false;
+                //Sohei
+                bool noArmorOrLightArmor = false;
                 if (!Owner.Body.Armor.HasArmor)
-                    flag1 = true;
+                    noArmorOrLightArmor = true;
                 else if (Owner.Body.Armor.MaybeArmor != null)
-                    flag1 = !Owner.Body.Armor.MaybeArmor.Blueprint.IsArmor || Owner.Body.Armor.MaybeArmor.Blueprint.ProficiencyGroup == ArmorProficiencyGroup.Light;
-                bool flag2 = Owner.Get<UnitPartWeaponTraining>() != null ? Owner.Body.PrimaryHand.MaybeWeapon.Blueprint.IsMonk ||
-                    Owner.Get<UnitPartWeaponTraining>().IsSuitableWeapon(Owner.Body.PrimaryHand.MaybeWeapon)
+                    noArmorOrLightArmor = !Owner.Body.Armor.MaybeArmor.Blueprint.IsArmor
+                        || Owner.Body.Armor.MaybeArmor.Blueprint.ProficiencyGroup == ArmorProficiencyGroup.Light;
+
+                bool wieldingWeaponWithWTOrMonkWeapon = Owner.Get<UnitPartWeaponTraining>() != null
+                    ? Owner.Body.PrimaryHand.MaybeWeapon.Blueprint.IsMonk ||
+                        Owner.Get<UnitPartWeaponTraining>().IsSuitableWeapon(Owner.Body.PrimaryHand.MaybeWeapon)
                     : Owner.Body.PrimaryHand.MaybeWeapon.Blueprint.IsMonk;
-                if (!Owner.Body.SecondaryHand.HasShield && flag1 && !flag2 && IsDeityMeleeFavoredWeaponWithWeaponFocus())
+
+                if (!hasShield && noArmorOrLightArmor
+                    && !wieldingWeaponWithWTOrMonkWeapon && IsDeityMeleeFavoredWeaponWithWeaponFocus())
                     AddFact();
                 else
                     RemoveFact();
