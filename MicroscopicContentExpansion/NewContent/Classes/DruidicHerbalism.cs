@@ -98,6 +98,8 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
     internal class AbilityData_AlchemistInfusion_Patch {
         [HarmonyPostfix]
         internal static void Postfix(AbilityData __instance, ref bool __result) {
+            if (__result) return;
+
             if (MCEContext.AddedContent.NewClasses.IsDisabled("DruidicHerbalism")) return;
 
             try {
@@ -116,6 +118,8 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
     internal class AbilityData_TargetAnchor_Patch {
         [HarmonyPostfix]
         internal static void Postfix(AbilityData __instance, ref AbilityTargetAnchor __result) {
+            if (__result == AbilityTargetAnchor.Unit) return;
+
             if (MCEContext.AddedContent.NewClasses.IsDisabled("DruidicHerbalism")) return;
 
             try {
