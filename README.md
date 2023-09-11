@@ -38,10 +38,11 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 - [Deadly Juggernaut (Cleric 3, Inquisitor 3, Paladin 3, Antipaladin 3, Warpriest 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
 - [Blade of Dark Triumph (Antipaladin 3)](https://www.d20pfsrd.com/magic/all-spells/b/blade-of-dark-triumph)
 - [Blade of Bright Victory (Paladin 3)](https://www.d20pfsrd.com/magic/all-spells/b/blade-of-bright-victory)
+- [Widen Auras (Antipaladin 2)](https://www.d20pfsrd.com/magic/all-spells/w/widen-auras/) - note, only Antipaladin, no Paladin version.
 
 ### New Ki powers
 - [Ki Power: Deadly Juggernaut](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#8th-Level_Ki_Powers)
-- [Ki Power: Ki Leeech](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#10th-Level_Ki_Powers)
+- [Ki Power: Ki Leech](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#10th-Level_Ki_Powers)
 
 ### New class features
 - [Druidic Herbalism](https://www.d20pfsrd.com/classes/Core-classes/druid/#Nature_Bond_Ex)
