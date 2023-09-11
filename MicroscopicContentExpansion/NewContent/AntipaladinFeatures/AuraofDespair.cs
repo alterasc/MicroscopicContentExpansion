@@ -1,13 +1,10 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.Utility;
+using MicroscopicContentExpansion.NewComponents;
 using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
@@ -41,31 +38,33 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.Value = -2;
                     c.Stat = Kingmaker.EntitySystem.Stats.StatType.SaveWill;
                 });
-                bp.Frequency = DurationRate.Rounds;
-                bp.IsClassFeature = true;
-                bp.FxOnRemove = new PrefabLink();
-                bp.FxOnStart = new PrefabLink();
             });
 
+            var AuraOfDespairArea = AuraUtils.CreateUnconditionalHostileAuraEffect(
+                modContext: MCEContext,
+                bpName: "AntipaladinAuraOfDespairArea",
+                size: 13,
+                buff: AuraOfDespairEffectBuff.ToReference<BlueprintBuffReference>()
+            );
 
-            var AuraOfDespairArea = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "AntipaladinAuraOfDespairArea", bp => {
-                bp.AggroEnemies = true;
-                bp.AffectEnemies = true;
-                bp.m_TargetType = BlueprintAbilityAreaEffect.TargetType.Enemy;
-                bp.Shape = AreaEffectShape.Cylinder;
-                bp.Size = 13.Feet();
-                bp.Fx = new PrefabLink();
-                bp.AddComponent(AuraUtils.CreateUnconditionalAuraEffect(AuraOfDespairEffectBuff.ToReference<BlueprintBuffReference>()));
-            });
+            var AuraOfDespairWidenArea = AuraUtils.CreateUnconditionalHostileAuraEffect(
+                modContext: MCEContext,
+                bpName: "AntipaladinAuraOfDespairWidenArea",
+                size: 22,
+                buff: AuraOfDespairEffectBuff.ToReference<BlueprintBuffReference>()
+            );
 
             var AuraOfDespairBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfDespairBuff", bp => {
-                bp.SetName(MCEContext, NAME);
-                bp.SetDescription(MCEContext, DESCRIPTION);
-                bp.m_Icon = CrushingDespairIcon;
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
-                bp.IsClassFeature = true;
                 bp.AddComponent<AddAreaEffect>(c => {
                     c.m_AreaEffect = AuraOfDespairArea.ToReference<BlueprintAbilityAreaEffectReference>();
+                });
+            });
+
+            var AuraOfDespairWidenBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfDespairWidenBuff", bp => {
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
+                bp.AddComponent<AddAreaEffect>(c => {
+                    c.m_AreaEffect = AuraOfDespairWidenArea.ToReference<BlueprintAbilityAreaEffectReference>();
                 });
             });
 
@@ -73,10 +72,10 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = CrushingDespairIcon;
-                bp.Ranks = 1;
-                bp.IsClassFeature = true;
-                bp.AddComponent<AuraFeatureComponent>(c => {
-                    c.m_Buff = AuraOfDespairBuff.ToReference<BlueprintBuffReference>();
+                bp.AddComponent<AuraFeatureComponentWithWiden>(c => {
+                    c.DefaultBuff = AuraOfDespairBuff.ToReference<BlueprintBuffReference>();
+                    c.WidenFact = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("WidenAurasBuff");
+                    c.WidenBuff = AuraOfDespairWidenBuff.ToReference<BlueprintBuffReference>();
                 });
             });
         }

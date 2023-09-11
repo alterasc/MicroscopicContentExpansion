@@ -1,13 +1,10 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.Utility;
+using MicroscopicContentExpansion.NewComponents;
 using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.Utilities;
 using static MicroscopicContentExpansion.Main;
@@ -24,39 +21,38 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var AOSIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("8bc64d869456b004b9db255cdd1ea734").Icon;
 
             var AuraOfSinEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfSinEffectBuff", bp => {
-                bp.SetName(MCEContext, NAME);
-                bp.SetDescription(MCEContext, DESCRIPTION);
-                bp.m_Icon = AOSIcon;
-                bp.IsClassFeature = true;
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
-                bp.Frequency = DurationRate.Rounds;
-                bp.Stacking = StackingType.Replace;
                 bp.AddComponent<AddIncomingDamageWeaponProperty>(c => {
-                    c.Material = Kingmaker.Enums.Damage.PhysicalDamageMaterial.Adamantite;
                     c.AddAlignment = true;
                     c.Alignment = Kingmaker.Enums.Damage.DamageAlignment.Evil;
-                    c.Reality = Kingmaker.Enums.Damage.DamageRealityType.Ghost;
                 });
-                bp.FxOnRemove = new PrefabLink();
-                bp.FxOnStart = new PrefabLink();
             });
 
-            var AuraOfSinArea = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "AntipaladinAuraOfSinArea", bp => {
-                bp.AggroEnemies = true;
-                bp.Shape = AreaEffectShape.Cylinder;
-                bp.Size = 13.Feet();
-                bp.m_TargetType = BlueprintAbilityAreaEffect.TargetType.Enemy;
-                bp.AddComponent(AuraUtils.CreateUnconditionalAuraEffect(AuraOfSinEffectBuff.ToReference<BlueprintBuffReference>()));
-            });
+            var AuraOfSinArea = AuraUtils.CreateUnconditionalHostileAuraEffect(
+                modContext: MCEContext,
+                bpName: "AntipaladinAuraOfSinArea",
+                size: 13,
+                buff: AuraOfSinEffectBuff.ToReference<BlueprintBuffReference>()
+            );
+
+            var AuraOfSinWidenArea = AuraUtils.CreateUnconditionalHostileAuraEffect(
+                modContext: MCEContext,
+                bpName: "AntipaladinAuraOfSinWidenArea",
+                size: 22,
+                buff: AuraOfSinEffectBuff.ToReference<BlueprintBuffReference>()
+            );
 
             var AuraOfSinBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfSinBuff", bp => {
-                bp.SetName(MCEContext, NAME);
-                bp.SetDescription(MCEContext, DESCRIPTION);
-                bp.m_Icon = AOSIcon;
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
-                bp.IsClassFeature = true;
                 bp.AddComponent<AddAreaEffect>(c => {
                     c.m_AreaEffect = AuraOfSinArea.ToReference<BlueprintAbilityAreaEffectReference>();
+                });
+            });
+
+            var AuraOfSinWidenBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfSinWidenBuff", bp => {
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
+                bp.AddComponent<AddAreaEffect>(c => {
+                    c.m_AreaEffect = AuraOfSinWidenArea.ToReference<BlueprintAbilityAreaEffectReference>();
                 });
             });
 
@@ -64,17 +60,14 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = AOSIcon;
-                bp.Ranks = 1;
-                bp.IsClassFeature = true;
-                bp.AddComponent<AuraFeatureComponent>(c => {
-                    c.m_Buff = AuraOfSinBuff.ToReference<BlueprintBuffReference>();
+                bp.AddComponent<AuraFeatureComponentWithWiden>(c => {
+                    c.DefaultBuff = AuraOfSinBuff.ToReference<BlueprintBuffReference>();
+                    c.WidenFact = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("WidenAurasBuff");
+                    c.WidenBuff = AuraOfSinWidenBuff.ToReference<BlueprintBuffReference>();
                 });
-
                 bp.AddComponent<AddOutgoingPhysicalDamageProperty>(c => {
-                    c.Material = Kingmaker.Enums.Damage.PhysicalDamageMaterial.Adamantite;
                     c.AddAlignment = true;
                     c.Alignment = Kingmaker.Enums.Damage.DamageAlignment.Evil;
-                    c.Reality = Kingmaker.Enums.Damage.DamageRealityType.Ghost;
                 });
             });
         }

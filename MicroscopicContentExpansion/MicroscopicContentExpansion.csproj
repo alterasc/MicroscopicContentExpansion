@@ -167,6 +167,7 @@
     <Compile Include="NewComponents\AbilityCustomDimensionalAssault.cs" />
     <Compile Include="NewComponents\AbilityCustomDimensionalDervish.cs" />
     <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
+    <Compile Include="NewComponents\AuraFeatureComponentWithWiden.cs" />
     <Compile Include="NewComponents\ContextActionArmorEnchantPoolMCE.cs" />
     <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
     <Compile Include="NewComponents\CrusadersFlurryUnlock.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="NewContent\Feats\SnakeStyleChain.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
     <Compile Include="NewContent\Spells\BladeofDarkTriumph.cs" />
+    <Compile Include="NewContent\Spells\WidenAuras.cs" />
     <Compile Include="NewContent\Spells\DeadlyJuggernaut.cs" />
     <Compile Include="NewContent\Spells\KiLeech.cs" />
     <Compile Include="NewContent\Spells\ProtectionFromChaosGood.cs" />

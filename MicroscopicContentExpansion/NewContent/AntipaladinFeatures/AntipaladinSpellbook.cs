@@ -27,6 +27,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
 
             var deadlyJuggernaut = DeadlyJuggernaut.AddDeadlyJuggernaut();
             var bladeofDarkTriumph = BladeofDarkTriumph.AddBladeofDarkTriumph();
+            var widenAuras = WidenAuras.AddWidenAuras();
 
             var AntipaladinSpellList = Helpers.CreateBlueprint<BlueprintSpellList>(MCEContext, "AntipaladinSpelllist", bp => {
                 bp.SpellsByLevel = new SpellLevelList[] {
@@ -54,7 +55,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("dee3074b2fbfb064b80b973f9b56319e"), //Pernicious Poison
                             protectionFromLawGoodCommunal,
                             BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("08cb5f4c3b2695e44971bf5c45205df0"), //Scare
-                            BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("1724061e89c667045a6891179ee2e8e7")  //Summon Monster II                            
+                            BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("1724061e89c667045a6891179ee2e8e7"), //Summon Monster II
+                            widenAuras  //Widen Auras
                         }
                     },
                     new SpellLevelList(3) {

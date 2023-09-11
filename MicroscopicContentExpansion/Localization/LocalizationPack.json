@@ -23,17 +23,6 @@
       "esES": null
     },
     {
-      "Key": "1b5f8967763c48efa8c2afc326977586",
-      "SimpleName": "AntipaladinAuraOfCowardiceBuff.Description",
-      "ProcessTemplates": true,
-      "enGB": "At 3rd level, an antipaladin radiates a palpably daunting aura that causes all enemies within 10 feet to take a –4 penalty on saving throws against fear effects. Creatures that are normally immune to fear lose that immunity while within 10 feet of an antipaladin with this ability. This ability functions only while the antipaladin remains conscious, not if he is unconscious or dead.",
-      "ruRU": "На третьем уровне антипаладин начинает излучать устрашающую ауру, из-за которой все враги на расстоянии 10 футов получают штраф –4 ко всем спасброскам против эффектов страха. Существа, которые обычно невосприимчивы к страху, теряют эту невосприимчивость на расстоянии 10 футов от антипаладина. Эта способность работает только пока антипаладин жив и в сознании.",
-      "deDE": null,
-      "frFR": null,
-      "zhCN": null,
-      "esES": null
-    },
-    {
       "Key": "17a7f595787b41b9a10b842c1d25dc40",
       "SimpleName": "AntipaladinAuraOfCowardiceEffectBuff.Description",
       "ProcessTemplates": true,
@@ -3757,6 +3746,28 @@
       "ProcessTemplates": false,
       "enGB": "Diabolic Bond",
       "ruRU": "Дьявольский дар",
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "3c3831fa04054f5397cef7e0deefd006",
+      "SimpleName": "WidenAurasBuff.Description",
+      "ProcessTemplates": true,
+      "enGB": "The range of your antipaladin auras doubles.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "1f126b7b6ed14a7bbe5b3240a130e600",
+      "SimpleName": "WidenAurasBuff.Name",
+      "ProcessTemplates": false,
+      "enGB": "Widen Auras",
+      "ruRU": null,
       "deDE": null,
       "frFR": null,
       "zhCN": null,

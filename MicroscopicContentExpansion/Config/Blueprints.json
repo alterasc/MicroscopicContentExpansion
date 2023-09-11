@@ -249,7 +249,17 @@
     "ScaledFistLeechFeature": "248252cf-789d-491c-9b5c-50f30e1a9111",
     "DruidicConcoctions": "1758c2df-11f7-449f-a4fc-2762f9b68ae5",
     "DruidicHerbalism": "59cacb96-8494-4b99-a77f-588122ba596c",
-    "DruidicHerbalismInfusion": "5ddf6390-09f3-44ea-8cac-63b3f44d6e10"
+    "DruidicHerbalismInfusion": "5ddf6390-09f3-44ea-8cac-63b3f44d6e10",
+    "WidenAurasAbility": "124b5930-0658-42cd-9dff-7d89d28023b4",
+    "WidenAurasBuff": "6d15fa75-daaa-4e00-a013-697dfc494ebf",
+    "AntipaladinAuraOfCowardiceWidenArea": "bf70f39e-c3a1-4ad9-9601-58dfc086c9a9",
+    "AntipaladinAuraOfCowardiceWidenBuff": "d4b2213c-167c-4d9f-b691-71b17f7f59f9",
+    "AntipaladinAuraOfDepravityWidenArea": "95d12cd7-6d2d-455a-bbb0-36a529f2be13",
+    "AntipaladinAuraOfDepravityWidenBuff": "ab6ed110-02ac-4e00-9371-1528b864db48",
+    "AntipaladinAuraOfDespairWidenArea": "213bc255-5efe-433d-a9e2-bae5178296d4",
+    "AntipaladinAuraOfDespairWidenBuff": "ad3740cb-d2bb-41e6-a831-c831f8f36173",
+    "AntipaladinAuraOfSinWidenArea": "6e091fa5-9be9-46ca-a6ef-a2c3f0cba2e6",
+    "AntipaladinAuraOfSinWidenBuff": "d9d7147c-8c83-411e-8978-72a5a5050552"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

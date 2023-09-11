@@ -3,13 +3,12 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
-using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using Kingmaker.Utility;
+using MicroscopicContentExpansion.NewComponents;
 using MicroscopicContentExpansion.Utils;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
@@ -39,6 +38,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                         ValueType = ContextValueType.Rank
                     };
                 });
+
                 bp.AddComponent<ContextRankConfig>(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                     c.m_Progression = ContextRankProgression.Custom;
@@ -62,32 +62,34 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.AddComponent<BuffDescriptorImmunityIgnore>(c => {
                     c.Descriptor = SpellDescriptor.Fear | SpellDescriptor.Shaken | SpellDescriptor.Frightened;
                 });
-
-                bp.Frequency = DurationRate.Rounds;
-                bp.IsClassFeature = true;
-                bp.FxOnRemove = new PrefabLink();
-                bp.FxOnStart = new PrefabLink();
             });
 
 
-            var AuraOfCowardiceArea = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "AntipaladinAuraOfCowardiceArea", bp => {
-                bp.AggroEnemies = true;
-                bp.AffectEnemies = true;
-                bp.m_TargetType = BlueprintAbilityAreaEffect.TargetType.Enemy;
-                bp.Shape = AreaEffectShape.Cylinder;
-                bp.Size = 13.Feet();
-                bp.Fx = new PrefabLink();
-                bp.AddComponent(AuraUtils.CreateUnconditionalAuraEffect(AuraOfCowardiceEffectBuff.ToReference<BlueprintBuffReference>()));
-            });
+            var AuraOfCowardiceArea = AuraUtils.CreateUnconditionalHostileAuraEffect(
+                modContext: MCEContext,
+                bpName: "AntipaladinAuraOfCowardiceArea",
+                size: 13,
+                buff: AuraOfCowardiceEffectBuff.ToReference<BlueprintBuffReference>()
+            );
+
+            var AuraOfCowardiceWidenArea = AuraUtils.CreateUnconditionalHostileAuraEffect(
+                modContext: MCEContext,
+                bpName: "AntipaladinAuraOfCowardiceWidenArea",
+                size: 22,
+                buff: AuraOfCowardiceEffectBuff.ToReference<BlueprintBuffReference>()
+            );
 
             var AuraOfCowardiceBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfCowardiceBuff", bp => {
-                bp.SetName(MCEContext, NAME);
-                bp.SetDescription(MCEContext, DESCRIPTION);
-                bp.m_Icon = AOCIcon;
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
-                bp.IsClassFeature = true;
                 bp.AddComponent<AddAreaEffect>(c => {
                     c.m_AreaEffect = AuraOfCowardiceArea.ToReference<BlueprintAbilityAreaEffectReference>();
+                });
+            });
+
+            var AuraOfCowardiceWidenBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfCowardiceWidenBuff", bp => {
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
+                bp.AddComponent<AddAreaEffect>(c => {
+                    c.m_AreaEffect = AuraOfCowardiceWidenArea.ToReference<BlueprintAbilityAreaEffectReference>();
                 });
             });
 
@@ -95,10 +97,10 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 bp.SetName(MCEContext, NAME);
                 bp.SetDescription(MCEContext, DESCRIPTION);
                 bp.m_Icon = AOCIcon;
-                bp.Ranks = 1;
-                bp.IsClassFeature = true;
-                bp.AddComponent<AuraFeatureComponent>(c => {
-                    c.m_Buff = AuraOfCowardiceBuff.ToReference<BlueprintBuffReference>();
+                bp.AddComponent<AuraFeatureComponentWithWiden>(c => {
+                    c.DefaultBuff = AuraOfCowardiceBuff.ToReference<BlueprintBuffReference>();
+                    c.WidenFact = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("WidenAurasBuff");
+                    c.WidenBuff = AuraOfCowardiceWidenBuff.ToReference<BlueprintBuffReference>();
                 });
             });
         }

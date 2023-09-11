@@ -120,7 +120,7 @@ namespace MicroscopicContentExpansion.NewComponents {
         IRulebookHandler<RuleAttackWithWeaponResolve>,
         ISubscriber,
         IInitiatorRulebookSubscriber {
-        public new UnitEntityData GetSubscribingUnit() {
+        public UnitEntityData GetSubscribingUnit() {
             return this.m_Unit;
         }
 
