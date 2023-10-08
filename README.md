@@ -48,6 +48,15 @@ WARNING: Alignment restrictions do not have mythic bypass clause. You stop being
 - [Druidic Herbalism](https://www.d20pfsrd.com/classes/Core-classes/druid/#Nature_Bond_Ex)
 For simplicity of implementation and usage nerfed compared to tabletop description:   
   Instead of free WIS mod concoctions every day, druid gets to brew any potion for free.
+- [Legion's Blessing (Cleric Crusader archetype lvl 8 feature)](https://www.d20pfsrd.com/classes/core-classes/cleric/archetypes/paizo-cleric-archetypes/crusader)
+Allows you to sacrifice spell slot (through spontaneous conversion), making your next spell of exactly 3 levels lower with a range of touch to be applied to all allies in a 10 ft radius.
+	- properly takes into account metamagic and stuff
+	- effects that trigger "on spell cast" will trigger for each target, which may be desired or not.
+	- will work on modded spells or spells added through Loremaster. Condition for triggering mass cast simply (range is touch, target is ally).
+	- you're your own ally. Mass cast will be applied on you/triggered by casting on yourself
+	- sacrifice spell and subsequent mass-cast are only for Crusader spellbook
+	- unfortunately this mass cast can't be set up through Bubble Buffs
+	- Zippy Magic with duplicate original cast once, but won't trigger any more mass casts
 
 
 ### Fixes

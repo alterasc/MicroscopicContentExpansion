@@ -22,6 +22,7 @@ namespace MicroscopicContentExpansion {
                 DimenshionalDervish.AddDimenshionalSavantFeatChain();
                 KiLeech.AddKiLeech();
                 DruidicHerbalism.Add();
+                CrusaderLegionBlessing.Add();
             }
         }
     }

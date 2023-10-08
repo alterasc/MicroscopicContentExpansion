@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
-using static Kingmaker.Blueprints.Classes.BlueprintProgression;
 using static MicroscopicContentExpansion.Main;
 
 namespace MicroscopicContentExpansion.NewContent.Classes {
@@ -39,8 +38,8 @@ namespace MicroscopicContentExpansion.NewContent.Classes {
             var druidicHerbalismProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, featureInternalName, a => {
                 a.SetName(MCEContext, "Druidic Herbalism");
                 a.SetDescription(MCEContext, description);
-                a.m_Classes = new ClassWithLevel[] {
-                    new ClassWithLevel() {
+                a.m_Classes = new BlueprintProgression.ClassWithLevel[] {
+                    new BlueprintProgression.ClassWithLevel() {
                         m_Class = ClassTools.ClassReferences.DruidClass
                     }
                 };

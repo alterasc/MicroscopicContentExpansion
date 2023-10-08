@@ -28,6 +28,11 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Druidic Herbalism"
+      },
+      "CrusaderLegionBlessing": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Crusader Legion's Blessing"
       }
     },
     "IsExpanded": true

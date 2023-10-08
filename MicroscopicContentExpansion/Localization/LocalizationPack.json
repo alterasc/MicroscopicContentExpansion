@@ -3081,6 +3081,127 @@
       "esES": null
     },
     {
+      "Key": "90fb6845c3f54f61a07814d7187c473c",
+      "SimpleName": "LegionBlessingBuff.Description",
+      "ProcessTemplates": false,
+      "enGB": "Next time you cast on ally spell of this level, it also gets applied on all allies around you in 10 ft radius.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "dd3011de81c24208bb0e95e5ad25ed43",
+      "SimpleName": "LegionBlessingBuff1.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing - Spell Level 1",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "53dfc36da7744691b971c8856ba8d04a",
+      "SimpleName": "LegionBlessingBuff2.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing - Spell Level 2",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "65782e81961942dba5160f0152bbeac9",
+      "SimpleName": "LegionBlessingBuff3.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing - Spell Level 3",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "077d9234d896483bb3d95159b9dbf7ed",
+      "SimpleName": "LegionBlessingBuff4.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing - Spell Level 4",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "63f8b7b4947c4b93a3955b1e948e3b21",
+      "SimpleName": "LegionBlessingBuff5.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing - Spell Level 5",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "d6f81565a04f4bf4918c9073d00d92c8",
+      "SimpleName": "LegionBlessingBuff6.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing - Spell Level 6",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "b1f151a9eb5d4dc5ba46f1ddefcb39be",
+      "SimpleName": "LegionBlessingFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "At 8th level, a crusader gains the ability to confer beneficial spells quickly to a large group of allies. The crusader may confer the effects of a single harmless spell with a range of touch to all allies around in 10 ft radius. Using the legion’s blessing expends the prepared spell, but it also requires the crusader to sacrifice another prepared spell three levels higher, as when spontaneously using a cure or inflict spell. The higher-level spell is not cast but is simply lost, its magical energy used to power the legion’s blessing.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "23071afc0ff84e2eb67e426fa80e8580",
+      "SimpleName": "LegionBlessingFeature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "bc08a88af24e4fe69a8e76ad0d5f70ad",
+      "SimpleName": "LegionBlessingSacrificeSpellAbility.Description",
+      "ProcessTemplates": true,
+      "enGB": "You sacrifice prepared spell. Next beneficial spell with a range of touch prepared in a slot 3 spell levels lower will be applied not only to target, but also to all allies around in 10 ft radius.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "583765c9aa3449c49d9f7f940165975a",
+      "SimpleName": "LegionBlessingSacrificeSpellAbility.Name",
+      "ProcessTemplates": false,
+      "enGB": "Legion's Blessing - Sacrifice Spell",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "4f37de815fc04eb593ef235b7e4c3704",
       "SimpleName": "PaladinUnsanctionedKnowledge.Description",
       "ProcessTemplates": true,

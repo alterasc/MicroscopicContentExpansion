@@ -259,7 +259,15 @@
     "AntipaladinAuraOfDespairWidenArea": "213bc255-5efe-433d-a9e2-bae5178296d4",
     "AntipaladinAuraOfDespairWidenBuff": "ad3740cb-d2bb-41e6-a831-c831f8f36173",
     "AntipaladinAuraOfSinWidenArea": "6e091fa5-9be9-46ca-a6ef-a2c3f0cba2e6",
-    "AntipaladinAuraOfSinWidenBuff": "d9d7147c-8c83-411e-8978-72a5a5050552"
+    "AntipaladinAuraOfSinWidenBuff": "d9d7147c-8c83-411e-8978-72a5a5050552",
+    "LegionBlessingBuff1": "a0ffb501-038d-499d-9a9d-460a98e00092",
+    "LegionBlessingBuff2": "280cea7c-3cf4-4e17-b17d-664c4d48994d",
+    "LegionBlessingBuff3": "080010e6-0390-4e0c-b579-59490a01accc",
+    "LegionBlessingBuff4": "2c734279-a578-47eb-aa92-ac1e6ef84100",
+    "LegionBlessingBuff5": "2e1cfa57-a037-4604-83bb-7940ef77b9e3",
+    "LegionBlessingBuff6": "c682aada-c1f1-4db6-861a-807582ac690b",
+    "LegionBlessingFeature": "baf45874-fc7f-419a-b37e-e96ae00148a3",
+    "LegionBlessingSacrificeSpellAbility": "af9a8c1c-a5c3-4b5b-a3b3-360eda7b0cdc"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},
