@@ -16,6 +16,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using MicroscopicContentExpansion.NewComponents;
+using MicroscopicContentExpansion.NewContent.AnimalCompanions;
 using System.Collections.Generic;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
@@ -405,6 +406,8 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             var MountTargetFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("cb06f0e72ffb5c640a156bd9f8000c1d");
             var AnimalCompanionArchetypeSelection = BlueprintTools.GetBlueprint<BlueprintFeature>("65af7290b4efd5f418132141aaa36c1b");
 
+            var nightmarePet = NightmareAnimalCompanion.Add();
+
             var AntipaladinServantSelection = Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinServantSelection", bp => {
                 bp.SetName(MCEContext, "Fiendish Servant");
                 bp.SetDescription(MCEContext, "The second type of bond allows an antipaladin to gain the service of a fiendish animal. " +
@@ -433,7 +436,8 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("67a9dc42b15d0954ca4689b13e8dedea"), //wolf
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("bfeb9be0a3c9420b8b2beecc8171029c"), //horse preorder
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("44f4d77689434e07a5a44dcb65b25f71"), //smilodon preorder
-                    BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("52c854f77105445a9457572ab5826c00")  //triceratops preorder
+                    BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("52c854f77105445a9457572ab5826c00"),  //triceratops preorder
+                    nightmarePet
                 );
                 bp.AddComponent<AddFeatureOnApply>(c => {
                     c.m_Feature = AnimalCompanionRank.ToReference<BlueprintFeatureReference>();

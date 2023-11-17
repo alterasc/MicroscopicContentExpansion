@@ -16,6 +16,25 @@ Archetypes available:
 IMPORTANT: For best experience also install TabletopTweaks-Base. Fiendish template for antipaladin animal companion and Armor Mastery/Shield Mastery feats that can be picked as Iron Tyrant bonus feats are used from TTT. If you don't have TTT-Base, mod will still work, just you will be missing additional possible selections. (No, I won't copypaste those in my mod, don't ask)
 
 WARNING: Alignment restrictions do not have mythic bypass clause. You stop being evil and you lose spellbook and active abilities. This is intended.
+
+#### Antipaladin exclusive companion and mount - Nightmare (flaming horse)
+
+Size: Large    
+Speed: 50 ft.    
+AC: +8 natural armor    
+Attack: bite (1d4), 2 hooves (1d6)    
+Ability scores: Str 18, Dex 15, Con 16, Int 13, Wis 13, Cha 12     
+Special qualities: Hoof attacks deal additional 1d4 fire damage.    
+Nightmares are not animals, but evil outsiders and thus are not affected by abilities targeting specifically animals or not working on outsiders. That means Animal Growth and Legendary Proporions do NOT work on them. 
+
+They do not have any special level where they get upgrade. They receive the usual bonuses from animal level ups.
+
+Can be mounted with character properly (mostly) sitting on the mount. Occasionally it will be wonky, accept it as what it is.
+
+Bardings can be equipped (provided you have proficiency), but they will not show on the model.
+
+They use Horse portrait.
+
 ### New feats
 
 - [Unsanctioned Knowledge (paladin and antipaladin versions)](https://www.d20pfsrd.com/feats/general-feats/unsanctioned-knowledge/)

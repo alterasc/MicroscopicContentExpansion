@@ -267,7 +267,12 @@
     "LegionBlessingBuff5": "2e1cfa57-a037-4604-83bb-7940ef77b9e3",
     "LegionBlessingBuff6": "c682aada-c1f1-4db6-861a-807582ac690b",
     "LegionBlessingFeature": "baf45874-fc7f-419a-b37e-e96ae00148a3",
-    "LegionBlessingSacrificeSpellAbility": "af9a8c1c-a5c3-4b5b-a3b3-360eda7b0cdc"
+    "LegionBlessingSacrificeSpellAbility": "af9a8c1c-a5c3-4b5b-a3b3-360eda7b0cdc",
+    "AnimalCompanionFeatureNightmare": "4bfe297b-1d2c-47d1-8aa7-70ec5c132194",
+    "AnimalCompanionUnitNightmare": "669b9b01-4b60-4262-8ad1-73b1ebbf4f2d",
+    "NightmareHoofFireDamageFeature": "7ee367c4-0826-4208-a853-a405360aac28",
+    "NightmareRemoveAnimalType": "e33b723a-e439-4dd9-bcdd-35803c7ba485",
+    "NightmareRemoveAnimalTypeOnClassLvlFeature": "873554e9-9471-48f4-bb4d-80f51b8a2941"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

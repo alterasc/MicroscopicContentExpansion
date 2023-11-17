@@ -1,6 +1,28 @@
 {
   "LocalizedStrings": [
     {
+      "Key": "de3f1e13e1974416b0831d195c3afa78",
+      "SimpleName": "AnimalCompanionFeatureNightmare.Description",
+      "ProcessTemplates": true,
+      "enGB": "{g|Encyclopedia:Size}Size{/g}: Large\r\n{g|Encyclopedia:Speed}Speed{/g}: 50 ft.\r\n{g|Encyclopedia:Armor_Class}AC{/g}: +8 natural armor\r\n{g|Encyclopedia:Attack}Attack{/g}: bite ({g|Encyclopedia:Dice}1d4{/g}), 2 hooves (1d6)\r\n{g|Encyclopedia:Ability_Scores}Ability scores{/g}: {g|Encyclopedia:Strength}Str{/g} 18, {g|Encyclopedia:Dexterity}Dex{/g} 15, {g|Encyclopedia:Constitution}Con{/g} 16, {g|Encyclopedia:Intelligence}Int{/g} 13, {g|Encyclopedia:Wisdom}Wis{/g} 13, {g|Encyclopedia:Charisma}Cha{/g} 12\r\nSpecial qualities: Hoof attacks deal additional 1d4 fire damage.\r\nNightmares are not animals, but evil outsiders from {g|Abaddon}Abaddon{/g} and thus are not affected by abilities targeting specifically animals.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "fca783dc55a94a649b5b6b20b46ce31b",
+      "SimpleName": "AnimalCompanionFeatureNightmare.Name",
+      "ProcessTemplates": false,
+      "enGB": "Fiendish Companion - Nightmare",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "48894294e3414b1fbfd027d414c38289",
       "SimpleName": "AntipaladinAlignmentRestriction.Description",
       "ProcessTemplates": true,
@@ -3195,6 +3217,28 @@
       "SimpleName": "LegionBlessingSacrificeSpellAbility.Name",
       "ProcessTemplates": false,
       "enGB": "Legion's Blessing - Sacrifice Spell",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "7c0eb836638f49e4844b60f4f1c7e69d",
+      "SimpleName": "NightmareHoofFireDamageFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Nightmare hoofs deal additional 1d4 fire damage",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "8a347547fa074aada3fdb299cc042fd4",
+      "SimpleName": "NightmareHoofFireDamageFeature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Nightmare - Hoof Fire damage",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

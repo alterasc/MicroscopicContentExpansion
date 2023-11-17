@@ -12,7 +12,7 @@
     <AssemblyName>MicroscopicContentExpansion</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <LangVersion>9</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -177,6 +177,8 @@
     <Compile Include="NewComponents\RuleAttackWithWeaponChaining.cs" />
     <Compile Include="NewComponents\SnakeFangOnMissHandler.cs" />
     <Compile Include="NewComponents\StartossStyleComponent.cs" />
+    <Compile Include="NewContent\AnimalCompanions\NightmareMountOffsetPatch.cs" />
+    <Compile Include="NewContent\AnimalCompanions\NightmareAnimalCompanion.cs" />
     <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
     <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil20.cs" />
