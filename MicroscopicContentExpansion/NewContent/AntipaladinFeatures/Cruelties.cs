@@ -92,7 +92,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             );
         }
 
-        private static void AddFatiquedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
+        private static void AddFatiguedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility) {
             var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
             var FatiguedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e6f2fc5d73d88064583cb828801212f4");
 
@@ -107,7 +107,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                 AntipaladinClassRef,
                 out var InnerCrueltyFeature,
                 out var InnerCrueltyAbility,
-                "Fatiqued",
+                "Fatigued",
                 "The target is fatigued.",
                 FatiguedBuff.Icon,
                 0,
@@ -388,7 +388,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     c.Level = 9;
                 });
                 bp.AddPrerequisite<PrerequisiteFeature>(c => {
-                    c.m_Feature = MCEContext.GetModBlueprintReference<BlueprintFeatureReference>("AntipaladinCrueltyFatiquedFeature");
+                    c.m_Feature = MCEContext.GetModBlueprintReference<BlueprintFeatureReference>("AntipaladinCrueltyFatiguedFeature");
                 });
             });
 
@@ -854,7 +854,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
         public static void AddCruelties() {
             var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-            AddFatiquedCruelty(out var FatiquedCrueltyFeature, out var FatiquedCrueltyAbility);
+            AddFatiguedCruelty(out var FatiguedCrueltyFeature, out var FatiguedCrueltyAbility);
             AddShakenCruelty(out var ShakenCrueltyFeature, out var ShakenCrueltyAbility);
             AddSickenedCruelty(out var SickenedCrueltyFeature, out var SickenedCrueltyAbility);
             AddDazedCruelty(out var DazedCrueltyFeature, out var DazedCrueltyAbility);
@@ -873,7 +873,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
             var variants = BaseAbility.GetComponent<AbilityVariants>();
             variants.m_Variants = variants.m_Variants.AppendToArray(
                 new BlueprintAbilityReference[] {
-                    FatiquedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
+                    FatiguedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
                     ShakenCrueltyAbility.ToReference<BlueprintAbilityReference>(),
                     SickenedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
                     DazedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
@@ -900,7 +900,7 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures {
                     " the effects of the cruelty. The DC of this save is equal to 10 + 1/2 the antipaladin’s level + the antipaladin’s" +
                     " Charisma modifier.");
                 bp.m_AllFeatures = new BlueprintFeatureReference[] {
-                                FatiquedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
+                                FatiguedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
                                 ShakenCrueltyFeature.ToReference<BlueprintFeatureReference>(),
                                 SickenedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
                                 DazedCrueltyFeature.ToReference<BlueprintFeatureReference>(),

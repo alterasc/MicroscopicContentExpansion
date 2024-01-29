@@ -431,7 +431,7 @@
     },
     {
       "Key": "9c1cff2375ca429498a05c5faa87f63e",
-      "SimpleName": "AntipaladinCrueltyFatiquedFeature.Description",
+      "SimpleName": "AntipaladinCrueltyFatiguedFeature.Description",
       "ProcessTemplates": true,
       "enGB": "At 3rd level, and every three levels thereafter, an antipaladin can select one cruelty. Each cruelty adds an effect to the antipaladin’s touch of corruption ability. Whenever the antipaladin uses touch of corruption to deal damage to one target, the target also receives the additional effect from one of the cruelties possessed by the antipaladin. This choice is made when the touch is used. The target receives a Fortitude save to avoid this cruelty. If the save is successful, the target takes the damage as normal, but not the effects of the cruelty. The DC of this save is equal to 10 + 1/2 the antipaladin’s level + the antipaladin’s Charisma modifier.\nThe target is fatigued.",
       "ruRU": "На 3 уровне и каждые три уровня после этого антипаладин выбирает одно злодейство. Каждое злодейство добавляет дополнительный эффект к касанию порчи. Каждый раз когда антипаладин использует касание порчи, чтобы нанести урон цели, на эту цель также накладывается эффект одного из злодейств, которые известны антипаладину. Выбор злодейства происходит при использовании касания. Цель может совершить спасбросок стойкости, чтобы избежать злодейства. Если спасбросок был успешен, то цели наносится полный урон, но эффект злодейства не накладывается. Сложность спасброска равняется 10 + 1/2 уровня антипаладина + модификатор Харизмы антипаладина.\nНа цель накладывается утомление.",
@@ -442,9 +442,9 @@
     },
     {
       "Key": "d522bc87437a4347a6ee9a3fc4c1211a",
-      "SimpleName": "AntipaladinCrueltyFatiquedFeature.Name",
+      "SimpleName": "AntipaladinCrueltyFatiguedFeature.Name",
       "ProcessTemplates": false,
-      "enGB": "Cruelty - Fatiqued",
+      "enGB": "Cruelty - Fatigued",
       "ruRU": "Злодейство - Утомление",
       "deDE": null,
       "frFR": null,
@@ -1069,9 +1069,9 @@
     },
     {
       "Key": "299b355a4f0d4323b314769d50dffcf8",
-      "SimpleName": "AntipaladinTouchOfCorruptionFatiqued.Description",
+      "SimpleName": "AntipaladinTouchOfCorruptionFatigued.Description",
       "ProcessTemplates": true,
-      "enGB": "Applies Touch of Corruption with Fatiqued cruelty.\nThe target is fatigued.",
+      "enGB": "Applies Touch of Corruption with Fatigued cruelty.\nThe target is fatigued.",
       "ruRU": "Применяет Касание порчи со злодейством Утомление.\nНа цель накладывается утомление.",
       "deDE": null,
       "frFR": null,
@@ -1080,9 +1080,9 @@
     },
     {
       "Key": "38f5495fd91e43b9b675723dd61313e7",
-      "SimpleName": "AntipaladinTouchOfCorruptionFatiqued.Name",
+      "SimpleName": "AntipaladinTouchOfCorruptionFatigued.Name",
       "ProcessTemplates": false,
-      "enGB": "Touch of Corruption - Fatiqued",
+      "enGB": "Touch of Corruption - Fatigued",
       "ruRU": "Касание порчи — Утомление",
       "deDE": null,
       "frFR": null,
@@ -1091,7 +1091,7 @@
     },
     {
       "Key": "034b80ce21ce43509a48dec586f71157",
-      "SimpleName": "AntipaladinTouchOfCorruptionFatiqued.SavingThrow",
+      "SimpleName": "AntipaladinTouchOfCorruptionFatigued.SavingThrow",
       "ProcessTemplates": false,
       "enGB": "Fortitude",
       "ruRU": "Стойкость",
