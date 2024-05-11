@@ -145,6 +145,10 @@
       <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="AstarPathfindingProject">
+      <HintPath>$(WrathPath)\Wrath_Data\Managed\AstarPathfindingProject.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
@@ -166,7 +170,9 @@
     <Compile Include="NewComponents\AbilityCasterHasSwiftAction.cs" />
     <Compile Include="NewComponents\AbilityCustomDimensionalAssault.cs" />
     <Compile Include="NewComponents\AbilityCustomDimensionalDervish.cs" />
+    <Compile Include="NewComponents\AbilityCustomFlyingKick.cs" />
     <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
+    <Compile Include="NewComponents\AddFeatureDependingOnClassLevel.cs" />
     <Compile Include="NewComponents\AuraFeatureComponentWithWiden.cs" />
     <Compile Include="NewComponents\ContextActionArmorEnchantPoolMCE.cs" />
     <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
@@ -176,6 +182,7 @@
     <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
     <Compile Include="NewComponents\RuleAttackWithWeaponChaining.cs" />
     <Compile Include="NewComponents\SnakeFangOnMissHandler.cs" />
+    <Compile Include="NewComponents\SpecialAnimationMonkKick.cs" />
     <Compile Include="NewComponents\StartossStyleComponent.cs" />
     <Compile Include="NewContent\AnimalCompanions\NightmareMountOffsetPatch.cs" />
     <Compile Include="NewContent\AnimalCompanions\NightmareAnimalCompanion.cs" />
@@ -202,6 +209,7 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
     <Compile Include="NewContent\Classes\CrusaderLegionBlessing.cs" />
     <Compile Include="NewContent\Classes\DruidicHerbalism.cs" />
+    <Compile Include="NewContent\Classes\MonkStyleStrikeFlyingKick.cs" />
     <Compile Include="NewContent\Feats\CrusadersFlurry.cs" />
     <Compile Include="NewContent\Feats\DimenshionalDervish.cs" />
     <Compile Include="NewContent\Feats\StartossStyleChain.cs" />
@@ -250,6 +258,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\FlyingKick.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Snake.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

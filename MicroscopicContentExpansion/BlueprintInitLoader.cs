@@ -23,6 +23,7 @@ namespace MicroscopicContentExpansion {
                 KiLeech.AddKiLeech();
                 DruidicHerbalism.Add();
                 CrusaderLegionBlessing.Add();
+                MonkStyleStrikeFlyingKick.AddFlyingKick();
             }
         }
     }

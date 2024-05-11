@@ -76,9 +76,15 @@ Allows you to sacrifice spell slot (through spontaneous conversion), making your
 	- sacrifice spell and subsequent mass-cast are only for Crusader spellbook
 	- unfortunately this mass cast can't be set up through Bubble Buffs
 	- Zippy Magic with duplicate original cast once, but won't trigger any more mass casts
-
-
-### Fixes
+- [Flying Kick (Monk Style Strike)](https://www.d20pfsrd.com/classes/unchained-classes/Monk-unchained/#TOC-Style-Strike-Ex-)
+Grants pseudo pounce ability Flying Kick, that can be used to move up to Fast Movement amount of feet (so 10 feet at lvl 5, 60 feet at lvl 18+) and at the end attack with flurry of blows
+	- requires you to have Flurry of Blows active
+	- requires you to be unarmed
+	- To qualify for choosing this style you need to have FoB and Fast Movement, so archetypes that trade it away (Sensei and Sohei) can't take it.
+	- visually you jump and hit with your kick (single attack), then performs full attack without first attack, resulting in total in your normal amount of attacks
+	- is NOT a charge. Bonuses to charge do not apply
+	- range grows with Monk level, from 10 feet to 60 feet
+	- Style grants you toggleable ability, that on toggling will give you ability that actually performs jumpkick. Done this way so that you can't have another style enabled until you are allowed to have two active styles
 
 
 ## Thanks to  
