@@ -163,7 +163,9 @@ namespace MicroscopicContentExpansion.NewComponents {
         }
 
         public override void Cleanup(AbilityExecutionContext context) {
-        }
+        }   
+
+        public override bool IsEngageUnit => true;
 
         private class EventHandlers : IDisposable {
             private readonly List<object> m_Handlers = new List<object>();

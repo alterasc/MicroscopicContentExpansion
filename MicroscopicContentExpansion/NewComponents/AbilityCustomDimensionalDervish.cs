@@ -109,6 +109,8 @@ namespace MicroscopicContentExpansion.NewComponents {
             caster.CombatState.PreventAttacksOfOpporunityNextFrame = true;
             caster.Position = tpTarget;
         }
+
+        public override bool IsEngageUnit => true;
     }
 
 
