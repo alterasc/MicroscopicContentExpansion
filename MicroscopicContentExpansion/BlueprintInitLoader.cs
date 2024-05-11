@@ -24,6 +24,8 @@ namespace MicroscopicContentExpansion {
                 DruidicHerbalism.Add();
                 CrusaderLegionBlessing.Add();
                 MonkStyleStrikeFlyingKick.AddFlyingKick();
+                MonkTimelessBody.AddTimelessBody();
+                MonkFlawlessMind.AddFlawlessMind();
             }
         }
     }

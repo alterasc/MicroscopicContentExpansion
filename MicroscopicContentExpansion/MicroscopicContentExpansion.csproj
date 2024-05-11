@@ -209,6 +209,8 @@
     <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
     <Compile Include="NewContent\Classes\CrusaderLegionBlessing.cs" />
     <Compile Include="NewContent\Classes\DruidicHerbalism.cs" />
+    <Compile Include="NewContent\Classes\MonkTimelessBody.cs" />
+    <Compile Include="NewContent\Classes\MonkFlawlessMind.cs" />
     <Compile Include="NewContent\Classes\MonkStyleStrikeFlyingKick.cs" />
     <Compile Include="NewContent\Feats\CrusadersFlurry.cs" />
     <Compile Include="NewContent\Feats\DimenshionalDervish.cs" />

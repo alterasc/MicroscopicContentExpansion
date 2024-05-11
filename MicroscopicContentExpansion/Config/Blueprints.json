@@ -283,7 +283,9 @@
     "FlyingKickAnimationBuff": "b566e536-ff52-43be-a0bd-cf35d2f0febf",
     "FlyingKickFeature": "8075bd46-8eeb-458f-baf8-85868fd96adb",
     "FlyingKickFlurrySuppressionBuff": "96ddce4c-fd1a-41ce-a1fc-ae97237c8363",
-    "FlyingKickStyleStrikeBuff": "b28e5b08-57b5-489d-b380-d9be40828c3c"
+    "FlyingKickStyleStrikeBuff": "b28e5b08-57b5-489d-b380-d9be40828c3c",
+    "MonkFlawlessMind": "7f84b999-1d65-443b-9f39-e7ffdfec7725",
+    "MonkTimelessBody": "974316fc-6067-4985-aaa8-7aaf3182b54e"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},
