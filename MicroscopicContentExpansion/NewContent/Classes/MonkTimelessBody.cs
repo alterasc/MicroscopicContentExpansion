@@ -24,11 +24,13 @@ internal class MonkTimelessBody {
                 c.m_Buff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("e7227f04b30d4eba9c186a7be747d5bf"); // BythosAgeBuff1
             });
         });
-        var monkProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("8a91753b978e3b34b9425419179aafd6");
-        var lvlEntries = monkProgression.LevelEntries;
-        var lvl17Entry = lvlEntries.FirstOrDefault(x => x.Level == 17);
-        if (lvl17Entry != null) {
-            lvl17Entry.m_Features.Add(flawlessMind.ToReference<BlueprintFeatureBaseReference>());
+        if (MCEContext.AddedContent.Feats.IsEnabled("MonkTimelessBody")) {
+            var monkProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("8a91753b978e3b34b9425419179aafd6");
+            var lvlEntries = monkProgression.LevelEntries;
+            var lvl17Entry = lvlEntries.FirstOrDefault(x => x.Level == 17);
+            if (lvl17Entry != null) {
+                lvl17Entry.m_Features.Add(flawlessMind.ToReference<BlueprintFeatureBaseReference>());
+            }
         }
     }
 }

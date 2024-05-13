@@ -74,6 +74,16 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Flying Kick style strike."
+      },
+      "MonkTimelessBody": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Timeless Body to monks."
+      },
+      "MonkFlawlessMind": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Flawless Mind to monks."
       }
     },
     "IsExpanded": true
