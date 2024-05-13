@@ -84,6 +84,11 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Flawless Mind to monks."
+      },
+      "MonkDiamondResilience": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Diamond Resilience Ki Power to monks."
       }
     },
     "IsExpanded": true

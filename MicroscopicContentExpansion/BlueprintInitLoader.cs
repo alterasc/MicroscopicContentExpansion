@@ -26,6 +26,7 @@ namespace MicroscopicContentExpansion {
                 MonkStyleStrikeFlyingKick.AddFlyingKick();
                 MonkTimelessBody.AddTimelessBody();
                 MonkFlawlessMind.AddFlawlessMind();
+                MonkDiamondResilience.AddDiamondResilience();
             }
         }
     }

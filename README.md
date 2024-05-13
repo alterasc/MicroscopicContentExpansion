@@ -62,6 +62,8 @@ They use Horse portrait.
 ### New Ki powers
 - [Ki Power: Deadly Juggernaut](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#8th-Level_Ki_Powers)
 - [Ki Power: Ki Leech](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#10th-Level_Ki_Powers)
+- [Ki Power: Diamond Resilience](https://www.d20pfsrd.com/classes/unchained-classes/MONK-unchained/#TOC-Ki-Power-Su-)
+	Made into passive ability (like Diamond Soul) and set to require Monk class level 14
 
 ### New class features
 - [Druidic Herbalism](https://www.d20pfsrd.com/classes/Core-classes/druid/#Nature_Bond_Ex)
@@ -85,7 +87,10 @@ Grants pseudo pounce ability Flying Kick, that can be used to move up to Fast Mo
 	- is NOT a charge. Bonuses to charge do not apply
 	- range grows with Monk level, from 10 feet to 60 feet
 	- Style grants you toggleable ability, that on toggling will give you ability that actually performs jumpkick. Done this way so that you can't have another style enabled until you are allowed to have two active styles
-
+- [Timeless Body (Monk level 17 feature)](https://www.d20pfsrd.com/classes/unchained-classes/MONK-unchained/#TOC-Timeless-Body-Ex-)
+	Implemented as immunity to couple of very specific effects.
+- [Flawless Mind (Monk level 19 feature)](https://www.d20pfsrd.com/classes/unchained-classes/MONK-unchained/#TOC-Flawless-Mind)
+	Whenever a monk attempts a Will save, he can roll twice and take the better result.
 
 ## Thanks to  
 -   bubbles and Vek17 specifically   
