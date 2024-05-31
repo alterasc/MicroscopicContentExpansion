@@ -4,6 +4,7 @@ using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.TurnBasedModifiers;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Enums;
+using Kingmaker.Localization.Shared;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
@@ -39,16 +40,19 @@ internal class MonkStyleStrikeFlyingKick {
 
         var flyingKickFlurrySuppressionBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "FlyingKickFlurrySuppressionBuff", a => {
             a.m_Flags = BlueprintBuff.Flags.HiddenInUi;
-            a.AddComponent<BuffExtraAttack>(c => {
-                c.Number = -1;
-                c.Haste = false;
+            a.AddComponent<ReduceAttacksCount>(c => {
+                c.ReduceCount = 1;
+                c.OnlyFromPrimaryHand = true;
+                c.Condition = new();
             });
         });
         List<BlueprintUnitFactReference> abilities = [];
+        var abilityName = Helpers.CreateString(MCEContext, $"FlyingKickAbility.Name", "Flying Kick");
+        var abilityDescription = Helpers.CreateString(MCEContext, "FlyingKickAbility.Description", "The monk leaps through the air to strike a foe with a kick. Before the attack, the monk can move a distance equal to his fast movement bonus. This movement is made as part of the monk’s flurry of blows attack. This movement provokes an attack of opportunity as normal. Monk has to be unarmed to perform this style strike.", Locale.enGB, shouldProcess: true);
         for (int i = 1; i <= 6; i++) {
             var flyingKickAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, $"FlyingKickAbility{i}", a => {
-                a.SetName(MCEContext, "Flying Kick");
-                a.SetDescription(MCEContext, "The monk leaps through the air to strike a foe with a kick. Before the attack, the monk can move a distance equal to his fast movement bonus. This movement is made as part of the monk’s flurry of blows attack. This movement provokes an attack of opportunity as normal. Monk has to be unarmed to perform this style strike.");
+                a.m_DisplayName = abilityName;
+                a.m_Description = abilityDescription;
                 a.Type = AbilityType.Physical;
                 a.CanTargetEnemies = true;
                 a.CanTargetFriends = false;
@@ -89,8 +93,8 @@ internal class MonkStyleStrikeFlyingKick {
         }
 
         var flyingKickStyleStrikeBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "FlyingKickStyleStrikeBuff", a => {
-            a.SetName(MCEContext, "Flying Kick");
-            a.SetDescription(MCEContext, "The monk leaps through the air to strike a foe with a kick. Before the attack, the monk can move a distance equal to his fast movement bonus. This movement is made as part of the monk’s flurry of blows attack. This movement provokes an attack of opportunity as normal. Monk has to be unarmed to perform this style strike.");
+            a.m_DisplayName = abilityName;
+            a.m_Description = abilityDescription;
             a.m_Flags = BlueprintBuff.Flags.StayOnDeath & BlueprintBuff.Flags.HiddenInUi;
             a.AddComponent<AddFeatureDependingOnClassLevel>(c => {
                 c.m_Class = monkClassRef;
@@ -111,8 +115,8 @@ internal class MonkStyleStrikeFlyingKick {
         });
 
         var flyingKickFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "FlyingKickFeature", a => {
-            a.SetName(MCEContext, "Flying Kick");
-            a.SetDescription(MCEContext, "The monk leaps through the air to strike a foe with a kick. Before the attack, the monk can move a distance equal to his fast movement bonus. This movement is made as part of the monk’s flurry of blows attack. This movement provokes an attack of opportunity as normal. Monk has to be unarmed to perform this style strike.");
+            a.m_DisplayName = abilityName;
+            a.m_Description = abilityDescription;
             a.AddPrerequisiteFeature(fastMovementFeature);
             a.AddPrerequisiteFeature(monkFlurryOfBlowstUnlock);
             a.AddComponent<AddFacts>(c => {

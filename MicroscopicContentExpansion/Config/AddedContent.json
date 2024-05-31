@@ -89,6 +89,11 @@
         "Enabled": true,
         "Homebrew": false,
         "Description": "Adds Diamond Resilience Ki Power to monks."
+      },
+      "FeintingFlurry": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Adds Feinting Flurry (requires DLC6!)."
       }
     },
     "IsExpanded": true

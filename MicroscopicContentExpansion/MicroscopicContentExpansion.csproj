@@ -215,6 +215,7 @@
     <Compile Include="NewContent\Classes\MonkStyleStrikeFlyingKick.cs" />
     <Compile Include="NewContent\Feats\CrusadersFlurry.cs" />
     <Compile Include="NewContent\Feats\DimenshionalDervish.cs" />
+    <Compile Include="NewContent\Feats\FeintingFlurry.cs" />
     <Compile Include="NewContent\Feats\StartossStyleChain.cs" />
     <Compile Include="NewContent\Feats\SnakeStyleChain.cs" />
     <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
@@ -261,6 +262,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\FeintingFlurry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\FlyingKick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

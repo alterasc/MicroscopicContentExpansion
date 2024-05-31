@@ -286,7 +286,10 @@
     "FlyingKickStyleStrikeBuff": "b28e5b08-57b5-489d-b380-d9be40828c3c",
     "MonkFlawlessMind": "7f84b999-1d65-443b-9f39-e7ffdfec7725",
     "MonkTimelessBody": "974316fc-6067-4985-aaa8-7aaf3182b54e",
-    "MonkDiamondResilience": "8ec88e75-ee1d-4fc9-9bfe-490fd9f1a7b2"
+    "MonkDiamondResilience": "8ec88e75-ee1d-4fc9-9bfe-490fd9f1a7b2",
+    "FeintingFlurry": "f4cc60b9-1961-44d5-83ac-1b419e5f346c",
+    "FeintingFlurryActivatableAbility": "2dea03cb-3ed0-4ed8-9ef8-3b6d9ee76ab4",
+    "FeintingFlurryBuff": "3c5b19e1-f8a3-49d9-8ad2-8351eb810862"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

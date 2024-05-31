@@ -27,6 +27,7 @@ namespace MicroscopicContentExpansion {
                 MonkTimelessBody.AddTimelessBody();
                 MonkFlawlessMind.AddFlawlessMind();
                 MonkDiamondResilience.AddDiamondResilience();
+                FeintingFlurry.Add();
             }
         }
     }
