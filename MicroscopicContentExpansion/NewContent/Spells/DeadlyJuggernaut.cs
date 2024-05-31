@@ -179,7 +179,6 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 SpellTools.AddToSpellList(spell, SpellList.InquisitorSpellList, 3);
                 SpellTools.AddToSpellList(spell, SpellList.PaladinSpellList, 3);
                 SpellTools.AddToSpellList(spell, SpellList.WarpriestSpelllist, 3);
-
             }
 
             return spell;
@@ -298,11 +297,67 @@ namespace MicroscopicContentExpansion.NewContent.Spells {
                 });
             });
 
+            var drunkenKiAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DrunkenKiDeadlyJuggernautAbility", bp => {
+                bp.SetName(MCEContext, "Ki Power: Deadly Juggernaut");
+                bp.SetDescription(MCEContext, kiDeadlyJuggernautDescription);
+                bp.LocalizedDuration = Helpers.CreateString(MCEContext, $"{bp.name}.Duration", "1 minute/level");
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
+                bp.m_Icon = icon;
+                bp.CanTargetSelf = true;
+                bp.Range = AbilityRange.Personal;
+                bp.AddComponent<AbilityEffectRunAction>(c => {
+                    c.Actions = ActionFlow.DoSingle<ContextActionApplyBuff>(a => {
+                        a.m_Buff = buff.ToReference<BlueprintBuffReference>();
+                        a.Permanent = false;
+                        a.DurationValue = new ContextDurationValue() {
+                            Rate = DurationRate.Minutes,
+                            DiceCountValue = 0,
+                            BonusValue = new ContextValue() {
+                                ValueType = ContextValueType.Rank
+                            }
+                        };
+                        a.AsChild = true;
+                    });
+                });
+                bp.AddComponent<SpellComponent>(c => {
+                    c.School = SpellSchool.Necromancy;
+                });
+                bp.AddComponent<AbilityResourceLogic>(c => {
+                    c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("fd01f3f969a04febab7877a17aebb812");
+                    c.m_IsSpendResource = true;
+                    c.Amount = 2;
+                });
+                bp.AddContextRankConfig(c => {
+                    c.m_Type = AbilityRankType.Default;
+                    c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                    c.m_Progression = ContextRankProgression.AsIs;
+                    c.m_Class = new BlueprintCharacterClassReference[] { monkClassRef };
+                });
+            });
+
+            var drunkenKiFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DrunkenKiDeadlyJuggernautFeature", bp => {
+                bp.SetName(MCEContext, "Ki Power: Deadly Juggernaut");
+                bp.SetDescription(MCEContext, kiDeadlyJuggernautDescription);
+                bp.IsClassFeature = true;
+                bp.AddPrerequisite<PrerequisiteClassLevel>(c => {
+                    c.m_CharacterClass = monkClassRef;
+                    c.Level = 8;
+                });
+                bp.m_Icon = icon;
+                bp.AddComponent<AddFacts>(c => {
+                    c.m_Facts = [sfAbility.ToReference<BlueprintUnitFactReference>()];
+                });
+            });
+
             var monkKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
             var sfKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
+            var drunkenKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("97da13a43026460f8d4d54e1c69af202");
 
-            monkKiPowerSelection.AddFeatures(feature);
-            sfKiPowerSelection.AddFeatures(sfFeature);
+            if (MCEContext.AddedContent.Spells.IsEnabled("DeadlyJuggernaut")) {
+                monkKiPowerSelection.AddFeatures(feature);
+                sfKiPowerSelection.AddFeatures(sfFeature);
+                drunkenKiPowerSelection.AddFeatures(drunkenKiFeature);
+            }
         }
 
     }

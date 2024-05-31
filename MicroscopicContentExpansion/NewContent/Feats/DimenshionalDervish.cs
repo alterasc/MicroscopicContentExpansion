@@ -21,8 +21,10 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
         private const string DimensionDoorGUID = "4a648b57935a59547b7a2ee86fb4f26a";
         private const string KiPowerResource = "9d9c90a9a1f52d04799294bf91c80a82";
         private const string SFPowerResource = "7d002c1025fbfe2458f1509bf7a89ce1";
+        private const string DrunkenKiPowerResource = "fd01f3f969a04febab7877a17aebb812";
         private const string KiAbundantStep = "008466f45b3e2e64793b30f3d16e41c0";
         private const string SFAbundantStep = "b56f18c437dc324438f0d956fb34a8cd";
+        private const string DrunkenKiAbundantStep = "ba74cb907d0849d6b2afccebe69bef81";
         internal static void AddDimenshionalSavantFeatChain() {
             MCEContext.Logger.LogHeader("Adding Dimensional Savant chain feats");
             AddDimensionalDervish();
@@ -131,6 +133,37 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 });
             });
 
+            var dimensionalDervishDrunkenKiAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalDervishDrunkenKiAbility", bp => {
+                bp.SetName(MCEContext, kiDervishName);
+                bp.SetDescription(MCEContext, dervishDescription);
+                bp.m_Icon = icon;
+                bp.Type = AbilityType.Supernatural;
+                bp.Range = AbilityRange.DoubleMove;
+                bp.CanTargetEnemies = true;
+                bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Immediate;
+                bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
+                bp.m_IsFullRoundAction = false;
+                bp.LocalizedDuration = new Kingmaker.Localization.LocalizedString();
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
+                bp.AddComponent<AbilityIsFullRoundInTurnBased>(c => {
+                    c.FullRoundIfTurnBased = true;
+                });
+                bp.AddComponent<AbilityCasterHasSwiftAction>();
+                bp.AddComponent<AbilityCustomDimensionalDervish>(c => {
+                });
+                bp.AddComponent<AbilityShowIfCasterHasFact>(c => {
+                    c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(DrunkenKiAbundantStep);
+                });
+                bp.AddComponent<AbilityResourceLogic>(c => {
+                    c.m_IsSpendResource = true;
+                    c.Amount = 2;
+                    c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
+                });
+                bp.AddComponent<AbilityCasterHasFacts>(c => {
+                    c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                });
+            });
+
             var dimensionalDervishFlickeringStepAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalDervishFlickeringStepAbility", bp => {
                 bp.SetName(MCEContext, fsDervishName);
                 bp.SetDescription(MCEContext, dervishDescription);
@@ -184,6 +217,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     c.m_Facts = new BlueprintUnitFactReference[] {
                         dimensionalDervishKiAbility.ToReference<BlueprintUnitFactReference>(),
                         dimensionalDervishScaledFistAbility.ToReference<BlueprintUnitFactReference>(),
+                        dimensionalDervishDrunkenKiAbility.ToReference<BlueprintUnitFactReference>(),
                         dimensionalDervishFlickeringStepAbility.ToReference<BlueprintUnitFactReference>()
                     };
                 });
@@ -204,6 +238,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 MCEContext.GetModBlueprintReference<BlueprintAbilityReference>("DimensionalAssaultAbility"),
                 MCEContext.GetModBlueprintReference<BlueprintAbilityReference>("DimensionalAssaultKiAbility"),
                 MCEContext.GetModBlueprintReference<BlueprintAbilityReference>("DimensionalAssaultScaledFistAbility"),
+                MCEContext.GetModBlueprintReference<BlueprintAbilityReference>("DimensionalAssaultDrunkenKiAbility"),
                 MCEContext.GetModBlueprintReference<BlueprintAbilityReference>("DimensionalAssaultFlickeringStepAbility"),
                 dimensionalDervishAbility.ToReference<BlueprintAbilityReference>(),
                 dimensionalDervishKiAbility.ToReference<BlueprintAbilityReference>(),
@@ -225,8 +260,9 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
             const string agilityDescription = "After using abundant step or casting dimension door, you can take any actions you still have remaining on your turn.";
 
             var dimensionDoor = BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>(DimensionDoorGUID);
-            var kiAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("008466f45b3e2e64793b30f3d16e41c0");
-            var sfAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("b56f18c437dc324438f0d956fb34a8cd");
+            var kiAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>(KiAbundantStep);
+            var sfAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>(SFAbundantStep);
+            var drunkenKiAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>(DrunkenKiAbundantStep);
             var dimensionalAgilityFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DimensionalAgilityFeature", bp => {
                 bp.SetName(MCEContext, agilityName);
                 bp.SetDescription(MCEContext, agilityDescription);
@@ -243,7 +279,7 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                     c.Group = Prerequisite.GroupType.Any;
                 });
                 bp.AddPrerequisite<PrerequisiteFeaturesFromList>(c => {
-                    c.m_Features = new BlueprintFeatureReference[] { kiAbundantStep, sfAbundantStep, flickeringStep.ToReference<BlueprintFeatureReference>() };
+                    c.m_Features = [kiAbundantStep, sfAbundantStep, drunkenKiAbundantStep, flickeringStep.ToReference<BlueprintFeatureReference>()];
                     c.Group = Prerequisite.GroupType.Any;
                 });
             });
@@ -348,6 +384,35 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 });
             });
 
+            var dimensionalAssaultDrunkenKiAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalAssaultDrunkenKiAbility", bp => {
+                bp.SetName(MCEContext, fsAssaultName);
+                bp.SetDescription(MCEContext, assaultDescription);
+                bp.m_Icon = icon;
+                bp.Type = AbilityType.Supernatural;
+                bp.Range = AbilityRange.DoubleMove;
+                bp.CanTargetEnemies = true;
+                bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Immediate;
+                bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
+                bp.m_IsFullRoundAction = false;
+                bp.LocalizedDuration = new Kingmaker.Localization.LocalizedString();
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
+                bp.AddComponent<AbilityIsFullRoundInTurnBased>(c => {
+                    c.FullRoundIfTurnBased = true;
+                });
+                bp.AddComponent<AbilityCustomDimensionalAssault>();
+                bp.AddComponent<AbilityShowIfCasterHasFact>(c => {
+                    c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(DrunkenKiAbundantStep);
+                });
+                bp.AddComponent<AbilityResourceLogic>(c => {
+                    c.m_IsSpendResource = true;
+                    c.Amount = 2;
+                    c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
+                });
+                bp.AddComponent<AbilityCasterHasFacts>(c => {
+                    c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
+                });
+            });
+
             var dimensionalAssaultFlickeringStepAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalAssaultFlickeringStepAbility", bp => {
                 bp.SetName(MCEContext, kiAssaultName);
                 bp.SetDescription(MCEContext, assaultDescription);
@@ -391,11 +456,12 @@ namespace MicroscopicContentExpansion.NewContent.Feats {
                 });
                 bp.AddPrerequisiteFeature(dimensionalAgility);
                 bp.AddComponent<AddFacts>(c => {
-                    c.m_Facts = new BlueprintUnitFactReference[] {
+                    c.m_Facts = [
                         dimensionalAssaultKiAbility.ToReference<BlueprintUnitFactReference>(),
                         dimensionalAssaultScaledFistAbility.ToReference<BlueprintUnitFactReference>(),
+                        dimensionalAssaultDrunkenKiAbility.ToReference<BlueprintUnitFactReference>(),
                         dimensionalAssaultFlickeringStepAbility.ToReference<BlueprintUnitFactReference>()
-                    };
+                    ];
                 });
             });
 
