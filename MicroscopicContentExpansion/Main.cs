@@ -6,7 +6,6 @@ using UnityModManagerNet;
 
 namespace MicroscopicContentExpansion {
     static class Main {
-        public static bool Enabled;
         public static ModContextMCEBase MCEContext;
         static bool Load(UnityModManager.ModEntry modEntry) {
             var harmony = new Harmony(modEntry.Info.Id);

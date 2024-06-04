@@ -1,294 +1,88 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Aze.Publicise.MSBuild.Task.1.0.0\build\Aze.Publicise.MSBuild.Task.props" Condition="Exists('..\packages\Aze.Publicise.MSBuild.Task.1.0.0\build\Aze.Publicise.MSBuild.Task.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C03B79A7-F087-44A4-92E1-DD3EDFCA487B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MicroscopicContentExpansion</RootNamespace>
-    <AssemblyName>MicroscopicContentExpansion</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <LangVersion>latest</LangVersion>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <NoWarn>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="$(SolutionDir)GamePath.props" Condition="Exists('$(SolutionDir)GamePath.props')" />
 
-0649</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <NoWarn>
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<AssemblyName>MicroscopicContentExpansion</AssemblyName>
+		<Description>MicroscopicContentExpansion</Description>
+		<Version>1.0.0</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>latest</LangVersion>
+		<RootNamespace>MicroscopicContentExpansion</RootNamespace>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<RestoreAdditionalProjectSources>https://api.nuget.org/v3/index.json</RestoreAdditionalProjectSources>
+		<WrathData>$(LocalAppData)Low\Owlcat Games\Pathfinder Wrath Of The Righteous</WrathData>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Unity*.dll" Private="false" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Core*.dll" Private="false" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Owlcat*.dll" Private="false" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Assembly-CSharp.dll*" Publicize="true" Private="false" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\UnityModManager.dll*" Private="false" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Newtonsoft.Json.dll*" Private="false" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\0Harmony.dll*" Private="false" />
+		<Reference Include="$(WrathInstallDir)\Mods\TabletopTweaks-Core\TabletopTweaks-Core.dll" Private="false" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Config\AddedContent.json" />
+		<EmbeddedResource Include="Config\Blueprints.json" />
+		<EmbeddedResource Include="Config\Homebrew.json" />
+		<None Include="Info.json" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+	<Target Name="Deploy" AfterTargets="Build">
+		<ItemGroup>
+			<Files Include="$(TargetDir)\**\*.*" />
+		</ItemGroup>
 
-0649</NoWarn>
-  </PropertyGroup>
-  <Target Name="RemoveLib" BeforeTargets="Clean" Condition="Exists('$(SolutionDir)lib')">
-    <RemoveDir Directories="$(SolutionDir)lib" />
-  </Target>
-  <Target Name="CreateLib" BeforeTargets="BeforeBuild" AfterTargets="RemoveLib" Condition="!Exists('$(SolutionDir)lib')">
-    <MakeDir Directories="$(SolutionDir)lib" />
-  </Target>
-  <Target Name="Publicise" AfterTargets="CreateLib">
-    <ItemGroup>
-      <PubliciseAssemblyCSharp Include="$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp.dll" />
-      <PubliciseUniRx Include="$(WrathPath)\Wrath_Data\Managed\UniRx.dll" />
-      <PubliciseRuntimeUI Include="$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.UI.dll" />
-    </ItemGroup>
-    <Publicise InputAssemblies="@(PubliciseAssemblyCSharp)" OutputPath="$(SolutionDir)lib/" PubliciseCompilerGenerated="true" />
-    <Publicise InputAssemblies="@(PubliciseUniRx)" OutputPath="$(SolutionDir)lib/" PubliciseCompilerGenerated="true" />
-    <Publicise InputAssemblies="@(PubliciseRuntimeUI)" OutputPath="$(SolutionDir)lib/" PubliciseCompilerGenerated="true" />
-  </Target>
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(SolutionDir)lib\Assembly-CSharp_public.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Owlcat.Runtime.Visual">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Visual.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TabletopTweaks-Core">
-      <HintPath>$(WrathPath)\Mods\TabletopTweaks-Core\TabletopTweaks-Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.Build.Utilities.v4.0" />
-    <Reference Include="Newtonsoft.Json">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Owlcat.Runtime.Core">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Owlcat.Runtime.UI">
-      <HintPath>$(SolutionDir)\lib\Owlcat.Runtime.UI_public.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Owlcat.Runtime.Validation">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Validation.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UniRx">
-      <HintPath>$(SolutionDir)lib\UniRx_public.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="AstarPathfindingProject">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\AstarPathfindingProject.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.UIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityModManager">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityModManager\UnityModManager.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BlueprintInitLoader.cs" />
-    <Compile Include="Config\Homebrew.cs" />
-    <Compile Include="Config\AddedContent.cs" />
-    <Compile Include="NewComponents\AbilityCasterHasChosenWeaponFromGroup.cs" />
-    <Compile Include="NewComponents\AbilityCasterHasSwiftAction.cs" />
-    <Compile Include="NewComponents\AbilityCustomDimensionalAssault.cs" />
-    <Compile Include="NewComponents\AbilityCustomDimensionalDervish.cs" />
-    <Compile Include="NewComponents\AbilityCustomFlyingKick.cs" />
-    <Compile Include="NewComponents\AbilityCustomStartossComet.cs" />
-    <Compile Include="NewComponents\AddFeatureDependingOnClassLevel.cs" />
-    <Compile Include="NewComponents\AuraFeatureComponentWithWiden.cs" />
-    <Compile Include="NewComponents\ContextActionArmorEnchantPoolMCE.cs" />
-    <Compile Include="NewComponents\CriticalConfirmationUnarmed.cs" />
-    <Compile Include="NewComponents\CrusadersFlurryUnlock.cs" />
-    <Compile Include="NewComponents\LegionBlessingApplySpell.cs" />
-    <Compile Include="NewComponents\LegionBlessingSacrificeSpellAbility.cs" />
-    <Compile Include="NewComponents\MasterClassLevelGetter.cs" />
-    <Compile Include="NewComponents\RuleAttackWithWeaponChaining.cs" />
-    <Compile Include="NewComponents\SnakeFangOnMissHandler.cs" />
-    <Compile Include="NewComponents\SpecialAnimationMonkKick.cs" />
-    <Compile Include="NewComponents\StartossStyleComponent.cs" />
-    <Compile Include="NewContent\AnimalCompanions\NightmareMountOffsetPatch.cs" />
-    <Compile Include="NewContent\AnimalCompanions\NightmareAnimalCompanion.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\AntipaladinAlignmentRestriction.cs" />
-    <Compile Include="NewContent\Archetypes\DreadVanguard.cs" />
-    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil20.cs" />
-    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil16.cs" />
-    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil12.cs" />
-    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil8.cs" />
-    <Compile Include="NewContent\Archetypes\DreadVanguardFeatures\BeaconOfEvil.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcher.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\UndyingChampion.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\SoulOftheCrypt.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\CryptLord.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\WeaponsofSin.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\CloakoftheCrypt.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\WilloftheCrypt.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\TouchoftheCrypt.cs" />
-    <Compile Include="NewContent\Archetypes\KnightoftheSepulcherFeatures\FortitudeoftheCrypt.cs" />
-    <Compile Include="NewContent\Archetypes\Tyrant.cs" />
-    <Compile Include="NewContent\Archetypes\IronTyrantFeatures\IronTyrantArmorBond.cs" />
-    <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantSpellbook.cs" />
-    <Compile Include="NewContent\Archetypes\TyrantFeatures\DiabolicBoon.cs" />
-    <Compile Include="NewContent\Archetypes\TyrantFeatures\TyrantAlignmentRestriction.cs" />
-    <Compile Include="NewContent\Classes\CrusaderLegionBlessing.cs" />
-    <Compile Include="NewContent\Classes\DruidicHerbalism.cs" />
-    <Compile Include="NewContent\Classes\MonkDiamondResilience.cs" />
-    <Compile Include="NewContent\Classes\MonkTimelessBody.cs" />
-    <Compile Include="NewContent\Classes\MonkFlawlessMind.cs" />
-    <Compile Include="NewContent\Classes\MonkStyleStrikeFlyingKick.cs" />
-    <Compile Include="NewContent\Feats\CrusadersFlurry.cs" />
-    <Compile Include="NewContent\Feats\DimenshionalDervish.cs" />
-    <Compile Include="NewContent\Feats\FeintingFlurry.cs" />
-    <Compile Include="NewContent\Feats\StartossStyleChain.cs" />
-    <Compile Include="NewContent\Feats\SnakeStyleChain.cs" />
-    <Compile Include="NewContent\Feats\UnsanctionedKnowledge.cs" />
-    <Compile Include="NewContent\Spells\BladeofDarkTriumph.cs" />
-    <Compile Include="NewContent\Spells\WidenAuras.cs" />
-    <Compile Include="NewContent\Spells\DeadlyJuggernaut.cs" />
-    <Compile Include="NewContent\Spells\KiLeech.cs" />
-    <Compile Include="NewContent\Spells\ProtectionFromChaosGood.cs" />
-    <Compile Include="NewContent\Spells\ProtectionFromLawGood.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RebalancedContent\DragonbloodShifterArchetype\Dragonblooded.cs" />
-    <Compile Include="Utils\ActionFlow.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="ModLogic\ModContextMCEBase.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\AntipaladinSpellbook.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\FiendishBoon.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\TipoftheSpear.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\UnholyChampion.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\AuraofDepravity.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\AuraofSin.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\AuraofDespair.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\AuraofCowardice.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\ChannelNegativeEnergy.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\PlagueBringer.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\AuraofVengeance.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\SmiteGood.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\TouchofCorruption.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\Cruelties.cs" />
-    <Compile Include="NewContent\AntipaladinFeatures\UnholyResilience.cs" />
-    <Compile Include="NewContent\Archetypes\IronTyrant.cs" />
-    <Compile Include="NewContent\Classes\AntipaladinAdder.cs" />
-    <Compile Include="UMMSettingsUI.cs" />
-    <Compile Include="Utils\AuraUtils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Config\Blueprints.json" />
-    <EmbeddedResource Include="Config\AddedContent.json" />
-    <EmbeddedResource Include="Config\Homebrew.json" />
-    <None Include="Info.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <EmbeddedResource Include="Localization\LocalizationPack.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\FeintingFlurry.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\FlyingKick.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Snake.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\StartossComet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\StartossStyle.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" AfterTargets="BeforeClean">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Aze.Publicise.MSBuild.Task.1.0.0\build\Aze.Publicise.MSBuild.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Aze.Publicise.MSBuild.Task.1.0.0\build\Aze.Publicise.MSBuild.Task.props'))" />
-  </Target>
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release (powershell.exe -Command $null=mkdir '$(SolutionDir)PublishOutput'; Compress-Archive -CompressionLevel Optimal -Path '$(TargetDir)*' -DestinationPath '$(SolutionDir)PublishOutput\$(ProjectName).zip' -Force)
+		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+	</Target>
+	<Target Name="BuildReleaseZip" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+		<ItemGroup>
+			<Files Include="$(TargetDir)\**\*.*" />
+		</ItemGroup>
+		<ZipDirectory SourceDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\$(OutputPath)\..\$(AssemblyName).zip" Overwrite="true" />
+	</Target>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" IncludeAssets="build; contentfiles" Version="0.4.2" PrivateAssets="all" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="Assets\FeintingFlurry.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Assets\FlyingKick.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Assets\Snake.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Assets\StartossComet.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Assets\StartossStyle.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Localization\LocalizationPack.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<Target Name="GenerateCustomPropsFile" BeforeTargets="BeforeBuild" Condition="$(WrathInstallDir) == ''">
+		<Exec Command="findstr /C:&quot;Mono path[0]&quot; &quot;$(WrathData)\Player.log&quot;" IgnoreExitCode="true" ConsoleToMSBuild="true">
+			<Output TaskParameter="ExitCode" PropertyName="ExitCode" />
+			<Output TaskParameter="ConsoleOutput" PropertyName="MonoPathLine" />
+		</Exec>
 
-(robocopy "$(TargetDir) " "%25WrathPath%25\Mods\MicroscopicContentExpansion\ " /s /e )^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0</PostBuildEvent>
-  </PropertyGroup>
+		<PropertyGroup>
+			<MonoPathRegex>^Mono path\[0\] = '(.*?)/Wrath_Data/Managed'$</MonoPathRegex>
+		</PropertyGroup>
+
+		<PropertyGroup>
+			<WrathInstallDir>$([System.Text.RegularExpressions.Regex]::Match($(MonoPathLine), $(MonoPathRegex)).Groups[1].Value)</WrathInstallDir>
+		</PropertyGroup>
+
+		<WriteLinesToFile File="$(SolutionDir)GamePath.props" Lines="&lt;Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'&gt;&#xD;&#xA;	&lt;PropertyGroup&gt;&#xD;&#xA;		&lt;WrathInstallDir&gt;$(WrathInstallDir)&lt;/WrathInstallDir&gt;&#xD;&#xA;	&lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" Overwrite="true" Encoding="utf-8" />
+	</Target>
+	<Target Name="DeleteCustomPropsFile" BeforeTargets="Clean">
+		<Delete Files="GamePath.props" />
+	</Target>
 </Project>
