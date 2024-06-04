@@ -4,6 +4,7 @@ using MicroscopicContentExpansion.NewContent.Antipaladin;
 using MicroscopicContentExpansion.NewContent.Classes;
 using MicroscopicContentExpansion.NewContent.Feats;
 using MicroscopicContentExpansion.NewContent.Spells;
+using MicroscopicContentExpansion.RebalancedContent.DragonbloodShifterArchetype;
 
 namespace MicroscopicContentExpansion {
     internal class BlueprintInitLoader {
@@ -28,6 +29,8 @@ namespace MicroscopicContentExpansion {
                 MonkFlawlessMind.AddFlawlessMind();
                 MonkDiamondResilience.AddDiamondResilience();
                 FeintingFlurry.Add();
+
+                Dragonblooded.Change();
             }
         }
     }

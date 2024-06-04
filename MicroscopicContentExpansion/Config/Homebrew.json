@@ -1,0 +1,29 @@
+﻿{
+  "NewSettingsOffByDefault": false,
+  "DragonbloodShifter": {
+    "DisableAll": false,
+    "Settings": {
+      "EverlastingAspect": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Make Draconic Aspect last indefinitely."
+      },
+      "MultipleAspectsAtOnce": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "At levels 9, 14 and 20 allow 2, 3, 4 aspects enabled at the same time."
+      },
+      "AddAirborneToForms": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Add Airborne property to dragon forms given by class."
+      },
+      "IncreaseFormStatBonuses": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "Increase STR/CON bonuses provided by dragon forms given by class by 0/2/4."
+      }
+    },
+    "IsExpanded": true
+  }
+}

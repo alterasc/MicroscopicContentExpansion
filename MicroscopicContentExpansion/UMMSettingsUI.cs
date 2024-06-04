@@ -9,7 +9,7 @@ namespace MicroscopicContentExpansion {
             UI.TabBar(ref selectedTab,
                     () => UI.Label("SETTINGS WILL NOT BE UPDATED UNTIL YOU RESTART YOUR GAME.".yellow().bold()),
                     new NamedAction("Added Content", () => SettingsTabs.AddedContent()),
-                    new NamedAction("Fixes", () => SettingsTabs.Fixes())
+                    new NamedAction("Homebrew", () => SettingsTabs.Homebrew())
             );
         }
     }
@@ -30,15 +30,15 @@ namespace MicroscopicContentExpansion {
             }
         }
 
-        public static void Fixes() {
+        public static void Homebrew() {
             var TabLevel = SetttingUI.TabLevel.Zero;
-            var Fixes = Main.MCEContext.Fixes;
+            var Homebrew = Main.MCEContext.Homebrew;
             UI.Div(0, 15);
             using (UI.VerticalScope()) {
-                UI.Toggle("New Settings Off By Default".bold(), ref Fixes.NewSettingsOffByDefault);
+                UI.Toggle("New Settings Off By Default".bold(), ref Homebrew.NewSettingsOffByDefault);
                 UI.Space(25);
 
-                SetttingUI.SettingGroup("Miscellaneous", TabLevel, Fixes.Miscellaneous);
+                SetttingUI.SettingGroup("Dragonblood Shifter", TabLevel, Homebrew.DragonbloodShifter);
             }
         }
     }

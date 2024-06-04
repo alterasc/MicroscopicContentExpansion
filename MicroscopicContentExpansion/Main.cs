@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿global using static MicroscopicContentExpansion.Main;
+using HarmonyLib;
 using MicroscopicContentExpansion.ModLogic;
 using TabletopTweaks.Core.Utilities;
 using UnityModManagerNet;
