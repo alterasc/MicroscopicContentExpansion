@@ -21,7 +21,8 @@ public class AddFeatureDependingOnClassLevel :
     UnitFactComponentDelegate<AddFeatureDependingOnClassLevelData>,
     IOwnerGainLevelHandler,
     IUnitSubscriber,
-    ISubscriber {
+    ISubscriber
+{
 
     [SerializeField]
     public BlueprintCharacterClassReference m_Class;
@@ -43,7 +44,8 @@ public class AddFeatureDependingOnClassLevel :
 
     public override void OnActivate() => this.Apply();
 
-    public override void OnDeactivate() {
+    public override void OnDeactivate()
+    {
         Main.MCEContext.Logger.Log($"IsFeatureShouldBeApplied: Fact not null {this.Data.AppliedFact != null}");
         this.Owner.RemoveFact(this.Data.AppliedFact);
         this.Data.AppliedFact = null;
@@ -52,16 +54,21 @@ public class AddFeatureDependingOnClassLevel :
 
     public void HandleUnitGainLevel() => this.Apply();
 
-    private void Apply() {
+    private void Apply()
+    {
         var featureToApply = IsFeatureShouldBeApplied();
 
         Main.MCEContext.Logger.Log($"IsFeatureShouldBeApplied: Will add guid {featureToApply.Guid}");
-        if (this.Data.AppliedFact != null) {
+        if (this.Data.AppliedFact != null)
+        {
             Main.MCEContext.Logger.Log($"IsFeatureShouldBeApplied: Applied Fact present");
-            if (this.Data.AppliedFactReference.Equals(featureToApply)) {
+            if (this.Data.AppliedFactReference.Equals(featureToApply))
+            {
                 Main.MCEContext.Logger.Log($"IsFeatureShouldBeApplied: Applied Fact match");
                 return;
-            } else {
+            }
+            else
+            {
                 this.Owner.RemoveFact(this.Data.AppliedFact);
                 this.Data.AppliedFact = null;
                 this.Data.AppliedFactReference = null;
@@ -79,11 +86,13 @@ public class AddFeatureDependingOnClassLevel :
         Main.MCEContext.Logger.Log($"IsFeatureShouldBeApplied: Added new Fact {this.Data.AppliedFact != null}");
     }
 
-    private BlueprintUnitFactReference IsFeatureShouldBeApplied() {
+    private BlueprintUnitFactReference IsFeatureShouldBeApplied()
+    {
         int classLevel = ReplaceCasterLevelOfAbility.CalculateClassLevel(this.Class, this.AdditionalClasses.ToArray(), (UnitDescriptor)this.Owner, this.Archetypes.ToArray());
         var idx = classLevel / 3;
         Main.MCEContext.Logger.Log($"IsFeatureShouldBeApplied: {idx}");
-        if (idx > featureArray.Length) {
+        if (idx > featureArray.Length)
+        {
             return featureArray[featureArray.Length - 1];
         }
         return featureArray[idx - 1];
@@ -91,7 +100,8 @@ public class AddFeatureDependingOnClassLevel :
     }
 }
 
-public class AddFeatureDependingOnClassLevelData {
+public class AddFeatureDependingOnClassLevelData
+{
     [JsonProperty]
     public EntityFact AppliedFact;
     [JsonProperty]

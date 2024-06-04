@@ -10,13 +10,13 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using Kingmaker.Utility;
 using TabletopTweaks.Core.Utilities;
-using static MicroscopicContentExpansion.Main;
 
 namespace MicroscopicContentExpansion.NewContent.Feats;
-internal class FeintingFlurry {
-    internal static void Add() {
+internal class FeintingFlurry
+{
+    internal static void Add()
+    {
 
         var feintingFlurryIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "FeintingFlurry.png");
 
@@ -33,16 +33,19 @@ internal class FeintingFlurry {
 
         var description = Helpers.CreateString(MCEContext, "FeintingFlurry.Description", "While using flurry of blows to make {g|Encyclopedia:MeleeAttack}melee attacks{/g}, you can forgo your melee attack to make a {g|Encyclopedia:Persuasion}Persuasion{/g} (bluff) {g|Encyclopedia:Check}check{/g} to feint an opponent.", Locale.enGB, shouldProcess: true);
 
-        var buff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "FeintingFlurryBuff", a => {
+        var buff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "FeintingFlurryBuff", a =>
+        {
             a.SetName(MCEContext, "Feinting Flurry");
             a.m_Description = description;
             a.m_Icon = feintingFlurryIcon;
-            a.AddComponent<ReduceAttacksCount>(c => {
+            a.AddComponent<ReduceAttacksCount>(c =>
+            {
                 c.ReduceCount = 1;
                 c.OnlyFromPrimaryHand = true;
                 c.Condition = new();
             });
-            a.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c => {
+            a.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c =>
+            {
                 c.TriggerBeforeAttack = true;
                 c.OnlyHit = true;
                 c.OnMiss = false;
@@ -70,7 +73,8 @@ internal class FeintingFlurry {
                 c.OnCharge = false;
                 c.IgnoreAutoHit = false;
                 c.ActionsOnInitiator = false;
-                c.Action = new() {
+                c.Action = new()
+                {
                     Actions = [
                         new ContextActionCastSpell() {
                             m_Spell = feintAbility,
@@ -88,7 +92,8 @@ internal class FeintingFlurry {
             });
         });
 
-        var ability = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "FeintingFlurryActivatableAbility", a => {
+        var ability = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "FeintingFlurryActivatableAbility", a =>
+        {
             a.SetName(MCEContext, "Feinting Flurry");
             a.m_Description = description;
             a.m_Icon = feintingFlurryIcon;
@@ -99,24 +104,29 @@ internal class FeintingFlurry {
             a.m_Buff = buff.ToReference<BlueprintBuffReference>();
         });
 
-        var feintingFlurry = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "FeintingFlurry", a => {
+        var feintingFlurry = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "FeintingFlurry", a =>
+        {
             a.SetName(MCEContext, "Feinting Flurry");
             a.m_Description = description;
             a.m_Icon = feintingFlurryIcon;
-            a.AddComponent<AddFacts>(c => {
+            a.AddComponent<AddFacts>(c =>
+            {
                 c.m_Facts = [ability.ToReference<BlueprintUnitFactReference>()];
             });
             a.AddPrerequisiteFeature(feint);
-            a.AddPrerequisite<PrerequisiteStatValue>(c => {
+            a.AddPrerequisite<PrerequisiteStatValue>(c =>
+            {
                 c.Stat = StatType.Dexterity;
                 c.Value = 15;
             });
-            a.AddPrerequisite<PrerequisiteStatValue>(c => {
+            a.AddPrerequisite<PrerequisiteStatValue>(c =>
+            {
                 c.Stat = StatType.Intelligence;
                 c.Value = 13;
             });
             a.AddPrerequisiteFeaturesFromList(1, monkFlurry, qmFlurry, soheiFlurry);
-            a.AddComponent<DlcCondition>(c => {
+            a.AddComponent<DlcCondition>(c =>
+            {
                 c.m_DlcReward = dlc6Reward;
             });
             a.Groups = [

@@ -12,11 +12,13 @@ namespace MicroscopicContentExpansion.NewComponents;
 [AllowedOn(typeof(BlueprintBuff), false)]
 [TypeId("494e9bf94233487f9284c94ba51d94f3")]
 public class SpecialAnimationMonkKick : UnitBuffComponentDelegate<SpecialAnimationStateAnyData>,
-    IBuffFxComponent {
+    IBuffFxComponent
+{
 
     public UnitAnimationActionHandAttack Animation;
 
-    public override void OnDeactivate() {
+    public override void OnDeactivate()
+    {
         base.OnDeactivate();
         if (this.Data.Handle == null)
             return;
@@ -26,7 +28,8 @@ public class SpecialAnimationMonkKick : UnitBuffComponentDelegate<SpecialAnimati
 
     void IBuffFxComponent.OnSpawnFx() => this.StartAnimation();
 
-    public void StartAnimation() {
+    public void StartAnimation()
+    {
         UnitAnimationManager animationManager = this.Owner.View.AnimationManager;
         if (animationManager == null)
             return;
@@ -40,6 +43,7 @@ public class SpecialAnimationMonkKick : UnitBuffComponentDelegate<SpecialAnimati
     }
 }
 
-public class SpecialAnimationStateAnyData {
+public class SpecialAnimationStateAnyData
+{
     public UnitAnimationActionHandle Handle;
 }

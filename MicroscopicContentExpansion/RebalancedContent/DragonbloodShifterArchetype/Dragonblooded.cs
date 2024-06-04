@@ -13,8 +13,10 @@ using System.Linq;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.RebalancedContent.DragonbloodShifterArchetype;
-internal class Dragonblooded {
-    internal static void Change() {
+internal class Dragonblooded
+{
+    internal static void Change()
+    {
         EverlastingAspect();
         AllowMultipleAspectsAtOnce();
         FormBuffs();
@@ -23,7 +25,8 @@ internal class Dragonblooded {
     /// <summary>
     /// Adding Airborne property to dragonblooded dragon forms
     /// </summary>
-    private static void FormBuffs() {
+    private static void FormBuffs()
+    {
         List<string> dragonFormBuffs9 = [
             "662bdcd3eef541fb91d88b9ee79d0d37", // ShifterDragonFormBlackBuff9
             "abaa7d56f843410e97c61ff2c87d39c6", // ShifterDragonFormBlueBuff9
@@ -63,25 +66,31 @@ internal class Dragonblooded {
             "9d6996a50f6a4de289a44293420f75be", // ShifterDragonFormWhiteBuff20
         ];
 
-        if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("AddAirborneToForms")) {
+        if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("AddAirborneToForms"))
+        {
             var airborne = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
-            foreach (var buffId in dragonFormBuffs9.Concat(dragonFormBuffs14).Concat(dragonFormBuffs20)) {
+            foreach (var buffId in dragonFormBuffs9.Concat(dragonFormBuffs14).Concat(dragonFormBuffs20))
+            {
                 var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
-                buff.AddComponent<AddFacts>(x => {
+                buff.AddComponent<AddFacts>(x =>
+                {
                     x.m_Facts = [airborne];
                 });
             }
         }
 
-        if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("IncreaseFormStatBonuses")) {
+        if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("IncreaseFormStatBonuses"))
+        {
             var airborne = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
-            foreach (var buffId in dragonFormBuffs14) {
+            foreach (var buffId in dragonFormBuffs14)
+            {
                 var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 polymorphComponent.StrengthBonus += 2;
                 polymorphComponent.ConstitutionBonus += 2;
             }
-            foreach (var buffId in dragonFormBuffs20) {
+            foreach (var buffId in dragonFormBuffs20)
+            {
                 var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 polymorphComponent.StrengthBonus += 4;
@@ -93,7 +102,8 @@ internal class Dragonblooded {
     /// <summary>
     /// Make aspects last forever
     /// </summary>
-    private static void EverlastingAspect() {
+    private static void EverlastingAspect()
+    {
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("EverlastingAspect")) { return; }
 
@@ -120,21 +130,27 @@ internal class Dragonblooded {
             dragonbloodShifterRedAbility,
             dragonbloodShifterWhiteAbility
         ];
-        foreach (var ability in allAbilities) {
+        foreach (var ability in allAbilities)
+        {
             ability.RemoveComponents<ActivatableAbilityResourceLogic>();
         }
         var dragonAspectSelection = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("c2872505b99c43b8b146ed89ffeb9af5");
         var extendedAspects = BlueprintTools.GetBlueprint<BlueprintFeature>("88e0ca9a742b436ea48ce4845d178c8a");
-        extendedAspects.RemoveComponents<RecommendationHasFeature>(x => {
+        extendedAspects.RemoveComponents<RecommendationHasFeature>(x =>
+        {
             return dragonAspectSelection.Equals(x.m_Feature);
         });
 
         var prereqCondition = extendedAspects.GetComponent<PrerequisiteCondition>();
-        if (prereqCondition?.Condition is OrAndLogic orAndLogic) {
+        if (prereqCondition?.Condition is OrAndLogic orAndLogic)
+        {
             var conds = orAndLogic.ConditionsChecker.Conditions;
-            orAndLogic.ConditionsChecker.Conditions = conds.Where(x => {
-                if (x is ContextConditionHasFact hasFact) {
-                    if (dragonAspectSelection.Equals(hasFact.m_Fact)) {
+            orAndLogic.ConditionsChecker.Conditions = conds.Where(x =>
+            {
+                if (x is ContextConditionHasFact hasFact)
+                {
+                    if (dragonAspectSelection.Equals(hasFact.m_Fact))
+                    {
                         return false;
                     }
                 }
@@ -146,20 +162,24 @@ internal class Dragonblooded {
     /// <summary>
     /// Multiple draconic aspects as you level
     /// </summary>
-    private static void AllowMultipleAspectsAtOnce() {
+    private static void AllowMultipleAspectsAtOnce()
+    {
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("MultipleAspectsAtOnce")) { return; }
 
         var shifterDragonFormFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("d8e9d249a426400bb47fefa6d0158049");
         var shifterDragonFormFeatureImproved = BlueprintTools.GetBlueprint<BlueprintFeature>("5cae07b7e9474d3eb382baa703e82ca8");
         var shifterDragonFormFeatureFinal = BlueprintTools.GetBlueprint<BlueprintFeature>("c676ba5eb744492583d989244c81f127");
-        shifterDragonFormFeature.AddComponent<IncreaseActivatableAbilityGroupSize>(c => {
+        shifterDragonFormFeature.AddComponent<IncreaseActivatableAbilityGroupSize>(c =>
+        {
             c.Group = ActivatableAbilityGroup.ShifterAspect;
         });
-        shifterDragonFormFeatureImproved.AddComponent<IncreaseActivatableAbilityGroupSize>(c => {
+        shifterDragonFormFeatureImproved.AddComponent<IncreaseActivatableAbilityGroupSize>(c =>
+        {
             c.Group = ActivatableAbilityGroup.ShifterAspect;
         });
-        shifterDragonFormFeatureFinal.AddComponent<IncreaseActivatableAbilityGroupSize>(c => {
+        shifterDragonFormFeatureFinal.AddComponent<IncreaseActivatableAbilityGroupSize>(c =>
+        {
             c.Group = ActivatableAbilityGroup.ShifterAspect;
         });
     }
