@@ -1,27 +1,38 @@
 ﻿{
-  "NewSettingsOffByDefault": false,
+  "NewSettingsOffByDefault": true,
   "DragonbloodShifter": {
     "DisableAll": false,
     "Settings": {
       "EverlastingAspect": {
-        "Enabled": true,
+        "Enabled": false,
         "Homebrew": false,
         "Description": "Make Draconic Aspect last indefinitely."
       },
       "MultipleAspectsAtOnce": {
-        "Enabled": true,
+        "Enabled": false,
         "Homebrew": false,
         "Description": "At levels 9, 14 and 20 allow 2, 3, 4 aspects enabled at the same time."
       },
       "AddAirborneToForms": {
-        "Enabled": true,
+        "Enabled": false,
         "Homebrew": false,
         "Description": "Add Airborne property to dragon forms given by class."
       },
       "IncreaseFormStatBonuses": {
-        "Enabled": true,
+        "Enabled": false,
         "Homebrew": false,
         "Description": "Increase STR/CON bonuses provided by dragon forms given by class by 0/2/4."
+      }
+    },
+    "IsExpanded": true
+  },
+  "MythicArmorFeats": {
+    "DisableAll": true,
+    "Settings": {
+      "ArmorEnhancementBonusToBypassDR": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Use armor enhancement bonus for DR penetration in Heavy and Medium mythic offense feats. I.e. bonus damage from +5 heavy armor counts as if it came from +5 weapon."
       }
     },
     "IsExpanded": true

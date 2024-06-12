@@ -8,9 +8,11 @@ namespace MicroscopicContentExpansion;
 static class Main
 {
     public static ModContextMCEBase MCEContext;
+    public static Harmony HarmonyInstance;
     static bool Load(UnityModManager.ModEntry modEntry)
     {
         var harmony = new Harmony(modEntry.Info.Id);
+        HarmonyInstance = harmony;
         MCEContext = new ModContextMCEBase(modEntry);
         MCEContext.LoadAllSettings();
         MCEContext.ModEntry.OnSaveGUI = OnSaveGUI;

@@ -85,4 +85,5 @@
 	<Target Name="DeleteCustomPropsFile" BeforeTargets="Clean">
 		<Delete Files="GamePath.props" />
 	</Target>
+	<ProjectExtensions><VisualStudio><UserProperties config_4homebrew_1json__JsonSchema="https://cdn.jsdelivr.net/gh/roadrunner-server/roadrunner@latest/schemas/config/3.0.schema.json" /></VisualStudio></ProjectExtensions>
 </Project>
