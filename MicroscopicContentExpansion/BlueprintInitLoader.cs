@@ -35,7 +35,7 @@ internal class BlueprintInitLoader
             FeintingFlurry.Add();
 
             Dragonblooded.Change();
-            MythicAmorFeatTweaks.Change();
+            MythicArmorFeatTweaks.Change();
 
             //if (MCEContext.Homebrew.MythicArmorFeats.IsEnabled("MithralDoesNotLowerCategory"))
             //{

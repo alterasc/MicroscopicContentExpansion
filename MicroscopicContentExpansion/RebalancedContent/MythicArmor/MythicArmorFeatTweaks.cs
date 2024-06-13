@@ -5,7 +5,7 @@ using System.Linq;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.RebalancedContent.MythicArmor;
-internal static class MythicAmorFeatTweaks
+internal static class MythicArmorFeatTweaks
 {
     internal static void Change()
     {

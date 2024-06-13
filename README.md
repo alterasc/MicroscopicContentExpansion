@@ -52,6 +52,7 @@ They use Horse portrait.
 	- [Dimensional Dervish](https://www.d20pfsrd.com/feats/general-feats/dimensional-dervish)
 - [Flickering Step](https://www.d20pfsrd.com/feats/conduit-feats/flickering-step-conduit)
 - [Crusader's Flurry](https://www.d20pfsrd.com/feats/general-feats/crusader-s-flurry)
+- [Feinting Flurry](https://www.d20pfsrd.com/feats/combat-feats/feinting-flurry-combat)
 ### New spells
 
 - [Deadly Juggernaut (Cleric 3, Inquisitor 3, Paladin 3, Antipaladin 3, Warpriest 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
@@ -65,6 +66,7 @@ They use Horse portrait.
 - [Ki Power: Diamond Resilience](https://www.d20pfsrd.com/classes/unchained-classes/MONK-unchained/#TOC-Ki-Power-Su-)
 	Made into passive ability (like Diamond Soul) and set to require Monk class level 14
 
+Ki Leech and Diamon Resilience are not added to Drunken Monk intentionally. Ki Leech doesn't make sense since he has his own type of Kis, Diamond Resilience is just weaker than what Drunken gets anyway.
 ### New class features
 - [Druidic Herbalism](https://www.d20pfsrd.com/classes/Core-classes/druid/#Nature_Bond_Ex)
 For simplicity of implementation and usage nerfed compared to tabletop description:   
@@ -92,6 +94,28 @@ Grants pseudo pounce ability Flying Kick, that can be used to move up to Fast Mo
 - [Flawless Mind (Monk level 19 feature)](https://www.d20pfsrd.com/classes/unchained-classes/MONK-unchained/#TOC-Flawless-Mind)
 	Whenever a monk attempts a Will save, he can roll twice and take the better result.
 
+### Homebrew changes (all default to OFF)
+
+Changes that make sense to me, enable if you like (and don't forget to restart the game!)
+
+#### Dragonblood Shifter
+- Make Draconic Aspect (minor aspect) last indefinitely.
+- At levels 9, 14 and 20 allow 2, 3, 4 aspects enabled at the same time.
+- Add Airborne property to dragon forms given by class.
+- Increase STR/CON bonuses provided by dragon forms given by class by 0/2/4.
+
+Reasoning:    
+Draconic aspect bonuses are so small that having them on a timer is just bad. Multiple aspects mirror chimeric aspect. On lvl 20 this will result in you being immune to 4 elements, but a) that's pure no dips lvl 20, b) casters could do it earlier anyway.
+
+Airborne (that full dragons have, but normal polymorphs don't) gives immunity to all ground things and trip. 
+0/2/4 bonus is just so you don't feel bad that BFT could share same dragon form but with higher stats bonuses.   
+Let's have archetype that is all about dragons, forms that at mildly superior to what others can have.
+
+#### Mythic Armor Feats
+- Use armor enhancement bonus for DR penetration in Heavy and Medium mythic offense feats. I.e. bonus damage from +5 heavy armor counts as if it came from +5 weapon.
+
+Reasoning:    
+Description says that you strike with your armor spikes, and if my armor is magical, surely strike from it would be magical?
 ## Thanks to  
 -   bubbles and Vek17 specifically   
 -   kadyn for his Expanded Content

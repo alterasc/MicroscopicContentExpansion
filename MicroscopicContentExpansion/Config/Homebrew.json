@@ -1,7 +1,7 @@
 ﻿{
   "NewSettingsOffByDefault": true,
   "DragonbloodShifter": {
-    "DisableAll": false,
+    "DisableAll": true,
     "Settings": {
       "EverlastingAspect": {
         "Enabled": false,
