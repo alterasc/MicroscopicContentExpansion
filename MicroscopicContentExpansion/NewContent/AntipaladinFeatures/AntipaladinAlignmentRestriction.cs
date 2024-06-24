@@ -7,8 +7,7 @@ using TabletopTweaks.Core.Utilities;
 namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures;
 internal class AntipaladinAlignmentRestriction
 {
-
-    public static void AddAntipaladinAlignmentRestriction()
+    internal static void AddAntipaladinAlignmentRestriction()
     {
         var SpellbookRef = MCEContext.GetModBlueprintReference<BlueprintSpellbookReference>("AntipaladinSpellbook");
 
@@ -20,10 +19,11 @@ internal class AntipaladinAlignmentRestriction
                 "changes the {g|Encyclopedia:Alignment}alignment{/g} back.");
             bp.AddComponent<ForbidSpellbookOnAlignmentDeviation>(c =>
             {
-                c.m_Spellbooks = new BlueprintSpellbookReference[] {
+                c.m_Spellbooks = [
                     SpellbookRef
-                };
+                ];
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
+                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
             bp.IsClassFeature = true;
         });
