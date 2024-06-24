@@ -1,6 +1,7 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers;
 using Kingmaker.EntitySystem;
 using Kingmaker.Enums;
 using Kingmaker.Items;
@@ -8,10 +9,8 @@ using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Damage;
-using Kingmaker.UI.Common;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Parts;
-using System.Linq;
 
 namespace MicroscopicContentExpansion.RebalancedContent.MythicArmor;
 
@@ -40,14 +39,9 @@ public class ArmorACAsDamage :
         if (disableBonusForDamage != null && disableBonusForDamage.DisableAdditionalDice)
             return;
         DamageTypeDescription damageTypeDescription = evt.DamageBundle.First.CreateTypeDescription();
-        var acMods = evt.Initiator.Descriptor.Stats.AC.Modifiers;
-        var armorEnhancementValue = acMods
-            .Where(x => x.ModDescriptor == ModifierDescriptor.ArmorEnhancement)
-            .Where(x => x?.ItemSource?.Blueprint.ItemType == ItemsFilter.ItemType.Armor)
-            .Select(x => x.ModValue)
-            .Sum();
-        damageTypeDescription.Physical.Enhancement = armorEnhancementValue;
-        damageTypeDescription.Physical.EnhancementTotal = armorEnhancementValue;
+        var enhancementBonus = GameHelper.GetItemEnhancementBonus(evt.Initiator.Body.Armor.Armor);
+        damageTypeDescription.Physical.Enhancement = enhancementBonus;
+        damageTypeDescription.Physical.EnhancementTotal = enhancementBonus;
         int rollsCount = this.Value.DiceCountValue.Calculate(this.Context);
         DamageDescription damageDescription = new()
         {
