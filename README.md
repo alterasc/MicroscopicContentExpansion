@@ -15,7 +15,11 @@ Archetypes available:
 
 IMPORTANT: For best experience also install TabletopTweaks-Base. Fiendish template for antipaladin animal companion and Armor Mastery/Shield Mastery feats that can be picked as Iron Tyrant bonus feats are used from TTT. If you don't have TTT-Base, mod will still work, just you will be missing additional possible selections. (No, I won't copypaste those in my mod, don't ask)
 
-WARNING: Alignment restrictions do not have mythic bypass clause. You stop being evil and you lose spellbook and active abilities. This is intended.
+Notable differences from PnP:     
+Instead of Aura of Vengeance (lvl 11 ability) which allows Antipaladin to share Smite Good, in mod version 1.16.0 this was replaced with Tip of the Spear (previously capstone option) that allows Smite Good to affect everything. The part that adds 3 bonus smites was removed from it.   
+This is to make Smite Good useful while not stepping on Paladin's support role. Evil helps themselves, not others.
+
+Mark of Vengeance that was previously granted is still in mod files (and will continue to be there for save compatibility), so if you liked how it was previously, you can add it manually with Toybox.
 
 #### Antipaladin exclusive companion and mount - Nightmare (flaming horse)
 
