@@ -407,7 +407,7 @@ internal class DeadlyJuggernaut
             bp.m_Icon = icon;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = [sfAbility.ToReference<BlueprintUnitFactReference>()];
+                c.m_Facts = [drunkenKiAbility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
