@@ -16,7 +16,6 @@ internal class KnightoftheSepulcher
         var fiendishBoon = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBoonSelection");
         var auraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");
         var smiteGoodAdditionalUse = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinSmiteGoodAdditionalUse");
-        var markOfVengeance = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfVengeanceFeature");
         var auraOfSin = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfSinFeature");
         var crueltySelection = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltySelection");
         var auraOfDepravity = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDepravityFeature");
@@ -37,26 +36,24 @@ internal class KnightoftheSepulcher
             bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
             bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
             bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
-            bp.RemoveFeatures = new LevelEntry[] {
+            bp.RemoveFeatures = [
                 Helpers.CreateLevelEntry(5, fiendishBoon),
                 Helpers.CreateLevelEntry(8, auraOfDespair),
                 Helpers.CreateLevelEntry(10, smiteGoodAdditionalUse),
-                Helpers.CreateLevelEntry(11, markOfVengeance),
                 Helpers.CreateLevelEntry(14, auraOfSin),
                 Helpers.CreateLevelEntry(15, crueltySelection),
                 Helpers.CreateLevelEntry(17, auraOfDepravity),
                 Helpers.CreateLevelEntry(20, capstone)
-            };
-            bp.AddFeatures = new LevelEntry[] {
+            ];
+            bp.AddFeatures = [
                 Helpers.CreateLevelEntry(5, touchoftheCrypt),
                 Helpers.CreateLevelEntry(8, fortitudeoftheCrypt),
                 Helpers.CreateLevelEntry(10, cloakoftheCrypt),
-                Helpers.CreateLevelEntry(11, willoftheCrypt),
                 Helpers.CreateLevelEntry(14, weaponsofSin),
                 Helpers.CreateLevelEntry(15, cryptLord),
                 Helpers.CreateLevelEntry(17, souloftheCrypt),
                 Helpers.CreateLevelEntry(20, undyingChampion)
-            };
+            ];
         });
 
         var archetypes = antipaladinClass.m_Archetypes.AppendToArray(knightoftheSepulcher.ToReference<BlueprintArchetypeReference>());

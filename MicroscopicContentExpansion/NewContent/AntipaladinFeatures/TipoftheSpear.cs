@@ -7,9 +7,8 @@ namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures;
 internal class TipoftheSpear
 {
     private const string NAME = "Tip of the Spear";
-    private const string DESCRIPTION = "At 20th level, the antipaladin tears through heroes and " +
-        "rival villains alike. The antipaladin gains three additional uses of smite good per day" +
-        " and can smite foes regardless of their alignment.";
+    private const string DESCRIPTION = "At 11th level, the antipaladin tears through heroes and " +
+        "rival villains alike. The antipaladin can smite foes regardless of their alignment.";
 
     public static void AddTipoftheSpear()
     {

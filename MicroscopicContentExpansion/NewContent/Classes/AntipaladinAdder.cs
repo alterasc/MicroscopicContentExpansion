@@ -73,15 +73,15 @@ class AntipaladinAdder
 
         var auraOfDespair = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDespairFeature");
 
-        var markOfVengeance = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfVengeanceFeature");
-
         var auraOfSin = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfSinFeature");
 
         var auraOfDepravity = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfDepravityFeature");
 
         var capstone = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCapstone");
 
-        AntipaladinProgression.LevelEntries = new LevelEntry[] {
+        var tipOftheSpear = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinTipoftheSpear");
+
+        AntipaladinProgression.LevelEntries = [
                     Helpers.CreateLevelEntry(1, AntipaladinProficiencies, SmiteGoodFeature, antipaladinAlignmentRestriction),
                     Helpers.CreateLevelEntry(2, UnholyResilience, TouchOfCorruptionFeature),
                     Helpers.CreateLevelEntry(3, AuraOfCowardice, PlagueBringer, crueltySelection),
@@ -92,7 +92,7 @@ class AntipaladinAdder
                     Helpers.CreateLevelEntry(8,  auraOfDespair),
                     Helpers.CreateLevelEntry(9,  crueltySelection),
                     Helpers.CreateLevelEntry(10,  smiteGoodAdditionalUse),
-                    Helpers.CreateLevelEntry(11,  markOfVengeance),
+                    Helpers.CreateLevelEntry(11,  tipOftheSpear),
                     Helpers.CreateLevelEntry(12,  crueltySelection),
                     Helpers.CreateLevelEntry(13,  smiteGoodAdditionalUse),
                     Helpers.CreateLevelEntry(14,  auraOfSin),
@@ -102,20 +102,20 @@ class AntipaladinAdder
                     Helpers.CreateLevelEntry(18,  crueltySelection),
                     Helpers.CreateLevelEntry(19,  smiteGoodAdditionalUse),
                     Helpers.CreateLevelEntry(20,  capstone)
-            };
+            ];
 
-        AntipaladinProgression.UIGroups = new UIGroup[] {
+        AntipaladinProgression.UIGroups = [
                     Helpers.CreateUIGroup(SmiteGoodFeature, smiteGoodAdditionalUse),
                     Helpers.CreateUIGroup(crueltySelection)
-            };
+            ];
 
         var AntipaladinClass = BlueprintTools.GetModBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass");
-        AntipaladinClass.m_SignatureAbilities = new BlueprintFeatureReference[]
-        {
+        AntipaladinClass.m_SignatureAbilities =
+        [
                 SmiteGoodFeature.ToReference<BlueprintFeatureReference>(),
                 TouchOfCorruptionFeature.ToReference<BlueprintFeatureReference>(),
                 fiendishBoon.ToReference<BlueprintFeatureReference>()
-        };
+        ];
         AntipaladinClass.m_Spellbook = SpellbookRef;
     }
 
@@ -131,14 +131,14 @@ class AntipaladinAdder
                 "armor (heavy, medium, and light), and with shields (except tower shields)."));
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                         BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("6d3728d4e9c9898458fe5e9532951132"),
                         BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("46f4fb320f35704488ba3d513397789d"),
                         BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("1b0f68188dcc435429fb87a022239681"),
                         BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e70ecf1ed95ca2f40b754f1adb22bbdd"),
                         BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("203992ef5b35c864390b4e4a1e200629"),
                         BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("cb8686e7357a68c42bdd9d4e65334633"),
-                    };
+                    ];
             });
             bp.Ranks = 1;
             bp.IsClassFeature = true;

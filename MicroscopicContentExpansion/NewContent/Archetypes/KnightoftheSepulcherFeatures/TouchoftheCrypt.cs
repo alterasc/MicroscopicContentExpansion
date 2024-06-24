@@ -12,8 +12,7 @@ using TabletopTweaks.Core.Utilities;
 namespace MicroscopicContentExpansion.NewContent.Archetypes.KnightoftheSepulcherFeatures;
 internal class TouchoftheCrypt
 {
-
-    public static BlueprintFeatureReference AddTouchoftheCrypt()
+    internal static BlueprintFeatureReference AddTouchoftheCrypt()
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
@@ -29,9 +28,9 @@ internal class TouchoftheCrypt
                 "bonus damage from sneak attacks as though he were wearing armor of light fortification.");
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     negativeEnergyAffinity.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
             bp.AddComponent<AddFortification>(c =>
             {
@@ -41,28 +40,8 @@ internal class TouchoftheCrypt
             {
                 c.SpellDescriptor = SpellDescriptor.MindAffecting | SpellDescriptor.Death | SpellDescriptor.Poison;
                 c.ModifierDescriptor = ModifierDescriptor.UntypedStackable;
-                c.Value = new ContextValue()
-                {
-                    ValueType = ContextValueType.Rank
-                };
+                c.Value = 2;
             });
-            bp.AddComponent<ContextRankConfig>(c =>
-            {
-                c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-                c.m_Progression = ContextRankProgression.Custom;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
-                c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
-                    new ContextRankConfig.CustomProgressionItem() {
-                        BaseValue = 10,
-                        ProgressionValue = 2
-                    },
-                    new ContextRankConfig.CustomProgressionItem() {
-                        BaseValue = 100,
-                        ProgressionValue = 4
-                    }
-                };
-            });
-
             bp.IsClassFeature = true;
         }).ToReference<BlueprintFeatureReference>();
     }
