@@ -293,7 +293,15 @@
     "DimensionalAssaultDrunkenKiAbility": "72eb0a98-a200-40a2-9aac-f634315969f7",
     "DimensionalDervishDrunkenKiAbility": "304a9e68-76fd-4f5c-a4b0-990b08f00f35",
     "DrunkenKiDeadlyJuggernautAbility": "593503ff-9d1c-43f4-b77e-b90f84f1c4ff",
-    "DrunkenKiDeadlyJuggernautFeature": "53e551d5-183e-49ef-9cfb-e34aa7dc628c"
+    "DrunkenKiDeadlyJuggernautFeature": "53e551d5-183e-49ef-9cfb-e34aa7dc628c",
+    "BiteDragon1d8": "2b131abd-ec78-41a7-bf03-7137f7d25151",
+    "BiteDragonHuge2d8": "b00409e4-df45-43c4-9743-7df9abcae6b7",
+    "BiteDragonLarge2d6": "6cc97bdb-6554-4a33-8b85-0309329dc381",
+    "DragonbloodShifterBite": "94745e23-29a9-47f9-970e-99d56090230c",
+    "DragonbloodShifterBiteWeapon": "3324f336-71c0-4be7-996e-d985bb4ee05e",
+    "DragonbloodShifterWingsAbility": "5af9a0f4-eaab-406c-b33f-9903bee2254e",
+    "DragonbloodShifterWingsBuff": "b4d49819-8afa-4f4c-bb58-61dbd5e84625",
+    "DragonbloodShifterWingsFeature": "fc18b490-82a5-483f-9bdc-554b71af18e8"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

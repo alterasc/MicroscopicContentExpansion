@@ -22,6 +22,21 @@
         "Enabled": false,
         "Homebrew": false,
         "Description": "Increase STR/CON bonuses provided by dragon forms given by class by 0/2/4."
+      },
+      "AddBiteAttack": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Add at lvl 4 bite attack with 1.5 STR bonus."
+      },
+      "IncreaseFormBiteStrBonus": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Make class dragon form bite attack use 1.5 STR bonus."
+      },
+      "AddWings": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Add at lvl 5 wings that are active when dragon aspect is active and match the color of last activated aspect."
       }
     },
     "IsExpanded": true

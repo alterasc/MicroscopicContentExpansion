@@ -105,15 +105,21 @@ Changes that make sense to me, enable if you like (and don't forget to restart t
 #### Dragonblood Shifter
 - Make Draconic Aspect (minor aspect) last indefinitely.
 - At levels 9, 14 and 20 allow 2, 3, 4 aspects enabled at the same time.
+- Add at lvl 4 bite attack with 1.5 STR bonus.
+- Add at lvl 5 draconic wings that are active during dragon aspect and match in color last activated aspect- 
 - Add Airborne property to dragon forms given by class.
 - Increase STR/CON bonuses provided by dragon forms given by class by 0/2/4.
+- Make class dragon form bite attack use 1.5 STR bonus.
 
 Reasoning:    
 Draconic aspect bonuses are so small that having them on a timer is just bad. Multiple aspects mirror chimeric aspect. On lvl 20 this will result in you being immune to 4 elements, but a) that's pure no dips lvl 20, b) casters could do it earlier anyway.
+Bite at lvl 4 because that's where normal shifters spike in power with their major form.
+Wings because why not. Feyform and Griffonheart give wings at 5.
 
 Airborne (that full dragons have, but normal polymorphs don't) gives immunity to all ground things and trip. 
-0/2/4 bonus is just so you don't feel bad that BFT could share same dragon form but with higher stats bonuses.   
-Let's have archetype that is all about dragons, forms that at mildly superior to what others can have.
+0/2/4 bonus is just so you don't feel bad that BFT could share same dragon form but with higher stats bonuses.    
+1.5x STR bonus on bite because most dragons have that.
+Let's have archetype that is all about dragons forms that at mildly superior to what others can have.
 
 #### Mythic Armor Feats
 - Use armor enhancement bonus for DR penetration in Heavy and Medium mythic offense feats. I.e. bonus damage from +5 heavy armor counts as if it came from +5 weapon.

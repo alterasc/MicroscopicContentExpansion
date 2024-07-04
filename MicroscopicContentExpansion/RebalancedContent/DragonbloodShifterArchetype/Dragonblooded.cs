@@ -1,9 +1,12 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
+using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.Designers.Mechanics.Recommendations;
+using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.ActivatableAbilities.Restrictions;
 using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
@@ -20,6 +23,8 @@ internal class Dragonblooded
         EverlastingAspect();
         AllowMultipleAspectsAtOnce();
         FormBuffs();
+        AddBite();
+        AddWings();
     }
 
     /// <summary>
@@ -95,6 +100,88 @@ internal class Dragonblooded
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 polymorphComponent.StrengthBonus += 4;
                 polymorphComponent.ConstitutionBonus += 4;
+            }
+        }
+
+        var dragonBiteType = BlueprintTools.GetBlueprint<BlueprintWeaponType>("12a8a3a89e62d6b4fbc09ecdc187a828");
+        var dragonBiteTypeRef = dragonBiteType.ToReference<BlueprintWeaponTypeReference>();
+        var biteIcon = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("f3ff6972c32f22e4ba4c85c3982a03cf").m_Icon;
+
+        var bite9 = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("61bc14eca5f8c1040900215000cfc218");
+
+        var dragonBite1d8 = Helpers.CreateBlueprint<BlueprintItemWeapon>(MCEContext, "BiteDragon1d8", a =>
+        {
+            a.m_DisplayNameText = dragonBiteType.m_DefaultNameText;
+            a.m_DescriptionText = bite9.m_DescriptionText;
+            a.m_FlavorText = bite9.m_FlavorText;
+            a.m_Enchantments = bite9.m_Enchantments;
+            a.m_Icon = biteIcon;
+            a.m_Size = Kingmaker.Enums.Size.Medium;
+            a.m_Type = dragonBiteTypeRef;
+            a.m_OverrideDamageDice = true;
+            a.m_DamageDice = new DiceFormula(1, DiceType.D8);
+            a.m_VisualParameters = bite9.m_VisualParameters;
+            a.m_EquipmentEntity = bite9.m_EquipmentEntity;
+        }).ToReference<BlueprintItemWeaponReference>();
+
+        var dragonBite2d6 = Helpers.CreateBlueprint<BlueprintItemWeapon>(MCEContext, "BiteDragonLarge2d6", a =>
+        {
+            a.m_DisplayNameText = dragonBiteType.m_DefaultNameText;
+            a.m_DescriptionText = bite9.m_DescriptionText;
+            a.m_FlavorText = bite9.m_FlavorText;
+            a.m_Enchantments = bite9.m_Enchantments;
+            a.m_Icon = biteIcon;
+            a.m_Size = Kingmaker.Enums.Size.Large;
+            a.m_Type = dragonBiteTypeRef;
+            a.m_OverrideDamageDice = true;
+            a.m_DamageDice = new DiceFormula(2, DiceType.D6);
+            a.m_VisualParameters = bite9.m_VisualParameters;
+            a.m_EquipmentEntity = bite9.m_EquipmentEntity;
+        }).ToReference<BlueprintItemWeaponReference>();
+
+        var dragonBite2d8 = Helpers.CreateBlueprint<BlueprintItemWeapon>(MCEContext, "BiteDragonHuge2d8", a =>
+        {
+            a.m_DisplayNameText = dragonBiteType.m_DefaultNameText;
+            a.m_DescriptionText = bite9.m_DescriptionText;
+            a.m_FlavorText = bite9.m_FlavorText;
+            a.m_Enchantments = bite9.m_Enchantments;
+            a.m_Icon = biteIcon;
+            a.m_Size = Kingmaker.Enums.Size.Huge;
+            a.m_Type = dragonBiteTypeRef;
+            a.m_OverrideDamageDice = true;
+            a.m_DamageDice = new DiceFormula(2, DiceType.D8);
+            a.m_VisualParameters = bite9.m_VisualParameters;
+            a.m_EquipmentEntity = bite9.m_EquipmentEntity;
+        }).ToReference<BlueprintItemWeaponReference>();
+
+        if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("IncreaseFormBiteStrBonus"))
+        {
+            foreach (var buffId in dragonFormBuffs9)
+            {
+                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var polymorphComponent = buff.GetComponent<Polymorph>();
+                if (polymorphComponent.m_AdditionalLimbs[0].Get().Category == Kingmaker.Enums.WeaponCategory.Bite)
+                {
+                    polymorphComponent.m_AdditionalLimbs[0] = dragonBite1d8;
+                }
+            }
+            foreach (var buffId in dragonFormBuffs14)
+            {
+                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var polymorphComponent = buff.GetComponent<Polymorph>();
+                if (polymorphComponent.m_AdditionalLimbs[0].Get().Category == Kingmaker.Enums.WeaponCategory.Bite)
+                {
+                    polymorphComponent.m_AdditionalLimbs[0] = dragonBite2d6;
+                }
+            }
+            foreach (var buffId in dragonFormBuffs20)
+            {
+                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var polymorphComponent = buff.GetComponent<Polymorph>();
+                if (polymorphComponent.m_AdditionalLimbs[0].Get().Category == Kingmaker.Enums.WeaponCategory.Bite)
+                {
+                    polymorphComponent.m_AdditionalLimbs[0] = dragonBite2d8;
+                }
             }
         }
     }
@@ -182,5 +269,134 @@ internal class Dragonblooded
         {
             c.Group = ActivatableAbilityGroup.ShifterAspect;
         });
+    }
+
+    /// <summary>
+    /// Add bite at lvl 4
+    /// </summary>
+    private static void AddBite()
+    {
+        var icon = BlueprintTools.GetBlueprint<BlueprintFeature>("7e7e4cd3d93984b439799048e6657237").m_Icon;
+
+        var ddBite = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("c66afbc07845e4245bf62021b7278a43");
+
+        var shifterBite = Helpers.CreateBlueprint<BlueprintItemWeapon>(MCEContext, "DragonbloodShifterBiteWeapon", a =>
+        {
+            a.m_DisplayNameText = ddBite.m_DisplayNameText;
+            a.m_DescriptionText = ddBite.m_DescriptionText;
+            a.m_FlavorText = ddBite.m_FlavorText;
+            a.m_Icon = ddBite.m_Icon;
+            a.m_Size = Kingmaker.Enums.Size.Medium;
+            a.m_Type = ddBite.m_Type;
+            a.m_EquipmentEntity = ddBite.m_EquipmentEntity;
+            a.m_VisualParameters = ddBite.m_VisualParameters;
+            a.m_Enchantments = [BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("ae2be9fefbd5438f821f0113db8fd572")];
+        });
+
+        var bite = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DragonbloodShifterBite", a =>
+        {
+            a.SetName(MCEContext, "Dragon Bite");
+            a.SetDescription(MCEContext, "At 4th level dragonblood shifter gains a bite {g|Encyclopedia:Attack}attack{/g}. This is a primary {g|Encyclopedia:NaturalAttack}natural attack{/g} that deals {g|Encyclopedia:Dice}1d6{/g} points of {g|Encyclopedia:Damage}damage{/g} (1d4 if the dragonblood shifter is Small), plus 1.5 times the dragonblood shifter's {g|Encyclopedia:Strength}Strength{/g} modifier. It counts as cold iron, silver, and magic for the purpose of overcoming {g|Encyclopedia:Damage_Reduction}damage reduction{/g}.");
+            a.m_Icon = icon;
+            a.AddComponent<AddAdditionalLimb>(c =>
+            {
+                c.m_Weapon = shifterBite.ToReference<BlueprintItemWeaponReference>();
+            });
+            a.AddComponent<AddOutgoingPhysicalDamageProperty>(c =>
+            {
+                c.AddMagic = true;
+                c.AddMaterial = true;
+                c.Material = Kingmaker.Enums.Damage.PhysicalDamageMaterial.ColdIron & Kingmaker.Enums.Damage.PhysicalDamageMaterial.Silver;
+                c.CheckWeaponType = true;
+                c.m_WeaponType = ddBite.m_Type;
+            });
+        });
+
+        if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("AddBiteAttack")) { return; }
+
+        var archetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("2d5b06e413a9408cbd5bb999b5a4cc4a");
+        var lvl4Entry = archetype.AddFeatures.FirstOrDefault(x => x.Level == 4);
+        if (lvl4Entry != null)
+        {
+            lvl4Entry.m_Features.Add(bite.ToReference<BlueprintFeatureBaseReference>());
+        }
+        else
+        {
+            lvl4Entry = Helpers.CreateLevelEntry(4, bite);
+            archetype.AddFeatures = archetype.AddFeatures.AppendToArray(lvl4Entry);
+        }
+    }
+
+    /// <summary>
+    /// Adds wings matching last activated aspect at lvl 5
+    /// </summary>
+    private static void AddWings()
+    {
+        var ddWingsAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a800d71694dc7634b9481c1cbf5b355f");
+
+        var buff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "DragonbloodShifterWingsBuff", bp =>
+        {
+            bp.m_Flags = BlueprintBuff.Flags.StayOnDeath | BlueprintBuff.Flags.HiddenInUi;
+            bp.AddComponent<DragonbloodWingController>(c =>
+            {
+                c.MatchingWingsDictionary = new Dictionary<BlueprintGuid, BlueprintBuffReference> {
+                    {BlueprintGuid.Parse("950d6040a7f04b17b60000827fae66e1"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("ddfe6e85e1eed7a40aa911280373c228") },
+                    {BlueprintGuid.Parse("1bc23b75b28749f1a17e675604392a78"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("800cde038f9e6304d95365edc60ab0a4") },
+                    {BlueprintGuid.Parse("a0e28069d62b43ea827a529aa42b781f"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("a4ccc396e60a00f44907e95bc8bf463f") },
+                    {BlueprintGuid.Parse("9b6437dff6f945ce831c734fc5717775"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("08ae1c01155a2184db869e9ebedc758d") },
+                    {BlueprintGuid.Parse("6e98c227c6d84ca89f3183c4d83dac8e"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("381a168acd79cd54baf87a17ca861d9b") },
+                    {BlueprintGuid.Parse("2d5f55dd02354faf8c9cfb8e968ada28"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("7f5acae38fc1e0f4c9325d8a4f4f81fc") },
+                    {BlueprintGuid.Parse("f85adf95d187448fa6cba324a487e94b"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("482ee5d001527204bb86e34240e2ce65") },
+                    {BlueprintGuid.Parse("5d26af2e3ca9492aa4fd224ec0083e3b"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("a25d6fc69cba80548832afc6c4787379") },
+                    {BlueprintGuid.Parse("3cc1f78b09804dce9f4e575060161117"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("984064a3dd0f25444ad143b8a33d7d92") },
+                    {BlueprintGuid.Parse("34444997005e40adadb144b0cfcfe086"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("5a791c1b0bacee3459d7f5137fa0bd5f") },
+                };
+            });
+        });
+
+        var ability = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "DragonbloodShifterWingsAbility", bp =>
+        {
+            bp.m_DisplayName = ddWingsAbility.m_DisplayName;
+            bp.m_Description = ddWingsAbility.m_Description;
+            bp.m_Buff = buff.ToReference<BlueprintBuffReference>();
+            bp.AddComponent<RestrictionHasFact>(c =>
+            {
+                c.m_Feature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e4979934bdb39d842b28bee614606823");
+                c.Not = true;
+            });
+            bp.Group = ActivatableAbilityGroup.Wings;
+            bp.IsOnByDefault = true;
+            bp.DeactivateImmediately = true;
+            bp.ActivationType = AbilityActivationType.Immediately;
+            bp.m_ActivateWithUnitCommand = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free;
+            bp.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
+            bp.ResourceAssetIds = ddWingsAbility.ResourceAssetIds;
+            bp.m_Icon = ddWingsAbility.m_Icon;
+        });
+
+        var feature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DragonbloodShifterWingsFeature", bp =>
+        {
+            bp.m_DisplayName = ddWingsAbility.m_DisplayName;
+            bp.m_Description = ddWingsAbility.m_Description;
+            bp.AddComponent<AddFacts>(c =>
+            {
+                c.m_Facts = [ability.ToReference<BlueprintUnitFactReference>()];
+            });
+            bp.m_Icon = ddWingsAbility.m_Icon;
+        });
+
+        if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("AddWings")) { return; }
+
+        var archetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("2d5b06e413a9408cbd5bb999b5a4cc4a");
+        var lvl4Entry = archetype.AddFeatures.FirstOrDefault(x => x.Level == 5);
+        if (lvl4Entry != null)
+        {
+            lvl4Entry.m_Features.Add(feature.ToReference<BlueprintFeatureBaseReference>());
+        }
+        else
+        {
+            lvl4Entry = Helpers.CreateLevelEntry(5, feature);
+            archetype.AddFeatures = archetype.AddFeatures.AppendToArray(lvl4Entry);
+        }
     }
 }
