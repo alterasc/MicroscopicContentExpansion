@@ -12,7 +12,6 @@ internal class ModContextMCEBase : ModContextBase
 
     public ModContextMCEBase(ModEntry ModEntry) : base(ModEntry)
     {
-        LoadAllSettings();
 #if DEBUG
         Debug = true;
 #endif
@@ -21,7 +20,7 @@ internal class ModContextMCEBase : ModContextBase
     {
         LoadSettings("AddedContent.json", "MicroscopicContentExpansion.Config", ref AddedContent);
         LoadSettings("Homebrew.json", "MicroscopicContentExpansion.Config", ref Homebrew);
-        LoadBlueprints("MicroscopicContentExpansion.Config", Main.MCEContext);
+        LoadBlueprints("MicroscopicContentExpansion.Config", this);
         LoadLocalization("MicroscopicContentExpansion.Localization");
     }
 
