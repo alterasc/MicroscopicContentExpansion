@@ -419,7 +419,6 @@ internal class DeadlyJuggernaut
         {
             monkKiPowerSelection.AddFeatures(feature);
             sfKiPowerSelection.AddFeatures(sfFeature);
-            drunkenKiPowerSelection.AddFeatures(drunkenKiFeature);
         }
     }
 
