@@ -28,7 +28,7 @@ internal class AuraofVengeance
 {
 
     private const string NAME = "Mark of Vengeance";
-    private const string DESCRIPTION = "At 11th level, an antipaladin can expend two uses of his smite good ability to grant" +
+    private const string DESCRIPTION = "At 20th level, an antipaladin can expend two uses of his smite good ability to grant" +
         " the ability to smite good to all allies within 10 feet, using his bonuses. Allies must use this smite good ability" +
         " by the start of the antipaladin’s next turn and the bonuses last for 1 minute. Using this ability is a free action." +
         " Good creatures gain no benefit from this ability.";
@@ -216,7 +216,7 @@ internal class AuraofVengeance
             });
         });
 
-        var AuraOfAbsolutionFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfVengeanceFeature", bp =>
+        var auraOfVengeanceFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinAuraOfVengeanceFeature", bp =>
         {
             bp.SetName(MCEContext, NAME);
             bp.SetDescription(MCEContext, DESCRIPTION);
