@@ -2476,10 +2476,21 @@
       "esES": null
     },
     {
-      "Key": "8647ab1bf6fe4caf97a7a7630c2875d2",
+      "Key": "9d4c2f736f6040ea8c8f51a4e5951a68",
       "SimpleName": "FlyingKickActivatableAbility.Description",
       "ProcessTemplates": true,
-      "enGB": "The monk leaps through the air to strike a foe with a kick. Before the attack, the monk can move a distance equal to his fast movement bonus. This movement is made as part of the monk’s flurry of blows attack. This movement provokes an attack of opportunity as normal. Monk has to be unarmed to perform this style strike.\r\n\r\nActivate this style strike to receive flying kick ability.",
+      "enGB": "By activating this strike style monk is able to perform flying kick.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "b8c173306f634ac7a3d31fb8a784e107",
+      "SimpleName": "FlyingKickActivatableAbility.Name",
+      "ProcessTemplates": false,
+      "enGB": "Flying Kick - Activate Strike Style",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -2491,6 +2502,28 @@
       "SimpleName": "FlyingKickActivatableAbility.Name",
       "ProcessTemplates": false,
       "enGB": "Flying Kick - Activate Style Strike",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "0a92993e25b14bbf9489a78ade8c9d8e",
+      "SimpleName": "FlyingKickStyleStrikeBuff.Description",
+      "ProcessTemplates": true,
+      "enGB": "Monk is able to perform flying kick style strike.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "ed92acb223144e10b14abff451f3d970",
+      "SimpleName": "FlyingKickStyleStrikeBuff.Name",
+      "ProcessTemplates": false,
+      "enGB": "Activated Flying Kick Style",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

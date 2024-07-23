@@ -17,7 +17,7 @@ namespace MicroscopicContentExpansion.NewComponents;
 [AllowMultipleComponents]
 [AllowedOn(typeof(BlueprintUnitFact), false)]
 [TypeId("1981eee498aa42ce92459d460b9681b9")]
-public class AddFeatureDependingOnClassLevel :
+public class AddUnitFactDependingOnClassLevel :
     UnitFactComponentDelegate<AddFeatureDependingOnClassLevelData>,
     IOwnerGainLevelHandler,
     IUnitSubscriber,
@@ -28,7 +28,7 @@ public class AddFeatureDependingOnClassLevel :
     public BlueprintCharacterClassReference m_Class;
 
     [SerializeField]
-    public BlueprintUnitFactReference[] featureArray;
+    public BlueprintUnitFactReference[] unitFactArray;
 
     [SerializeField]
     public BlueprintCharacterClassReference[] m_AdditionalClasses;
@@ -91,11 +91,11 @@ public class AddFeatureDependingOnClassLevel :
         int classLevel = ReplaceCasterLevelOfAbility.CalculateClassLevel(this.Class, this.AdditionalClasses.ToArray(), (UnitDescriptor)this.Owner, this.Archetypes.ToArray());
         var idx = classLevel / 3;
         Main.MCEContext.Logger.Log($"IsFeatureShouldBeApplied: {idx}");
-        if (idx > featureArray.Length)
+        if (idx > unitFactArray.Length)
         {
-            return featureArray[featureArray.Length - 1];
+            return unitFactArray[unitFactArray.Length - 1];
         }
-        return featureArray[idx - 1];
+        return unitFactArray[idx - 1];
 
     }
 }
