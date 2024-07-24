@@ -6,7 +6,7 @@
       "DeadlyJuggernaut": {
         "Enabled": true,
         "Homebrew": false,
-        "Description": "Adds Deadly Juggernaut spell to Cleric, Inquisitor and Paladin spell lists"
+        "Description": "Adds Deadly Juggernaut spell to Cleric, Inquisitor and Paladin spell lists. And as ki power to monks (excl. Drunken Master)."
       },
       "BladeofBrightVictory": {
         "Enabled": true,
@@ -88,7 +88,7 @@
       "MonkDiamondResilience": {
         "Enabled": true,
         "Homebrew": false,
-        "Description": "Adds Diamond Resilience Ki Power to monks."
+        "Description": "Adds Diamond Resilience Ki Power to monks (excl. Drunken Master)."
       },
       "FeintingFlurry": {
         "Enabled": true,

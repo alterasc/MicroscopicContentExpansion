@@ -66,11 +66,12 @@ They use Horse portrait.
 
 ### New Ki powers
 - [Ki Power: Deadly Juggernaut](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#8th-Level_Ki_Powers)
+	Not available for Drunken Master. Can be used by Sensei but can't be shared.
 - [Ki Power: Ki Leech](https://www.d20pfsrd.com/classes/core-classes/Monk/archetypes/paizo-monk-archetypes/qinggong-monk/#10th-Level_Ki_Powers)
+	Not available for Drunken Master. Can be used by Sensei but can't be shared.
 - [Ki Power: Diamond Resilience](https://www.d20pfsrd.com/classes/unchained-classes/MONK-unchained/#TOC-Ki-Power-Su-)
-	Made into passive ability (like Diamond Soul) and set to require Monk class level 14
+	Made into passive ability (like Diamond Soul) and set to require Monk class level 14. Not available for Drunken Master.
 
-Ki Leech and Diamon Resilience are not added to Drunken Monk intentionally. Ki Leech doesn't make sense since he has his own type of Kis, Diamond Resilience is just weaker than what Drunken gets anyway.
 ### New class features
 - [Druidic Herbalism](https://www.d20pfsrd.com/classes/Core-classes/druid/#Nature_Bond_Ex)
 For simplicity of implementation and usage nerfed compared to tabletop description:   
