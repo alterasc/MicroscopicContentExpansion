@@ -31,7 +31,7 @@ internal class IronTyrant
             bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
             bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
             bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
-            bp.RemoveFeatures = new LevelEntry[] {
+            bp.RemoveFeatures = [
                 Helpers.CreateLevelEntry(2, touchOfCorruptionFeature),
                 Helpers.CreateLevelEntry(3, crueltySelection),
                 Helpers.CreateLevelEntry(4, channelNegativeEnergy),
@@ -42,8 +42,8 @@ internal class IronTyrant
                 Helpers.CreateLevelEntry(15, crueltySelection),
                 Helpers.CreateLevelEntry(18, crueltySelection)
 
-            };
-            bp.AddFeatures = new LevelEntry[] {
+            ];
+            bp.AddFeatures = [
                 Helpers.CreateLevelEntry(2, ironFist),
                 Helpers.CreateLevelEntry(3, armorShieldCombatFeatSelection),
                 Helpers.CreateLevelEntry(4, unstoppable),
@@ -53,7 +53,7 @@ internal class IronTyrant
                 Helpers.CreateLevelEntry(12, armorShieldCombatFeatSelection),
                 Helpers.CreateLevelEntry(15, armorShieldCombatFeatSelection),
                 Helpers.CreateLevelEntry(18, armorShieldCombatFeatSelection)
-            };
+            ];
         });
 
         var Archetypes = AntipaladinClass.m_Archetypes.AppendToArray(IronTyrant.ToReference<BlueprintArchetypeReference>());
@@ -93,10 +93,10 @@ internal class IronTyrant
             bp.SetDescription(MCEContext, "At 3rd level and every 3 antipaladin levels thereafter, an iron tyrant gains a bonus feat" +
                 " in addition to those gained from normal advancement. This feat must be a combat feat that relates to the iron" +
                 " tyrant’s armor or shield, such as Shield Focus, or one of the Armor Mastery feats.");
-            bp.m_AllFeatures = new BlueprintFeatureReference[0];
-            bp.m_Features = new BlueprintFeatureReference[0];
+            bp.m_AllFeatures = [];
+            bp.m_Features = [];
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] { FeatureGroup.Feat, FeatureGroup.CombatFeat };
+            bp.Groups = [FeatureGroup.Feat, FeatureGroup.CombatFeat];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Defense;
@@ -141,7 +141,7 @@ internal class IronTyrant
             bp.AddComponent<AddFacts>(c =>
             {
                 var IUS = BlueprintTools.GetBlueprint<BlueprintFeature>("7812ad3672a4b9a4fb894ea402095167").ToReference<BlueprintUnitFactReference>();
-                c.m_Facts = new BlueprintUnitFactReference[] { IUS };
+                c.m_Facts = [IUS];
             });
         });
 

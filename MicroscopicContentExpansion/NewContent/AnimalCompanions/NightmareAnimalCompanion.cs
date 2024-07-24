@@ -81,7 +81,7 @@ public class NightmareAnimalCompanion
             bp.AddComponent(horseUnit.GetComponent<CMDBonusAgainstManeuvers>());
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new[] { BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("9c57e9674b4a4a2b9920f9fec47f7e6a") };
+                c.m_Facts = [BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("9c57e9674b4a4a2b9920f9fec47f7e6a")];
             });
             bp.m_Type = baseNightmareUnit.m_Type;
             bp.LocalizedName = baseNightmareUnit.LocalizedName;
@@ -112,7 +112,7 @@ public class NightmareAnimalCompanion
             bp.Speed = baseNightmareUnit.Speed;
             bp.Skills = horseUnit.Skills;
             bp.MaxHP = horseUnit.MaxHP;
-            bp.m_AddFacts = new BlueprintUnitFactReference[] {
+            bp.m_AddFacts = [
                 BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("13c87ac5985cc85498ef9d1ac8b78923"),
                 BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("c33f2d68d93ceee488aa4004347dffca"),
                 BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("b9342e2a6dc5165489ba3412c50ca3d1"),
@@ -122,7 +122,7 @@ public class NightmareAnimalCompanion
                 BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e2986f96fa1cd3b4f8d9dfd8a9907731"),
                 BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("75bb2b3c41c99e041b4743fdb16a4289"),
                 removalOnClassLvlvFeature.ToReference<BlueprintUnitFactReference>()
-            };
+            ];
         });
 
         var rankFeature = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1670990255e4fe948a863bafd5dbda5d");
@@ -158,7 +158,7 @@ public class NightmareAnimalCompanion
             Nightmares are not animals, but evil outsiders from {g|Abaddon}Abaddon{/g} and thus are not affected by abilities targeting specifically animals.
             """;
             bp.SetDescription(MCEContext, description);
-            bp.Groups = new[] { FeatureGroup.AnimalCompanion };
+            bp.Groups = [FeatureGroup.AnimalCompanion];
             bp.ReapplyOnLevelUp = true;
             bp.m_Icon = animalCompanionFeatureHorse.m_Icon;
         });

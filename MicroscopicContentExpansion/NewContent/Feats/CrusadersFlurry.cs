@@ -44,9 +44,9 @@ internal class CrusadersFlurry
             bp.SetName(MCEContext, "Crusader's Flurry");
             bp.SetDescription(MCEContext, "You can use your deity’s favored weapon as if it were a monk weapon.");
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                     FeatureGroup.Feat
-                };
+                ];
             bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e"));
 
             List<BlueprintFeatureReference> flurryPrereqs = new List<BlueprintFeatureReference>() {
@@ -64,7 +64,7 @@ internal class CrusadersFlurry
 
             bp.AddComponent<PrerequisiteFeaturesFromList>(c =>
             {
-                c.m_Features = new BlueprintFeatureReference[] {
+                c.m_Features = [
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("d332c1748445e8f4f9e92763123e31bd"), //ChannelEnergySelection
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("a9ab1bbc79ecb174d9a04699986ce8d5"), //ChannelEnergyHospitalerFeature
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("7d49d7f590dc9a948b3bd1c8b7979854"), //ChannelEnergyEmpyrealFeature
@@ -78,7 +78,7 @@ internal class CrusadersFlurry
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("295dff380fb8ed743bd5c76a30a49a46"), //LichChannelNegativeFeature
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("927707dce06627d4f880c90b5575125f"), //NecromancySchoolBaseFeature
                     BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("06d824227f664c5fbb0e88901339ca91") //AntipaladinChannelNegativeEnergyFeature
-                };
+                ];
             });
         });
 

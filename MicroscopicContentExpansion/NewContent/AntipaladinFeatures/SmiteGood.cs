@@ -210,7 +210,7 @@ internal class SmiteGood
             {
                 c.m_Type = AbilityRankType.DamageBonus;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                c.m_Class = [AntipaladinClassRef];
                 c.m_Progression = ContextRankProgression.AsIs;
                 c.m_Max = 20;
             });
@@ -271,9 +271,9 @@ internal class SmiteGood
             });
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     SmiteGoodAbility.ToReference<BlueprintUnitFactReference>(),
-                };
+                ];
             });
         });
         var AntipaladinSmiteGoodAdditionalUse = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinSmiteGoodAdditionalUse", bp =>

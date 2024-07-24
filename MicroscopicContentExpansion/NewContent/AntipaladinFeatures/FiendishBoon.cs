@@ -64,12 +64,12 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.SetName(MCEContext, NAME);
             bp.SetDescription(MCEContext, DESCRIPTION);
             bp.m_DescriptionShort = bp.m_Description;
-            bp.m_AllFeatures = new BlueprintFeatureReference[] {
+            bp.m_AllFeatures = [
                 AntipaladinServantSelection.ToReference<BlueprintFeatureReference>(),
                 AntipaladinFiendishBoonWeapon.ToReference<BlueprintFeatureReference>()
-            };
+            ];
             bp.Mode = SelectionMode.Default;
-            bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+            bp.Groups = [FeatureGroup.None];
             bp.IsClassFeature = true;
         });
     }
@@ -136,13 +136,13 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                     {
                         Group = ActivatableAbilityGroup.DivineWeaponProperty,
                         EnchantPool = EnchantPoolType.DivineWeaponBond,
-                        m_DefaultEnchantments = new BlueprintItemEnchantmentReference[] {
+                        m_DefaultEnchantments = [
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d704f90f54f813043a525f304f6c0050"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("9e9bab3020ec5f64499e007880b37e52"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d072b841ba0668846adeb007f623bd6c"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("6a6a0901d799ceb49b33d4851ff72132"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("746ee366e50611146821d61e391edf16")
-                        },
+                        ],
                         DurationValue = new ContextDurationValue()
                         {
                             Rate = DurationRate.Minutes,
@@ -178,7 +178,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 c.m_Stat = StatType.Unknown;
                 c.m_Progression = ContextRankProgression.AsIs;
                 c.m_Max = 20;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                c.m_Class = [AntipaladinClassRef];
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
@@ -219,12 +219,12 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.m_Icon = icon;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     weaponBondSwitchAbility.ToReference<BlueprintUnitFactReference>(),
                     weaponBondFlaming.ToReference<BlueprintUnitFactReference>(),
                     weaponBondKeen.ToReference<BlueprintUnitFactReference>(),
                     weaponBondVicious.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
             bp.AddComponent<AddAbilityResources>(c =>
             {
@@ -276,12 +276,12 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
         {
             bp.SetName(MCEContext, "Fiendish Bond");
             bp.SetDescription(MCEContext, WEAPON_BOND_DESCRIPTION);
-            bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
+            bp.m_Classes = [
                 new BlueprintProgression.ClassWithLevel{
                     m_Class = AntipaladinClassRef
                 }
-            };
-            bp.LevelEntries = new LevelEntry[] {
+            ];
+            bp.LevelEntries = [
                 Helpers.CreateLevelEntry(5, weaponBond),
                 Helpers.CreateLevelEntry(8, weaponBond2),
                 Helpers.CreateLevelEntry(9, weaponBondAdditionalUse),
@@ -290,7 +290,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 Helpers.CreateLevelEntry(14, weaponBond4),
                 Helpers.CreateLevelEntry(17, weaponBond5, weaponBondAdditionalUse),
                 Helpers.CreateLevelEntry(20, weaponBond6),
-            };
+            ];
         });
     }
 
@@ -418,7 +418,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.IsClassFeature = true;
             bp.m_FeaturesRankIncrease = new List<BlueprintFeatureReference>();
             var animalCompanionRankRef = AnimalCompanionRank.ToReference<BlueprintFeatureBaseReference>();
-            bp.LevelEntries = new LevelEntry[] {
+            bp.LevelEntries = [
                 Helpers.CreateLevelEntry(6, animalCompanionRankRef),
                 Helpers.CreateLevelEntry(7, animalCompanionRankRef),
                 Helpers.CreateLevelEntry(8, animalCompanionRankRef),
@@ -434,12 +434,12 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                 Helpers.CreateLevelEntry(18, animalCompanionRankRef),
                 Helpers.CreateLevelEntry(19, animalCompanionRankRef),
                 Helpers.CreateLevelEntry(20, animalCompanionRankRef),
-            };
-            bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
+            ];
+            bp.m_Classes = [
                 new BlueprintProgression.ClassWithLevel{
                     m_Class = AntipaladinClassRef
                 }
-            };
+            ];
             for (int i = 0; i < 4; i++)
             {
                 bp.AddComponent<AddFeatureOnApply>(bp =>
@@ -447,7 +447,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                     bp.m_Feature = AnimalCompanionRank.ToReference<BlueprintFeatureReference>();
                 });
             }
-            bp.UIGroups = new UIGroup[0];
+            bp.UIGroups = [];
         });
 
         var PaladinDivineMountSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("e2f0e0efc9e155e43ba431984429678e");

@@ -47,8 +47,8 @@ internal class AuraofCowardice
             {
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.Custom;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
-                c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
+                c.m_Class = [AntipaladinClassRef];
+                c.m_CustomProgression = [
                     new ContextRankConfig.CustomProgressionItem() {
                         BaseValue = 7,
                         ProgressionValue = -4
@@ -57,7 +57,7 @@ internal class AuraofCowardice
                         BaseValue = 100,
                         ProgressionValue = -2
                     }
-                };
+                ];
             });
 
             bp.AddComponent<SpellDescriptorImmunityIgnore>(c =>

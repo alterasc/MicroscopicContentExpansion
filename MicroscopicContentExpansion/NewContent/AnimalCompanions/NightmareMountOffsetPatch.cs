@@ -74,7 +74,7 @@ public static class PatchResourcesOnLoad
         var offsetConfig = ScriptableObject.CreateInstance<RaceMountOffsetsConfig>();
         offsetConfig.name = "Nightmare_MountConfig";
 
-        offsetConfig.offsets = new RaceMountOffsetsConfig.MountOffsetData[] {
+        offsetConfig.offsets = [
                 new RaceMountOffsetsConfig.MountOffsetData() {
                     Races = BlueprintRoot.Instance.Progression.m_CharacterRaces.ToList(),
                     RootPosition = new Vector3(0f, 0f, 0.5f),
@@ -107,7 +107,7 @@ public static class PatchResourcesOnLoad
                     HandsPositionWeight = 1.0f,
                     HandsMappingWeight = 0.7f,
                 }
-            };
+            ];
         offsets.OffsetsConfig = offsetConfig;
     }
 

@@ -72,10 +72,10 @@ internal class BladeofDarkTriumph
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                    MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("AntipaladinWeaponBondProgression"),
                    MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("TyrantWeaponBondProgression")
-                };
+                ];
                 c.NeedsAll = false;
             });
             bp.Type = AbilityType.Spell;
@@ -150,9 +150,9 @@ internal class BladeofDarkTriumph
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                    BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e08a817f475c8794aa56fdd904f43a57")
-                };
+                ];
                 c.NeedsAll = true;
             });
             bp.Type = AbilityType.Spell;

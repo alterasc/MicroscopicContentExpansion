@@ -37,18 +37,18 @@ internal class UnsanctionedKnowledge
             bp.IsClassFeature = true;
             bp.GiveFeaturesForPreviousLevels = true;
             bp.ReapplyOnLevelUp = true;
-            bp.m_Classes = new BlueprintProgression.ClassWithLevel[0];
-            bp.m_Archetypes = new BlueprintProgression.ArchetypeWithLevel[0];
+            bp.m_Classes = [];
+            bp.m_Archetypes = [];
             bp.m_ExclusiveProgression = new BlueprintCharacterClassReference();
             bp.m_FeaturesRankIncrease = new List<BlueprintFeatureReference>();
-            bp.LevelEntries = new LevelEntry[] {
+            bp.LevelEntries = [
                 Helpers.CreateLevelEntry(1,
                     CreateSelection(1, @class, antipaladinClassRef),
                     CreateSelection(2, @class, antipaladinClassRef),
                     CreateSelection(3, @class, antipaladinClassRef),
                     CreateSelection(4, @class, antipaladinClassRef)
                 )
-            };
+            ];
             bp.AddPrerequisite<PrerequisiteClassSpellLevel>(c =>
             {
                 c.m_CharacterClass = antipaladinClassRef;
@@ -77,18 +77,18 @@ internal class UnsanctionedKnowledge
             bp.IsClassFeature = true;
             bp.GiveFeaturesForPreviousLevels = true;
             bp.ReapplyOnLevelUp = true;
-            bp.m_Classes = new BlueprintProgression.ClassWithLevel[0];
-            bp.m_Archetypes = new BlueprintProgression.ArchetypeWithLevel[0];
+            bp.m_Classes = [];
+            bp.m_Archetypes = [];
             bp.m_ExclusiveProgression = new BlueprintCharacterClassReference();
             bp.m_FeaturesRankIncrease = new List<BlueprintFeatureReference>();
-            bp.LevelEntries = new LevelEntry[] {
+            bp.LevelEntries = [
                 Helpers.CreateLevelEntry(1,
                     CreateSelection(1, @class, paladinClassRef),
                     CreateSelection(2, @class, paladinClassRef),
                     CreateSelection(3, @class, paladinClassRef),
                     CreateSelection(4, @class, paladinClassRef)
                 )
-            };
+            ];
             bp.AddPrerequisite<PrerequisiteClassSpellLevel>(c =>
             {
                 c.m_CharacterClass = ClassTools.ClassReferences.PaladinClass;
@@ -117,7 +117,7 @@ internal class UnsanctionedKnowledge
             bp.SetDescription(MCEContext, DESCRIPTION);
             bp.AddFeatures(UnsanctionedKnowledgeBard, UnsanctionedKnowledgeCleric, UnsanctionedKnowledgeInquisitor);
             bp.Mode = SelectionMode.Default;
-            bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+            bp.Groups = [FeatureGroup.None];
             bp.IsClassFeature = true;
         });
     }
@@ -136,7 +136,7 @@ internal class UnsanctionedKnowledge
             bp.IsClassFeature = true;
             bp.SetName(MCEContext, $"{name}");
             bp.SetDescription(MCEContext, DESCRIPTION);
-            bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+            bp.Groups = [FeatureGroup.None];
             bp.AddComponent<LearnSpellParametrized>(c =>
             {
                 c.m_SpellcasterClass = classRef;

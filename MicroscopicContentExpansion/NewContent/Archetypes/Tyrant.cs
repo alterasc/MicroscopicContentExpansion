@@ -33,18 +33,18 @@ internal class Tyrant
             bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
             bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.LawfulEvil; });
             bp.m_ReplaceSpellbook = tyrantSpellbook.ToReference<BlueprintSpellbookReference>();
-            bp.RemoveFeatures = new LevelEntry[] {
+            bp.RemoveFeatures = [
                 Helpers.CreateLevelEntry(1, antipaladinAlignmentRestriction),
                 Helpers.CreateLevelEntry(5, fiendishBoon)
-            };
+            ];
             bp.ReplaceClassSkills = true;
-            bp.ClassSkills = new StatType[4] {
+            bp.ClassSkills = [
                     StatType.SkillStealth, StatType.SkillPersuasion, StatType.SkillAthletics, StatType.SkillLoreReligion
-                };
-            bp.AddFeatures = new LevelEntry[] {
+                ];
+            bp.AddFeatures = [
                 Helpers.CreateLevelEntry(1, tyrantAlignmentRestriction),
                 Helpers.CreateLevelEntry(5, diabolicBoon)
-            };
+            ];
         });
 
         var Archetypes = AntipaladinClass.m_Archetypes.AppendToArray(Tyrant.ToReference<BlueprintArchetypeReference>());

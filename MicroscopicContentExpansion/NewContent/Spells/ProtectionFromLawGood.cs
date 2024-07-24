@@ -37,10 +37,10 @@ internal class ProtectionFromLawGood
             });
             bp.AddComponent<AbilityVariants>(c =>
             {
-                c.m_Variants = new BlueprintAbilityReference[] {
+                c.m_Variants = [
                     protectionFromLaw,
                     protectionFromGood.ToReference<BlueprintAbilityReference>()
-                };
+                ];
             });
         }).ToReference<BlueprintAbilityReference>();
     }
@@ -72,10 +72,10 @@ internal class ProtectionFromLawGood
             });
             bp.AddComponent<AbilityVariants>(c =>
             {
-                c.m_Variants = new BlueprintAbilityReference[] {
+                c.m_Variants = [
                     protectionFromLawCommunal,
                     protectionFromGoodCommunal.ToReference<BlueprintAbilityReference>()
-                };
+                ];
             });
             bp.AddComponent<AbilityTargetsAround>(c =>
             {

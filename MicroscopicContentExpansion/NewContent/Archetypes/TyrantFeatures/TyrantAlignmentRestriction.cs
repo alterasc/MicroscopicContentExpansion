@@ -20,9 +20,9 @@ internal class TyrantAlignmentRestriction
                 "changes the {g|Encyclopedia:Alignment}alignment{/g} back.");
             bp.AddComponent<ForbidSpellbookOnAlignmentDeviation>(c =>
             {
-                c.m_Spellbooks = new BlueprintSpellbookReference[] {
+                c.m_Spellbooks = [
                     SpellbookRef
-                };
+                ];
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.LawfulEvil;
             });
             bp.IsClassFeature = true;

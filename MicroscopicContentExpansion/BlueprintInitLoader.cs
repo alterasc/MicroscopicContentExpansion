@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using MicroscopicContentExpansion.NewContent.Classes;
 using MicroscopicContentExpansion.NewContent.Feats;
 using MicroscopicContentExpansion.NewContent.Spells;

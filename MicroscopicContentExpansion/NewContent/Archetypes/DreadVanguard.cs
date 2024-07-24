@@ -30,15 +30,15 @@ internal class DreadVanguard
             bp.LocalizedName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", NAME);
             bp.LocalizedDescription = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
             bp.LocalizedDescriptionShort = Helpers.CreateString(MCEContext, $"{bp.name}.Description", DESCRIPTION);
-            bp.RemoveFeatures = new LevelEntry[] { };
+            bp.RemoveFeatures = [];
             bp.RemoveSpellbook = true;
-            bp.AddFeatures = new LevelEntry[] {
+            bp.AddFeatures = [
                 Helpers.CreateLevelEntry(4, touchOfCorruptionUse, beacon1),
                 Helpers.CreateLevelEntry(8, touchOfCorruptionUse, beacon2),
                 Helpers.CreateLevelEntry(12, touchOfCorruptionUse, beacon3),
                 Helpers.CreateLevelEntry(16, touchOfCorruptionUse, beacon4),
                 Helpers.CreateLevelEntry(20, touchOfCorruptionUse, beacon5)
-            };
+            ];
         });
 
         var Archetypes = antipaladinClass.m_Archetypes.AppendToArray(DreadVanguard.ToReference<BlueprintArchetypeReference>());

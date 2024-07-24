@@ -57,10 +57,10 @@ class SnakeStyleChain
             bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
             bp.m_Icon = snakeStyleIcon;
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                     FeatureGroup.CombatFeat,
                     FeatureGroup.Feat
-                };
+                ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack | FeatureTag.Melee;
@@ -86,7 +86,7 @@ class SnakeStyleChain
             });
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { snakeStyleAbility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [snakeStyleAbility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -106,10 +106,10 @@ class SnakeStyleChain
             bp.SetName(MCEContext, "Snake Sidewind");
             bp.SetDescription(MCEContext, "You gain a +4 bonus to CMD against trip combat maneuvers and on Athletics checks and saving throws against ground effects. While using the Snake Style feat, you receive +4 bonus on attack roll made to confirm critical hits with unarmed weapons.");
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                     FeatureGroup.CombatFeat,
                     FeatureGroup.Feat
-                };
+                ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack | FeatureTag.Melee;
@@ -127,7 +127,7 @@ class SnakeStyleChain
             });
             bp.AddComponent<CMDBonusAgainstManeuvers>(c =>
             {
-                c.Maneuvers = new CombatManeuver[] { CombatManeuver.Trip };
+                c.Maneuvers = [CombatManeuver.Trip];
                 c.Value = 4;
                 c.Descriptor = ModifierDescriptor.UntypedStackable;
             });
@@ -150,10 +150,10 @@ class SnakeStyleChain
             bp.SetName(MCEContext, "Snake Fang");
             bp.SetDescription(MCEContext, "While using the Snake Style feat, when an opponent’s attack misses you, you can make an unarmed strike against that opponent as an attack of opportunity.");
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                     FeatureGroup.CombatFeat,
                     FeatureGroup.Feat
-                };
+                ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack | FeatureTag.Melee;

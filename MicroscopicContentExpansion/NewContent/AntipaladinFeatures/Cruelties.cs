@@ -80,7 +80,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -124,8 +124,8 @@ internal class Cruelties
             "The target is fatigued.",
             FatiguedBuff.Icon,
             0,
-            new BlueprintFeatureReference[0],
-            new GameAction[] { actions },
+            [],
+            [actions],
             null,
             SpellDescriptor.Fatigue
         );
@@ -160,7 +160,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.AsIs;
             c.m_Max = 20;
         });
@@ -173,8 +173,8 @@ internal class Cruelties
             "The target is shaken for 1 round per level of the antipaladin.",
             ShakenBuff.Icon,
             0,
-            new BlueprintFeatureReference[0],
-            new GameAction[] { actions },
+            [],
+            [actions],
             contextVarConfig,
             SpellDescriptor.None
         );
@@ -209,7 +209,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.AsIs;
             c.m_Max = 20;
         });
@@ -222,8 +222,8 @@ internal class Cruelties
             "The target is sickened for 1 round per level of the antipaladin",
             SickenedBuff.Icon,
             0,
-            new BlueprintFeatureReference[0],
-            new GameAction[] { actions },
+            [],
+            [actions],
             contextVarConfig,
             SpellDescriptor.None
         );
@@ -255,7 +255,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -311,7 +311,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -370,7 +370,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -400,7 +400,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.Div2;
             c.m_Max = 20;
         });
@@ -443,7 +443,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -509,7 +509,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -543,7 +543,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.Div2;
             c.m_Max = 20;
         });
@@ -588,7 +588,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -618,7 +618,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.DivStep;
             c.m_StepLevel = 3;
             c.m_Max = 20;
@@ -660,7 +660,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -690,7 +690,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.AsIs;
             c.m_Max = 20;
         });
@@ -732,7 +732,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -762,7 +762,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.AsIs;
             c.m_Max = 20;
         });
@@ -803,7 +803,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -833,7 +833,7 @@ internal class Cruelties
         {
             c.m_Type = AbilityRankType.DamageDice;
             c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-            c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+            c.m_Class = [AntipaladinClassRef];
             c.m_Progression = ContextRankProgression.DivStep;
             c.m_StepLevel = 4;
             c.m_Max = 20;
@@ -875,7 +875,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -930,7 +930,7 @@ internal class Cruelties
 
         var Action = new ContextActionSavingThrow()
         {
-            m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+            m_ConditionalDCIncrease = [],
             Type = SavingThrowType.Fortitude,
             HasCustomDC = false,
             CustomDC = new ContextValue(),
@@ -988,7 +988,7 @@ internal class Cruelties
         var BaseAbility = BlueprintTools.GetModBlueprint<BlueprintAbility>(MCEContext, "AntipaladinTouchOfCorruptionBase");
         var variants = BaseAbility.GetComponent<AbilityVariants>();
         variants.m_Variants = variants.m_Variants.AppendToArray(
-            new BlueprintAbilityReference[] {
+            [
                 FatiguedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
                 ShakenCrueltyAbility.ToReference<BlueprintAbilityReference>(),
                 SickenedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
@@ -1003,7 +1003,7 @@ internal class Cruelties
                 BlindedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
                 StunnedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
                 ParalyzedCrueltyAbility.ToReference<BlueprintAbilityReference>(),
-            }
+            ]
         );
 
         var CrueltySelection = Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinCrueltySelection", bp =>
@@ -1016,7 +1016,7 @@ internal class Cruelties
                 "Fortitude save to avoid this cruelty. If the save is successful, the target takes the damage as normal, but not" +
                 " the effects of the cruelty. The DC of this save is equal to 10 + 1/2 the antipaladin’s level + the antipaladin’s" +
                 " Charisma modifier.");
-            bp.m_AllFeatures = new BlueprintFeatureReference[] {
+            bp.m_AllFeatures = [
                             FatiguedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
                             ShakenCrueltyFeature.ToReference<BlueprintFeatureReference>(),
                             SickenedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
@@ -1031,9 +1031,9 @@ internal class Cruelties
                             BlindedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
                             StunnedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
                             ParalyzedCrueltyFeature.ToReference<BlueprintFeatureReference>(),
-                        };
+                        ];
             bp.Mode = SelectionMode.Default;
-            bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+            bp.Groups = [FeatureGroup.None];
             bp.IsClassFeature = true;
         });
     }

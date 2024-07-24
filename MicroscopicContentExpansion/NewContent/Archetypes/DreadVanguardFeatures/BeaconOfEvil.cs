@@ -144,8 +144,8 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.Custom;
                 c.m_Type = AbilityRankType.DamageDice;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClass };
-                c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
+                c.m_Class = [AntipaladinClass];
+                c.m_CustomProgression = [
                     new ContextRankConfig.CustomProgressionItem() {
                         BaseValue = 11,
                         ProgressionValue = 1
@@ -158,7 +158,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                         BaseValue = 100,
                         ProgressionValue = 4
                     }
-                };
+                ];
             });
 
             bp.AddComponent<ContextRankConfig>(c =>
@@ -166,8 +166,8 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.Custom;
                 c.m_Type = AbilityRankType.DamageBonus;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClass };
-                c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
+                c.m_Class = [AntipaladinClass];
+                c.m_CustomProgression = [
                     new ContextRankConfig.CustomProgressionItem() {
                         BaseValue = 7,
                         ProgressionValue = 0
@@ -180,7 +180,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                         BaseValue = 100,
                         ProgressionValue = 5
                     }
-                };
+                ];
             });
 
             bp.IsClassFeature = true;
@@ -306,7 +306,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
             bp.m_Icon = icon;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { beaconOfEvilAbility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [beaconOfEvilAbility.ToReference<BlueprintUnitFactReference>()];
             });
         }).ToReference<BlueprintFeatureReference>();
     }

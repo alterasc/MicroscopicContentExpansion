@@ -24,7 +24,7 @@ internal class UndyingChampion
             bp.IsClassFeature = true;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { undeadType.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [undeadType.ToReference<BlueprintUnitFactReference>()];
             });
             bp.AddComponent<AddDamageResistancePhysical>(c =>
             {

@@ -20,7 +20,7 @@ public static class ActionFlow
         init?.Invoke(t);
         return new ConditionsChecker()
         {
-            Conditions = new Condition[] { t }
+            Conditions = [t]
         };
     }
 
@@ -46,7 +46,7 @@ public static class ActionFlow
     {
         return new ConditionsChecker()
         {
-            Conditions = new Condition[0]
+            Conditions = []
         };
     }
 }

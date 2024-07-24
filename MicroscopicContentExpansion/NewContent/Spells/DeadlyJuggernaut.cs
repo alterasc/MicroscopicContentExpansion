@@ -264,7 +264,7 @@ internal class DeadlyJuggernaut
                 c.m_Type = AbilityRankType.Default;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.AsIs;
-                c.m_Class = new BlueprintCharacterClassReference[] { monkClassRef };
+                c.m_Class = [monkClassRef];
             });
         });
 
@@ -281,7 +281,7 @@ internal class DeadlyJuggernaut
             bp.m_Icon = icon;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { ability.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [ability.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -327,7 +327,7 @@ internal class DeadlyJuggernaut
                 c.m_Type = AbilityRankType.Default;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.AsIs;
-                c.m_Class = new BlueprintCharacterClassReference[] { monkClassRef };
+                c.m_Class = [monkClassRef];
             });
         });
 
@@ -344,7 +344,7 @@ internal class DeadlyJuggernaut
             bp.m_Icon = icon;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { sfAbility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [sfAbility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -390,7 +390,7 @@ internal class DeadlyJuggernaut
                 c.m_Type = AbilityRankType.Default;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.AsIs;
-                c.m_Class = new BlueprintCharacterClassReference[] { monkClassRef };
+                c.m_Class = [monkClassRef];
             });
         });
 

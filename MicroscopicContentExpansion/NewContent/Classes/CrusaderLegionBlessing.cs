@@ -80,7 +80,7 @@ internal class CrusaderLegionBlessing
                 c.m_CharacterClass = clericClass;
                 var nullRef = new BlueprintAbilityReference() { deserializedGuid = BlueprintGuid.Empty };
                 var abilityRef = sacrificeSpellAbility.ToReference<BlueprintAbilityReference>();
-                c.m_SpellsByLevel = new BlueprintAbilityReference[10] {
+                c.m_SpellsByLevel = [
                     nullRef, //0
                     nullRef, //1
                     nullRef, //2
@@ -91,7 +91,7 @@ internal class CrusaderLegionBlessing
                     abilityRef, //7
                     abilityRef, //8
                     abilityRef  //9
-                };
+                ];
             });
         });
 

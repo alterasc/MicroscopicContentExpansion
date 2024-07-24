@@ -71,10 +71,10 @@ internal class DimenshionalDervish
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
                 c.NeedsAll = true;
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalDervishFeature"),
                     dimensionalAgility.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
         });
 
@@ -111,7 +111,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -148,7 +148,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -185,7 +185,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -222,7 +222,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -232,10 +232,10 @@ internal class DimenshionalDervish
             bp.SetDescription(MCEContext, dervishDescription);
             bp.m_Icon = icon;
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                 FeatureGroup.CombatFeat,
                 FeatureGroup.Feat
-            };
+            ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack;
@@ -249,12 +249,12 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     dimensionalDervishKiAbility.ToReference<BlueprintUnitFactReference>(),
                     dimensionalDervishScaledFistAbility.ToReference<BlueprintUnitFactReference>(),
                     dimensionalDervishDrunkenKiAbility.ToReference<BlueprintUnitFactReference>(),
                     dimensionalDervishFlickeringStepAbility.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
         });
 
@@ -306,10 +306,10 @@ internal class DimenshionalDervish
             bp.SetName(MCEContext, agilityName);
             bp.SetDescription(MCEContext, agilityDescription);
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                 FeatureGroup.CombatFeat,
                 FeatureGroup.Feat
-            };
+            ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack;
@@ -367,10 +367,10 @@ internal class DimenshionalDervish
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
                 c.NeedsAll = true;
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalAssaultFeature"),
                     dimensionalAgility.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
         });
 
@@ -404,7 +404,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -438,7 +438,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -506,7 +506,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { dimensionalAgility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -516,10 +516,10 @@ internal class DimenshionalDervish
             bp.SetDescription(MCEContext, assaultDescription);
             bp.m_Icon = icon;
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                 FeatureGroup.CombatFeat,
                 FeatureGroup.Feat
-            };
+            ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack;
@@ -569,9 +569,9 @@ internal class DimenshionalDervish
                 LevelIncrease = 1,
                 OtherClassesModifier = 1,
                 PerStepIncrease = 1,
-                m_Class = new BlueprintCharacterClassReference[0],
-                m_Archetypes = new BlueprintArchetypeReference[0],
-                m_ClassDiv = new BlueprintCharacterClassReference[0]
+                m_Class = [],
+                m_Archetypes = [],
+                m_ClassDiv = []
             };
         });
 
@@ -604,9 +604,9 @@ internal class DimenshionalDervish
             bp.SetDescription(MCEContext, description);
             bp.m_Icon = icon;
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                 FeatureGroup.Feat
-            };
+            ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack;
@@ -618,7 +618,7 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { flickeringStepAbility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [flickeringStepAbility.ToReference<BlueprintUnitFactReference>()];
             });
             bp.AddComponent<AddAbilityResources>(c =>
             {

@@ -58,10 +58,10 @@ class StartossStyleChain
             bp.SetDescription(MCEContext, startossStyleDescription);
             bp.m_Icon = startossStyleIcon;
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                     FeatureGroup.CombatFeat,
                     FeatureGroup.Feat
-                };
+                ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack | FeatureTag.Ranged;
@@ -75,7 +75,7 @@ class StartossStyleChain
             bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e"));
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { startossStyleAbility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [startossStyleAbility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -105,7 +105,7 @@ class StartossStyleChain
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { startossStyleBuff.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [startossStyleBuff.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -115,17 +115,17 @@ class StartossStyleChain
             bp.SetDescription(MCEContext, startossCometDescription);
             bp.m_Icon = startossCometIcon;
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                     FeatureGroup.CombatFeat,
                     FeatureGroup.Feat
-                };
+                ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack | FeatureTag.Ranged;
             });
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] { startossCometAbility.ToReference<BlueprintUnitFactReference>() };
+                c.m_Facts = [startossCometAbility.ToReference<BlueprintUnitFactReference>()];
             });
             bp.AddPrerequisiteFeature(startossStyleFeature);
         });
@@ -141,10 +141,10 @@ class StartossStyleChain
             bp.SetName(MCEContext, "Startoss Shower");
             bp.SetDescription(MCEContext, startossShowerDescription);
             bp.IsClassFeature = true;
-            bp.Groups = new FeatureGroup[] {
+            bp.Groups = [
                     FeatureGroup.CombatFeat,
                     FeatureGroup.Feat
-                };
+                ];
             bp.AddComponent<FeatureTagsComponent>(c =>
             {
                 c.FeatureTags = FeatureTag.Attack | FeatureTag.Ranged;

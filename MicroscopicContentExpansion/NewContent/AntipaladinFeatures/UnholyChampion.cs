@@ -59,7 +59,7 @@ internal class UnholyChampion
         var perfectBodyFlawlessMind = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("cb61beef-4f35-4992-a09e-821d170a6582");
 
         var markOfVengeance = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinAuraOfVengeanceFeature");
-        
+
         Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinCapstone", bp =>
         {
             bp.SetName(MCEContext, "Antipaladin Capstone");

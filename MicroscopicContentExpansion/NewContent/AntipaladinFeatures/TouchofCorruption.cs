@@ -47,10 +47,10 @@ internal class TouchofCorruption
             bp.m_MaxAmount = new BlueprintAbilityResource.Amount
             {
                 BaseValue = 1,
-                m_Class = new BlueprintCharacterClassReference[1] { AntipaladinClassRef },
-                m_ClassDiv = new BlueprintCharacterClassReference[1] { AntipaladinClassRef },
-                m_Archetypes = new BlueprintArchetypeReference[0],
-                m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                m_Class = [AntipaladinClassRef],
+                m_ClassDiv = [AntipaladinClassRef],
+                m_Archetypes = [],
+                m_ArchetypesDiv = [],
                 IncreasedByLevelStartPlusDivStep = true,
                 StartingLevel = 2,
                 LevelStep = 2,
@@ -77,7 +77,7 @@ internal class TouchofCorruption
             bp.LocalizedSavingThrow = Helpers.CreateString(MCEContext, $"{bp.name}.SavingThrow", "None");
             bp.AddComponent<AbilityVariants>(c =>
             {
-                c.m_Variants = new BlueprintAbilityReference[] { TouchOfCorruptionAbility.ToReference<BlueprintAbilityReference>() };
+                c.m_Variants = [TouchOfCorruptionAbility.ToReference<BlueprintAbilityReference>()];
             });
         }
         );
@@ -101,10 +101,10 @@ internal class TouchofCorruption
             bp.IsClassFeature = true;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     TouchOfCorruptionBase.ToReference<BlueprintUnitFactReference>(),
                     TouchOfCorruptionFact.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
         });
 
@@ -174,7 +174,7 @@ internal class TouchofCorruption
             {
                 c.m_Type = Kingmaker.Enums.AbilityRankType.Default;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                c.m_Class = [AntipaladinClassRef];
                 c.m_Progression = ContextRankProgression.Div2;
             });
             bp.AddComponent<AbilityDeliverTouch>(c =>
@@ -258,7 +258,7 @@ internal class TouchofCorruption
             {
                 bp.AddComponent<AbilityCasterHasFacts>(c =>
                 {
-                    c.m_Facts = new BlueprintUnitFactReference[] { RequiredFeatureRef };
+                    c.m_Facts = [RequiredFeatureRef];
                 });
                 bp.AddComponent<AbilityShowIfCasterHasFact>(c =>
                 {

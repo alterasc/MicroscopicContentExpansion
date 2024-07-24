@@ -82,7 +82,7 @@ internal class ChannelNegativeEnergy
             {
                 ActionList dealDamage = DoSingle<ContextActionSavingThrow>(s =>
                 {
-                    s.m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0];
+                    s.m_ConditionalDCIncrease = [];
                     s.Type = SavingThrowType.Will;
                     s.CustomDC = new ContextValue();
                     s.Actions = DoSingle<ContextActionDealDamage>(ac =>
@@ -163,7 +163,7 @@ internal class ChannelNegativeEnergy
                 c.m_Type = AbilityRankType.DamageDice;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.OnePlusDiv2;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                c.m_Class = [AntipaladinClassRef];
                 c.m_UseMin = true;
             });
 
@@ -363,7 +363,7 @@ internal class ChannelNegativeEnergy
                 c.m_SpecificModifier = ModifierDescriptor.None;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
                 c.m_Progression = ContextRankProgression.OnePlusDiv2;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                c.m_Class = [AntipaladinClassRef];
             });
 
             bp.AddComponent<AbilityUseOnRest>(c =>
@@ -437,15 +437,15 @@ internal class ChannelNegativeEnergy
             bp.m_DescriptionShort = bp.m_Description;
             bp.m_Icon = ChannelNegativeEnergy.Icon;
             bp.Ranks = 1;
-            bp.Groups = new FeatureGroup[0];
+            bp.Groups = [];
             bp.IsClassFeature = true;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     ChannelEnergyFact.ToReference<BlueprintUnitFactReference>(),
                     ChannelEnergyAntipaladinHarm.ToReference<BlueprintUnitFactReference>(),
                     ChannelEnergyAntipaladinHeal.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
         });
         SelectiveChannel.AddPrerequisiteFeature(ChannelNegativeEnergyFeature, Prerequisite.GroupType.Any);

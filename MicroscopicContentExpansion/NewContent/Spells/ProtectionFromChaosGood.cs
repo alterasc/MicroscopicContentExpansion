@@ -37,10 +37,10 @@ internal class ProtectionFromChaosGood
             });
             bp.AddComponent<AbilityVariants>(c =>
             {
-                c.m_Variants = new BlueprintAbilityReference[] {
+                c.m_Variants = [
                     protectionFromChaos,
                     protectionFromGood.ToReference<BlueprintAbilityReference>()
-                };
+                ];
             });
         }).ToReference<BlueprintAbilityReference>();
     }
@@ -72,10 +72,10 @@ internal class ProtectionFromChaosGood
             });
             bp.AddComponent<AbilityVariants>(c =>
             {
-                c.m_Variants = new BlueprintAbilityReference[] {
+                c.m_Variants = [
                     protectionFromChaosCommunal,
                     protectionFromGoodCommunal.ToReference<BlueprintAbilityReference>()
-                };
+                ];
             });
             bp.AddComponent<AbilityTargetsAround>(c =>
             {

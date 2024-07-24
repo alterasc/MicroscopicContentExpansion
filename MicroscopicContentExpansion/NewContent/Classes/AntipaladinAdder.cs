@@ -147,9 +147,9 @@ class AntipaladinAdder
         var AntipaladinProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "AntipaladinProgression", bp =>
         {
             bp.m_DisplayName = Helpers.CreateString(MCEContext, $"{bp.name}.Name", "Antipaladin");
-            bp.LevelEntries = new LevelEntry[] {
+            bp.LevelEntries = [
                     Helpers.CreateLevelEntry(1, AntipaladinProficiencies),
-                };
+                ];
         });
 
         var PaladinClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("bfa11238e7ae3544bbeb4d0b92e897ec");
@@ -183,17 +183,14 @@ class AntipaladinAdder
             bp.NotRecommendedAttributes = PaladinClass.NotRecommendedAttributes;
             bp.m_EquipmentEntities = PaladinClass.m_EquipmentEntities;
             bp.m_StartingItems = PaladinClass.StartingItems;
-            bp.m_SignatureAbilities = new BlueprintFeatureReference[0]
-            {
-
-            };
+            bp.m_SignatureAbilities = [];
             bp.m_Difficulty = 5;
             bp.m_DefaultBuild = null;
-            bp.m_Archetypes = new BlueprintArchetypeReference[0] { };
+            bp.m_Archetypes = [];
             bp.SkillPoints = 2;
-            bp.ClassSkills = new StatType[4] {
+            bp.ClassSkills = [
                     StatType.SkillStealth, StatType.SkillMobility, StatType.SkillAthletics, StatType.SkillLoreReligion
-                };
+                ];
             bp.IsDivineCaster = true;
             bp.IsArcaneCaster = false;
             bp.StartingGold = 411;

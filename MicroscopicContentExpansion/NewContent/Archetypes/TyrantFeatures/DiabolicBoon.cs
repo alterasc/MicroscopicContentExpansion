@@ -58,12 +58,12 @@ internal class DiabolicBoon
             bp.SetName(MCEContext, NAME);
             bp.SetDescription(MCEContext, DESCRIPTION);
             bp.m_DescriptionShort = bp.m_Description;
-            bp.m_AllFeatures = new BlueprintFeatureReference[] {
+            bp.m_AllFeatures = [
                 AntipaladinServantSelection.ToReference<BlueprintFeatureReference>(),
                 tyrantDiabolicBoonWeapon.ToReference<BlueprintFeatureReference>()
-            };
+            ];
             bp.Mode = SelectionMode.Default;
-            bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+            bp.Groups = [FeatureGroup.None];
             bp.IsClassFeature = true;
         });
     }
@@ -109,12 +109,12 @@ internal class DiabolicBoon
         {
             bp.SetName(MCEContext, "Diabolic Bond");
             bp.SetDescription(MCEContext, WEAPON_BOND_DESCRIPTION);
-            bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
+            bp.m_Classes = [
                 new BlueprintProgression.ClassWithLevel{
                     m_Class = AntipaladinClassRef
                 }
-            };
-            bp.LevelEntries = new LevelEntry[] {
+            ];
+            bp.LevelEntries = [
                 Helpers.CreateLevelEntry(5, weaponBond),
                 Helpers.CreateLevelEntry(8, weaponBond2),
                 Helpers.CreateLevelEntry(9, weaponBondAdditionalUse),
@@ -123,7 +123,7 @@ internal class DiabolicBoon
                 Helpers.CreateLevelEntry(14, weaponBond4),
                 Helpers.CreateLevelEntry(17, weaponBond5, weaponBondAdditionalUse),
                 Helpers.CreateLevelEntry(20, weaponBond6),
-            };
+            ];
         });
     }
 

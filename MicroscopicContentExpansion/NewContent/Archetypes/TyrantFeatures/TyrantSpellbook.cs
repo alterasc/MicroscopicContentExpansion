@@ -31,7 +31,7 @@ internal class TyrantSpellbook
 
         var tyrantSpellList = Helpers.CreateBlueprint<BlueprintSpellList>(MCEContext, "TyrantSpelllist", bp =>
         {
-            bp.SpellsByLevel = new SpellLevelList[] {
+            bp.SpellsByLevel = [
                 new SpellLevelList(0){},
                 new SpellLevelList(1) {
                     m_Spells = new List<BlueprintAbilityReference>() {
@@ -86,7 +86,7 @@ internal class TyrantSpellbook
                         BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("7ed74a3ec8c458d4fb50b192fd7be6ef")  //Summon Monster IV                            
                     }
                 }
-            };
+            ];
         });
 
         var tyrantSpellbook = Helpers.CreateBlueprint<BlueprintSpellbook>(MCEContext, "TyrantSpellbook", bp =>
@@ -152,12 +152,12 @@ internal class TyrantSpellbook
                     c.m_CharacterClass = antipaladinClassRef;
                     c.m_MysticTheurge = mtClassRef;
                 });
-                bp.m_Classes = new ClassWithLevel[] {
+                bp.m_Classes = [
                     new ClassWithLevel(){
                         m_Class = mtClassRef,
                         AdditionalLevel = 0
                     }
-                };
+                ];
                 bp.HideInUI = true;
                 bp.HideInCharacterSheetAndLevelUp = false;
                 bp.HideNotAvailibleInUI = true;
@@ -202,12 +202,12 @@ internal class TyrantSpellbook
                     c.m_CharacterClass = antipaladinClassRef;
                     c.m_Archetype = tyrantArchetype;
                 });
-                bp.m_Classes = new ClassWithLevel[] {
+                bp.m_Classes = [
                     new ClassWithLevel(){
                         m_Class = hksClassRef,
                         AdditionalLevel = 0
                     }
-                };
+                ];
                 bp.HideInUI = true;
                 bp.HideInCharacterSheetAndLevelUp = false;
                 bp.HideNotAvailibleInUI = true;
@@ -251,12 +251,12 @@ internal class TyrantSpellbook
                     c.m_CharacterClass = antipaladinClassRef;
                     c.m_Archetype = tyrantArchetype;
                 });
-                bp.m_Classes = new ClassWithLevel[] {
+                bp.m_Classes = [
                     new ClassWithLevel(){
                         m_Class = loremasterClassRef,
                         AdditionalLevel = 0
                     }
-                };
+                ];
                 bp.HideInUI = true;
                 bp.HideInCharacterSheetAndLevelUp = false;
                 bp.HideNotAvailibleInUI = true;

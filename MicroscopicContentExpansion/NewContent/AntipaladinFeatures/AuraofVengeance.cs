@@ -190,7 +190,7 @@ internal class AuraofVengeance
             {
                 c.m_Type = AbilityRankType.DamageBonus;
                 c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                c.m_Class = [AntipaladinClassRef];
                 c.m_Progression = ContextRankProgression.AsIs;
                 c.m_Max = 20;
             });
@@ -226,9 +226,9 @@ internal class AuraofVengeance
 
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                         AuraofVengeanceAbility.ToReference<BlueprintUnitFactReference>(),
-                    };
+                    ];
             });
 
         });

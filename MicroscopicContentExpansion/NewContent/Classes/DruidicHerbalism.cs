@@ -42,18 +42,18 @@ internal class DruidicHerbalism
         {
             a.SetName(MCEContext, "Druidic Herbalism");
             a.SetDescription(MCEContext, description);
-            a.m_Classes = new BlueprintProgression.ClassWithLevel[] {
+            a.m_Classes = [
                 new BlueprintProgression.ClassWithLevel() {
                     m_Class = ClassTools.ClassReferences.DruidClass
                 }
-            };
-            a.Groups = new FeatureGroup[] {
+            ];
+            a.Groups = [
                 FeatureGroup.DruidBond
-            };
-            a.LevelEntries = new LevelEntry[] {
+            ];
+            a.LevelEntries = [
                 Helpers.CreateLevelEntry(1, brewPotions, freePotions),
                 Helpers.CreateLevelEntry(7, infusion),
-            };
+            ];
         });
 
         if (MCEContext.AddedContent.NewClasses.IsDisabled("DruidicHerbalism")) return;

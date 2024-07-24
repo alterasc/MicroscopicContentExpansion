@@ -91,13 +91,13 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                     {
                         Group = ActivatableAbilityGroup.DivineWeaponProperty,
                         EnchantPool = EnchantPoolType.SacredArmorPool,
-                        m_DefaultEnchantments = new BlueprintItemEnchantmentReference[] {
+                        m_DefaultEnchantments = [
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("1d9b60d57afb45c4f9bb0a3c21bb3b98"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d45bfd838c541bb40bde7b0bf0e1b684"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("51c51d841e9f16046a169729c13c4d4f"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("a23bcee56c9fcf64d863dafedb369387"),
                             BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("15d7d6cbbf56bd744b37bbf9225ea83b")
-                        },
+                        ],
                         DurationValue = new ContextDurationValue()
                         {
                             Rate = DurationRate.Minutes,
@@ -133,7 +133,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                 c.m_Stat = StatType.Unknown;
                 c.m_Progression = ContextRankProgression.AsIs;
                 c.m_Max = 20;
-                c.m_Class = new BlueprintCharacterClassReference[] { AntipaladinClassRef };
+                c.m_Class = [AntipaladinClassRef];
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
@@ -162,10 +162,10 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
             bp.m_Icon = icon;
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = new BlueprintUnitFactReference[] {
+                c.m_Facts = [
                     weaponBondSwitchAbility.ToReference<BlueprintUnitFactReference>(),
                     armorBondFortification25.ToReference<BlueprintUnitFactReference>()
-                };
+                ];
             });
             bp.AddComponent<AddAbilityResources>(c =>
             {
@@ -232,12 +232,12 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
         {
             bp.SetName(MCEContext, "Fiendish Bond");
             bp.SetDescription(MCEContext, ARMOR_BOND_DESCRIPTION);
-            bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
+            bp.m_Classes = [
                 new BlueprintProgression.ClassWithLevel{
                     m_Class = AntipaladinClassRef
                 }
-            };
-            bp.LevelEntries = new LevelEntry[] {
+            ];
+            bp.LevelEntries = [
                 Helpers.CreateLevelEntry(5, armorBond),
                 Helpers.CreateLevelEntry(8, armorBond2),
                 Helpers.CreateLevelEntry(9, armorBondAdditionalUse),
@@ -246,7 +246,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                 Helpers.CreateLevelEntry(14, armorBond4),
                 Helpers.CreateLevelEntry(17, armorBond5, armorBondAdditionalUse),
                 Helpers.CreateLevelEntry(20, armorBond6),
-            };
+            ];
         });
 
     }
