@@ -10,7 +10,7 @@ using UnityEngine;
 namespace MicroscopicContentExpansion.NewContent.AnimalCompanions;
 
 [HarmonyPatch(typeof(OwlcatModificationsManager), nameof(OwlcatModificationsManager.OnResourceLoaded))]
-public static class PatchResourcesOnLoad
+public static class NightmareMountOffsetPatch
 {
 
     [HarmonyPrefix]

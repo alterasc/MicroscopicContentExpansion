@@ -203,14 +203,16 @@ class AntipaladinAdder
             bp.AddComponent<PrerequisiteNoClassLevel>(c =>
             {
                 c.m_CharacterClass = PaladinClass.ToReference<BlueprintCharacterClassReference>();
-                c.m_CharacterClass = AnimalClass.ToReference<BlueprintCharacterClassReference>();
             });
             bp.AddComponent<PrerequisiteIsPet>(c =>
             {
                 c.Not = true;
                 c.HideInUI = true;
             });
-            bp.AddComponent<PrerequisiteAlignment>(c => { c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil; });
+            bp.AddComponent<PrerequisiteAlignment>(c =>
+            {
+                c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
+            });
         });
 
         AntipaladinProgression.AddClass(AntipaladinClass);

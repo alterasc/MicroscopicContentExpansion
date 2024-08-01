@@ -16,16 +16,14 @@ internal class CrusadersFlurry
     {
         MCEContext.Logger.LogHeader("Adding Crusader's Flurry");
 
-        var deitySelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("59e7a76987fe3b547b9cce045f4db3e4");
-
         var cflurryUnlock = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "CrusadersFlurryUnlock", bp =>
         {
 
             var hasHomeBrewArchetypes = OwlcatModificationsManager.Instance.AppliedModifications.Any(x => x.Manifest.UniqueName == "HomebrewArchetypes");
-            List<BlueprintFeatureReference> flurry2ndFacts = new List<BlueprintFeatureReference>() {
+            List<BlueprintFeatureReference> flurry2ndFacts = [
                 BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("a34b8a9fcc9024b42bacfd5e6b614bfa"),
                 BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("dfc54683a9b7b2d4294ad1fd2acd5877")
-            };
+            ];
             if (hasHomeBrewArchetypes)
             {
                 flurry2ndFacts.Add(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("885ad943c0c3f0445aef3813f869921f")); //SacredFistFlurry15Unlock
