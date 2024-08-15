@@ -30,6 +30,10 @@ internal class DruidicHerbalism
         {
             a.SetName(MCEContext, "Druidic Concoctions");
             a.SetDescription(MCEContext, "Druid can brew any potion without spending ingredients.");
+            a.AddComponent<HarmonyPatchActivator>(c =>
+            {
+                c.PatchType = typeof(DruidicHerbalismPatches);
+            });
         });
 
         var infusion = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DruidicHerbalismInfusion", a =>
@@ -42,10 +46,6 @@ internal class DruidicHerbalism
         {
             a.SetName(MCEContext, "Druidic Herbalism");
             a.SetDescription(MCEContext, description);
-            a.AddComponent<HarmonyPatchActivator>(c =>
-            {
-                c.PatchType = typeof(DruidicHerbalismPatches);
-            });
             a.m_Classes = [
                 new BlueprintProgression.ClassWithLevel() {
                     m_Class = ClassTools.ClassReferences.DruidClass
@@ -69,15 +69,28 @@ internal class DruidicHerbalism
 [HarmonyPatch]
 internal class DruidicHerbalismPatches
 {
-    private static readonly BlueprintGuid DruidClassGuid = new(new Guid("610d836f3a3a9ed42a4349b62f002e96"));
-    private static readonly BlueprintFeatureReference DruidicConcoctions = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1758c2df-11f7-449f-a4fc-2762f9b68ae5");
-    private static readonly BlueprintFeatureReference DruidicHerbalismInfusion = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10");
+    private static bool Enabled;
+
+    private static BlueprintGuid DruidClassGuid;
+    private static BlueprintFeatureReference DruidicConcoctions;
+    private static BlueprintFeatureReference DruidicHerbalismInfusion;
+
+    [HarmonyPrepare]
+    internal static void Init()
+    {
+        if (Enabled) { return; }
+
+        DruidClassGuid = new(new Guid("610d836f3a3a9ed42a4349b62f002e96"));
+        DruidicConcoctions = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1758c2df-11f7-449f-a4fc-2762f9b68ae5");
+        DruidicHerbalismInfusion = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10");
+        Enabled = true;
+        MCEContext.Logger.Log($"Finished DruidicHerbalismPatches.Init");
+    }
 
     [HarmonyPatch(typeof(CraftRoot), nameof(CraftRoot.CreateCraftInfo))]
     [HarmonyPostfix]
     internal static void CraftRoot_CreateCraftInfo_Patch(CraftRoot __instance, ref CraftAvailInfo __result, UnitEntityData crafter, BlueprintItemEquipmentUsable item, Spellbook spellbook, BlueprintAbility abillity, CraftRequirements[] list, CraftInfoComponent craftComp, MetamagicData metamagic, int metamagicBorder, int metamagicBorderColor)
     {
-
         if (item.Type == UsableItemType.Potion && crafter.HasFact(DruidicConcoctions))
         {
             CraftItemInfo craftItemInfo = new CraftItemInfo

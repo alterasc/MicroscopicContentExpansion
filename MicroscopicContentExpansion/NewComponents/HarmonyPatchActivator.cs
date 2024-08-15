@@ -13,9 +13,9 @@ public class HarmonyPatchActivator : UnitFactComponentDelegate
 
     public Type PatchType;
 
-    public override void OnActivate()
+    public override void OnTurnOn()
     {
-        base.OnActivate();
+        base.OnTurnOn();
         if (ActivatedPatches.Contains(PatchType))
         {
             return;
@@ -31,6 +31,4 @@ public class HarmonyPatchActivator : UnitFactComponentDelegate
         }
         ActivatedPatches.Add(PatchType);
     }
-
-
 }
