@@ -10,6 +10,7 @@ using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.Utility;
 using MicroscopicContentExpansion.NewComponents;
 using TabletopTweaks.Core.NewComponents.Prerequisites;
 using TabletopTweaks.Core.Utilities;
@@ -589,7 +590,30 @@ internal class DimenshionalDervish
             bp.m_IsFullRoundAction = false;
             bp.LocalizedDuration = new Kingmaker.Localization.LocalizedString();
             bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
-            bp.AddComponent(kiAbundantStepAbility.GetComponent<AbilityCustomDimensionDoor>());
+            var kiStepAbility = kiAbundantStepAbility.GetComponent<AbilityCustomDimensionDoor>();
+            bp.AddComponent<AbilityCustomDimensionDoor>(c =>
+            {
+                c.Radius = 0.Feet();
+                c.PortalFromPrefab = kiStepAbility.PortalFromPrefab;
+                c.PortalToPrefab = kiStepAbility.PortalToPrefab;
+                c.PortalBone = kiStepAbility.PortalBone;
+                c.CasterDisappearFx = kiStepAbility.CasterDisappearFx;
+                c.CasterAppearFx = kiStepAbility.CasterAppearFx;
+                c.SideDisappearFx = kiStepAbility.SideDisappearFx;
+                c.SideAppearFx = kiStepAbility.SideAppearFx;
+                c.m_CasterDisappearProjectile = kiStepAbility.m_CasterDisappearProjectile;
+                c.m_CasterAppearProjectile = kiStepAbility.m_CasterAppearProjectile;
+                c.m_SideDisappearProjectile = kiStepAbility.m_SideDisappearProjectile;
+                c.m_SideAppearProjectile = kiStepAbility.m_SideAppearProjectile;
+                c.m_CameraShouldFollow = kiStepAbility.m_CameraShouldFollow;
+                c.UseAnimations = kiStepAbility.UseAnimations;
+                c.TakeOffAnimation = kiStepAbility.TakeOffAnimation;
+                c.TakeoffTime = kiStepAbility.TakeoffTime;
+                c.DissapearTime = kiStepAbility.DissapearTime;
+                c.LandingAnimation = kiStepAbility.LandingAnimation;
+                c.LandingTime = kiStepAbility.LandingTime;
+                c.AppearTime = kiStepAbility.AppearTime;
+            });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.m_IsSpendResource = true;

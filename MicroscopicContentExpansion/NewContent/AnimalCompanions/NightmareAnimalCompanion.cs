@@ -78,7 +78,15 @@ public class NightmareAnimalCompanion
             {
                 c.m_SlotType = LockEquipmentSlot.SlotType.OffHand;
             });
-            bp.AddComponent(horseUnit.GetComponent<CMDBonusAgainstManeuvers>());
+            bp.AddComponent<CMDBonusAgainstManeuvers>(c => {
+                c.Descriptor = Kingmaker.Enums.ModifierDescriptor.Racial;
+                c.Value = 4;
+                c.Maneuvers = [
+                    Kingmaker.RuleSystem.Rules.CombatManeuver.Trip,
+                    Kingmaker.RuleSystem.Rules.CombatManeuver.BullRush,
+                    Kingmaker.RuleSystem.Rules.CombatManeuver.Pull
+                ];
+            });
             bp.AddComponent<AddFacts>(c =>
             {
                 c.m_Facts = [BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("9c57e9674b4a4a2b9920f9fec47f7e6a")];
