@@ -3,8 +3,11 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Designers.EventConditionActionSystem.Conditions;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Designers.Mechanics.Recommendations;
 using Kingmaker.RuleSystem;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.ActivatableAbilities.Restrictions;
 using Kingmaker.UnitLogic.Buffs;
@@ -25,8 +28,76 @@ internal class Dragonblooded
         FormBuffs();
         AddBite();
         AddWings();
+        ApplyGoldDragonBonuses();
+        FixMythicGDSpellMetamagic();
     }
 
+    /// <summary>
+    /// Fixes some missing metamagic from GD mythic spells
+    /// </summary>
+    private static void FixMythicGDSpellMetamagic()
+    {
+        if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("FixGDSpellMetamagicTags"))
+        {
+            return;
+        }
+
+        // lvl 8
+        var dragonMight = BlueprintTools.GetBlueprint<BlueprintAbility>("bfc6aa5be6bc41f68ca78aef37913e9f");
+        dragonMight.AvailableMetamagic |= Metamagic.Extend | Metamagic.Heighten | Metamagic.CompletelyNormal;
+
+        var summonDragonI = BlueprintTools.GetBlueprint<BlueprintAbility>("1e42ecaa79454e85b274edc73e130a03");
+        summonDragonI.AvailableMetamagic |= Metamagic.Extend | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten | Metamagic.Empower | Metamagic.Maximize;
+
+        var dragonSmite = BlueprintTools.GetBlueprint<BlueprintAbility>("a508fd48695440cd8216526a859ecb53");
+        dragonSmite.AvailableMetamagic |= Metamagic.Heighten | Metamagic.CompletelyNormal | Metamagic.Quicken;
+
+        // lvl 9
+        var dragonWrath = BlueprintTools.GetBlueprint<BlueprintAbility>("59d08b909d684b91a137766ab22f4b1a");
+        dragonWrath.AvailableMetamagic |= Metamagic.Heighten | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Empower | Metamagic.Maximize;
+
+        var dragonPride = BlueprintTools.GetBlueprint<BlueprintAbility>("f7bc6e97e7d44ed8ba5c4d9f76a5a3d3");
+        dragonPride.AvailableMetamagic |= Metamagic.Heighten | Metamagic.CompletelyNormal | Metamagic.Quicken;
+
+        var summonDragonII = BlueprintTools.GetBlueprint<BlueprintAbility>("51b498f1cacd42e08ed6852f53261f11");
+        summonDragonII.AvailableMetamagic |= Metamagic.Extend | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten;
+
+        var thousandBites = BlueprintTools.GetBlueprint<BlueprintAbility>("d35b16edbd5c436286e34cf7bcbdb645");
+        thousandBites.AvailableMetamagic |= Metamagic.Extend | Metamagic.Heighten | Metamagic.CompletelyNormal;
+
+        // lvl 10
+        var summonDragonIII = BlueprintTools.GetBlueprint<BlueprintAbility>("cb127670411c41298a4aa4d0a165a20b");
+        summonDragonIII.AvailableMetamagic |= Metamagic.Extend | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Reach;
+
+        var dragonUltimateApsu = BlueprintTools.GetBlueprint<BlueprintAbility>("cff9e3bf5ccf40c489023bf368c2c802");
+        dragonUltimateApsu.AvailableMetamagic |= Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Empower | Metamagic.Maximize | Metamagic.Persistent;
+
+        var dragonUltimateDahak = BlueprintTools.GetBlueprint<BlueprintAbility>("5b1984f4af00412eb0c0efb0ebb90189");
+        dragonUltimateDahak.AvailableMetamagic |= Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Empower | Metamagic.Maximize | Metamagic.Persistent;
+    }
+
+    /// <summary>
+    /// Apply GD bonuses to Dragonblood20 forms:
+    /// Make Thousand Bites spell affect Gold and Black dragon forms of lvl 20 shifter.
+    /// </summary>
+    private static void ApplyGoldDragonBonuses()
+    {
+        if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("ApplyGDBonuses"))
+        {
+            return;
+        }
+        var thousandBitesBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("61bfcdf05852443c8f4577c34bf2b6ef");
+        thousandBitesBuff.AddComponent<BuffExtraEffects>(c =>
+        {
+            c.m_CheckedBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("833873205d9b46e99217d02cd04a20d4"); //ShifterDragonFormGoldBuff20
+            c.m_ExtraEffectBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
+        });
+        thousandBitesBuff.AddComponent<BuffExtraEffects>(c =>
+        {
+            c.m_CheckedBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("2288af142a164f8799c4af47a1d59964"); //ShifterDragonFormBlackBuff20
+            c.m_ExtraEffectBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
+        });
+    }
     /// <summary>
     /// Adding Airborne property to dragonblooded dragon forms
     /// </summary>

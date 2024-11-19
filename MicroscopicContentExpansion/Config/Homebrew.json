@@ -37,6 +37,16 @@
         "Enabled": false,
         "Homebrew": false,
         "Description": "Add at lvl 5 wings that are active when dragon aspect is active and match the color of last activated aspect."
+      },
+      "ApplyGDBonuses": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Make Thousand Bites spell affect Gold and Black dragon forms of lvl 20 shifter."
+      },
+      "FixGDSpellMetamagicTags": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Allows applying metamagic to mythic GD spells where tags were missing."
       }
     },
     "IsExpanded": true

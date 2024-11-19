@@ -3,12 +3,12 @@
   "Author": "AlterAsc",
   "DisplayName": "Microscopic Content Expansion",
   "EntryMethod": "MicroscopicContentExpansion.Main.Load",
-  "GameVersion": "2.3.2",
+  "GameVersion": "2.5.0",
   "HomePage": "https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/506",
   "Id": "MicroscopicContentExpansion",
   "ManagerVersion": "0.23.0",
   "Repository": "https://raw.githubusercontent.com/alterasc/MicroscopicContentExpansion/master/Repository.json",
-  "Requirements": [ "TabletopTweaks-Core-0.7.5" ],
+  "Requirements": [ "TabletopTweaks-Core-0.7.9" ],
   "LoadAfter": [ "TabletopTweaks-Core", "TabletopTweaks-Base", "MewsiferConsole.Mod" ],
-  "Version": "1.17.1"
+  "Version": "1.18.0"
 }
