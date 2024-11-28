@@ -28,7 +28,6 @@ internal class Dragonblooded
         FormBuffs();
         AddBite();
         AddWings();
-        ApplyGoldDragonBonuses();
         FixMythicGDSpellMetamagic();
     }
 
@@ -77,29 +76,7 @@ internal class Dragonblooded
     }
 
     /// <summary>
-    /// Apply GD bonuses to Dragonblood20 forms:
-    /// Make Thousand Bites spell affect Gold and Black dragon forms of lvl 20 shifter.
-    /// </summary>
-    private static void ApplyGoldDragonBonuses()
-    {
-        if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("ApplyGDBonuses"))
-        {
-            return;
-        }
-        var thousandBitesBuff = GetBP<BlueprintBuff>("61bfcdf05852443c8f4577c34bf2b6ef");
-        thousandBitesBuff.AddComponent<BuffExtraEffects>(c =>
-        {
-            c.m_CheckedBuff = GetBPRef<BlueprintBuffReference>("833873205d9b46e99217d02cd04a20d4"); //ShifterDragonFormGoldBuff20
-            c.m_ExtraEffectBuff = GetBPRef<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
-        });
-        thousandBitesBuff.AddComponent<BuffExtraEffects>(c =>
-        {
-            c.m_CheckedBuff = GetBPRef<BlueprintBuffReference>("2288af142a164f8799c4af47a1d59964"); //ShifterDragonFormBlackBuff20
-            c.m_ExtraEffectBuff = GetBPRef<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
-        });
-    }
-    /// <summary>
-    /// Adding Airborne property to dragonblooded dragon forms
+    /// Adding various bonuses to dragon forms
     /// </summary>
     private static void FormBuffs()
     {
@@ -142,6 +119,7 @@ internal class Dragonblooded
             "9d6996a50f6a4de289a44293420f75be", // ShifterDragonFormWhiteBuff20
         ];
 
+        // Airborne property to dragonblooded dragon forms
         if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("AddAirborneToForms"))
         {
             var airborne = GetBPRef<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
@@ -155,6 +133,7 @@ internal class Dragonblooded
             }
         }
 
+        // Increase STR and CON bonus stats to match BFT-boosted forms
         if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("IncreaseFormStatBonuses"))
         {
             var airborne = GetBPRef<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
@@ -225,6 +204,7 @@ internal class Dragonblooded
             a.m_EquipmentEntity = bite9.m_EquipmentEntity;
         }).ToReference<BlueprintItemWeaponReference>();
 
+        // replace dragon bite with a bite that does x1.5 STR damage
         if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("IncreaseFormBiteStrBonus"))
         {
             foreach (var buffId in dragonFormBuffs9)
@@ -253,6 +233,22 @@ internal class Dragonblooded
                 {
                     polymorphComponent.m_AdditionalLimbs[0] = dragonBite2d8;
                 }
+            }
+        }
+
+        // apply GD bonuses
+        if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("ApplyGDBonuses"))
+        {
+            // make Thousand Bites work for dragonblood 20 forms
+            var thousandBitesBuff = GetBP<BlueprintBuff>("61bfcdf05852443c8f4577c34bf2b6ef");
+            var thousandBitesBuffEffectRef = GetBPRef<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
+            foreach (var buffId in dragonFormBuffs20)
+            {
+                thousandBitesBuff.AddComponent<BuffExtraEffects>(c =>
+                {
+                    c.m_CheckedBuff = GetBPRef<BlueprintBuffReference>(buffId);
+                    c.m_ExtraEffectBuff = thousandBitesBuffEffectRef;
+                });
             }
         }
     }
