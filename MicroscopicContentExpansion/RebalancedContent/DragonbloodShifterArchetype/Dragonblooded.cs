@@ -43,36 +43,36 @@ internal class Dragonblooded
         }
 
         // lvl 8
-        var dragonMight = BlueprintTools.GetBlueprint<BlueprintAbility>("bfc6aa5be6bc41f68ca78aef37913e9f");
+        var dragonMight = GetBP<BlueprintAbility>("bfc6aa5be6bc41f68ca78aef37913e9f");
         dragonMight.AvailableMetamagic |= Metamagic.Extend | Metamagic.Heighten | Metamagic.CompletelyNormal;
 
-        var summonDragonI = BlueprintTools.GetBlueprint<BlueprintAbility>("1e42ecaa79454e85b274edc73e130a03");
+        var summonDragonI = GetBP<BlueprintAbility>("1e42ecaa79454e85b274edc73e130a03");
         summonDragonI.AvailableMetamagic |= Metamagic.Extend | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten | Metamagic.Empower | Metamagic.Maximize;
 
-        var dragonSmite = BlueprintTools.GetBlueprint<BlueprintAbility>("a508fd48695440cd8216526a859ecb53");
+        var dragonSmite = GetBP<BlueprintAbility>("a508fd48695440cd8216526a859ecb53");
         dragonSmite.AvailableMetamagic |= Metamagic.Heighten | Metamagic.CompletelyNormal | Metamagic.Quicken;
 
         // lvl 9
-        var dragonWrath = BlueprintTools.GetBlueprint<BlueprintAbility>("59d08b909d684b91a137766ab22f4b1a");
+        var dragonWrath = GetBP<BlueprintAbility>("59d08b909d684b91a137766ab22f4b1a");
         dragonWrath.AvailableMetamagic |= Metamagic.Heighten | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Empower | Metamagic.Maximize;
 
-        var dragonPride = BlueprintTools.GetBlueprint<BlueprintAbility>("f7bc6e97e7d44ed8ba5c4d9f76a5a3d3");
+        var dragonPride = GetBP<BlueprintAbility>("f7bc6e97e7d44ed8ba5c4d9f76a5a3d3");
         dragonPride.AvailableMetamagic |= Metamagic.Heighten | Metamagic.CompletelyNormal | Metamagic.Quicken;
 
-        var summonDragonII = BlueprintTools.GetBlueprint<BlueprintAbility>("51b498f1cacd42e08ed6852f53261f11");
+        var summonDragonII = GetBP<BlueprintAbility>("51b498f1cacd42e08ed6852f53261f11");
         summonDragonII.AvailableMetamagic |= Metamagic.Extend | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten;
 
-        var thousandBites = BlueprintTools.GetBlueprint<BlueprintAbility>("d35b16edbd5c436286e34cf7bcbdb645");
+        var thousandBites = GetBP<BlueprintAbility>("d35b16edbd5c436286e34cf7bcbdb645");
         thousandBites.AvailableMetamagic |= Metamagic.Extend | Metamagic.Heighten | Metamagic.CompletelyNormal;
 
         // lvl 10
-        var summonDragonIII = BlueprintTools.GetBlueprint<BlueprintAbility>("cb127670411c41298a4aa4d0a165a20b");
+        var summonDragonIII = GetBP<BlueprintAbility>("cb127670411c41298a4aa4d0a165a20b");
         summonDragonIII.AvailableMetamagic |= Metamagic.Extend | Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Reach;
 
-        var dragonUltimateApsu = BlueprintTools.GetBlueprint<BlueprintAbility>("cff9e3bf5ccf40c489023bf368c2c802");
+        var dragonUltimateApsu = GetBP<BlueprintAbility>("cff9e3bf5ccf40c489023bf368c2c802");
         dragonUltimateApsu.AvailableMetamagic |= Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Empower | Metamagic.Maximize | Metamagic.Persistent;
 
-        var dragonUltimateDahak = BlueprintTools.GetBlueprint<BlueprintAbility>("5b1984f4af00412eb0c0efb0ebb90189");
+        var dragonUltimateDahak = GetBP<BlueprintAbility>("5b1984f4af00412eb0c0efb0ebb90189");
         dragonUltimateDahak.AvailableMetamagic |= Metamagic.CompletelyNormal | Metamagic.Quicken | Metamagic.Empower | Metamagic.Maximize | Metamagic.Persistent;
     }
 
@@ -86,16 +86,16 @@ internal class Dragonblooded
         {
             return;
         }
-        var thousandBitesBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("61bfcdf05852443c8f4577c34bf2b6ef");
+        var thousandBitesBuff = GetBP<BlueprintBuff>("61bfcdf05852443c8f4577c34bf2b6ef");
         thousandBitesBuff.AddComponent<BuffExtraEffects>(c =>
         {
-            c.m_CheckedBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("833873205d9b46e99217d02cd04a20d4"); //ShifterDragonFormGoldBuff20
-            c.m_ExtraEffectBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
+            c.m_CheckedBuff = GetBPRef<BlueprintBuffReference>("833873205d9b46e99217d02cd04a20d4"); //ShifterDragonFormGoldBuff20
+            c.m_ExtraEffectBuff = GetBPRef<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
         });
         thousandBitesBuff.AddComponent<BuffExtraEffects>(c =>
         {
-            c.m_CheckedBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("2288af142a164f8799c4af47a1d59964"); //ShifterDragonFormBlackBuff20
-            c.m_ExtraEffectBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
+            c.m_CheckedBuff = GetBPRef<BlueprintBuffReference>("2288af142a164f8799c4af47a1d59964"); //ShifterDragonFormBlackBuff20
+            c.m_ExtraEffectBuff = GetBPRef<BlueprintBuffReference>("11a5d86ee17e4594a7ffb8cc4a6f05cd"); //ThousandBitesBuffEffect
         });
     }
     /// <summary>
@@ -144,10 +144,10 @@ internal class Dragonblooded
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("AddAirborneToForms"))
         {
-            var airborne = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
+            var airborne = GetBPRef<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
             foreach (var buffId in dragonFormBuffs9.Concat(dragonFormBuffs14).Concat(dragonFormBuffs20))
             {
-                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var buff = GetBP<BlueprintBuff>(buffId);
                 buff.AddComponent<AddFacts>(x =>
                 {
                     x.m_Facts = [airborne];
@@ -157,28 +157,28 @@ internal class Dragonblooded
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("IncreaseFormStatBonuses"))
         {
-            var airborne = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
+            var airborne = GetBPRef<BlueprintUnitFactReference>("70cffb448c132fa409e49156d013b175");
             foreach (var buffId in dragonFormBuffs14)
             {
-                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var buff = GetBP<BlueprintBuff>(buffId);
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 polymorphComponent.StrengthBonus += 2;
                 polymorphComponent.ConstitutionBonus += 2;
             }
             foreach (var buffId in dragonFormBuffs20)
             {
-                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var buff = GetBP<BlueprintBuff>(buffId);
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 polymorphComponent.StrengthBonus += 4;
                 polymorphComponent.ConstitutionBonus += 4;
             }
         }
 
-        var dragonBiteType = BlueprintTools.GetBlueprint<BlueprintWeaponType>("12a8a3a89e62d6b4fbc09ecdc187a828");
+        var dragonBiteType = GetBP<BlueprintWeaponType>("12a8a3a89e62d6b4fbc09ecdc187a828");
         var dragonBiteTypeRef = dragonBiteType.ToReference<BlueprintWeaponTypeReference>();
-        var biteIcon = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("f3ff6972c32f22e4ba4c85c3982a03cf").m_Icon;
+        var biteIcon = GetBP<BlueprintItemWeapon>("f3ff6972c32f22e4ba4c85c3982a03cf").m_Icon;
 
-        var bite9 = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("61bc14eca5f8c1040900215000cfc218");
+        var bite9 = GetBP<BlueprintItemWeapon>("61bc14eca5f8c1040900215000cfc218");
 
         var dragonBite1d8 = Helpers.CreateBlueprint<BlueprintItemWeapon>(MCEContext, "BiteDragon1d8", a =>
         {
@@ -229,7 +229,7 @@ internal class Dragonblooded
         {
             foreach (var buffId in dragonFormBuffs9)
             {
-                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var buff = GetBP<BlueprintBuff>(buffId);
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 if (polymorphComponent.m_AdditionalLimbs[0].Get().Category == Kingmaker.Enums.WeaponCategory.Bite)
                 {
@@ -238,7 +238,7 @@ internal class Dragonblooded
             }
             foreach (var buffId in dragonFormBuffs14)
             {
-                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var buff = GetBP<BlueprintBuff>(buffId);
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 if (polymorphComponent.m_AdditionalLimbs[0].Get().Category == Kingmaker.Enums.WeaponCategory.Bite)
                 {
@@ -247,7 +247,7 @@ internal class Dragonblooded
             }
             foreach (var buffId in dragonFormBuffs20)
             {
-                var buff = BlueprintTools.GetBlueprint<BlueprintBuff>(buffId);
+                var buff = GetBP<BlueprintBuff>(buffId);
                 var polymorphComponent = buff.GetComponent<Polymorph>();
                 if (polymorphComponent.m_AdditionalLimbs[0].Get().Category == Kingmaker.Enums.WeaponCategory.Bite)
                 {
@@ -265,16 +265,16 @@ internal class Dragonblooded
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("EverlastingAspect")) { return; }
 
-        var dragonbloodShifterBrassAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("2d5f55dd02354faf8c9cfb8e968ada28");
-        var dragonbloodShifterBronzeAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("f85adf95d187448fa6cba324a487e94b");
-        var dragonbloodShifterCopperAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("5d26af2e3ca9492aa4fd224ec0083e3b");
-        var dragonbloodShifterGoldAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("3cc1f78b09804dce9f4e575060161117");
-        var dragonbloodShifterSilverAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("34444997005e40adadb144b0cfcfe086");
-        var dragonbloodShifterBlackAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("950d6040a7f04b17b60000827fae66e1");
-        var dragonbloodShifterBlueAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("1bc23b75b28749f1a17e675604392a78");
-        var dragonbloodShifterGreenAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a0e28069d62b43ea827a529aa42b781f");
-        var dragonbloodShifterRedAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("9b6437dff6f945ce831c734fc5717775");
-        var dragonbloodShifterWhiteAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("6e98c227c6d84ca89f3183c4d83dac8e");
+        var dragonbloodShifterBrassAbility = GetBP<BlueprintActivatableAbility>("2d5f55dd02354faf8c9cfb8e968ada28");
+        var dragonbloodShifterBronzeAbility = GetBP<BlueprintActivatableAbility>("f85adf95d187448fa6cba324a487e94b");
+        var dragonbloodShifterCopperAbility = GetBP<BlueprintActivatableAbility>("5d26af2e3ca9492aa4fd224ec0083e3b");
+        var dragonbloodShifterGoldAbility = GetBP<BlueprintActivatableAbility>("3cc1f78b09804dce9f4e575060161117");
+        var dragonbloodShifterSilverAbility = GetBP<BlueprintActivatableAbility>("34444997005e40adadb144b0cfcfe086");
+        var dragonbloodShifterBlackAbility = GetBP<BlueprintActivatableAbility>("950d6040a7f04b17b60000827fae66e1");
+        var dragonbloodShifterBlueAbility = GetBP<BlueprintActivatableAbility>("1bc23b75b28749f1a17e675604392a78");
+        var dragonbloodShifterGreenAbility = GetBP<BlueprintActivatableAbility>("a0e28069d62b43ea827a529aa42b781f");
+        var dragonbloodShifterRedAbility = GetBP<BlueprintActivatableAbility>("9b6437dff6f945ce831c734fc5717775");
+        var dragonbloodShifterWhiteAbility = GetBP<BlueprintActivatableAbility>("6e98c227c6d84ca89f3183c4d83dac8e");
         List<BlueprintActivatableAbility> allAbilities =
         [
             dragonbloodShifterBrassAbility,
@@ -292,8 +292,8 @@ internal class Dragonblooded
         {
             ability.RemoveComponents<ActivatableAbilityResourceLogic>();
         }
-        var dragonAspectSelection = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("c2872505b99c43b8b146ed89ffeb9af5");
-        var extendedAspects = BlueprintTools.GetBlueprint<BlueprintFeature>("88e0ca9a742b436ea48ce4845d178c8a");
+        var dragonAspectSelection = GetBPRef<BlueprintUnitFactReference>("c2872505b99c43b8b146ed89ffeb9af5");
+        var extendedAspects = GetBP<BlueprintFeature>("88e0ca9a742b436ea48ce4845d178c8a");
         extendedAspects.RemoveComponents<RecommendationHasFeature>(x =>
         {
             return dragonAspectSelection.Equals(x.m_Feature);
@@ -325,9 +325,9 @@ internal class Dragonblooded
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("MultipleAspectsAtOnce")) { return; }
 
-        var shifterDragonFormFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("d8e9d249a426400bb47fefa6d0158049");
-        var shifterDragonFormFeatureImproved = BlueprintTools.GetBlueprint<BlueprintFeature>("5cae07b7e9474d3eb382baa703e82ca8");
-        var shifterDragonFormFeatureFinal = BlueprintTools.GetBlueprint<BlueprintFeature>("c676ba5eb744492583d989244c81f127");
+        var shifterDragonFormFeature = GetBP<BlueprintFeature>("d8e9d249a426400bb47fefa6d0158049");
+        var shifterDragonFormFeatureImproved = GetBP<BlueprintFeature>("5cae07b7e9474d3eb382baa703e82ca8");
+        var shifterDragonFormFeatureFinal = GetBP<BlueprintFeature>("c676ba5eb744492583d989244c81f127");
         shifterDragonFormFeature.AddComponent<IncreaseActivatableAbilityGroupSize>(c =>
         {
             c.Group = ActivatableAbilityGroup.ShifterAspect;
@@ -347,9 +347,9 @@ internal class Dragonblooded
     /// </summary>
     private static void AddBite()
     {
-        var icon = BlueprintTools.GetBlueprint<BlueprintFeature>("7e7e4cd3d93984b439799048e6657237").m_Icon;
+        var icon = GetBP<BlueprintFeature>("7e7e4cd3d93984b439799048e6657237").m_Icon;
 
-        var ddBite = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("c66afbc07845e4245bf62021b7278a43");
+        var ddBite = GetBP<BlueprintItemWeapon>("c66afbc07845e4245bf62021b7278a43");
 
         var shifterBite = Helpers.CreateBlueprint<BlueprintItemWeapon>(MCEContext, "DragonbloodShifterBiteWeapon", a =>
         {
@@ -361,7 +361,7 @@ internal class Dragonblooded
             a.m_Type = ddBite.m_Type;
             a.m_EquipmentEntity = ddBite.m_EquipmentEntity;
             a.m_VisualParameters = ddBite.m_VisualParameters;
-            a.m_Enchantments = [BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("ae2be9fefbd5438f821f0113db8fd572")];
+            a.m_Enchantments = [GetBPRef<BlueprintWeaponEnchantmentReference>("ae2be9fefbd5438f821f0113db8fd572")];
         });
 
         var bite = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DragonbloodShifterBite", a =>
@@ -385,7 +385,7 @@ internal class Dragonblooded
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("AddBiteAttack")) { return; }
 
-        var archetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("2d5b06e413a9408cbd5bb999b5a4cc4a");
+        var archetype = GetBP<BlueprintArchetype>("2d5b06e413a9408cbd5bb999b5a4cc4a");
         var lvl4Entry = archetype.AddFeatures.FirstOrDefault(x => x.Level == 4);
         if (lvl4Entry != null)
         {
@@ -403,7 +403,7 @@ internal class Dragonblooded
     /// </summary>
     private static void AddWings()
     {
-        var ddWingsAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a800d71694dc7634b9481c1cbf5b355f");
+        var ddWingsAbility = GetBP<BlueprintActivatableAbility>("a800d71694dc7634b9481c1cbf5b355f");
 
         var buff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "DragonbloodShifterWingsBuff", bp =>
         {
@@ -411,16 +411,16 @@ internal class Dragonblooded
             bp.AddComponent<DragonbloodWingController>(c =>
             {
                 c.MatchingWingsDictionary = new Dictionary<BlueprintGuid, BlueprintBuffReference> {
-                    {BlueprintGuid.Parse("950d6040a7f04b17b60000827fae66e1"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("ddfe6e85e1eed7a40aa911280373c228") },
-                    {BlueprintGuid.Parse("1bc23b75b28749f1a17e675604392a78"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("800cde038f9e6304d95365edc60ab0a4") },
-                    {BlueprintGuid.Parse("a0e28069d62b43ea827a529aa42b781f"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("a4ccc396e60a00f44907e95bc8bf463f") },
-                    {BlueprintGuid.Parse("9b6437dff6f945ce831c734fc5717775"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("08ae1c01155a2184db869e9ebedc758d") },
-                    {BlueprintGuid.Parse("6e98c227c6d84ca89f3183c4d83dac8e"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("381a168acd79cd54baf87a17ca861d9b") },
-                    {BlueprintGuid.Parse("2d5f55dd02354faf8c9cfb8e968ada28"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("7f5acae38fc1e0f4c9325d8a4f4f81fc") },
-                    {BlueprintGuid.Parse("f85adf95d187448fa6cba324a487e94b"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("482ee5d001527204bb86e34240e2ce65") },
-                    {BlueprintGuid.Parse("5d26af2e3ca9492aa4fd224ec0083e3b"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("a25d6fc69cba80548832afc6c4787379") },
-                    {BlueprintGuid.Parse("3cc1f78b09804dce9f4e575060161117"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("984064a3dd0f25444ad143b8a33d7d92") },
-                    {BlueprintGuid.Parse("34444997005e40adadb144b0cfcfe086"), BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("5a791c1b0bacee3459d7f5137fa0bd5f") },
+                    {BlueprintGuid.Parse("950d6040a7f04b17b60000827fae66e1"), GetBPRef<BlueprintBuffReference>("ddfe6e85e1eed7a40aa911280373c228") },
+                    {BlueprintGuid.Parse("1bc23b75b28749f1a17e675604392a78"), GetBPRef<BlueprintBuffReference>("800cde038f9e6304d95365edc60ab0a4") },
+                    {BlueprintGuid.Parse("a0e28069d62b43ea827a529aa42b781f"), GetBPRef<BlueprintBuffReference>("a4ccc396e60a00f44907e95bc8bf463f") },
+                    {BlueprintGuid.Parse("9b6437dff6f945ce831c734fc5717775"), GetBPRef<BlueprintBuffReference>("08ae1c01155a2184db869e9ebedc758d") },
+                    {BlueprintGuid.Parse("6e98c227c6d84ca89f3183c4d83dac8e"), GetBPRef<BlueprintBuffReference>("381a168acd79cd54baf87a17ca861d9b") },
+                    {BlueprintGuid.Parse("2d5f55dd02354faf8c9cfb8e968ada28"), GetBPRef<BlueprintBuffReference>("7f5acae38fc1e0f4c9325d8a4f4f81fc") },
+                    {BlueprintGuid.Parse("f85adf95d187448fa6cba324a487e94b"), GetBPRef<BlueprintBuffReference>("482ee5d001527204bb86e34240e2ce65") },
+                    {BlueprintGuid.Parse("5d26af2e3ca9492aa4fd224ec0083e3b"), GetBPRef<BlueprintBuffReference>("a25d6fc69cba80548832afc6c4787379") },
+                    {BlueprintGuid.Parse("3cc1f78b09804dce9f4e575060161117"), GetBPRef<BlueprintBuffReference>("984064a3dd0f25444ad143b8a33d7d92") },
+                    {BlueprintGuid.Parse("34444997005e40adadb144b0cfcfe086"), GetBPRef<BlueprintBuffReference>("5a791c1b0bacee3459d7f5137fa0bd5f") },
                 };
             });
         });
@@ -432,7 +432,7 @@ internal class Dragonblooded
             bp.m_Buff = buff.ToReference<BlueprintBuffReference>();
             bp.AddComponent<RestrictionHasFact>(c =>
             {
-                c.m_Feature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e4979934bdb39d842b28bee614606823");
+                c.m_Feature = GetBPRef<BlueprintUnitFactReference>("e4979934bdb39d842b28bee614606823");
                 c.Not = true;
             });
             bp.Group = ActivatableAbilityGroup.Wings;
@@ -458,7 +458,7 @@ internal class Dragonblooded
 
         if (MCEContext.Homebrew.DragonbloodShifter.IsDisabled("AddWings")) { return; }
 
-        var archetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("2d5b06e413a9408cbd5bb999b5a4cc4a");
+        var archetype = GetBP<BlueprintArchetype>("2d5b06e413a9408cbd5bb999b5a4cc4a");
         var lvl4Entry = archetype.AddFeatures.FirstOrDefault(x => x.Level == 5);
         if (lvl4Entry != null)
         {

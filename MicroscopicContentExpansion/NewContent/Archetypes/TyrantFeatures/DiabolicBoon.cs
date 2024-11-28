@@ -71,11 +71,11 @@ internal class DiabolicBoon
     private static BlueprintProgression AddDiabolicBondWeapon()
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
-        var icon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a68cd0fbf5d21ef4f8b9375ec0ac53b9").Icon;
+        var icon = GetBP<BlueprintActivatableAbility>("a68cd0fbf5d21ef4f8b9375ec0ac53b9").Icon;
         var weaponBondResource = BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinWeaponBondResource");
         var weaponBondAdditionalUse = BlueprintTools.GetModBlueprint<BlueprintFeature>(MCEContext, "AntipaladinFiendishBondAdditionalUse");
         var weaponBondDurationBuff = BlueprintTools.GetModBlueprint<BlueprintBuff>(MCEContext, "AntipaladinWeaponBondDurationBuff");
-        var paladinWeaponBondSwitchAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7ff088ab58c69854b82ea95c2b0e35b4");
+        var paladinWeaponBondSwitchAbility = GetBP<BlueprintAbility>("7ff088ab58c69854b82ea95c2b0e35b4");
         var weaponBondSwitchAbility = BlueprintTools.GetModBlueprint<BlueprintAbility>(MCEContext, "AntipaladinWeaponBondSwitchAbility");
 
 
@@ -83,9 +83,9 @@ internal class DiabolicBoon
 
 
         var weaponBondAxiomaticBuff = CreateWeaponBondBuff("Axiomatic"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("0ca43051edefcad4b9b2240aa36dc8d4"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("0ca43051edefcad4b9b2240aa36dc8d4"));
         var weaponBondAxiomatic = CreateWeaponBondChoice("Axiomatic",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("8ed07b0cc56223c46953348f849f3309").Icon,
+            GetBP<BlueprintActivatableAbility>("8ed07b0cc56223c46953348f849f3309").Icon,
             weaponBondAxiomaticBuff.ToReference<BlueprintBuffReference>(), 2);
         var weaponBondFlamingBurst = BlueprintTools.GetModBlueprint<BlueprintActivatableAbility>(MCEContext, "AntipaladinWeaponBondFlamingBurstChoice");
         var weaponBondUnholy = BlueprintTools.GetModBlueprint<BlueprintActivatableAbility>(MCEContext, "AntipaladinWeaponBondUnholyChoice");

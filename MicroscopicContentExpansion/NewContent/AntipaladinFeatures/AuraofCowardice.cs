@@ -24,7 +24,7 @@ internal class AuraofCowardice
 
     public static void AddAuraOfCowardiceFeature()
     {
-        var AOCIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("d2aeac47450c76347aebbc02e4f463e0").Icon;
+        var AOCIcon = GetBP<BlueprintAbility>("d2aeac47450c76347aebbc02e4f463e0").Icon;
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
         var AuraOfCowardiceEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfCowardiceEffectBuff", bp =>

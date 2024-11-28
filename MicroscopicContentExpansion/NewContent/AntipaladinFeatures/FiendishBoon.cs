@@ -78,7 +78,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var icon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a68cd0fbf5d21ef4f8b9375ec0ac53b9").Icon;
+        var icon = GetBP<BlueprintActivatableAbility>("a68cd0fbf5d21ef4f8b9375ec0ac53b9").Icon;
 
         var weaponBondResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinWeaponBondResource", bp =>
         {
@@ -112,7 +112,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.Frequency = DurationRate.Rounds;
         });
 
-        var paladinWeaponBondSwitchAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7ff088ab58c69854b82ea95c2b0e35b4");
+        var paladinWeaponBondSwitchAbility = GetBP<BlueprintAbility>("7ff088ab58c69854b82ea95c2b0e35b4");
 
         var weaponBondSwitchAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinWeaponBondSwitchAbility", bp =>
         {
@@ -137,11 +137,11 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
                         Group = ActivatableAbilityGroup.DivineWeaponProperty,
                         EnchantPool = EnchantPoolType.DivineWeaponBond,
                         m_DefaultEnchantments = [
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d704f90f54f813043a525f304f6c0050"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("9e9bab3020ec5f64499e007880b37e52"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d072b841ba0668846adeb007f623bd6c"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("6a6a0901d799ceb49b33d4851ff72132"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("746ee366e50611146821d61e391edf16")
+                            GetBPRef<BlueprintItemEnchantmentReference>("d704f90f54f813043a525f304f6c0050"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("9e9bab3020ec5f64499e007880b37e52"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("d072b841ba0668846adeb007f623bd6c"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("6a6a0901d799ceb49b33d4851ff72132"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("746ee366e50611146821d61e391edf16")
                         ],
                         DurationValue = new ContextDurationValue()
                         {
@@ -189,27 +189,27 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.AddComponent<AbilityCasterAlignment>(c =>
             {
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
         });
 
         var weaponBondFlamingBuff = CreateWeaponBondBuff("Flaming",
-            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("30f90becaaac51f41bf56641966c4121"));
+            GetBPRef<BlueprintItemEnchantmentReference>("30f90becaaac51f41bf56641966c4121"));
         var weaponBondFlaming = CreateWeaponBondChoice("Flaming",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("7902941ef70a0dc44bcfc174d6193386").Icon,
+            GetBP<BlueprintActivatableAbility>("7902941ef70a0dc44bcfc174d6193386").Icon,
             weaponBondFlamingBuff.ToReference<BlueprintBuffReference>(), 1);
 
         var weaponBondKeenBuff = CreateWeaponBondBuff("Keen",
-            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("102a9c8c9b7a75e4fb5844e79deaf4c0"));
+            GetBPRef<BlueprintItemEnchantmentReference>("102a9c8c9b7a75e4fb5844e79deaf4c0"));
         var weaponBondKeen = CreateWeaponBondChoice("Keen",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon,
+            GetBP<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon,
             weaponBondKeenBuff.ToReference<BlueprintBuffReference>(), 1);
 
         var weaponBondViciousBuff = CreateWeaponBondBuff("Vicious",
-            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("a1455a289da208144981e4b1ef92cc56"));
+            GetBPRef<BlueprintItemEnchantmentReference>("a1455a289da208144981e4b1ef92cc56"));
 
         var weaponBondVicious = CreateWeaponBondChoice("Vicious",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon,
+            GetBP<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon,
             weaponBondViciousBuff.ToReference<BlueprintBuffReference>(), 1);
 
         var weaponBond = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinWeaponBondFeature", bp =>
@@ -234,20 +234,20 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
         });
 
         var weaponBondAnarchicBuff = CreateWeaponBondBuff("Anarchic"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("57315bc1e1f62a741be0efde688087e9"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("57315bc1e1f62a741be0efde688087e9"));
 
         var weaponBondAnarchic = CreateWeaponBondChoice("Anarchic",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("8ed07b0cc56223c46953348f849f3309").Icon,
+            GetBP<BlueprintActivatableAbility>("8ed07b0cc56223c46953348f849f3309").Icon,
             weaponBondAnarchicBuff.ToReference<BlueprintBuffReference>(), 2);
 
         var weaponBondFlamingBurst = CreateWeaponBondChoice("FlamingBurst",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("3af19bdbd6215434f8421a860cc98363").Icon,
-            BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("78552038c4a76a04ba78e18cf4fcfd5c"), 2);
+            GetBP<BlueprintActivatableAbility>("3af19bdbd6215434f8421a860cc98363").Icon,
+            GetBPRef<BlueprintBuffReference>("78552038c4a76a04ba78e18cf4fcfd5c"), 2);
 
         var weaponBondUnholyBuff = CreateWeaponBondBuff("Unholy"
-             , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d05753b8df780fc4bb55b318f06af453"));
+             , GetBPRef<BlueprintItemEnchantmentReference>("d05753b8df780fc4bb55b318f06af453"));
         var weaponBondUnholy = CreateWeaponBondChoice("Unholy",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("561803a819460f34ea1fe079edabecce").Icon,
+            GetBP<BlueprintActivatableAbility>("561803a819460f34ea1fe079edabecce").Icon,
             weaponBondUnholyBuff.ToReference<BlueprintBuffReference>(), 2);
 
         var weaponBond2 = CreateWeaponBondFeaturePlusX(2, icon,
@@ -257,16 +257,16 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             );
 
         var weaponBondSpeed = CreateWeaponBondChoice("Speed",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("ed1ef581af9d9014fa1386216b31cdae").Icon,
-            BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("f260f8100cd9f6749bf071c930eb287d"), 3);
+            GetBP<BlueprintActivatableAbility>("ed1ef581af9d9014fa1386216b31cdae").Icon,
+            GetBPRef<BlueprintBuffReference>("f260f8100cd9f6749bf071c930eb287d"), 3);
 
         var weaponBond3 = CreateWeaponBondFeaturePlusX(3, icon, weaponBondSpeed.ToReference<BlueprintUnitFactReference>());
         var weaponBond4 = CreateWeaponBondFeaturePlusX(4, icon);
 
         var weaponBondVorpalBuff = CreateWeaponBondBuff("Vorpal"
-             , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("2f60bfcba52e48a479e4a69868e24ebc"));
+             , GetBPRef<BlueprintItemEnchantmentReference>("2f60bfcba52e48a479e4a69868e24ebc"));
         var weaponBondVorpal = CreateWeaponBondChoice("Vorpal",
-            BlueprintTools.GetBlueprint<BlueprintProgression>("e08a817f475c8794aa56fdd904f43a57").Icon,
+            GetBP<BlueprintProgression>("e08a817f475c8794aa56fdd904f43a57").Icon,
             weaponBondVorpalBuff.ToReference<BlueprintBuffReference>(), 5);
 
         var weaponBond5 = CreateWeaponBondFeaturePlusX(5, icon, weaponBondVorpal.ToReference<BlueprintUnitFactReference>());
@@ -410,7 +410,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.IsClassFeature = true;
         });
 
-        BlueprintFeature AnimalCompanionRank = BlueprintTools.GetBlueprint<BlueprintFeature>("1670990255e4fe948a863bafd5dbda5d");
+        BlueprintFeature AnimalCompanionRank = GetBP<BlueprintFeature>("1670990255e4fe948a863bafd5dbda5d");
         var AntipaladinFiendishServantProgression = Helpers.CreateBlueprint<BlueprintProgression>(MCEContext, "AntipaladinFiendishServantProgression", bp =>
         {
             bp.SetName(MCEContext, "Antipaladin Fiendish Servant Progression");
@@ -450,9 +450,9 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.UIGroups = [];
         });
 
-        var PaladinDivineMountSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("e2f0e0efc9e155e43ba431984429678e");
-        var MountTargetFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("cb06f0e72ffb5c640a156bd9f8000c1d");
-        var AnimalCompanionArchetypeSelection = BlueprintTools.GetBlueprint<BlueprintFeature>("65af7290b4efd5f418132141aaa36c1b");
+        var PaladinDivineMountSelection = GetBP<BlueprintFeatureSelection>("e2f0e0efc9e155e43ba431984429678e");
+        var MountTargetFeature = GetBP<BlueprintFeature>("cb06f0e72ffb5c640a156bd9f8000c1d");
+        var AnimalCompanionArchetypeSelection = GetBP<BlueprintFeature>("65af7290b4efd5f418132141aaa36c1b");
 
         var nightmarePet = NightmareAnimalCompanion.Add();
 
@@ -469,23 +469,23 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             bp.Ranks = 1;
             bp.IsPrerequisiteFor = new List<BlueprintFeatureReference>();
             bp.AddFeatures(
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("472091361cf118049a2b4339c4ea836a"), //continue
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("f6f1cdcc404f10c4493dc1e51208fd6f"), //bear
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("afb817d80b843cc4fa7b12289e6ebe3d"), //boar
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("f9ef7717531f5914a9b6ecacfad63f46"), //centipede
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("f894e003d31461f48a02f5caec4e3359"), //dog
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("aa92fea676be33d4dafd176d699d7996"), //elk
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("9dc58b5901677c942854019d1dd98374"), //horse
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("2ee2ba60850dd064e8b98bf5c2c946ba"), //leopard
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("6adc3aab7cde56b40aa189a797254271"), //mammoth
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("ece6bde3dfc76ba4791376428e70621a"), //monitor lizard
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("126712ef923ab204983d6f107629c895"), //smilodon
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("2d3f409bb0956d44187e9ec8340163f8"), //triceratops
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("89420de28b6bb9443b62ce489ae5423b"), //velociraptor
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("67a9dc42b15d0954ca4689b13e8dedea"), //wolf
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("bfeb9be0a3c9420b8b2beecc8171029c"), //horse preorder
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("44f4d77689434e07a5a44dcb65b25f71"), //smilodon preorder
-                BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("52c854f77105445a9457572ab5826c00"),  //triceratops preorder
+                GetBPRef<BlueprintFeatureReference>("472091361cf118049a2b4339c4ea836a"), //continue
+                GetBPRef<BlueprintFeatureReference>("f6f1cdcc404f10c4493dc1e51208fd6f"), //bear
+                GetBPRef<BlueprintFeatureReference>("afb817d80b843cc4fa7b12289e6ebe3d"), //boar
+                GetBPRef<BlueprintFeatureReference>("f9ef7717531f5914a9b6ecacfad63f46"), //centipede
+                GetBPRef<BlueprintFeatureReference>("f894e003d31461f48a02f5caec4e3359"), //dog
+                GetBPRef<BlueprintFeatureReference>("aa92fea676be33d4dafd176d699d7996"), //elk
+                GetBPRef<BlueprintFeatureReference>("9dc58b5901677c942854019d1dd98374"), //horse
+                GetBPRef<BlueprintFeatureReference>("2ee2ba60850dd064e8b98bf5c2c946ba"), //leopard
+                GetBPRef<BlueprintFeatureReference>("6adc3aab7cde56b40aa189a797254271"), //mammoth
+                GetBPRef<BlueprintFeatureReference>("ece6bde3dfc76ba4791376428e70621a"), //monitor lizard
+                GetBPRef<BlueprintFeatureReference>("126712ef923ab204983d6f107629c895"), //smilodon
+                GetBPRef<BlueprintFeatureReference>("2d3f409bb0956d44187e9ec8340163f8"), //triceratops
+                GetBPRef<BlueprintFeatureReference>("89420de28b6bb9443b62ce489ae5423b"), //velociraptor
+                GetBPRef<BlueprintFeatureReference>("67a9dc42b15d0954ca4689b13e8dedea"), //wolf
+                GetBPRef<BlueprintFeatureReference>("bfeb9be0a3c9420b8b2beecc8171029c"), //horse preorder
+                GetBPRef<BlueprintFeatureReference>("44f4d77689434e07a5a44dcb65b25f71"), //smilodon preorder
+                GetBPRef<BlueprintFeatureReference>("52c854f77105445a9457572ab5826c00"),  //triceratops preorder
                 nightmarePet
             );
             bp.AddComponent<AddFeatureOnApply>(c =>
@@ -505,7 +505,7 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             {
                 c.m_Feature = AnimalCompanionArchetypeSelection.ToReference<BlueprintFeatureReference>();
             });
-            var FiendishTemplateFromTTTBase = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("970ffc97-344c-496d-b8ef-24118b5689b0");
+            var FiendishTemplateFromTTTBase = GetBPRef<BlueprintFeatureReference>("970ffc97-344c-496d-b8ef-24118b5689b0");
             if (!FiendishTemplateFromTTTBase.IsEmpty())
             {
                 bp.AddComponent<AddFeatureToPet>(c =>

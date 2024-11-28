@@ -19,7 +19,7 @@ internal class AuraofSin
 
     public static void AddAuraOfSinFeature()
     {
-        var AOSIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("8bc64d869456b004b9db255cdd1ea734").Icon;
+        var AOSIcon = GetBP<BlueprintAbility>("8bc64d869456b004b9db255cdd1ea734").Icon;
 
         var AuraOfSinEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfSinEffectBuff", bp =>
         {

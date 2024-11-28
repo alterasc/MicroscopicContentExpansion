@@ -23,16 +23,16 @@ internal class MonkStyleStrikeFlyingKick
     internal static void AddFlyingKick()
     {
 
-        var monkClassRef = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
+        var monkClassRef = GetBPRef<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
 
         var flyingKickIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "FlyingKick.png");
 
-        var fastMovementFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("73ab5b41fa465ee429ad6658368c6629");
-        var monkFlurryOfBlowstUnlock = BlueprintTools.GetBlueprint<BlueprintFeature>("fd99770e6bd240a4aab70f7af103e56a");
+        var fastMovementFeature = GetBP<BlueprintFeature>("73ab5b41fa465ee429ad6658368c6629");
+        var monkFlurryOfBlowstUnlock = GetBP<BlueprintFeature>("fd99770e6bd240a4aab70f7af103e56a");
 
-        var flurryOfBlowsRef = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("332362f3bd39ebe46a740a36960fdcb4");
+        var flurryOfBlowsRef = GetBPRef<BlueprintUnitFactReference>("332362f3bd39ebe46a740a36960fdcb4");
 
-        var mountedBuffRef = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("b2d13e8f3bb0f1d4c891d71b4d983cf7");
+        var mountedBuffRef = GetBPRef<BlueprintUnitFactReference>("b2d13e8f3bb0f1d4c891d71b4d983cf7");
 
         var flyingKickAnimationBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "FlyingKickAnimationBuff", a =>
         {
@@ -148,7 +148,7 @@ internal class MonkStyleStrikeFlyingKick
         });
         if (MCEContext.AddedContent.Feats.IsEnabled("FlyingKickStyleStrike"))
         {
-            var styleStrikeSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("7bc6a93f6e48eff49be5b0cde83c9450");
+            var styleStrikeSelection = GetBP<BlueprintFeatureSelection>("7bc6a93f6e48eff49be5b0cde83c9450");
             styleStrikeSelection.m_AllFeatures = styleStrikeSelection.m_AllFeatures.AppendToArray(flyingKickFeature.ToReference<BlueprintFeatureReference>());
         }
     }

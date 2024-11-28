@@ -106,7 +106,7 @@ internal class Cruelties
     private static void AddFatiguedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility)
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
-        var FatiguedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e6f2fc5d73d88064583cb828801212f4");
+        var FatiguedBuff = GetBP<BlueprintBuff>("e6f2fc5d73d88064583cb828801212f4");
 
         var actions = new ContextActionApplyBuff()
         {
@@ -138,7 +138,7 @@ internal class Cruelties
     private static void AddShakenCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility)
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
-        var ShakenBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("25ec6cb6ab1845c48a95f9c20b034220");
+        var ShakenBuff = GetBP<BlueprintBuff>("25ec6cb6ab1845c48a95f9c20b034220");
 
         var actions = new ContextActionApplyBuff()
         {
@@ -187,7 +187,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var SickenedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("4e42460798665fd4cb9173ffa7ada323");
+        var SickenedBuff = GetBP<BlueprintBuff>("4e42460798665fd4cb9173ffa7ada323");
 
         var actions = new ContextActionApplyBuff()
         {
@@ -236,7 +236,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var DazedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("d2e35b870e4ac574d9873b36402487e5");
+        var DazedBuff = GetBP<BlueprintBuff>("d2e35b870e4ac574d9873b36402487e5");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyDazedFeature", bp =>
         {
@@ -291,7 +291,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var DiseasedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("103aac6bc1cfd454492cee1fd680db05");
+        var DiseasedBuff = GetBP<BlueprintBuff>("103aac6bc1cfd454492cee1fd680db05");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyDiseasedFeature", bp =>
         {
@@ -351,7 +351,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var StaggeredBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("df3950af5a783bd4d91ab73eb8fa0fd3");
+        var StaggeredBuff = GetBP<BlueprintBuff>("df3950af5a783bd4d91ab73eb8fa0fd3");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyStaggeredFeature", bp =>
         {
@@ -421,7 +421,7 @@ internal class Cruelties
     private static void AddExhaustedCruelty(out BlueprintFeature CrueltyFeature, out BlueprintAbility CrueltyAbility)
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
-        var ExhaustedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("46d1b9cc3d0fd36469a471b047d773a2");
+        var ExhaustedBuff = GetBP<BlueprintBuff>("46d1b9cc3d0fd36469a471b047d773a2");
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyExhaustedFeature", bp =>
         {
             bp.SetName(MCEContext, "Cruelty - Exhausted");
@@ -486,7 +486,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var FrightenedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("f08a7239aa961f34c8301518e71d4cdf");
+        var FrightenedBuff = GetBP<BlueprintBuff>("f08a7239aa961f34c8301518e71d4cdf");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyFrightenedFeature", bp =>
         {
@@ -565,7 +565,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var NauseatedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("956331dba5125ef48afe41875a00ca0e");
+        var NauseatedBuff = GetBP<BlueprintBuff>("956331dba5125ef48afe41875a00ca0e");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyNauseatedFeature", bp =>
         {
@@ -641,7 +641,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var PoisonedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("ba1ae42c58e228c4da28328ea6b4ae34");
+        var PoisonedBuff = GetBP<BlueprintBuff>("ba1ae42c58e228c4da28328ea6b4ae34");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyPoisonedFeature", bp =>
         {
@@ -713,7 +713,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var BlindedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("187f88d96a0ef464280706b63635f2af");
+        var BlindedBuff = GetBP<BlueprintBuff>("187f88d96a0ef464280706b63635f2af");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyBlindedFeature", bp =>
         {
@@ -784,7 +784,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var StunnedBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("09d39b38bb7c6014394b6daced9bacd3");
+        var StunnedBuff = GetBP<BlueprintBuff>("09d39b38bb7c6014394b6daced9bacd3");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyStunnedFeature", bp =>
         {
@@ -856,7 +856,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var Paralyzed = BlueprintTools.GetBlueprint<BlueprintBuff>("af1e2d232ebbb334aaf25e2a46a92591");
+        var Paralyzed = GetBP<BlueprintBuff>("af1e2d232ebbb334aaf25e2a46a92591");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyParalyzedFeature", bp =>
         {
@@ -911,7 +911,7 @@ internal class Cruelties
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var Cursed = BlueprintTools.GetBlueprint<BlueprintBuff>("caae9592917719a41b601b678a8e6ddf");
+        var Cursed = GetBP<BlueprintBuff>("caae9592917719a41b601b678a8e6ddf");
 
         CrueltyFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinCrueltyCursedFeature", bp =>
         {

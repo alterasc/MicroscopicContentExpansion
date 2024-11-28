@@ -37,7 +37,7 @@ internal class DimenshionalDervish
         var flickeringStep = AddFlickeringStep();
         var dimensionalAgility = AddDimensionalAgility(flickeringStep);
         var dimensionalAssault = AddDimensionalAssault(dimensionalAgility, flickeringStep);
-        var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("4c349361d720e844e846ad8c19959b1e").m_Icon;
+        var icon = GetBP<BlueprintAbility>("4c349361d720e844e846ad8c19959b1e").m_Icon;
 
         const string dervishName = "Dimensional Dervish";
         const string dervishDescription = "You can take a full-attack action, activating abundant step or casting dimension door as a swift action. If you do, you can teleport up to twice your speed (up to the maximum distance allowed by the spell or ability), dividing this teleportation into increments you use before your first attack, between each attack, and after your last attack. You must teleport at least 5 feet each time you teleport.";
@@ -102,13 +102,13 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityShowIfCasterHasFact>(c =>
             {
-                c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(KiAbundantStep);
+                c.m_UnitFact = GetBPRef<BlueprintUnitFactReference>(KiAbundantStep);
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(KiPowerResource);
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(KiPowerResource);
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
@@ -139,13 +139,13 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityShowIfCasterHasFact>(c =>
             {
-                c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(SFAbundantStep);
+                c.m_UnitFact = GetBPRef<BlueprintUnitFactReference>(SFAbundantStep);
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(SFPowerResource);
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(SFPowerResource);
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
@@ -176,13 +176,13 @@ internal class DimenshionalDervish
             });
             bp.AddComponent<AbilityShowIfCasterHasFact>(c =>
             {
-                c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(DrunkenKiAbundantStep);
+                c.m_UnitFact = GetBPRef<BlueprintUnitFactReference>(DrunkenKiAbundantStep);
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
@@ -259,15 +259,15 @@ internal class DimenshionalDervish
             });
         });
 
-        var dimensionDoor = BlueprintTools.GetBlueprint<BlueprintAbility>(DimensionDoorGUID);
+        var dimensionDoor = GetBP<BlueprintAbility>(DimensionDoorGUID);
         var av = dimensionDoor.GetComponent<AbilityVariants>();
         av.m_Variants = av.m_Variants.AppendToArray(dimensionalDervishAbility.ToReference<BlueprintAbilityReference>());
 
         //add blocks
-        var MidnightFane_DimensionLock_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("4b0cd08a3cea2844dba9889c1d34d667");
-        var DLC1_DimensionLock_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("6e339c2bc7ea488c9b655b029984405d");
-        var IvoryLabyrinth_DimensionLock_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("c5a1c11666ede1f41ad003d70c628b98");
-        var Darkness_DimensionLock_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("8e59c88d7fe846299a641f62675827c5");
+        var MidnightFane_DimensionLock_Buff = GetBP<BlueprintBuff>("4b0cd08a3cea2844dba9889c1d34d667");
+        var DLC1_DimensionLock_Buff = GetBP<BlueprintBuff>("6e339c2bc7ea488c9b655b029984405d");
+        var IvoryLabyrinth_DimensionLock_Buff = GetBP<BlueprintBuff>("c5a1c11666ede1f41ad003d70c628b98");
+        var Darkness_DimensionLock_Buff = GetBP<BlueprintBuff>("8e59c88d7fe846299a641f62675827c5");
         var arr = new BlueprintBuff[] { MidnightFane_DimensionLock_Buff, DLC1_DimensionLock_Buff, IvoryLabyrinth_DimensionLock_Buff, Darkness_DimensionLock_Buff };
         var spellsArr = new BlueprintAbilityReference[] {
             flickeringStep.ToReference<BlueprintAbilityReference>(),
@@ -298,10 +298,10 @@ internal class DimenshionalDervish
         const string agilityName = "Dimensional Agility";
         const string agilityDescription = "After using abundant step or casting dimension door, you can take any actions you still have remaining on your turn.";
 
-        var dimensionDoor = BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>(DimensionDoorGUID);
-        var kiAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>(KiAbundantStep);
-        var sfAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>(SFAbundantStep);
-        var drunkenKiAbundantStep = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>(DrunkenKiAbundantStep);
+        var dimensionDoor = GetBPRef<BlueprintAbilityReference>(DimensionDoorGUID);
+        var kiAbundantStep = GetBPRef<BlueprintFeatureReference>(KiAbundantStep);
+        var sfAbundantStep = GetBPRef<BlueprintFeatureReference>(SFAbundantStep);
+        var drunkenKiAbundantStep = GetBPRef<BlueprintFeatureReference>(DrunkenKiAbundantStep);
         var dimensionalAgilityFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DimensionalAgilityFeature", bp =>
         {
             bp.SetName(MCEContext, agilityName);
@@ -341,7 +341,7 @@ internal class DimenshionalDervish
         const string fsAssaultName = "Flickering Step (" + assaultName + ")";
         const string assaultDescription = "As a full-round action, you use abundant step or cast dimension door as a special charge. Doing so allows you to teleport up to double your current speed (up to the maximum distance allowed by the spell or ability) and to make the attack normally allowed on a charge.";
 
-        var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("4c349361d720e844e846ad8c19959b1e").m_Icon;
+        var icon = GetBP<BlueprintAbility>("4c349361d720e844e846ad8c19959b1e").m_Icon;
 
         var dimensionalAssaultAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalAssaultAbility", bp =>
         {
@@ -395,13 +395,13 @@ internal class DimenshionalDervish
             bp.AddComponent<AbilityCustomDimensionalAssault>();
             bp.AddComponent<AbilityShowIfCasterHasFact>(c =>
             {
-                c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(KiAbundantStep);
+                c.m_UnitFact = GetBPRef<BlueprintUnitFactReference>(KiAbundantStep);
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(KiPowerResource);
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(KiPowerResource);
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
@@ -429,13 +429,13 @@ internal class DimenshionalDervish
             bp.AddComponent<AbilityCustomDimensionalAssault>();
             bp.AddComponent<AbilityShowIfCasterHasFact>(c =>
             {
-                c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(SFAbundantStep);
+                c.m_UnitFact = GetBPRef<BlueprintUnitFactReference>(SFAbundantStep);
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(SFPowerResource);
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(SFPowerResource);
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
@@ -463,13 +463,13 @@ internal class DimenshionalDervish
             bp.AddComponent<AbilityCustomDimensionalAssault>();
             bp.AddComponent<AbilityShowIfCasterHasFact>(c =>
             {
-                c.m_UnitFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>(DrunkenKiAbundantStep);
+                c.m_UnitFact = GetBPRef<BlueprintUnitFactReference>(DrunkenKiAbundantStep);
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
@@ -537,7 +537,7 @@ internal class DimenshionalDervish
             });
         });
 
-        var dimensionDoor = BlueprintTools.GetBlueprint<BlueprintAbility>(DimensionDoorGUID);
+        var dimensionDoor = GetBP<BlueprintAbility>(DimensionDoorGUID);
         var av = dimensionDoor.GetComponent<AbilityVariants>();
         av.m_Variants = av.m_Variants.AppendToArray(dimensionalAssaultAbility.ToReference<BlueprintAbilityReference>());
 
@@ -551,12 +551,12 @@ internal class DimenshionalDervish
 
     private static BlueprintFeature AddFlickeringStep()
     {
-        var icon = BlueprintTools.GetBlueprint<BlueprintAbility>(DimensionDoorGUID).m_Icon;
+        var icon = GetBP<BlueprintAbility>(DimensionDoorGUID).m_Icon;
 
         const string name = "Flickering Step";
         const string description = "You can use dimension door as a spell-like ability.\nYou can use this feat’s benefit once per day, plus an additional time per day for every 5 character levels.";
 
-        var kiAbundantStepAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("336a841704b7e2341b51f89fc9491f54");
+        var kiAbundantStepAbility = GetBP<BlueprintAbility>("336a841704b7e2341b51f89fc9491f54");
 
         var resource = Helpers.CreateBlueprint<BlueprintAbilityResource>(MCEContext, "FlickeringStepResource", bp =>
         {

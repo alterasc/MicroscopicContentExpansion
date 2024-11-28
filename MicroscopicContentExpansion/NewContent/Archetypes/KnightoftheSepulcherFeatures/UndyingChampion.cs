@@ -10,7 +10,7 @@ internal class UndyingChampion
 
     public static BlueprintFeatureReference AddUndyingChampion()
     {
-        var undeadType = BlueprintTools.GetBlueprint<BlueprintFeature>("734a29b693e9ec346ba2951b27987e33");
+        var undeadType = GetBP<BlueprintFeature>("734a29b693e9ec346ba2951b27987e33");
 
         return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "KnightoftheSepulcherUndyingChampion", bp =>
         {

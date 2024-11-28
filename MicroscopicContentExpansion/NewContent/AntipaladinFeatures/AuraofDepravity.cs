@@ -20,7 +20,7 @@ internal class AuraofDepravity
 
     public static void AddAuraOfDepravityFeature()
     {
-        var AOCIcon = BlueprintTools.GetBlueprint<BlueprintFeature>("d673c30720e8e7c4bb0903dc3c9ab649").Icon;
+        var AOCIcon = GetBP<BlueprintFeature>("d673c30720e8e7c4bb0903dc3c9ab649").Icon;
 
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 

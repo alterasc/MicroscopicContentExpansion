@@ -12,9 +12,9 @@ internal class MonkDiamondResilience
 {
     internal static void AddDiamondResilience()
     {
-        var monkClassRef = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
+        var monkClassRef = GetBPRef<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
 
-        var damageReductionIcon = BlueprintTools.GetBlueprint<BlueprintFeature>("cffb5cddefab30140ac133699d52a8f8").m_Icon;
+        var damageReductionIcon = GetBP<BlueprintFeature>("cffb5cddefab30140ac133699d52a8f8").m_Icon;
 
         var diamondResilience = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "MonkDiamondResilience", a =>
         {
@@ -23,7 +23,7 @@ internal class MonkDiamondResilience
             a.m_Icon = damageReductionIcon;
             a.AddComponent<SpecificBuffImmunity>(c =>
             {
-                c.m_Buff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("a1aecb0c003a49b9ae385035875f1b92"); // DLC3_HasteIslandStacks
+                c.m_Buff = GetBPRef<BlueprintBuffReference>("a1aecb0c003a49b9ae385035875f1b92"); // DLC3_HasteIslandStacks
             });
             a.AddPrerequisite<PrerequisiteClassLevel>(c =>
             {
@@ -72,8 +72,8 @@ internal class MonkDiamondResilience
         if (MCEContext.AddedContent.Feats.IsEnabled("MonkDiamondResilience"))
         {
             var diamondResilienceRef = diamondResilience.ToReference<BlueprintFeatureReference>();
-            var monkKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
-            var scaledFistKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
+            var monkKiPowerSelection = GetBP<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
+            var scaledFistKiPowerSelection = GetBP<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
 
             monkKiPowerSelection.m_AllFeatures = monkKiPowerSelection.m_AllFeatures.AppendToArray(diamondResilienceRef);
             scaledFistKiPowerSelection.m_AllFeatures = scaledFistKiPowerSelection.m_AllFeatures.AppendToArray(diamondResilienceRef);

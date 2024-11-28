@@ -25,7 +25,7 @@ internal class DeadlyJuggernaut
 {
     public static BlueprintAbilityReference AddDeadlyJuggernaut()
     {
-        var icon = BlueprintTools.GetBlueprint<BlueprintFeature>("8ec618121de114845981933a3d5c4b02").Icon;
+        var icon = GetBP<BlueprintFeature>("8ec618121de114845981933a3d5c4b02").Icon;
 
         const string deadlyJuggDesc = "With every enemy life you take, you become increasingly dangerous and difficult to stop." +
                 " During the duration of the spell, you gain a cumulative +1 luck bonus on melee attack rolls, melee weapon damage " +
@@ -214,7 +214,7 @@ internal class DeadlyJuggernaut
 
     private static void AddKiDeadlyJuggernaut(UnityEngine.Sprite icon, BlueprintBuff buff)
     {
-        var monkClassRef = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
+        var monkClassRef = GetBPRef<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
 
         const string kiDeadlyJuggernautDescription = "A monk with this ki power can spend 2 points from his ki pool as a standard action to grant himself Deadly Juggernaut buff: \nWith every enemy life you take, you become increasingly dangerous and difficult to stop." +
                             " During the duration of the spell, you gain a cumulative +1 luck bonus on melee attack rolls, melee weapon damage " +
@@ -255,7 +255,7 @@ internal class DeadlyJuggernaut
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("9d9c90a9a1f52d04799294bf91c80a82");
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>("9d9c90a9a1f52d04799294bf91c80a82");
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
             });
@@ -318,7 +318,7 @@ internal class DeadlyJuggernaut
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("7d002c1025fbfe2458f1509bf7a89ce1");
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>("7d002c1025fbfe2458f1509bf7a89ce1");
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
             });
@@ -381,7 +381,7 @@ internal class DeadlyJuggernaut
             });
             bp.AddComponent<AbilityResourceLogic>(c =>
             {
-                c.m_RequiredResource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("fd01f3f969a04febab7877a17aebb812");
+                c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>("fd01f3f969a04febab7877a17aebb812");
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
             });
@@ -411,9 +411,9 @@ internal class DeadlyJuggernaut
             });
         });
 
-        var monkKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
-        var sfKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
-        var drunkenKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("97da13a43026460f8d4d54e1c69af202");
+        var monkKiPowerSelection = GetBP<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
+        var sfKiPowerSelection = GetBP<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
+        var drunkenKiPowerSelection = GetBP<BlueprintFeatureSelection>("97da13a43026460f8d4d54e1c69af202");
 
         if (MCEContext.AddedContent.Spells.IsEnabled("DeadlyJuggernaut"))
         {

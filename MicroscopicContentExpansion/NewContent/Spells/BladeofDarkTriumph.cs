@@ -17,9 +17,9 @@ internal class BladeofDarkTriumph
 {
     public static BlueprintAbilityReference AddBladeofDarkTriumph()
     {
-        var icon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("688d42200cbb2334c8e27191c123d18f").Icon;
+        var icon = GetBP<BlueprintActivatableAbility>("688d42200cbb2334c8e27191c123d18f").Icon;
 
-        var ghostTouchEnchant = BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("47857e1a5a3ec1a46adf6491b1423b4f");
+        var ghostTouchEnchant = GetBPRef<BlueprintItemEnchantmentReference>("47857e1a5a3ec1a46adf6491b1423b4f");
 
         var buff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "BladeofDarkTriumphBuff", bp =>
         {
@@ -95,9 +95,9 @@ internal class BladeofDarkTriumph
 
     public static void AddBladeofBrightVictory()
     {
-        var icon = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("688d42200cbb2334c8e27191c123d18f").Icon;
+        var icon = GetBP<BlueprintActivatableAbility>("688d42200cbb2334c8e27191c123d18f").Icon;
 
-        var ghostTouchEnchant = BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("47857e1a5a3ec1a46adf6491b1423b4f");
+        var ghostTouchEnchant = GetBPRef<BlueprintItemEnchantmentReference>("47857e1a5a3ec1a46adf6491b1423b4f");
 
         var buff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "BladeofBrightVictoryBuff", bp =>
         {
@@ -151,7 +151,7 @@ internal class BladeofDarkTriumph
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
                 c.m_Facts = [
-                   BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e08a817f475c8794aa56fdd904f43a57")
+                   GetBPRef<BlueprintUnitFactReference>("e08a817f475c8794aa56fdd904f43a57")
                 ];
                 c.NeedsAll = true;
             });

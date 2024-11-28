@@ -15,7 +15,7 @@ public class WidenAuras
 
     public static BlueprintAbilityReference AddWidenAuras()
     {
-        var icon = BlueprintTools.GetBlueprint<BlueprintFeature>("b73bc1b252994e6582a644dd6a7f31dc").Icon;
+        var icon = GetBP<BlueprintFeature>("b73bc1b252994e6582a644dd6a7f31dc").Icon;
 
         const string widenAurasName = "Widen Auras";
         const string widenAurasDesc = "The range of your antipaladin auras doubles.";

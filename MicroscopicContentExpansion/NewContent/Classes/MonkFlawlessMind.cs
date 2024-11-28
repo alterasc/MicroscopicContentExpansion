@@ -24,7 +24,7 @@ internal class MonkFlawlessMind
         });
         if (MCEContext.AddedContent.Feats.IsEnabled("MonkFlawlessMind"))
         {
-            var monkProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("8a91753b978e3b34b9425419179aafd6");
+            var monkProgression = GetBP<BlueprintProgression>("8a91753b978e3b34b9425419179aafd6");
             var lvlEntries = monkProgression.LevelEntries;
             var lvl19Entry = lvlEntries.FirstOrDefault(x => x.Level == 19);
             if (lvl19Entry != null)

@@ -31,9 +31,9 @@ internal class SmiteGood
     public static void AddSmiteGood()
     {
 
-        var FiendishSmiteGoodBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("a9035e49d6d79a64eaec321f2cb629a8");
+        var FiendishSmiteGoodBuff = GetBP<BlueprintBuff>("a9035e49d6d79a64eaec321f2cb629a8");
 
-        var SmiteGoodIcon = BlueprintTools.GetBlueprint<BlueprintBuff>("114af78efc58e5a4c86bb12ee1d907cc").Icon;
+        var SmiteGoodIcon = GetBP<BlueprintBuff>("114af78efc58e5a4c86bb12ee1d907cc").Icon;
 
         var SmiteGoodBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinSmiteGoodBuff", bp =>
         {
@@ -114,7 +114,7 @@ internal class SmiteGood
 
         var TipoftheSpear = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("AntipaladinTipoftheSpear");
 
-        var FiendishSmiteGoodAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("478cf0e6c5f3a4142835faeae3bd3e04");
+        var FiendishSmiteGoodAbility = GetBP<BlueprintAbility>("478cf0e6c5f3a4142835faeae3bd3e04");
         var SmiteGoodAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinSmiteGoodAbility", bp =>
         {
             bp.SetName(MCEContext, "Smite Good");
@@ -240,7 +240,7 @@ internal class SmiteGood
             bp.AddComponent<AbilityCasterAlignment>(c =>
             {
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
         });
 

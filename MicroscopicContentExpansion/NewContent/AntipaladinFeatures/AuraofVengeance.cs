@@ -39,10 +39,10 @@ internal class AuraofVengeance
 
         var TipoftheSpear = MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("AntipaladinTipoftheSpear");
 
-        var FingerOfDeathIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("6f1dcf6cfa92d1948a740195707c0dbe").Icon;
+        var FingerOfDeathIcon = GetBP<BlueprintAbility>("6f1dcf6cfa92d1948a740195707c0dbe").Icon;
 
         var SmiteGoodResource = BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinSmiteGoodResource");
-        var FiendishSmiteGoodBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("a9035e49d6d79a64eaec321f2cb629a8");
+        var FiendishSmiteGoodBuff = GetBP<BlueprintBuff>("a9035e49d6d79a64eaec321f2cb629a8");
 
         var AuraOfVengeanceBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraofVengeanceBuff", bp =>
         {
@@ -91,7 +91,7 @@ internal class AuraofVengeance
             bp.AddComponent<UniqueBuff>();
         });
 
-        var FiendishSmiteGoodAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("478cf0e6c5f3a4142835faeae3bd3e04");
+        var FiendishSmiteGoodAbility = GetBP<BlueprintAbility>("478cf0e6c5f3a4142835faeae3bd3e04");
 
         var AuraofVengeanceAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinAuraofVengeanceAbility", bp =>
         {
@@ -212,7 +212,7 @@ internal class AuraofVengeance
             bp.AddComponent<AbilityCasterAlignment>(c =>
             {
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
         });
 

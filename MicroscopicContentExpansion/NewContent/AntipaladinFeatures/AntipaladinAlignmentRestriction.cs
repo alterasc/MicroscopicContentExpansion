@@ -23,7 +23,7 @@ internal class AntipaladinAlignmentRestriction
                     SpellbookRef
                 ];
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
             bp.IsClassFeature = true;
         });

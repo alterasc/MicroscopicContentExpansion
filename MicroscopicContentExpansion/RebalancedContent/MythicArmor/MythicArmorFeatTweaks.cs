@@ -18,7 +18,7 @@ internal static class MythicArmorFeatTweaks
         {
             return;
         }
-        var heavyOffenseBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("5ec6fdb6fa4741798e3264c09e91c949");
+        var heavyOffenseBuff = GetBP<BlueprintBuff>("5ec6fdb6fa4741798e3264c09e91c949");
         var comp = heavyOffenseBuff.GetComponents<AdditionalDiceOnAttack>().ToList();
         if (comp.Count > 0)
         {
@@ -31,7 +31,7 @@ internal static class MythicArmorFeatTweaks
             heavyOffenseBuff.RemoveComponents<AdditionalDiceOnAttack>();
         }
 
-        var mediumOffenseBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("8ddbd82754ac44c1990c212a3ed1f1c8");
+        var mediumOffenseBuff = GetBP<BlueprintBuff>("8ddbd82754ac44c1990c212a3ed1f1c8");
         var compM = mediumOffenseBuff.GetComponents<AdditionalDiceOnAttack>().ToList();
         if (compM.Count > 0)
         {

@@ -56,7 +56,7 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
                     MCEContext.GetModBlueprintReference<BlueprintAbilityReference>("AntipaladinTouchOfCorruptionStunned")
                 };
 
-        var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
+        var icon = GetBP<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
 
         var beaconOfEvilAreaEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "DreadVanguardBeaconOfEvilAreaEffectBuff", bp =>
         {
@@ -188,8 +188,8 @@ At 20th level, the beacon of evil’s radius increases to 50 feet, and the moral
             bp.FxOnStart = new PrefabLink();
         });
 
-        var inspireGreatnessFx = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("23ddd38738bd1d84595f3cdbb8512873").Fx;
-        var inspireCourageFx = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("5d4308fa344af0243b2dd3b1e500b2cc").Fx;
+        var inspireGreatnessFx = GetBP<BlueprintAbilityAreaEffect>("23ddd38738bd1d84595f3cdbb8512873").Fx;
+        var inspireCourageFx = GetBP<BlueprintAbilityAreaEffect>("5d4308fa344af0243b2dd3b1e500b2cc").Fx;
 
         var beaconOfEvilAreaEffect = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(MCEContext, "DreadVanguardBeaconOfEvilAreaEffect", bp =>
         {

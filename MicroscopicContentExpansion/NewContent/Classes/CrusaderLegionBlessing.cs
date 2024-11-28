@@ -15,10 +15,10 @@ internal class CrusaderLegionBlessing
 {
     internal static void Add()
     {
-        var clericClass = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("67819271767a9dd4fbfd4ae700befea0");
-        var crusaderArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("6bfb7e74b530f3749b590286dd2b9b30");
+        var clericClass = GetBPRef<BlueprintCharacterClassReference>("67819271767a9dd4fbfd4ae700befea0");
+        var crusaderArchetype = GetBP<BlueprintArchetype>("6bfb7e74b530f3749b590286dd2b9b30");
 
-        var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("2427f2e3ca22ae54ea7337bbab555b16").m_Icon;
+        var icon = GetBP<BlueprintAbility>("2427f2e3ca22ae54ea7337bbab555b16").m_Icon;
 
 
         List<BlueprintBuffReference> buffs = new();

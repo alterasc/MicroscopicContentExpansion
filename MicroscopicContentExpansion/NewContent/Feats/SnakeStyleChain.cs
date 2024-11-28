@@ -75,11 +75,11 @@ class SnakeStyleChain
                 c.Stat = StatType.SkillPerception;
                 c.Value = 3;
             });
-            var improvedUnarmedStrike = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("7812ad3672a4b9a4fb894ea402095167");
+            var improvedUnarmedStrike = GetBPRef<BlueprintFeatureReference>("7812ad3672a4b9a4fb894ea402095167");
             bp.AddPrerequisiteFeature(improvedUnarmedStrike);
             bp.AddComponent<AddOutgoingPhysicalDamageProperty>(c =>
             {
-                c.m_WeaponType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("fcca8e6b85d19b14786ba1ab553e23ad");
+                c.m_WeaponType = GetBPRef<BlueprintWeaponTypeReference>("fcca8e6b85d19b14786ba1ab553e23ad");
                 c.CheckWeaponType = true;
                 c.AddForm = true;
                 c.Form = Kingmaker.Enums.Damage.PhysicalDamageForm.Piercing;
@@ -159,7 +159,7 @@ class SnakeStyleChain
                 c.FeatureTags = FeatureTag.Attack | FeatureTag.Melee;
             });
             bp.AddPrerequisiteFeature(snakeSidewindFeature);
-            var combatReflexes = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0f8939ae6f220984e8fb568abbdfba95");
+            var combatReflexes = GetBPRef<BlueprintFeatureReference>("0f8939ae6f220984e8fb568abbdfba95");
             bp.AddPrerequisiteFeature(combatReflexes);
             bp.AddPrerequisite<PrerequisiteStatValue>(c =>
             {

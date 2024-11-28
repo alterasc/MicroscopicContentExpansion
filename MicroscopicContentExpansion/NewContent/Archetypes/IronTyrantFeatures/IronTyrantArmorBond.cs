@@ -33,7 +33,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var icon = BlueprintTools.GetBlueprint<BlueprintFeature>("35e2d9525c240ce4c8ae47dd387b6e53").Icon;
+        var icon = GetBP<BlueprintFeature>("35e2d9525c240ce4c8ae47dd387b6e53").Icon;
 
         var fiendishBondResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(MCEContext, "IronTyrantArmorBondResource", bp =>
         {
@@ -67,7 +67,7 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
             bp.Frequency = DurationRate.Rounds;
         });
 
-        var paladinArmorBondSwitchAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7ff088ab58c69854b82ea95c2b0e35b4");
+        var paladinArmorBondSwitchAbility = GetBP<BlueprintAbility>("7ff088ab58c69854b82ea95c2b0e35b4");
 
         var weaponBondSwitchAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "IronTyrantArmorBondSwitchAbility", bp =>
         {
@@ -92,11 +92,11 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
                         Group = ActivatableAbilityGroup.DivineWeaponProperty,
                         EnchantPool = EnchantPoolType.SacredArmorPool,
                         m_DefaultEnchantments = [
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("1d9b60d57afb45c4f9bb0a3c21bb3b98"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("d45bfd838c541bb40bde7b0bf0e1b684"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("51c51d841e9f16046a169729c13c4d4f"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("a23bcee56c9fcf64d863dafedb369387"),
-                            BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("15d7d6cbbf56bd744b37bbf9225ea83b")
+                            GetBPRef<BlueprintItemEnchantmentReference>("1d9b60d57afb45c4f9bb0a3c21bb3b98"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("d45bfd838c541bb40bde7b0bf0e1b684"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("51c51d841e9f16046a169729c13c4d4f"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("a23bcee56c9fcf64d863dafedb369387"),
+                            GetBPRef<BlueprintItemEnchantmentReference>("15d7d6cbbf56bd744b37bbf9225ea83b")
                         ],
                         DurationValue = new ContextDurationValue()
                         {
@@ -143,15 +143,15 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
             bp.AddComponent<AbilityCasterAlignment>(c =>
             {
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
         });
 
         var lightFortificationBuff = CreateArmorBondBuff("LightFortification"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("1e69e9029c627914eb06608dad707b36"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("1e69e9029c627914eb06608dad707b36"));
 
         var armorBondFortification25 = CreateArmorBondChoice("LightFortification",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("54915668d929ad14c8b68e867211789d").Icon,
+            GetBP<BlueprintActivatableAbility>("54915668d929ad14c8b68e867211789d").Icon,
             lightFortificationBuff.ToReference<BlueprintBuffReference>(), 1);
 
 
@@ -175,25 +175,25 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
         });
 
         var spellResistance13Buff = CreateArmorBondBuff("SpellResistance13"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("4bc20fd0e137e1645a18f030b961ef3d"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("4bc20fd0e137e1645a18f030b961ef3d"));
 
         var armorBondspellResistance13 = CreateArmorBondChoice("SpellResistance13",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("dcec122f4835ae344869db303328b580").Icon,
+            GetBP<BlueprintActivatableAbility>("dcec122f4835ae344869db303328b580").Icon,
             spellResistance13Buff.ToReference<BlueprintBuffReference>(), 2);
 
 
         var armorBond2 = CreateArmorBondFeaturePlusX(2, icon, armorBondspellResistance13.ToReference<BlueprintUnitFactReference>());
 
         var spellResistance15Buff = CreateArmorBondBuff("SpellResistance15"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("ad0f81f6377180d4292a2316efb950f2"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("ad0f81f6377180d4292a2316efb950f2"));
         var armorBondspellResistance15 = CreateArmorBondChoice("SpellResistance15",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("4ecd141667ce43f43825c16b852d1b44").Icon,
+            GetBP<BlueprintActivatableAbility>("4ecd141667ce43f43825c16b852d1b44").Icon,
             spellResistance15Buff.ToReference<BlueprintBuffReference>(), 3);
 
         var mediumFortificationBuff = CreateArmorBondBuff("MediumFortification"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("62ec0b22425fb424c82fd52d7f4c02a5"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("62ec0b22425fb424c82fd52d7f4c02a5"));
         var mediumFortification = CreateArmorBondChoice("MediumFortification",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("409487ddf11386240b23f0a17ec4de3f").Icon,
+            GetBP<BlueprintActivatableAbility>("409487ddf11386240b23f0a17ec4de3f").Icon,
             mediumFortificationBuff.ToReference<BlueprintBuffReference>(), 3);
 
         var armorBond3 = CreateArmorBondFeaturePlusX(3, icon,
@@ -202,23 +202,23 @@ If the armor is not magical, at least a +1 enhancement bonus must be added befor
             );
 
         var spellResistance17Buff = CreateArmorBondBuff("SpellResistance17"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("49fe9e1969afd874181ed7613120c250"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("49fe9e1969afd874181ed7613120c250"));
         var armorBondspellResistance17 = CreateArmorBondChoice("SpellResistance17",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("46393997456d0b747998886b5c30b9cb").Icon,
+            GetBP<BlueprintActivatableAbility>("46393997456d0b747998886b5c30b9cb").Icon,
             spellResistance17Buff.ToReference<BlueprintBuffReference>(), 4);
 
         var armorBond4 = CreateArmorBondFeaturePlusX(4, icon, armorBondspellResistance17.ToReference<BlueprintUnitFactReference>());
 
         var spellResistance19Buff = CreateArmorBondBuff("SpellResistance19"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("583938eaafc820f49ad94eca1e5a98ca"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("583938eaafc820f49ad94eca1e5a98ca"));
         var armorBondspellResistance19 = CreateArmorBondChoice("SpellResistance19",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("ccf91cd189f900146a62cc0a1a62fbd6").Icon,
+            GetBP<BlueprintActivatableAbility>("ccf91cd189f900146a62cc0a1a62fbd6").Icon,
             spellResistance19Buff.ToReference<BlueprintBuffReference>(), 5);
 
         var heavyFortificationBuff = CreateArmorBondBuff("HeavyFortification"
-            , BlueprintTools.GetBlueprintReference<BlueprintItemEnchantmentReference>("9b1538c732e06544bbd955fee570a2be"));
+            , GetBPRef<BlueprintItemEnchantmentReference>("9b1538c732e06544bbd955fee570a2be"));
         var heavyFortification = CreateArmorBondChoice("HeavyFortification",
-            BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("f42a30cdd14b57241abd1022d5ab1721").Icon,
+            GetBP<BlueprintActivatableAbility>("f42a30cdd14b57241abd1022d5ab1721").Icon,
             mediumFortificationBuff.ToReference<BlueprintBuffReference>(), 5);
 
 

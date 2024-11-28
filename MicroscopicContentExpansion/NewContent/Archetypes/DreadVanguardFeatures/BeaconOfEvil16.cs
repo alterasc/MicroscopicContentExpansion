@@ -17,7 +17,7 @@ internal class BeaconOfEvil16
     {
         var AntipaladinClass = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
+        var icon = GetBP<BlueprintAbility>("a02cf51787df937489ef5d4cf5970335").Icon;
 
         return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DreadVanguardBeaconOfEvilFeature16", bp =>
         {

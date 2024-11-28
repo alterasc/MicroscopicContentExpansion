@@ -21,7 +21,7 @@ internal class KiLeech
 {
     internal static void AddKiLeech()
     {
-        var icon = BlueprintTools.GetBlueprint<BlueprintAbility>("1cde0691195feae45bab5b83ea3f221e").Icon;
+        var icon = GetBP<BlueprintAbility>("1cde0691195feae45bab5b83ea3f221e").Icon;
 
         const string KiLeechName = "Ki Leech";
         const string KiLeechDescription = "You place your spirit in a receptive state so when you confirm a critical hit against a living enemy or reduce a living enemy to 0 or fewer hit points, you can steal some of that creature’s ki. This replenishes 1 point of ki as long as you have at least 1 ki point in your ki pool. This does not allow you to exceed your ki pool’s maximum. This ability does not stack with similar abilities (such as the steal ki ability of the hungry ghost monk). This spell has no effect if you do not have a ki pool.";
@@ -37,12 +37,12 @@ internal class KiLeech
                 ac.ConditionsChecker = ActionFlow.IfAll( //not undead, not construct
                     new ContextConditionHasFact()
                     {
-                        m_Fact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("734a29b693e9ec346ba2951b27987e33"),
+                        m_Fact = GetBPRef<BlueprintUnitFactReference>("734a29b693e9ec346ba2951b27987e33"),
                         Not = true,
                     },
                     new ContextConditionHasFact()
                     {
-                        m_Fact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("fd389783027d63343b4a5634bd81645f"),
+                        m_Fact = GetBPRef<BlueprintUnitFactReference>("fd389783027d63343b4a5634bd81645f"),
                         Not = true
                     }
                 );
@@ -50,7 +50,7 @@ internal class KiLeech
                 {
                     bc.Actions = ActionFlow.DoSingle<ContextRestoreResource>(cc =>
                     {
-                        cc.m_Resource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("9d9c90a9a1f52d04799294bf91c80a82");
+                        cc.m_Resource = GetBPRef<BlueprintAbilityResourceReference>("9d9c90a9a1f52d04799294bf91c80a82");
                         cc.Value = 1;
                     });
                 });
@@ -87,12 +87,12 @@ internal class KiLeech
                 ac.ConditionsChecker = ActionFlow.IfAll( //not undead, not construct
                     new ContextConditionHasFact()
                     {
-                        m_Fact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("734a29b693e9ec346ba2951b27987e33"),
+                        m_Fact = GetBPRef<BlueprintUnitFactReference>("734a29b693e9ec346ba2951b27987e33"),
                         Not = true,
                     },
                     new ContextConditionHasFact()
                     {
-                        m_Fact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("fd389783027d63343b4a5634bd81645f"),
+                        m_Fact = GetBPRef<BlueprintUnitFactReference>("fd389783027d63343b4a5634bd81645f"),
                         Not = true
                     }
                 );
@@ -100,7 +100,7 @@ internal class KiLeech
                 {
                     bc.Actions = ActionFlow.DoSingle<ContextRestoreResource>(cc =>
                     {
-                        cc.m_Resource = BlueprintTools.GetBlueprintReference<BlueprintAbilityResourceReference>("7d002c1025fbfe2458f1509bf7a89ce1");
+                        cc.m_Resource = GetBPRef<BlueprintAbilityResourceReference>("7d002c1025fbfe2458f1509bf7a89ce1");
                         cc.Value = 1;
                     });
                 });
@@ -126,7 +126,7 @@ internal class KiLeech
             bp.FxOnRemove = new Kingmaker.ResourceLinks.PrefabLink();
         });
 
-        var monkClassRef = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
+        var monkClassRef = GetBPRef<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
 
 
         var ability = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "KiLeechAbility", bp =>
@@ -243,8 +243,8 @@ internal class KiLeech
             });
         });
 
-        var monkKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
-        var sfKiPowerSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
+        var monkKiPowerSelection = GetBP<BlueprintFeatureSelection>("3049386713ff04245a38b32483362551");
+        var sfKiPowerSelection = GetBP<BlueprintFeatureSelection>("4694f6ac27eaed34abb7d09ab67b4541");
 
         monkKiPowerSelection.AddFeatures(feature);
         sfKiPowerSelection.AddFeatures(sfFeature);

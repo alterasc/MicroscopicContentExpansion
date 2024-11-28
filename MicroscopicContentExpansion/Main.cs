@@ -1,4 +1,5 @@
-﻿global using static MicroscopicContentExpansion.Main;
+﻿global using static MicroscopicContentExpansion.Globals;
+global using static MicroscopicContentExpansion.Main;
 using HarmonyLib;
 using MicroscopicContentExpansion.ModLogic;
 using MicroscopicContentExpansion.NewContent.AnimalCompanions;

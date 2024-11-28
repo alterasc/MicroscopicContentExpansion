@@ -71,8 +71,8 @@ class StartossStyleChain
                 c.Stat = StatType.Dexterity;
                 c.Value = 13;
             });
-            bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0da0c194d6e1d43419eb8d990b28e0ab"));
-            bp.AddPrerequisiteFeature(BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e"));
+            bp.AddPrerequisiteFeature(GetBPRef<BlueprintFeatureReference>("0da0c194d6e1d43419eb8d990b28e0ab"));
+            bp.AddPrerequisiteFeature(GetBPRef<BlueprintFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e"));
             bp.AddComponent<AddFacts>(c =>
             {
                 c.m_Facts = [startossStyleAbility.ToReference<BlueprintUnitFactReference>()];
@@ -100,8 +100,8 @@ class StartossStyleChain
             bp.AddComponent<AbilityCasterHasChosenWeaponFromGroup>(c =>
             {
                 c.WeaponGroup = Kingmaker.Blueprints.Items.Weapons.WeaponFighterGroup.Thrown;
-                c.ChosenWeaponFeature = BlueprintTools.GetBlueprintReference<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
-                c.WeaponGroupReference = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0bbf10151dd1d8d4c8653d245e425453");
+                c.ChosenWeaponFeature = GetBPRef<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
+                c.WeaponGroupReference = GetBPRef<BlueprintFeatureReference>("0bbf10151dd1d8d4c8653d245e425453");
             });
             bp.AddComponent<AbilityCasterHasFacts>(c =>
             {
@@ -167,17 +167,17 @@ class StartossStyleChain
             c.StartossComet = startossCometFeature.ToReference<BlueprintFeatureReference>();
             c.StartossShower = startossShowerFeature.ToReference<BlueprintFeatureReference>();
             c.WeaponGroup = Kingmaker.Blueprints.Items.Weapons.WeaponFighterGroup.Thrown;
-            c.WeaponGroupReference = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0bbf10151dd1d8d4c8653d245e425453");
-            c.ChosenWeaponFeature = BlueprintTools.GetBlueprintReference<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
+            c.WeaponGroupReference = GetBPRef<BlueprintFeatureReference>("0bbf10151dd1d8d4c8653d245e425453");
+            c.ChosenWeaponFeature = GetBPRef<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
         });
 
         startossCometAbility.AddComponent<AbilityCustomStartossComet>(c =>
         {
-            c.m_MythicBlueprint = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("e07bcb271ecefec44be314e1c807c798");
-            c.m_RowdyFeature = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("6ce0dd0cd1ef43eda9e62cdf483e05c3");
-            c.m_VitalStrike = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("14a1fc1356df9f146900e1e42142fc9d");
-            c.m_VitalStrikeImproved = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("52913092cd018da47845f36e6fbe240f");
-            c.m_VitalStrikeGreater = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("e2d1fa11f6b095e4fb2fd1dcf5e36eb3");
+            c.m_MythicBlueprint = GetBPRef<BlueprintFeatureReference>("e07bcb271ecefec44be314e1c807c798");
+            c.m_RowdyFeature = GetBPRef<BlueprintFeatureReference>("6ce0dd0cd1ef43eda9e62cdf483e05c3");
+            c.m_VitalStrike = GetBPRef<BlueprintFeatureReference>("14a1fc1356df9f146900e1e42142fc9d");
+            c.m_VitalStrikeImproved = GetBPRef<BlueprintFeatureReference>("52913092cd018da47845f36e6fbe240f");
+            c.m_VitalStrikeGreater = GetBPRef<BlueprintFeatureReference>("e2d1fa11f6b095e4fb2fd1dcf5e36eb3");
             c.m_StartossShower = startossShowerFeature.ToReference<BlueprintFeatureReference>();
         });
 

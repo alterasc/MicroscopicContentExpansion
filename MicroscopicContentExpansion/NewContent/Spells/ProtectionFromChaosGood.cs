@@ -12,8 +12,8 @@ internal class ProtectionFromChaosGood
 {
     public static BlueprintAbilityReference AddProtectionFromChaosGood()
     {
-        var protectionFromChaos = BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("1eaf1020e82028d4db55e6e464269e00");
-        var protectionFromGood = BlueprintTools.GetBlueprint<BlueprintAbility>("2ac7637daeb2aa143a3bae860095b63e");
+        var protectionFromChaos = GetBPRef<BlueprintAbilityReference>("1eaf1020e82028d4db55e6e464269e00");
+        var protectionFromGood = GetBP<BlueprintAbility>("2ac7637daeb2aa143a3bae860095b63e");
 
         return Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "ProtectionFromChaosGood", bp =>
         {
@@ -47,8 +47,8 @@ internal class ProtectionFromChaosGood
 
     public static BlueprintAbilityReference AddProtectionFromChaosGoodCommunal()
     {
-        var protectionFromChaosCommunal = BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("0ec75ec95d9e39d47a23610123ba1bad");
-        var protectionFromGoodCommunal = BlueprintTools.GetBlueprint<BlueprintAbility>("5bfd4cce1557d5744914f8f6d85959a4");
+        var protectionFromChaosCommunal = GetBPRef<BlueprintAbilityReference>("0ec75ec95d9e39d47a23610123ba1bad");
+        var protectionFromGoodCommunal = GetBP<BlueprintAbility>("5bfd4cce1557d5744914f8f6d85959a4");
 
         return Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "ProtectionFromChaosGoodCommunal", bp =>
         {

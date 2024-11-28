@@ -20,16 +20,16 @@ internal class FeintingFlurry
 
         var feintingFlurryIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "FeintingFlurry.png");
 
-        var feint = BlueprintTools.GetBlueprint<BlueprintFeature>("c610310d31414edabcedf0c8a6fe32c4");
+        var feint = GetBP<BlueprintFeature>("c610310d31414edabcedf0c8a6fe32c4");
         if (feint == null) return;
 
-        var feintAbility = BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("1bb6f0b196aa457ba80bdb312dc64952");
+        var feintAbility = GetBPRef<BlueprintAbilityReference>("1bb6f0b196aa457ba80bdb312dc64952");
 
-        var monkFlurry = BlueprintTools.GetBlueprint<BlueprintFeature>("fd99770e6bd240a4aab70f7af103e56a");
-        var qmFlurry = BlueprintTools.GetBlueprint<BlueprintFeature>("44b0f313ec56481eb447019fbe714330");
-        var soheiFlurry = BlueprintTools.GetBlueprint<BlueprintFeature>("cd4381b73b6709146bbcc0a528a6f471");
+        var monkFlurry = GetBP<BlueprintFeature>("fd99770e6bd240a4aab70f7af103e56a");
+        var qmFlurry = GetBP<BlueprintFeature>("44b0f313ec56481eb447019fbe714330");
+        var soheiFlurry = GetBP<BlueprintFeature>("cd4381b73b6709146bbcc0a528a6f471");
 
-        var dlc6Reward = BlueprintTools.GetBlueprintReference<BlueprintDlcRewardReference>("b94f823171a84e30ad7a1b892433ab5d");
+        var dlc6Reward = GetBPRef<BlueprintDlcRewardReference>("b94f823171a84e30ad7a1b892433ab5d");
 
         var description = Helpers.CreateString(MCEContext, "FeintingFlurry.Description", "While using flurry of blows to make {g|Encyclopedia:MeleeAttack}melee attacks{/g}, you can forgo your melee attack to make a {g|Encyclopedia:Persuasion}Persuasion{/g} (bluff) {g|Encyclopedia:Check}check{/g} to feint an opponent.", Locale.enGB, shouldProcess: true);
 

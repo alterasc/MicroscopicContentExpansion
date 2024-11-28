@@ -38,9 +38,9 @@ internal class TouchofCorruption
 
     public static void AddTouchofCorruption()
     {
-        var AbsoluteDeathAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
+        var AbsoluteDeathAbility = GetBP<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
-        var BestowCurseSpell = BlueprintTools.GetBlueprint<BlueprintAbility>("989ab5c44240907489aba0a8568d0603");
+        var BestowCurseSpell = GetBP<BlueprintAbility>("989ab5c44240907489aba0a8568d0603");
 
         var TouchOfCorruptionResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinTouchOfCorruptionResource", bp =>
         {
@@ -62,8 +62,8 @@ internal class TouchofCorruption
             bp.m_Max = 20;
         });
 
-        var NegativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
-        var TouchItem = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
+        var NegativeEnergyAffinity = GetBP<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
+        var TouchItem = GetBP<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
 
         var TouchOfCorruptionAbility = CreateTouchOfCorruption("AntipaladinTouchOfCorruptionUnmodified", NAME, DESCRIPTION, BestowCurseSpell.Icon);
 
@@ -122,7 +122,7 @@ internal class TouchofCorruption
                 c.Value = 1;
             });
         });
-        var ExtraLayOnHands = BlueprintTools.GetBlueprint<BlueprintFeature>("a2b2f20dfb4d3ed40b9198e22be82030");
+        var ExtraLayOnHands = GetBP<BlueprintFeature>("a2b2f20dfb4d3ed40b9198e22be82030");
         ExtraLayOnHands.AddComponent<IncreaseResourceAmount>(c =>
         {
             c.m_Resource = TouchOfCorruptionResource.ToReference<BlueprintAbilityResourceReference>();
@@ -135,11 +135,11 @@ internal class TouchofCorruption
     {
 
         var TouchOfCorruptionResource = MCEContext.GetModBlueprintReference<BlueprintAbilityResourceReference>("AntipaladinTouchOfCorruptionResource");
-        var AbsoluteDeathAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
+        var AbsoluteDeathAbility = GetBP<BlueprintAbility>("7d721be6d74f07f4d952ee8d6f8f44a0");
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var NegativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
-        var TouchItem = BlueprintTools.GetBlueprint<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
+        var NegativeEnergyAffinity = GetBP<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
+        var TouchItem = GetBP<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
 
         var TouchOfCorruptionAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, BPName, bp =>
         {
@@ -252,7 +252,7 @@ internal class TouchofCorruption
             bp.AddComponent<AbilityCasterAlignment>(c =>
             {
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
             if (RequiredFeatureRef != null)
             {

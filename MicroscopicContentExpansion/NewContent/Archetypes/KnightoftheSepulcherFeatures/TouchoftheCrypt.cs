@@ -14,7 +14,7 @@ internal class TouchoftheCrypt
     {
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
 
-        var negativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
+        var negativeEnergyAffinity = GetBP<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
 
         return Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "KnightoftheSepulcherTouchoftheCrypt", bp =>
         {

@@ -37,18 +37,18 @@ internal class ChannelNegativeEnergy
     public static void AddChannelNegativeEnergy()
     {
 
-        var ChannelEnergyFact = BlueprintTools.GetBlueprint<BlueprintUnitFact>("93f062bc0bf70e84ebae436e325e30e8");
-        var ChannelNegativeEnergy = BlueprintTools.GetBlueprint<BlueprintAbility>("89df18039ef22174b81052e2e419c728");
-        var ChannelEnergyResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("5e2bba3e07c37be42909a12945c27de7");
-        var MythicChannelProperty = BlueprintTools.GetBlueprintReference<BlueprintUnitPropertyReference>("152e61de154108d489ff34b98066c25c");
-        var SelectiveChannel = BlueprintTools.GetBlueprint<BlueprintFeature>("fd30c69417b434d47b6b03b9c1f568ff");
-        var ExtraChannel = BlueprintTools.GetBlueprint<BlueprintFeature>("cd9f19775bd9d3343a31a065e93f0c47");
+        var ChannelEnergyFact = GetBP<BlueprintUnitFact>("93f062bc0bf70e84ebae436e325e30e8");
+        var ChannelNegativeEnergy = GetBP<BlueprintAbility>("89df18039ef22174b81052e2e419c728");
+        var ChannelEnergyResource = GetBP<BlueprintAbilityResource>("5e2bba3e07c37be42909a12945c27de7");
+        var MythicChannelProperty = GetBPRef<BlueprintUnitPropertyReference>("152e61de154108d489ff34b98066c25c");
+        var SelectiveChannel = GetBP<BlueprintFeature>("fd30c69417b434d47b6b03b9c1f568ff");
+        var ExtraChannel = GetBP<BlueprintFeature>("cd9f19775bd9d3343a31a065e93f0c47");
 
         var TouchOfCorruptionResource = BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(MCEContext, "AntipaladinTouchOfCorruptionResource");
         var AntipaladinClassRef = MCEContext.GetModBlueprintReference<BlueprintCharacterClassReference>("AntipaladinClass");
-        var NegativeEnergyAffinity = BlueprintTools.GetBlueprint<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
-        var DeathDomainGreaterLiving = BlueprintTools.GetBlueprint<BlueprintFeature>("fd7c08ccd3c7773458eb9613db3e93ad");
-        var LifeDominantSoul = BlueprintTools.GetBlueprint<BlueprintFeature>("8f58b4029511b5345981ffaf1da5ea2e");
+        var NegativeEnergyAffinity = GetBP<BlueprintFeature>("d5ee498e19722854198439629c1841a5");
+        var DeathDomainGreaterLiving = GetBP<BlueprintFeature>("fd7c08ccd3c7773458eb9613db3e93ad");
+        var LifeDominantSoul = GetBP<BlueprintFeature>("8f58b4029511b5345981ffaf1da5ea2e");
 
         var ChannelEnergyAntipaladinHarm = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "AntipaladinChannelEnergyHarm", bp =>
         {
@@ -170,7 +170,7 @@ internal class ChannelNegativeEnergy
             bp.AddComponent<AbilityCasterAlignment>(c =>
             {
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
 
             bp.AddContextRankConfig(c =>
@@ -424,7 +424,7 @@ internal class ChannelNegativeEnergy
             bp.AddComponent<AbilityCasterAlignment>(c =>
             {
                 c.Alignment = Kingmaker.UnitLogic.Alignments.AlignmentMaskType.Evil;
-                c.m_IgnoreFact = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
+                c.m_IgnoreFact = GetBPRef<BlueprintUnitFactReference>("24e78475f0a243e1a810452d14d0a1bd");
             });
 
         });

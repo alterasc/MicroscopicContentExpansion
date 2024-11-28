@@ -15,24 +15,24 @@ internal class MonkTimelessBody
             a.SetDescription(MCEContext, "At 17th level, a monk no longer takes penalties to his ability scores for aging and cannot be magically aged.");
             a.AddComponent<SpecificBuffImmunity>(c =>
             {
-                c.m_Buff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("a1aecb0c003a49b9ae385035875f1b92"); // DLC3_HasteIslandStacks
+                c.m_Buff = GetBPRef<BlueprintBuffReference>("a1aecb0c003a49b9ae385035875f1b92"); // DLC3_HasteIslandStacks
             });
             a.AddComponent<SpecificBuffImmunity>(c =>
             {
-                c.m_Buff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("6ed8dfef694e4189bbe2fea3e8e70216"); // BythosAgeBuff3
+                c.m_Buff = GetBPRef<BlueprintBuffReference>("6ed8dfef694e4189bbe2fea3e8e70216"); // BythosAgeBuff3
             });
             a.AddComponent<SpecificBuffImmunity>(c =>
             {
-                c.m_Buff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("280882479c3e4e6c8c287237d6269f65"); // BythosAgeBuff2
+                c.m_Buff = GetBPRef<BlueprintBuffReference>("280882479c3e4e6c8c287237d6269f65"); // BythosAgeBuff2
             });
             a.AddComponent<SpecificBuffImmunity>(c =>
             {
-                c.m_Buff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("e7227f04b30d4eba9c186a7be747d5bf"); // BythosAgeBuff1
+                c.m_Buff = GetBPRef<BlueprintBuffReference>("e7227f04b30d4eba9c186a7be747d5bf"); // BythosAgeBuff1
             });
         });
         if (MCEContext.AddedContent.Feats.IsEnabled("MonkTimelessBody"))
         {
-            var monkProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("8a91753b978e3b34b9425419179aafd6");
+            var monkProgression = GetBP<BlueprintProgression>("8a91753b978e3b34b9425419179aafd6");
             var lvlEntries = monkProgression.LevelEntries;
             var lvl17Entry = lvlEntries.FirstOrDefault(x => x.Level == 17);
             if (lvl17Entry != null)

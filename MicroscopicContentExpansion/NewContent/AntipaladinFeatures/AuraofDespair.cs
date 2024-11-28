@@ -19,7 +19,7 @@ internal class AuraofDespair
     public static void AddAuraOfDespairFeature()
     {
 
-        var CrushingDespairIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("4baf4109145de4345861fe0f2209d903").Icon;
+        var CrushingDespairIcon = GetBP<BlueprintAbility>("4baf4109145de4345861fe0f2209d903").Icon;
         var AuraOfDespairEffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "AntipaladinAuraOfDespairEffectBuff", bp =>
         {
             bp.SetName(MCEContext, NAME);

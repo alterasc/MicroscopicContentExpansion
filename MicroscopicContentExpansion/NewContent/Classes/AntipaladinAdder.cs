@@ -121,7 +121,7 @@ class AntipaladinAdder
 
     private static void CreateAntipaladin()
     {
-        var PaladinClassProficiencies = BlueprintTools.GetBlueprint<BlueprintFeature>("b10ff88c03308b649b50c31611c2fefb");
+        var PaladinClassProficiencies = GetBP<BlueprintFeature>("b10ff88c03308b649b50c31611c2fefb");
 
         var AntipaladinProficiencies = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AntipaladinProficiencies", bp =>
         {
@@ -132,12 +132,12 @@ class AntipaladinAdder
             bp.AddComponent<AddFacts>(c =>
             {
                 c.m_Facts = [
-                        BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("6d3728d4e9c9898458fe5e9532951132"),
-                        BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("46f4fb320f35704488ba3d513397789d"),
-                        BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("1b0f68188dcc435429fb87a022239681"),
-                        BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e70ecf1ed95ca2f40b754f1adb22bbdd"),
-                        BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("203992ef5b35c864390b4e4a1e200629"),
-                        BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("cb8686e7357a68c42bdd9d4e65334633"),
+                        GetBPRef<BlueprintUnitFactReference>("6d3728d4e9c9898458fe5e9532951132"),
+                        GetBPRef<BlueprintUnitFactReference>("46f4fb320f35704488ba3d513397789d"),
+                        GetBPRef<BlueprintUnitFactReference>("1b0f68188dcc435429fb87a022239681"),
+                        GetBPRef<BlueprintUnitFactReference>("e70ecf1ed95ca2f40b754f1adb22bbdd"),
+                        GetBPRef<BlueprintUnitFactReference>("203992ef5b35c864390b4e4a1e200629"),
+                        GetBPRef<BlueprintUnitFactReference>("cb8686e7357a68c42bdd9d4e65334633"),
                     ];
             });
             bp.Ranks = 1;
@@ -152,8 +152,8 @@ class AntipaladinAdder
                 ];
         });
 
-        var PaladinClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("bfa11238e7ae3544bbeb4d0b92e897ec");
-        var AnimalClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("4cd1757a0eea7694ba5c933729a53920");
+        var PaladinClass = GetBP<BlueprintCharacterClass>("bfa11238e7ae3544bbeb4d0b92e897ec");
+        var AnimalClass = GetBP<BlueprintCharacterClass>("4cd1757a0eea7694ba5c933729a53920");
 
         var AntipaladinClass = Helpers.CreateBlueprint<BlueprintCharacterClass>(MCEContext, "AntipaladinClass", bp =>
         {
@@ -219,7 +219,7 @@ class AntipaladinAdder
 
         var antipaladinClassRef = AntipaladinClass.ToReference<BlueprintCharacterClassReference>();
 
-        var divine = BlueprintTools.GetBlueprint<BlueprintCharacterClassGroup>("a7e42232e2df2d8429343b4aa4972fac");
+        var divine = GetBP<BlueprintCharacterClassGroup>("a7e42232e2df2d8429343b4aa4972fac");
         divine.m_CharacterClasses = divine.m_CharacterClasses.AppendToArray(antipaladinClassRef);
 
         if (MCEContext.AddedContent.NewClasses.IsDisabled("AntipaladinClass")) { return; }

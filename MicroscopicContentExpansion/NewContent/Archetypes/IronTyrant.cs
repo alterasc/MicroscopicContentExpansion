@@ -104,26 +104,26 @@ internal class IronTyrant
         });
 
         var PossibleFeats = new BlueprintFeatureReference[] {
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("6105f450bb2acbd458d277e71e19d835"), //TowerShieldProficiency
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("453f5181a5ed3a445abfa3bcd3f4ac0c"), //ArcaneArmorMaster
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1a0298abacb6e0f45b7e28553e99e76c"), //ArcaneArmorTraining
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("76d4885a395976547a13c5d6bf95b482"), //ArmorFocusSelection
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0b442a7b4aa598d4e912a4ecee0500ff"), //BashingFinish
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("121811173a614534e8720d7550aae253"), //ShieldBash
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("ac57069b6bf8c904086171683992a92a"), //ShieldFocus
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("afd05ca5363036c44817c071189b67e1"), //ShieldFocusGreater
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("dbec636d84482944f87435bd31522fcc"), //ShieldMaster
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("0b707584fc2ea724aa72c396c2230dc7"), //ShieldedCaster
-            BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("8976de442862f82488a4b138a0a89907")  //ShieldWall                
+            GetBPRef<BlueprintFeatureReference>("6105f450bb2acbd458d277e71e19d835"), //TowerShieldProficiency
+            GetBPRef<BlueprintFeatureReference>("453f5181a5ed3a445abfa3bcd3f4ac0c"), //ArcaneArmorMaster
+            GetBPRef<BlueprintFeatureReference>("1a0298abacb6e0f45b7e28553e99e76c"), //ArcaneArmorTraining
+            GetBPRef<BlueprintFeatureReference>("76d4885a395976547a13c5d6bf95b482"), //ArmorFocusSelection
+            GetBPRef<BlueprintFeatureReference>("0b442a7b4aa598d4e912a4ecee0500ff"), //BashingFinish
+            GetBPRef<BlueprintFeatureReference>("121811173a614534e8720d7550aae253"), //ShieldBash
+            GetBPRef<BlueprintFeatureReference>("ac57069b6bf8c904086171683992a92a"), //ShieldFocus
+            GetBPRef<BlueprintFeatureReference>("afd05ca5363036c44817c071189b67e1"), //ShieldFocusGreater
+            GetBPRef<BlueprintFeatureReference>("dbec636d84482944f87435bd31522fcc"), //ShieldMaster
+            GetBPRef<BlueprintFeatureReference>("0b707584fc2ea724aa72c396c2230dc7"), //ShieldedCaster
+            GetBPRef<BlueprintFeatureReference>("8976de442862f82488a4b138a0a89907")  //ShieldWall                
         };
         BonusFeatSelection.AddFeatures(PossibleFeats);
         //Adding feats from TTT-Base if they exists
-        var ShieldMasterySelection = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("ef38e0fe-68f1-4c88-a9de-acc421455d14");
+        var ShieldMasterySelection = GetBPRef<BlueprintFeatureReference>("ef38e0fe-68f1-4c88-a9de-acc421455d14");
         if (!ShieldMasterySelection.IsEmpty())
         {
             BonusFeatSelection.AddFeatures(ShieldMasterySelection);
         }
-        var ArmorMasterySelection = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("4432c1ac-66c7-4a86-9ffb-6fa21d69232f");
+        var ArmorMasterySelection = GetBPRef<BlueprintFeatureReference>("4432c1ac-66c7-4a86-9ffb-6fa21d69232f");
         if (!ArmorMasterySelection.IsEmpty())
         {
             BonusFeatSelection.AddFeatures(ArmorMasterySelection);
@@ -140,7 +140,7 @@ internal class IronTyrant
             bp.IsClassFeature = true;
             bp.AddComponent<AddFacts>(c =>
             {
-                var IUS = BlueprintTools.GetBlueprint<BlueprintFeature>("7812ad3672a4b9a4fb894ea402095167").ToReference<BlueprintUnitFactReference>();
+                var IUS = GetBP<BlueprintFeature>("7812ad3672a4b9a4fb894ea402095167").ToReference<BlueprintUnitFactReference>();
                 c.m_Facts = [IUS];
             });
         });

@@ -15,8 +15,8 @@ public class NightmareAnimalCompanion
     public static BlueprintFeature Add()
     {
 
-        var horseUnit = BlueprintTools.GetBlueprint<BlueprintUnit>("fb8300e8298c08d4a9f50dfa1203e98d");
-        var baseNightmareUnit = BlueprintTools.GetBlueprint<BlueprintUnit>("c8072d74e64caf244ac6b784e6838e12");
+        var horseUnit = GetBP<BlueprintUnit>("fb8300e8298c08d4a9f50dfa1203e98d");
+        var baseNightmareUnit = GetBP<BlueprintUnit>("c8072d74e64caf244ac6b784e6838e12");
 
         var hoofFireDamage = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "NightmareHoofFireDamageFeature", bp =>
         {
@@ -26,7 +26,7 @@ public class NightmareAnimalCompanion
             {
                 c.AttackType = AdditionalDiceOnAttack.WeaponOptions.AllAttacks;
                 c.OnHit = true;
-                c.m_WeaponType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("ad298a0ee3ca1ba419d0c973d1a905f2");
+                c.m_WeaponType = GetBPRef<BlueprintWeaponTypeReference>("ad298a0ee3ca1ba419d0c973d1a905f2");
                 c.Value = new ContextDiceValue()
                 {
                     DiceType = Kingmaker.RuleSystem.DiceType.D4,
@@ -49,7 +49,7 @@ public class NightmareAnimalCompanion
             bp.HideInCharacterSheetAndLevelUp = true;
             bp.AddComponent<RemoveFeatureOnApply>(c =>
             {
-                c.m_Feature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("a95311b3dc996964cbaa30ff9965aaf6");
+                c.m_Feature = GetBPRef<BlueprintUnitFactReference>("a95311b3dc996964cbaa30ff9965aaf6");
             });
         });
 
@@ -59,7 +59,7 @@ public class NightmareAnimalCompanion
             bp.HideInCharacterSheetAndLevelUp = true;
             bp.AddComponent<AddFeatureOnClassLevel>(c =>
             {
-                c.m_Class = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("26b10d4340839004f960f9816f6109fe");
+                c.m_Class = GetBPRef<BlueprintCharacterClassReference>("26b10d4340839004f960f9816f6109fe");
                 c.Level = 2;
                 c.m_Feature = removeAnimalTypeFeature.ToReference<BlueprintFeatureReference>();
             });
@@ -78,7 +78,8 @@ public class NightmareAnimalCompanion
             {
                 c.m_SlotType = LockEquipmentSlot.SlotType.OffHand;
             });
-            bp.AddComponent<CMDBonusAgainstManeuvers>(c => {
+            bp.AddComponent<CMDBonusAgainstManeuvers>(c =>
+            {
                 c.Descriptor = Kingmaker.Enums.ModifierDescriptor.Racial;
                 c.Value = 4;
                 c.Maneuvers = [
@@ -89,7 +90,7 @@ public class NightmareAnimalCompanion
             });
             bp.AddComponent<AddFacts>(c =>
             {
-                c.m_Facts = [BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("9c57e9674b4a4a2b9920f9fec47f7e6a")];
+                c.m_Facts = [GetBPRef<BlueprintUnitFactReference>("9c57e9674b4a4a2b9920f9fec47f7e6a")];
             });
             bp.m_Type = baseNightmareUnit.m_Type;
             bp.LocalizedName = baseNightmareUnit.LocalizedName;
@@ -121,21 +122,21 @@ public class NightmareAnimalCompanion
             bp.Skills = horseUnit.Skills;
             bp.MaxHP = horseUnit.MaxHP;
             bp.m_AddFacts = [
-                BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("13c87ac5985cc85498ef9d1ac8b78923"),
-                BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("c33f2d68d93ceee488aa4004347dffca"),
-                BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("b9342e2a6dc5165489ba3412c50ca3d1"),
+                GetBPRef<BlueprintUnitFactReference>("13c87ac5985cc85498ef9d1ac8b78923"),
+                GetBPRef<BlueprintUnitFactReference>("c33f2d68d93ceee488aa4004347dffca"),
+                GetBPRef<BlueprintUnitFactReference>("b9342e2a6dc5165489ba3412c50ca3d1"),
                 hoofFireDamage.ToReference<BlueprintUnitFactReference>(),
-                BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("5279fc8380dd9ba419b4471018ffadd1"),
-                BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("136fa0343d5b4b348bdaa05d83408db3"),
-                BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e2986f96fa1cd3b4f8d9dfd8a9907731"),
-                BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("75bb2b3c41c99e041b4743fdb16a4289"),
+                GetBPRef<BlueprintUnitFactReference>("5279fc8380dd9ba419b4471018ffadd1"),
+                GetBPRef<BlueprintUnitFactReference>("136fa0343d5b4b348bdaa05d83408db3"),
+                GetBPRef<BlueprintUnitFactReference>("e2986f96fa1cd3b4f8d9dfd8a9907731"),
+                GetBPRef<BlueprintUnitFactReference>("75bb2b3c41c99e041b4743fdb16a4289"),
                 removalOnClassLvlvFeature.ToReference<BlueprintUnitFactReference>()
             ];
         });
 
-        var rankFeature = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1670990255e4fe948a863bafd5dbda5d");
+        var rankFeature = GetBPRef<BlueprintFeatureReference>("1670990255e4fe948a863bafd5dbda5d");
 
-        var animalCompanionFeatureHorse = BlueprintTools.GetBlueprint<BlueprintFeature>("9dc58b5901677c942854019d1dd98374");
+        var animalCompanionFeatureHorse = GetBP<BlueprintFeature>("9dc58b5901677c942854019d1dd98374");
 
         var animalCompanionFeatureNightmare = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "AnimalCompanionFeatureNightmare", bp =>
         {

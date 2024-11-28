@@ -12,8 +12,8 @@ internal class ProtectionFromLawGood
 {
     public static BlueprintAbilityReference AddProtectionFromLawGood()
     {
-        var protectionFromLaw = BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("c3aafbbb6e8fc754fb8c82ede3280051");
-        var protectionFromGood = BlueprintTools.GetBlueprint<BlueprintAbility>("2ac7637daeb2aa143a3bae860095b63e");
+        var protectionFromLaw = GetBPRef<BlueprintAbilityReference>("c3aafbbb6e8fc754fb8c82ede3280051");
+        var protectionFromGood = GetBP<BlueprintAbility>("2ac7637daeb2aa143a3bae860095b63e");
 
         return Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "ProtectionFromLawGood", bp =>
         {
@@ -47,8 +47,8 @@ internal class ProtectionFromLawGood
 
     public static BlueprintAbilityReference AddProtectionFromLawGoodCommunal()
     {
-        var protectionFromLawCommunal = BlueprintTools.GetBlueprintReference<BlueprintAbilityReference>("8b8ccc9763e3cc74bbf5acc9c98557b9");
-        var protectionFromGoodCommunal = BlueprintTools.GetBlueprint<BlueprintAbility>("5bfd4cce1557d5744914f8f6d85959a4");
+        var protectionFromLawCommunal = GetBPRef<BlueprintAbilityReference>("8b8ccc9763e3cc74bbf5acc9c98557b9");
+        var protectionFromGoodCommunal = GetBP<BlueprintAbility>("5bfd4cce1557d5744914f8f6d85959a4");
 
         return Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "ProtectionFromLawGoodCommunal", bp =>
         {

@@ -18,13 +18,13 @@ internal class DruidicHerbalism
 {
     internal static void Add()
     {
-        var druidBondSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("3830f3630a33eba49b60f511b4c8f2a8");
+        var druidBondSelection = GetBP<BlueprintFeatureSelection>("3830f3630a33eba49b60f511b4c8f2a8");
         var featureInternalName = "DruidicHerbalism";
         var description = "A druid who chooses to learn druidic herbalism can create herbal concoctions that function like potions." +
             "\n\nAt 1st level druid receives Brew Potions feat, and can make any potion without spending ingredients." +
             "\n\nAt 7th level druid can craft herbal concoctions in no time. She can create a special concoction of any spell that she can cast, but to do so, she must expend a spell slot of the same level. These special concoctions do not cost her anything to create and function like extracts created by an alchemist with the infusion discovery.";
 
-        var brewPotions = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("c0f8c4e513eb493408b8070a1de93fc0");
+        var brewPotions = GetBPRef<BlueprintFeatureReference>("c0f8c4e513eb493408b8070a1de93fc0");
 
         var freePotions = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DruidicConcoctions", a =>
         {
@@ -81,8 +81,8 @@ internal class DruidicHerbalismPatches
         if (Enabled) { return; }
 
         DruidClassGuid = new(new Guid("610d836f3a3a9ed42a4349b62f002e96"));
-        DruidicConcoctions = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("1758c2df-11f7-449f-a4fc-2762f9b68ae5");
-        DruidicHerbalismInfusion = BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10");
+        DruidicConcoctions = GetBPRef<BlueprintFeatureReference>("1758c2df-11f7-449f-a4fc-2762f9b68ae5");
+        DruidicHerbalismInfusion = GetBPRef<BlueprintFeatureReference>("5ddf6390-09f3-44ea-8cac-63b3f44d6e10");
         Enabled = true;
         MCEContext.Logger.Log($"Finished DruidicHerbalismPatches.Init");
     }
