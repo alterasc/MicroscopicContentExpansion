@@ -47,6 +47,11 @@
         "Enabled": false,
         "Homebrew": false,
         "Description": "Allows applying metamagic to mythic GD spells where tags were missing."
+      },
+      "AddRavenerForm": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Creates Ravener form option at lvl 20 available to undead characters (so Lich 9+)."
       }
     },
     "IsExpanded": true

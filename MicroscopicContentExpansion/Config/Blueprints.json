@@ -301,7 +301,9 @@
     "DragonbloodShifterBiteWeapon": "3324f336-71c0-4be7-996e-d985bb4ee05e",
     "DragonbloodShifterWingsAbility": "5af9a0f4-eaab-406c-b33f-9903bee2254e",
     "DragonbloodShifterWingsBuff": "b4d49819-8afa-4f4c-bb58-61dbd5e84625",
-    "DragonbloodShifterWingsFeature": "fc18b490-82a5-483f-9bdc-554b71af18e8"
+    "DragonbloodShifterWingsFeature": "fc18b490-82a5-483f-9bdc-554b71af18e8",
+    "ShifterDragonFormRavenerAbillity": "396c57dc-ec54-4719-89f8-1ec5aa9ef580",
+    "ShifterDragonFormRavenerBuff": "421ae827-f653-4f75-953e-8cae5ebbb471"
   },
   "DerivedBlueprintMasters": {},
   "DerivedBlueprints": {},

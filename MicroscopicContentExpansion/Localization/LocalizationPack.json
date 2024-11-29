@@ -3796,6 +3796,17 @@
       "esES": null
     },
     {
+      "Key": "a142ad62088d426789d426a578c03c3b",
+      "SimpleName": "ShifterDragonFormRavener.Name",
+      "ProcessTemplates": false,
+      "enGB": "Dragon Shape (Ravener)",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "c7ab0113b4da41d8b2092577e9070180",
       "SimpleName": "SnakeFangFeature.Description",
       "ProcessTemplates": true,
