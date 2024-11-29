@@ -59,7 +59,7 @@ internal class MonkStyleStrikeFlyingKick
         {
             a.SetName(MCEContext, "Activated Flying Kick Style");
             a.SetDescription(MCEContext, "Monk is able to perform flying kick style strike.");
-            a.m_Flags = BlueprintBuff.Flags.StayOnDeath & BlueprintBuff.Flags.HiddenInUi;
+            a.m_Flags = BlueprintBuff.Flags.StayOnDeath | BlueprintBuff.Flags.HiddenInUi;
         });
 
         for (int i = 1; i <= 6; i++)
