@@ -373,7 +373,7 @@ internal class Dragonblooded
             {
                 c.AddMagic = true;
                 c.AddMaterial = true;
-                c.Material = Kingmaker.Enums.Damage.PhysicalDamageMaterial.ColdIron & Kingmaker.Enums.Damage.PhysicalDamageMaterial.Silver;
+                c.Material = Kingmaker.Enums.Damage.PhysicalDamageMaterial.ColdIron | Kingmaker.Enums.Damage.PhysicalDamageMaterial.Silver;
                 c.CheckWeaponType = true;
                 c.m_WeaponType = ddBite.m_Type;
             });
