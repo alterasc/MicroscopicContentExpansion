@@ -111,8 +111,9 @@ Changes that make sense to me, enable if you like (and don't forget to restart t
 - Add Airborne property to dragon forms given by class.
 - Increase STR/CON bonuses provided by dragon forms given by class by 0/2/4.
 - Make class dragon form bite attack use 1.5 STR bonus.
-- Make Thousand Bites spell affect Gold and Black dragon forms of lvl 20 Dragonblood Shifter.
+- Make Thousand Bites spell affect dragon forms of lvl 20 Dragonblood Shifter.
 - Allow applying metamagic to mythic GD spells where metamagic tags were not present.
+- Add Ravener form for lvl 20 Dragonblood shifters that are Undead (so normally Liches after ritual). Adds to CHA instead of CON.
 
 Reasoning:    
 Draconic aspect bonuses are so small that having them on a timer is just bad. Multiple aspects mirror chimeric aspect. On lvl 20 this will result in you being immune to 4 elements, but a) that's pure no dips lvl 20, b) casters could do it earlier anyway.
