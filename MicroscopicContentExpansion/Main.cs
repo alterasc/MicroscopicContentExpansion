@@ -7,11 +7,11 @@ using TabletopTweaks.Core.Utilities;
 using UnityModManagerNet;
 
 namespace MicroscopicContentExpansion;
-static class Main
+public static class Main
 {
     public static ModContextMCEBase MCEContext;
     public static Harmony HarmonyInstance;
-    static bool Load(UnityModManager.ModEntry modEntry)
+    public static bool Load(UnityModManager.ModEntry modEntry)
     {
         HarmonyInstance = new Harmony(modEntry.Info.Id);
         MCEContext = new ModContextMCEBase(modEntry);

@@ -5,7 +5,7 @@ using TabletopTweaks.Core.Utilities;
 using static UnityModManagerNet.UnityModManager;
 
 namespace MicroscopicContentExpansion.ModLogic;
-internal class ModContextMCEBase : ModContextBase
+public class ModContextMCEBase : ModContextBase
 {
     public AddedContent AddedContent;
     public Homebrew Homebrew;
