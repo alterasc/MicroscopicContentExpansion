@@ -110,7 +110,7 @@ internal class Dragonblooded
         var shifterDragonFormBlackAbillity20 = GetBP<BlueprintAbility>("499790e39cb5406cb68a3a9facb98f64");
         var shifterDragonFormRavenerAbillity = shifterDragonFormBlackAbillity20.CreateCopy(MCEContext, "ShifterDragonFormRavenerAbillity", a =>
         {
-            a.GetComponent<AbilityTargetHasFact>().m_CheckedFacts = [(ravenerFormBuff.ToReference<BlueprintUnitFactReference>())];
+            a.GetComponent<AbilityTargetHasFact>().m_CheckedFacts = [ravenerFormBuff.ToReference<BlueprintUnitFactReference>()];
             var runAction = a.GetComponent<AbilityEffectRunAction>();
             var conditional = runAction.Actions.Actions
                 .OfType<Conditional>()
@@ -148,63 +148,6 @@ internal class Dragonblooded
                 variantsComp.m_Variants = variantsComp.m_Variants.AppendToArray(ravenerRef);
             }
         }
-
-        //var shifterDragonFormRavener = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "ShifterDragonFormRavener", a =>
-        //{
-        //    a.AddComponent<Polymorph>(c =>
-        //    {
-        //        c.m_Prefab = Helpers.CreateCopy(ravenerUnit.Prefab);
-        //        c.m_Portrait = ravenerUnit.m_Portrait;
-        //        c.m_KeepSlots = false;
-        //        c.Size = Kingmaker.Enums.Size.Huge;
-        //        c.UseSizeAsBaseForDamage = true;
-        //        if (MCEContext.Homebrew.DragonbloodShifter.IsEnabled("IncreaseFormStatBonuses"))
-        //        {
-        //            c.StrengthBonus = 14;
-        //            c.ConstitutionBonus = 12;
-        //        }
-        //        else
-        //        {
-        //            c.StrengthBonus = 10;
-        //            c.ConstitutionBonus = 8;
-        //        }
-        //        c.NaturalArmor = 8;
-        //        c.m_MainHand = null;
-        //        c.m_OffHand = null;
-        //        c.AllowDamageTransfer = true;
-        //        c.m_AdditionalLimbs = blackDragon20Polymorph.m_AdditionalLimbs.ToArray();
-        //        c.m_SecondaryAdditionalLimbs = blackDragon20Polymorph.m_SecondaryAdditionalLimbs.ToArray();
-        //        c.m_Facts = blackDragon20Polymorph.m_Facts.ToArray();
-        //        c.m_EnterTransition = Helpers.CreateCopy(blackDragon20Polymorph.m_EnterTransition);
-        //        c.m_ExitTransition = Helpers.CreateCopy(blackDragon20Polymorph.m_ExitTransition);
-        //        c.m_TransitionExternal = Helpers.CreateCopy(blackDragon20Polymorph.m_TransitionExternal);
-        //        c.m_SilentCaster = true;
-        //    });
-        //    a.AddComponent<SpellDescriptorComponent>(c =>
-        //    {
-        //        c.Descriptor = SpellDescriptor.Polymorph;
-        //    });
-        //    a.AddComponent<ReplaceAsksList>(c =>
-        //    {
-        //        c.m_Asks = ravenerUnit.Visual.m_Barks;
-        //    });
-        //    a.AddComponent<BuffMovementSpeed>(c =>
-        //    {
-        //        c.Descriptor = Kingmaker.Enums.ModifierDescriptor.None;
-        //        c.Value = 10;
-        //    });
-        //    a.AddComponent<ReplaceSourceBone>(c =>
-        //    {
-        //        c.SourceBone = shifterDragonFormBlackBuff20.GetComponent<ReplaceSourceBone>().SourceBone;
-        //    });
-        //    a.AddComponent<ReplaceCastSource>(c =>
-        //    {
-        //        c.CastSource = shifterDragonFormBlackBuff20.GetComponent<ReplaceCastSource>().CastSource;
-        //    });
-        //    a.AddComponent<Blindsense>(c =>
-        //    {
-        //        c.Range = 60.Feet();
-        //    });
     }
 
     /// <summary>
