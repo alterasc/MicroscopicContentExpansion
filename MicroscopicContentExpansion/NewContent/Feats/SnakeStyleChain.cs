@@ -26,13 +26,13 @@ class SnakeStyleChain
         var snakeStyleBuff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "SnakeStyleBuff", bp =>
         {
             bp.SetName(MCEContext, "Snake Style");
-            bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
+            bp.SetDescription(MCEContext, "You gain a +1 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
             bp.m_Icon = snakeStyleIcon;
             bp.AddComponent<AddStatBonus>(c =>
             {
                 c.Stat = StatType.AC;
                 c.Descriptor = ModifierDescriptor.Dodge;
-                c.Value = 2;
+                c.Value = 1;
             });
             bp.FxOnStart = new Kingmaker.ResourceLinks.PrefabLink();
             bp.FxOnRemove = new Kingmaker.ResourceLinks.PrefabLink();
@@ -41,7 +41,7 @@ class SnakeStyleChain
         var snakeStyleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(MCEContext, "SnakeStyleToggleAbility", bp =>
         {
             bp.SetName(MCEContext, "Snake Style");
-            bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
+            bp.SetDescription(MCEContext, "You gain a +1 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
             bp.m_Icon = snakeStyleIcon;
             bp.ActivationType = AbilityActivationType.Immediately;
             bp.m_ActivateWithUnitCommand = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift;
@@ -54,7 +54,7 @@ class SnakeStyleChain
         var snakeStyleFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeStyleFeature", bp =>
         {
             bp.SetName(MCEContext, "Snake Style");
-            bp.SetDescription(MCEContext, "You gain a +2 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
+            bp.SetDescription(MCEContext, "You gain a +1 dodge bonus to AC and you can deal piercing damage with your unarmed strikes.");
             bp.m_Icon = snakeStyleIcon;
             bp.IsClassFeature = true;
             bp.Groups = [
@@ -99,12 +99,18 @@ class SnakeStyleChain
             {
                 c.Bonus = 4;
             });
+            bp.AddComponent<AddStatBonus>(c =>
+            {
+                c.Stat = StatType.AC;
+                c.Descriptor = ModifierDescriptor.Dodge;
+                c.Value = 1;
+            });
         });
 
         var snakeSidewindFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "SnakeSidewindFeature", bp =>
         {
             bp.SetName(MCEContext, "Snake Sidewind");
-            bp.SetDescription(MCEContext, "You gain a +4 bonus to CMD against trip combat maneuvers and on Athletics checks and saving throws against ground effects. While using the Snake Style feat, you receive +4 bonus on attack roll made to confirm critical hits with unarmed weapons.");
+            bp.SetDescription(MCEContext, "You gain a +4 bonus to CMD against trip combat maneuvers and on Athletics checks and saving throws against ground effects. While using the Snake Style feat, you receive a +1 dodge bonus to AC and +4 bonus on attack roll made to confirm critical hits with unarmed weapons.");
             bp.IsClassFeature = true;
             bp.Groups = [
                     FeatureGroup.CombatFeat,
