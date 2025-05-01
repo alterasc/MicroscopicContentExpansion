@@ -6,6 +6,7 @@ public class Homebrew : IUpdatableSettings
     public bool NewSettingsOffByDefault = false;
     public SettingGroup DragonbloodShifter = new();
     public SettingGroup MythicArmorFeats = new();
+    public SettingGroup MythicFeats = new();
 
     public void Init()
     {
@@ -17,5 +18,6 @@ public class Homebrew : IUpdatableSettings
         NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
         DragonbloodShifter.LoadSettingGroup(loadedSettings.DragonbloodShifter, NewSettingsOffByDefault);
         MythicArmorFeats.LoadSettingGroup(loadedSettings.MythicArmorFeats, NewSettingsOffByDefault);
+        MythicFeats.LoadSettingGroup(loadedSettings.MythicFeats, NewSettingsOffByDefault);
     }
 }

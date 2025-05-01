@@ -66,5 +66,16 @@
       }
     },
     "IsExpanded": true
+  },
+  "MythicFeats": {
+    "DisableAll": true,
+    "Settings": {
+      "MythicDodgeRework": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Enemies that attack you reroll the die once if they roll nat 20 on attack roll."
+      }
+    },
+    "IsExpanded": true
   }
 }

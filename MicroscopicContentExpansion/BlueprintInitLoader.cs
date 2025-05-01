@@ -5,6 +5,7 @@ using MicroscopicContentExpansion.NewContent.Feats;
 using MicroscopicContentExpansion.NewContent.Spells;
 using MicroscopicContentExpansion.RebalancedContent.DragonbloodShifterArchetype;
 using MicroscopicContentExpansion.RebalancedContent.MythicArmor;
+using MicroscopicContentExpansion.RebalancedContent.MythicFeats;
 
 namespace MicroscopicContentExpansion;
 [HarmonyPatch(typeof(BlueprintsCache), nameof(BlueprintsCache.Init))]
@@ -33,5 +34,6 @@ internal class BlueprintInitLoader
 
         Dragonblooded.Change();
         MythicArmorFeatTweaks.Change();
+        MythicDodge.Rework();
     }
 }

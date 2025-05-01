@@ -3411,6 +3411,17 @@
       "esES": null
     },
     {
+      "Key": "788d72fc578a4e2596e96260c6c0fdb6",
+      "SimpleName": "MythicDodgeRework.Description",
+      "ProcessTemplates": true,
+      "enGB": "When focused, you become nearly impossible to strike.\r\nBenefit: Whenever you are targeted by an effect that requires an {g|Encyclopedia:Attack}attack roll{/g}, including weapon attacks, if attacker {g|Encyclopedia:Dice}rolls{/g} a natural 20 on an {g|Encyclopedia:Attack}attack roll{/g}, they must reroll the die once.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "7c0eb836638f49e4844b60f4f1c7e69d",
       "SimpleName": "NightmareHoofFireDamageFeature.Description",
       "ProcessTemplates": true,
