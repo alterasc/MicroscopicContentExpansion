@@ -130,6 +130,15 @@ Let's have archetype that is all about dragons forms that at mildly superior to 
 
 Reasoning:    
 Description says that you strike with your armor spikes, and if my armor is magical, surely strike from it would be magical?
+
+#### Mythic Feats  
+- replace effect of Dodge (Mythic) with the following:
+
+	When focused, you become nearly impossible to strike.   
+Benefit: Whenever you are targeted by an effect that requires an attack roll, including weapon attacks, if attacker rolls a natural 20 on an attack roll, they must reroll the die once.
+
+Reasoning: it desperately needed a buff. If your tanks is getting hit only on 20, this is equivalent to Protective Luck. You could say it helps the most those who need it the least, but at least it helps good tanks.
+
 ## Thanks to  
 -   bubbles and Vek17 specifically   
 -   kadyn for his Expanded Content
