@@ -9,7 +9,7 @@ using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Actions;
-using Kingmaker.UnitLogic.Mechanics.Components;
+using MicroscopicContentExpansion.NewComponents;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.NewContent.Feats;
@@ -17,7 +17,6 @@ internal class FeintingFlurry
 {
     internal static void Add()
     {
-
         var feintingFlurryIcon = AssetLoader.LoadInternal(MCEContext, folder: "", file: "FeintingFlurry.png");
 
         var feint = GetBP<BlueprintFeature>("c610310d31414edabcedf0c8a6fe32c4");
@@ -28,10 +27,11 @@ internal class FeintingFlurry
         var monkFlurry = GetBP<BlueprintFeature>("fd99770e6bd240a4aab70f7af103e56a");
         var qmFlurry = GetBP<BlueprintFeature>("44b0f313ec56481eb447019fbe714330");
         var soheiFlurry = GetBP<BlueprintFeature>("cd4381b73b6709146bbcc0a528a6f471");
+        var zaFlurry = GetBP<BlueprintFeature>("3e470edc8a733b641bcbbbb5b9527ff6");
 
         var dlc6Reward = GetBPRef<BlueprintDlcRewardReference>("b94f823171a84e30ad7a1b892433ab5d");
 
-        var description = Helpers.CreateString(MCEContext, "FeintingFlurry.Description", "While using flurry of blows to make {g|Encyclopedia:MeleeAttack}melee attacks{/g}, you can forgo your melee attack to make a {g|Encyclopedia:Persuasion}Persuasion{/g} (bluff) {g|Encyclopedia:Check}check{/g} to feint an opponent.", Locale.enGB, shouldProcess: true);
+        var description = Helpers.CreateString(MCEContext, "FeintingFlurry.Description", "While using flurry of blows to make {g|Encyclopedia:MeleeAttack}melee attacks{/g}, you can forgo your melee attack to make a {g|Encyclopedia:Persuasion}Persuasion{/g} (bluff) {g|Encyclopedia:Check}check{/g} to feint an opponent.\r\nSpecial: At 7th level a zen archer can feint while using Flurry of Blows with a bow.", Locale.enGB, shouldProcess: true);
 
         var buff = Helpers.CreateBlueprint<BlueprintBuff>(MCEContext, "FeintingFlurryBuff", a =>
         {
@@ -44,36 +44,14 @@ internal class FeintingFlurry
                 c.OnlyFromPrimaryHand = true;
                 c.Condition = new();
             });
-            a.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c =>
+            a.AddComponent<FeintingFlurryTrigger>(c =>
             {
-                c.TriggerBeforeAttack = true;
-                c.OnlyHit = true;
-                c.OnMiss = false;
-                c.OnlyOnFullAttack = true;
-                c.OnlyOnFirstAttack = true;
-                c.OnlyOnFirstHit = false;
-                c.CriticalHit = false;
-                c.OnlyNatural20 = false;
-                c.OnAttackOfOpportunity = false;
-                c.NotCriticalHit = false;
-                c.OnlySneakAttack = false;
-                c.NotSneakAttack = false;
-                c.CheckWeaponBlueprint = false;
-                c.CheckWeaponCategory = false;
-                c.CheckWeaponGroup = false;
-                c.CheckWeaponRangeType = true;
-                c.RangeType = Kingmaker.Enums.WeaponRangeType.Melee;
-                c.CheckPhysicalDamageForm = false;
-                c.ReduceHPToZero = false;
-                c.DamageMoreTargetMaxHP = false;
-                c.CheckDistance = false;
-                c.AllNaturalAndUnarmed = false;
-                c.DuelistWeapon = false;
-                c.NotExtraAttack = false;
-                c.OnCharge = false;
-                c.IgnoreAutoHit = false;
-                c.ActionsOnInitiator = false;
-                c.Action = new()
+                c.flurryReference = GetBPRef<BlueprintUnitFactReference>("332362f3bd39ebe46a740a36960fdcb4");
+                c.monkClass = GetBPRef<BlueprintCharacterClassReference>("e8f21e5b58e0569468e420ebea456124");
+                c.feint = GetBPRef<BlueprintUnitFactReference>("c610310d31414edabcedf0c8a6fe32c4");
+                c.rangedFeint = GetBPRef<BlueprintUnitFactReference>("a2e947d6be234abba7c3ac0bd5dc9b1d");
+                c.zenArcherArchetype = GetBPRef<BlueprintArchetypeReference>("2b1a58a7917084f49b097e86271df21c");
+                c.action = new()
                 {
                     Actions = [
                         new ContextActionCastSpell() {
@@ -124,7 +102,7 @@ internal class FeintingFlurry
                 c.Stat = StatType.Intelligence;
                 c.Value = 13;
             });
-            a.AddPrerequisiteFeaturesFromList(1, monkFlurry, qmFlurry, soheiFlurry);
+            a.AddPrerequisiteFeaturesFromList(1, monkFlurry, qmFlurry, soheiFlurry, zaFlurry);
             a.AddComponent<DlcCondition>(c =>
             {
                 c.m_DlcReward = dlc6Reward;
@@ -134,7 +112,6 @@ internal class FeintingFlurry
                 FeatureGroup.Feat
             ];
         });
-
         if (MCEContext.AddedContent.Feats.IsDisabled("FeintingFlurry")) { return; }
         FeatTools.AddAsFeat(feintingFlurry);
     }

@@ -77,5 +77,26 @@
       }
     },
     "IsExpanded": true
+  },
+  "ZenArcher": {
+    "DisableAll": true,
+    "Settings": {
+      "CunningArcher": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Add at lvl 4 passive that counts as Combat Expertise for prereqs, and allows WIS instead of INT for prereqs."
+      },
+      "BonusFeintFeats": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Add Feint feats to bonus feats at lvl 6 and higher."
+      },
+      "BonusSnapShotFeats": {
+        "Enabled": false,
+        "Homebrew": false,
+        "Description": "Add Improved and Greater Snap Shot feats to bonus feats at lvl 10 and higher."
+      }
+    },
+    "IsExpanded": true
   }
 }

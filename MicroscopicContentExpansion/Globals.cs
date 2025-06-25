@@ -13,4 +13,13 @@ internal static class Globals
     {
         return BlueprintTools.GetBlueprintReference<T>(id);
     }
+
+    public static void ApplyForAll<T>(string[] ids, System.Action<T> action) where T : SimpleBlueprint
+    {
+        foreach (var id in ids)
+        {
+            var bp = GetBP<T>(id);
+            action.Invoke(bp);
+        }
+    }
 }

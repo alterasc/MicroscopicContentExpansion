@@ -2413,7 +2413,7 @@
       "Key": "57e9c74660cd49c1bccca1cf5ee671e4",
       "SimpleName": "FeintingFlurry.Description",
       "ProcessTemplates": true,
-      "enGB": "While using flurry of blows to make {g|Encyclopedia:MeleeAttack}melee attacks{/g}, you can forgo your melee attack to make a {g|Encyclopedia:Persuasion}Persuasion{/g} (bluff) {g|Encyclopedia:Check}check{/g} to feint an opponent.",
+      "enGB": "While using flurry of blows to make {g|Encyclopedia:MeleeAttack}melee attacks{/g}, you can forgo your melee attack to make a {g|Encyclopedia:Persuasion}Persuasion{/g} (bluff) {g|Encyclopedia:Check}check{/g} to feint an opponent.\r\nSpecial: At 7th level a zen archer can feint while using Flurry of Blows with a bow.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

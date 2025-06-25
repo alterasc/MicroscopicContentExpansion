@@ -39,7 +39,7 @@ internal class CrusaderLegionBlessing
                 });
             });
             buffs.Add(buff.ToReference<BlueprintBuffReference>());
-        };
+        }
 
 
         var sacrificeSpellAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "LegionBlessingSacrificeSpellAbility", bp =>

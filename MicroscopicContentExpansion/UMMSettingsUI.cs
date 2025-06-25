@@ -46,6 +46,7 @@ internal static class SettingsTabs
             UI.Space(25);
 
             SetttingUI.SettingGroup("Dragonblood Shifter", TabLevel, Homebrew.DragonbloodShifter);
+            SetttingUI.SettingGroup("Zen Archer", TabLevel, Homebrew.ZenArcher);
             SetttingUI.SettingGroup("Mythic armor feats", TabLevel, Homebrew.MythicArmorFeats);
             SetttingUI.SettingGroup("Mythic feats", TabLevel, Homebrew.MythicFeats);
         }
