@@ -56,7 +56,7 @@ They use Horse portrait.
 	- [Dimensional Dervish](https://www.d20pfsrd.com/feats/general-feats/dimensional-dervish)
 - [Flickering Step](https://www.d20pfsrd.com/feats/conduit-feats/flickering-step-conduit)
 - [Crusader's Flurry](https://www.d20pfsrd.com/feats/general-feats/crusader-s-flurry)
-- [Feinting Flurry](https://www.d20pfsrd.com/feats/combat-feats/feinting-flurry-combat)
+- [Feinting Flurry](https://www.d20pfsrd.com/feats/combat-feats/feinting-flurry-combat) (homebrew change: Zen Archer can apply it with a bow)
 ### New spells
 
 - [Deadly Juggernaut (Cleric 3, Inquisitor 3, Paladin 3, Antipaladin 3, Warpriest 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
@@ -124,6 +124,16 @@ Airborne (that full dragons have, but normal polymorphs don't) gives immunity to
 0/2/4 bonus is just so you don't feel bad that BFT could share same dragon form but with higher stats bonuses.    
 1.5x STR bonus on bite because most dragons have that.
 Let's have archetype that is all about dragons forms that at mildly superior to what others can have.
+
+#### Zen Archer
+- allow Feinting Flurry to work with Zen Archer flurry after lvl 7 (provided ZA has feint and ranged feint feats)
+- add feint feats to lvl 6+ bonus feats
+- add Snap Shot Improved and Greater to lvl 10+ bonus feats
+- add Cunning Archer at lvl 4 - acts as Combat Expertise for prerequisites and allows to use Wisdom instead of Intelligence for prerequisites
+
+Reasoning:  
+Zen Archer needed help. It was losing in archery to Sohei even without accounting for a pet.   
+With those changes he has a niche of ranged feinter that can do feint while still full-attacking.
 
 #### Mythic Armor Feats
 - Use armor enhancement bonus for DR penetration in Heavy and Medium mythic offense feats. I.e. bonus damage from +5 heavy armor counts as if it came from +5 weapon.
