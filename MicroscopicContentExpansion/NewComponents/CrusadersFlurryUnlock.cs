@@ -14,7 +14,6 @@ using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Parts;
 using Newtonsoft.Json;
-using System.Linq;
 
 namespace MicroscopicContentExpansion.NewComponents;
 [ComponentName("Crusaders Flurry")]

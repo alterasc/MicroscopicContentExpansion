@@ -14,7 +14,6 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using MicroscopicContentExpansion.NewComponents;
-using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.NewContent.Classes;

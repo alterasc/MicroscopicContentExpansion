@@ -4,7 +4,6 @@ using Kingmaker.Modding;
 using Kingmaker.View;
 using Kingmaker.Visual.Mounts;
 using Owlcat.Runtime.Core.Utils;
-using System.Linq;
 using UnityEngine;
 
 namespace MicroscopicContentExpansion.NewContent.AnimalCompanions;

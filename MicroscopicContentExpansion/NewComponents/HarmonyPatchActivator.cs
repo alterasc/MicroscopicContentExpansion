@@ -1,6 +1,4 @@
 ﻿using Kingmaker.UnitLogic;
-using System;
-using System.Collections.Generic;
 
 namespace MicroscopicContentExpansion.NewComponents;
 

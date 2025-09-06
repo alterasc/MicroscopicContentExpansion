@@ -10,7 +10,6 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.Utility;
-using System.Collections.Generic;
 
 namespace MicroscopicContentExpansion.NewComponents;
 [TypeId("c184044ab8934085bc7ed8eded0ddb4c")]

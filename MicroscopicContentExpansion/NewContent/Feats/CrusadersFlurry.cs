@@ -4,7 +4,6 @@ using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Modding;
 using Kingmaker.Utility;
 using MicroscopicContentExpansion.NewComponents;
-using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.NewContent.Feats;

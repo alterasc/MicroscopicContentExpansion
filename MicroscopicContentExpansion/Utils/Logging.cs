@@ -1,6 +1,5 @@
 ﻿using Kingmaker.UI.Models.Log.CombatLog_ThreadSystem;
 using Kingmaker.UI.Models.Log.CombatLog_ThreadSystem.LogThreads.Common;
-using System.Linq;
 using UnityEngine;
 
 namespace MicroscopicContentExpansion.Utils;

@@ -1,0 +1,10 @@
+﻿<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+    <File Path="Repository.json" />
+  </Folder>
+  <Project Path="MicroscopicContentExpansion/MicroscopicContentExpansion.csproj" />
+</Solution>

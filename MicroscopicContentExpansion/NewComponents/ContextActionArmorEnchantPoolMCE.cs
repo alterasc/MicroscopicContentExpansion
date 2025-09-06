@@ -10,8 +10,6 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
 using Owlcat.Runtime.Core.Logging;
-using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 

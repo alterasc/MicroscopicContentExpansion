@@ -8,7 +8,6 @@ using Kingmaker.Items.Slots;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
-using System.Linq;
 
 namespace MicroscopicContentExpansion.NewComponents;
 [AllowedOn(typeof(BlueprintAbility), false)]

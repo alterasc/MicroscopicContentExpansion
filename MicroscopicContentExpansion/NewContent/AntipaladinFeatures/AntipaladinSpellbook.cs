@@ -6,8 +6,6 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Designers.Mechanics.Facts;
 using MicroscopicContentExpansion.NewContent.Spells;
-using System.Collections.Generic;
-using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using static Kingmaker.Blueprints.Classes.BlueprintProgression;
 

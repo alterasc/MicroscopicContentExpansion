@@ -20,8 +20,6 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
-using System.Collections.Generic;
-using System.Linq;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.RebalancedContent.DragonbloodShifterArchetype;

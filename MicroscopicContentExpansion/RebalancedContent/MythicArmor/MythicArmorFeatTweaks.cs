@@ -1,7 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using System.Linq;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.RebalancedContent.MythicArmor;

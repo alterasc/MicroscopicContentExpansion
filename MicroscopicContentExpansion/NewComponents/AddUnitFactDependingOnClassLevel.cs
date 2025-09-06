@@ -7,8 +7,6 @@ using Kingmaker.EntitySystem;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
 using Newtonsoft.Json;
-using System;
-using System.Linq;
 using UnityEngine;
 
 namespace MicroscopicContentExpansion.NewComponents;

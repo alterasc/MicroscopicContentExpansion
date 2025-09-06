@@ -17,7 +17,6 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using MicroscopicContentExpansion.NewComponents;
 using MicroscopicContentExpansion.NewContent.AnimalCompanions;
-using System.Collections.Generic;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
 using static Kingmaker.Blueprints.BlueprintAbilityResource;

@@ -13,7 +13,6 @@ using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
-using System.Linq;
 
 namespace MicroscopicContentExpansion.NewComponents;
 [TypeId("a3477f19abb04c9ab98337f9e31d0392")]

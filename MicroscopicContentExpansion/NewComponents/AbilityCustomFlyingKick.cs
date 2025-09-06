@@ -16,8 +16,6 @@ using Kingmaker.UnitLogic.Commands;
 using Kingmaker.Utility;
 using Kingmaker.View;
 using Kingmaker.Visual.Animation.Kingmaker;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 

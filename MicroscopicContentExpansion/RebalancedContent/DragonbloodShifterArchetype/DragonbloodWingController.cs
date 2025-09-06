@@ -4,8 +4,6 @@ using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace MicroscopicContentExpansion.RebalancedContent.DragonbloodShifterArchetype;
 
