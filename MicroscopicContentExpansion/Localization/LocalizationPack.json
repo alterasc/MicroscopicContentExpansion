@@ -4146,6 +4146,28 @@
       "frFR": null,
       "zhCN": null,
       "esES": null
+    },
+    {
+      "Key": "d93720689fe34a5c926727284e2f06dc",
+      "SimpleName": "ZenArcherCunningArcher.Description",
+      "ProcessTemplates": true,
+      "enGB": "Zen Archer can use his {g|Encyclopedia:Wisdom}Wisdom{/g} score in place of his {g|Encyclopedia:Intelligence}Intelligence{/g} score when qualifying for combat {g|Encyclopedia:Feat}feats{/g}. This ability counts as having Combat Expertise for the purpose of feat prerequisites",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "54dbdcf61aa6474fab0a02fea46c0eb8",
+      "SimpleName": "ZenArcherCunningArcher.Name",
+      "ProcessTemplates": false,
+      "enGB": "Cunning Archer",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
     }
   ]
 }
