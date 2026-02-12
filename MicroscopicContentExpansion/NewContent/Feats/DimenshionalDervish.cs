@@ -36,7 +36,7 @@ internal class DimenshionalDervish
     {
         var flickeringStep = AddFlickeringStep();
         var dimensionalAgility = AddDimensionalAgility(flickeringStep);
-        var dimensionalAssault = AddDimensionalAssault(dimensionalAgility, flickeringStep);
+        var dimensionalAssault = AddDimensionalAssault(flickeringStep, dimensionalAgility);
         var icon = GetBP<BlueprintAbility>("4c349361d720e844e846ad8c19959b1e").m_Icon;
 
         const string dervishName = "Dimensional Dervish";
@@ -73,8 +73,7 @@ internal class DimenshionalDervish
             {
                 c.NeedsAll = true;
                 c.m_Facts = [
-                    MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalDervishFeature"),
-                    dimensionalAgility.ToReference<BlueprintUnitFactReference>()
+                    MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalDervishFeature")
                 ];
             });
         });
@@ -110,10 +109,6 @@ internal class DimenshionalDervish
                 c.Amount = 2;
                 c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(KiPowerResource);
             });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
-            });
         });
 
         var dimensionalDervishScaledFistAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalDervishScaledFistAbility", bp =>
@@ -146,10 +141,6 @@ internal class DimenshionalDervish
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
                 c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(SFPowerResource);
-            });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -184,10 +175,6 @@ internal class DimenshionalDervish
                 c.Amount = 2;
                 c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
             });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
-            });
         });
 
         var dimensionalDervishFlickeringStepAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalDervishFlickeringStepAbility", bp =>
@@ -221,10 +208,6 @@ internal class DimenshionalDervish
                 c.Amount = 1;
                 c.m_RequiredResource = MCEContext.GetModBlueprintReference<BlueprintAbilityResourceReference>("FlickeringStepResource");
             });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
-            });
         });
 
         var dimensionalDervishFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DimensionalDervishFeature", bp =>
@@ -241,7 +224,6 @@ internal class DimenshionalDervish
             {
                 c.FeatureTags = FeatureTag.Attack;
             });
-            bp.AddPrerequisiteFeature(dimensionalAgility);
             bp.AddPrerequisiteFeature(dimensionalAssault);
             bp.AddPrerequisite<PrerequisiteStatValue>(c =>
             {
@@ -334,7 +316,7 @@ internal class DimenshionalDervish
         return dimensionalAgilityFeature;
     }
 
-    private static BlueprintFeature AddDimensionalAssault(BlueprintFeature dimensionalAgility, BlueprintFeature flickeringStep)
+    private static BlueprintFeature AddDimensionalAssault(BlueprintFeature flickeringStep, BlueprintFeature dimensionalAgility)
     {
         const string assaultName = "Dimensional Assault";
         const string kiAssaultName = "Ki Power: " + assaultName;
@@ -369,8 +351,7 @@ internal class DimenshionalDervish
             {
                 c.NeedsAll = true;
                 c.m_Facts = [
-                    MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalAssaultFeature"),
-                    dimensionalAgility.ToReference<BlueprintUnitFactReference>()
+                    MCEContext.GetModBlueprintReference<BlueprintUnitFactReference>("DimensionalAssaultFeature")
                 ];
             });
         });
@@ -403,10 +384,6 @@ internal class DimenshionalDervish
                 c.Amount = 2;
                 c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(KiPowerResource);
             });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
-            });
         });
 
         var dimensionalAssaultScaledFistAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalAssaultScaledFistAbility", bp =>
@@ -436,10 +413,6 @@ internal class DimenshionalDervish
                 c.m_IsSpendResource = true;
                 c.Amount = 2;
                 c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(SFPowerResource);
-            });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
             });
         });
 
@@ -471,10 +444,6 @@ internal class DimenshionalDervish
                 c.Amount = 2;
                 c.m_RequiredResource = GetBPRef<BlueprintAbilityResourceReference>(DrunkenKiPowerResource);
             });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
-            });
         });
 
         var dimensionalAssaultFlickeringStepAbility = Helpers.CreateBlueprint<BlueprintAbility>(MCEContext, "DimensionalAssaultFlickeringStepAbility", bp =>
@@ -505,10 +474,6 @@ internal class DimenshionalDervish
                 c.Amount = 1;
                 c.m_RequiredResource = MCEContext.GetModBlueprintReference<BlueprintAbilityResourceReference>("FlickeringStepResource");
             });
-            bp.AddComponent<AbilityCasterHasFacts>(c =>
-            {
-                c.m_Facts = [dimensionalAgility.ToReference<BlueprintUnitFactReference>()];
-            });
         });
 
         var dimensionalAssaultFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DimensionalAssaultFeature", bp =>
@@ -525,7 +490,6 @@ internal class DimenshionalDervish
             {
                 c.FeatureTags = FeatureTag.Attack;
             });
-            bp.AddPrerequisiteFeature(dimensionalAgility);
             bp.AddComponent<AddFacts>(c =>
             {
                 c.m_Facts = [
