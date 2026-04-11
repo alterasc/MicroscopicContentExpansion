@@ -504,12 +504,12 @@ The second type of bond allows an antipaladin to gain the service of a fiendish 
             {
                 c.m_Feature = AnimalCompanionArchetypeSelection.ToReference<BlueprintFeatureReference>();
             });
-            var FiendishTemplateFromTTTBase = GetBPRef<BlueprintFeatureReference>("970ffc97-344c-496d-b8ef-24118b5689b0");
-            if (!FiendishTemplateFromTTTBase.IsEmpty())
+            var FiendishTemplateFromTTTBase = TryGetBP<BlueprintFeature>("970ffc97-344c-496d-b8ef-24118b5689b0");
+            if (FiendishTemplateFromTTTBase != null)
             {
                 bp.AddComponent<AddFeatureToPet>(c =>
                 {
-                    c.m_Feature = FiendishTemplateFromTTTBase;
+                    c.m_Feature = FiendishTemplateFromTTTBase.ToReference<BlueprintFeatureReference>();
                 });
             }
         });

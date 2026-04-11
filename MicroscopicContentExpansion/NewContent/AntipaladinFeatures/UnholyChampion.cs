@@ -6,6 +6,7 @@ using Kingmaker.UnitLogic.FactLogic;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.NewContent.AntipaladinFeatures;
+
 internal class UnholyChampion
 {
     private const string NAME = "Unholy Champion";
@@ -56,19 +57,26 @@ internal class UnholyChampion
             });
         });
 
-        var perfectBodyFlawlessMind = GetBPRef<BlueprintFeatureReference>("cb61beef-4f35-4992-a09e-821d170a6582");
+        var perfectBodyFlawlessMind = TryGetBP<BlueprintFeature>("cb61beef-4f35-4992-a09e-821d170a6582");
 
         var markOfVengeance = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(MCEContext, "AntipaladinAuraOfVengeanceFeature");
+
+        var choices = new BlueprintFeatureReference[]
+        {
+            UnholyChampion.ToReference<BlueprintFeatureReference>(),
+            markOfVengeance
+        };
+
+        if (perfectBodyFlawlessMind != null)
+        {
+            choices = [.. choices, perfectBodyFlawlessMind.ToReference<BlueprintFeatureReference>()];
+        }
 
         Helpers.CreateBlueprint<BlueprintFeatureSelection>(MCEContext, "AntipaladinCapstone", bp =>
         {
             bp.SetName(MCEContext, "Antipaladin Capstone");
             bp.SetDescription(MCEContext, "At 20th level, antipaladin gains a powerful class feature");
-            bp.m_AllFeatures = [
-                UnholyChampion.ToReference<BlueprintFeatureReference>(),
-                perfectBodyFlawlessMind,
-                markOfVengeance
-            ];
+            bp.m_AllFeatures = choices;
             bp.Mode = SelectionMode.Default;
             bp.Groups = [FeatureGroup.None];
             bp.IsClassFeature = true;

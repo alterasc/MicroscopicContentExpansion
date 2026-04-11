@@ -9,6 +9,13 @@ internal static class Globals
         return BlueprintTools.GetBlueprint<T>(id);
     }
 
+    internal static T TryGetBP<T>(string id) where T : SimpleBlueprint
+    {
+        var parsed = BlueprintGuid.Parse(id);
+        T obj = ResourcesLibrary.TryGetBlueprint(parsed) as T;
+        return obj;
+    }
+
     internal static T GetBPRef<T>(string id) where T : BlueprintReferenceBase
     {
         return BlueprintTools.GetBlueprintReference<T>(id);

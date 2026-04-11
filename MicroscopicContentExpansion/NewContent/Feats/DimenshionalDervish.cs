@@ -16,6 +16,7 @@ using TabletopTweaks.Core.NewComponents.Prerequisites;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.NewContent.Feats;
+
 internal class DimenshionalDervish
 {
 
