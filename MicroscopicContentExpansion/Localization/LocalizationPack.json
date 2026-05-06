@@ -3950,6 +3950,28 @@
       "esES": null
     },
     {
+      "Key": "f461618312ab4b719eeea2c6cab7ee95",
+      "SimpleName": "StartossCometMythicFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "When you hit an opponent while using the Startoss Comet feat, double the number of maximum additional attacks (including bonus given by Staross Shower feat). Your additional attacks can hit each individidual foe more than once.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "9083b9b6fa674d3a800e90f4e92ed7d1",
+      "SimpleName": "StartossCometMythicFeature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Startoss Comet (Mythic)",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "9061162fe2a64a859cbc85e80da761be",
       "SimpleName": "StartossShowerFeature.Description",
       "ProcessTemplates": true,

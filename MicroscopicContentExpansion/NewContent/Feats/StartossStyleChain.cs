@@ -13,6 +13,7 @@ using MicroscopicContentExpansion.NewComponents;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.NewContent.Feats;
+
 class StartossStyleChain
 {
 
@@ -171,6 +172,20 @@ class StartossStyleChain
             c.ChosenWeaponFeature = GetBPRef<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
         });
 
+        const string startossCometMythicName = "Startoss Comet (Mythic)";
+        const string startossCometMythicDescription = "When you hit an opponent while using the Startoss Comet feat, double the number of maximum additional attacks (including bonus given by Staross Shower feat). Your additional attacks can hit each individidual foe more than once.";
+        var startossCometMythicFeature = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "StartossCometMythicFeature", bp =>
+        {
+            bp.SetName(MCEContext, startossCometMythicName);
+            bp.SetDescription(MCEContext, startossCometMythicDescription);
+            bp.m_Icon = startossCometIcon;
+            bp.IsClassFeature = true;
+            bp.Groups = [
+                    FeatureGroup.MythicFeat
+                ];
+            bp.AddPrerequisiteFeature(startossCometFeature);
+        });
+
         startossCometAbility.AddComponent<AbilityCustomStartossComet>(c =>
         {
             c.m_MythicBlueprint = GetBPRef<BlueprintFeatureReference>("e07bcb271ecefec44be314e1c807c798");
@@ -179,6 +194,7 @@ class StartossStyleChain
             c.m_VitalStrikeImproved = GetBPRef<BlueprintFeatureReference>("52913092cd018da47845f36e6fbe240f");
             c.m_VitalStrikeGreater = GetBPRef<BlueprintFeatureReference>("e2d1fa11f6b095e4fb2fd1dcf5e36eb3");
             c.m_StartossShower = startossShowerFeature.ToReference<BlueprintFeatureReference>();
+            c.m_StarossCometMythic = startossCometMythicFeature.ToReference<BlueprintFeatureReference>();
         });
 
         if (MCEContext.AddedContent.Feats.IsDisabled("StartossStyleFeatChain")) { return; }
@@ -186,6 +202,7 @@ class StartossStyleChain
         FeatTools.AddAsFeat(startossStyleFeature);
         FeatTools.AddAsFeat(startossCometFeature);
         FeatTools.AddAsFeat(startossShowerFeature);
+        FeatTools.AddAsMythicFeat(startossCometMythicFeature);
     }
 
 }

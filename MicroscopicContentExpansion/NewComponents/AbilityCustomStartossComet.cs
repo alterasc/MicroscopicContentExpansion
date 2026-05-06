@@ -29,11 +29,14 @@ public class AbilityCustomStartossComet : AbilityCustomLogic
     [SerializeField]
     public BlueprintFeatureReference m_StartossShower;
     [SerializeField]
+    public BlueprintFeatureReference m_StarossCometMythic;
+    [SerializeField]
     public BlueprintFeatureReference m_VitalStrike;
     [SerializeField]
     public BlueprintFeatureReference m_VitalStrikeImproved;
     [SerializeField]
     public BlueprintFeatureReference m_VitalStrikeGreater;
+
     public BlueprintFeature MythicBlueprint => this.m_MythicBlueprint?.Get();
 
     public BlueprintFeature RowdyFeature => this.m_RowdyFeature?.Get();
@@ -120,8 +123,13 @@ public class AbilityCustomStartossComet : AbilityCustomLogic
             {
                 addAttacks = 1 + caster.Stats.BaseAttackBonus.ModifiedValue / 5;
             }
-            List<UnitEntityData> hitTargets = new List<UnitEntityData>();
-            List<UnitEntityData> validTargets = new List<UnitEntityData>(targetList);
+            bool hasMythicStartossComet = maybeCaster.HasFact(this.m_StarossCometMythic);
+            if (hasMythicStartossComet)
+            {
+                addAttacks *= 2;
+            }
+            List<UnitEntityData> hitTargets = [];
+            List<UnitEntityData> validTargets = new(targetList);
             var weaponRange = threatHand.Weapon.AttackRange.Meters;
 
             //wait 0.2 seconds before starting chaining
@@ -178,7 +186,10 @@ public class AbilityCustomStartossComet : AbilityCustomLogic
                 {
                     break;
                 }
-                validTargets = targetList.Where(t => !hitTargets.Contains(t)).ToList();
+                if (!hasMythicStartossComet)
+                {
+                    validTargets = targetList.Where(t => !hitTargets.Contains(t)).ToList();
+                }
             }
             yield break;
         }
