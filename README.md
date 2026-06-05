@@ -57,6 +57,11 @@ They use Horse portrait.
 - [Flickering Step](https://www.d20pfsrd.com/feats/conduit-feats/flickering-step-conduit)
 - [Crusader's Flurry](https://www.d20pfsrd.com/feats/general-feats/crusader-s-flurry)
 - [Feinting Flurry](https://www.d20pfsrd.com/feats/combat-feats/feinting-flurry-combat) (homebrew change: Zen Archer can apply it with a bow)
+
+### New Mythic Feat
+
+- Startoss Comet (Mythic) - doubles the number of attacks that you can make with Startoss Comet, and allows to hit each enemy more than once
+
 ### New spells
 
 - [Deadly Juggernaut (Cleric 3, Inquisitor 3, Paladin 3, Antipaladin 3, Warpriest 3)](https://www.d20pfsrd.com/magic/all-spells/d/deadly-juggernaut/)   
