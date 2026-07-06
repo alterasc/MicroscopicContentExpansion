@@ -2,6 +2,7 @@
 global using static MicroscopicContentExpansion.Main;
 using HarmonyLib;
 using MicroscopicContentExpansion.ModLogic;
+using MicroscopicContentExpansion.NewComponents;
 using MicroscopicContentExpansion.NewContent.AnimalCompanions;
 using TabletopTweaks.Core.Utilities;
 using UnityModManagerNet;
@@ -20,6 +21,7 @@ public static class Main
         MCEContext.ModEntry.OnGUI = UMMSettingsUI.OnGUI;
         HarmonyInstance.CreateClassProcessor(typeof(BlueprintInitLoader)).Patch();
         HarmonyInstance.CreateClassProcessor(typeof(NightmareMountOffsetPatch)).Patch();
+        HarmonyInstance.CreateClassProcessor(typeof(CrusaderMonkWeaponUnlockPatch)).Patch();
         PostPatchInitializer.Initialize(MCEContext);
         return true;
     }

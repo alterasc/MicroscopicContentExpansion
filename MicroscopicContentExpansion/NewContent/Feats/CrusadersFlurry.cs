@@ -3,12 +3,16 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Modding;
 using Kingmaker.Utility;
-using MicroscopicContentExpansion.NewComponents;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
+using static TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures;
 
 namespace MicroscopicContentExpansion.NewContent.Feats;
+
 internal class CrusadersFlurry
 {
+
+    internal const CustomMechanicsFeature CrusadersFlurryMechanicsFeature = (CustomMechanicsFeature)1047;
 
     internal static void Add()
     {
@@ -26,16 +30,9 @@ internal class CrusadersFlurry
             {
                 flurry2ndFacts.Add(GetBPRef<BlueprintFeatureReference>("885ad943c0c3f0445aef3813f869921f")); //SacredFistFlurry15Unlock
             }
-            bp.AddComponent<CrusadersFlurryUnlock>(c =>
+            bp.AddComponent<AddCustomMechanicsFeature>(c =>
             {
-                c._deitySelection = GetBPRef<BlueprintFeatureSelectionReference>("59e7a76987fe3b547b9cce045f4db3e4");
-                c._soheiArchetype = GetBPRef<BlueprintArchetypeReference>("fad7c56737ed12e42aacc330acc86428");
-                c._flurryFact1 = GetBPRef<BlueprintUnitFactReference>("332362f3bd39ebe46a740a36960fdcb4");
-                c._flurryFact11 = GetBPRef<BlueprintUnitFactReference>("de25523acc24b1448aa90f74d6512a08");
-                c._flurryFact20 = GetBPRef<BlueprintUnitFactReference>("98319382db0542ef91e0523392d49757");
-                c._weaponFocus = GetBPRef<BlueprintParametrizedFeatureReference>("1e1f627d26ad36f43bbd26cc2bf8ac7e");
-                c._flurry2ndfacts = flurry2ndFacts.ToArray();
-                c._oldMaster = GetBPRef<BlueprintFeatureReference>("0e6eea0e813f44489835b8940264b7af");
+                c.Feature = CrusadersFlurryMechanicsFeature;
             });
             bp.SetName(MCEContext, "Crusader's Flurry");
             bp.SetDescription(MCEContext, "You can use your deity’s favored weapon as if it were a monk weapon.");
