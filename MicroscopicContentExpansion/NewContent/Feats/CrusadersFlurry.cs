@@ -22,14 +22,6 @@ internal class CrusadersFlurry
         {
 
             var hasHomeBrewArchetypes = OwlcatModificationsManager.Instance.AppliedModifications.Any(x => x.Manifest.UniqueName == "HomebrewArchetypes");
-            List<BlueprintFeatureReference> flurry2ndFacts = [
-                GetBPRef<BlueprintFeatureReference>("a34b8a9fcc9024b42bacfd5e6b614bfa"),
-                GetBPRef<BlueprintFeatureReference>("dfc54683a9b7b2d4294ad1fd2acd5877")
-            ];
-            if (hasHomeBrewArchetypes)
-            {
-                flurry2ndFacts.Add(GetBPRef<BlueprintFeatureReference>("885ad943c0c3f0445aef3813f869921f")); //SacredFistFlurry15Unlock
-            }
             bp.AddComponent<AddCustomMechanicsFeature>(c =>
             {
                 c.Feature = CrusadersFlurryMechanicsFeature;
