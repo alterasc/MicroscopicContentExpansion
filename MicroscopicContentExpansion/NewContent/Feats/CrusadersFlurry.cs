@@ -20,8 +20,7 @@ internal class CrusadersFlurry
 
         var cflurryUnlock = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "CrusadersFlurryUnlock", bp =>
         {
-
-            var hasHomeBrewArchetypes = OwlcatModificationsManager.Instance.AppliedModifications.Any(x => x.Manifest.UniqueName == "HomebrewArchetypes");
+            var hasHomeBrewArchetypes = OwlcatModificationsManager.Instance.AppliedModifications.Any(x => x?.Manifest?.UniqueName == "HomebrewArchetypes");
             bp.AddComponent<AddCustomMechanicsFeature>(c =>
             {
                 c.Feature = CrusadersFlurryMechanicsFeature;
