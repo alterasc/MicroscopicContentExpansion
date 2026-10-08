@@ -23,6 +23,7 @@ using Kingmaker.Utility;
 using TabletopTweaks.Core.Utilities;
 
 namespace MicroscopicContentExpansion.RebalancedContent.DragonbloodShifterArchetype;
+
 internal class Dragonblooded
 {
     internal static void Change()
@@ -430,7 +431,10 @@ internal class Dragonblooded
             a.m_Type = ddBite.m_Type;
             a.m_EquipmentEntity = ddBite.m_EquipmentEntity;
             a.m_VisualParameters = ddBite.m_VisualParameters;
-            a.m_Enchantments = [GetBPRef<BlueprintWeaponEnchantmentReference>("ae2be9fefbd5438f821f0113db8fd572")];
+            if (IsTTTBasePresent)
+            {
+                a.m_Enchantments = [GetBPRef<BlueprintWeaponEnchantmentReference>("ae2be9fefbd5438f821f0113db8fd572")];
+            }
         });
 
         var bite = Helpers.CreateBlueprint<BlueprintFeature>(MCEContext, "DragonbloodShifterBite", a =>

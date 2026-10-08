@@ -8,10 +8,13 @@ using TabletopTweaks.Core.Utilities;
 using UnityModManagerNet;
 
 namespace MicroscopicContentExpansion;
+
 public static class Main
 {
     public static ModContextMCEBase MCEContext;
     public static Harmony HarmonyInstance;
+
+    public static bool IsTTTBasePresent => UnityModManager.modEntries.Any(x => x.Info?.Id == "TabletopTweaks-Base" && x.Enabled && !x.ErrorOnLoading);
     public static bool Load(UnityModManager.ModEntry modEntry)
     {
         HarmonyInstance = new Harmony(modEntry.Info.Id);
