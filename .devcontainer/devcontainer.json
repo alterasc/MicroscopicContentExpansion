@@ -4,7 +4,7 @@
 	"name": "C# (.NET)",
 	"image": "mcr.microsoft.com/devcontainers/dotnet:2-10.0-noble",
 	"containerEnv": {
-		"WrathInstallDir": "${localEnv:WrathPath}"
+		"WrathInstallDir": "/home/Wrath"
 	},
 	"customizations": {
 		"vscode": {
